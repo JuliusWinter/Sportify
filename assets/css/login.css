@@ -1,0 +1,67 @@
+body{
+    font-family: Roboto;
+    font-weight: 300;
+    height: 100vh;
+    background: #24C6DC;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #514A9D, #24C6DC);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #514A9D, #24C6DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+
+}
+
+input:focus{	
+	border:2px solid darkblue;
+	outline: none;
+}
+
+.checkbox{
+    margin-bottom: 10px;
+    float: left;
+}
+
+#container{
+    width: 600px;
+    margin: 90px auto;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 2em;
+    display: block;
+}
+
+#formelements{
+    min-width: 100%;
+    padding: 0px;
+    margin: 0 auto;
+}
+
+.formelement{
+    font-family: Roboto;
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 30px;
+    border: none;
+    background: lightgray;
+}
+
+#submit{
+    background: #2000CC;
+    color: white;
+}
+
+navigate to folder
+git pull
+git status
+git add <file> or *
+git commit -m "message"
+git push origin master
+
+if code has been modified
+
+than:
+git pull
+if zou open the file, zou will see the merge confilct and have to resolve it manually
+git add *
+git commit -m "message"
+git push origin master
