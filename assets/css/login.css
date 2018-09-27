@@ -50,7 +50,7 @@ input:focus{
     color: white;
 }
 
-navigate to folder
+/* navigate to folder
 git pull
 git status
 git add <file> or *
@@ -64,4 +64,4 @@ git pull
 if zou open the file, zou will see the merge confilct and have to resolve it manually
 git add *
 git commit -m "message"
-git push origin master
+git push origin master */
