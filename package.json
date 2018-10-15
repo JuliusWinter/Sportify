@@ -1,0 +1,23 @@
+{
+  "name": "sportify",
+  "version": "1.0.0",
+  "description": "Sport Network",
+  "main": "index.js",
+  "dependencies": {
+    "http-server": "^0.11.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JuliusWinter/Sportify.git"
+  },
+  "author": "Julius Winter",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JuliusWinter/Sportify/issues"
+  },
+  "homepage": "https://github.com/JuliusWinter/Sportify#readme"
+}
