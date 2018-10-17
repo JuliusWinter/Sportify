@@ -1,9 +1,7 @@
 //Introduce User with credentials
-var users = {
-    userId: 12873,
-    userName: "Jesus",
-    password: "helloworld",
-};
+var users = JSON.parse(localStorage.getItem("users"));
+
+// PSEUDO CODE - Chagne the user array
 
 //Select Button
 var submit = document.getElementById('submit');
@@ -23,6 +21,8 @@ submit.onclick = function(){
         document.getElementById("loginResult").innerHTML = "Oops, username or password is wrong...try again!!!"
     }
 };
+
+
 
 //
 
