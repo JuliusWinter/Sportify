@@ -1,14 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.4/angular.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sportify.com</title>
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
+    <link rel='stylesheet' href='assets/css/index.css'>
+    <title>sportify.com</title>
 </head>
-<body background=''>
-    <!-- Insert Nav Bar-->
+<body>
+
+<!-- Insert nav bar that is aligned with overall nav bar; specialities: Login (redirects to login page), register ((redirects to registration page), no logout button -->
+<!-- Insert Sportify Logo on left end of nav bar (purpose of a home button) -->
+<nav class="indexNavbar">
+    <div class="navbarContainer">
+        <div class="navbarHeader">
+            <a class="navbarBrand" href="#">sportify.com</a>
+        </div>
+        <ul class="indexNavbarRight">
+            <li><a href="#">Register</a></li>
+            <li><a href="#">Login</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- create a div to simplify alignment of first background image -->
+<div id='firstPage'>
+
+<!--create a section including a short description/teaser-->
+<div id='teaser'>
+    <h1>Sportify</h1>
+    <h2>TRAIN ANYWHERE, ANYTIME, WITH ANYONE</h2>
+    <p>Reach your fitness goals and match up with athletes in your neigbourhood</p> 
+</div>
     
+
+<!--create a button that redirects to registration page-->
+<button name="regRed" class='indexButton' id="regRed">
+    <p id=headerButton>Register</p>
+    <br/>
+    <br/>
+    <br/>
+    <p>Become a part of the community and get access to the world of sports</p>
+</button>
+
+<!--create a button that redirects to login page-->
+    <button name='loginRed' class='indexButton' id="loginRed">
+        <p id='headerButton'>Login</p>
+        <br/>
+        <br/>
+        <br/>
+        <p>Release the beast!</p> 
+    </button>
+</div>
+
+
+<!--create a second div that informs users about the app and displays screenshots of the application -->
+<div id='secondPage'>
+
+<div id='informationText'>
+    <p>Sportify shows you all sport events based on your location and interest.
+    If it may be just a basketball match in your leisure, a casual run, where you need some company for or a professional instruction - we have it all for you.</p>
+    <p>And the best: You, as a registered user, can create all these events whenever you want or even tournaments.</p>
+    
+    <p>So let's start today and change the lifestyle of your neighbourhood.</p>
+    <p>Get people out of their beds and form a strong community.</p>
+    
+</div>
+
 </body>
 </html>

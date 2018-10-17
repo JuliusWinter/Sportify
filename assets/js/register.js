@@ -1,5 +1,5 @@
 // Introduce Array of registered Users
-var users = [];
+var users = JSON.parse(localStorage.getItem("users"));
 
 // Introduce User Object
 var user = {

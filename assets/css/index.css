@@ -1,0 +1,53 @@
+body {
+    font-family: 'Fjalla One', sans-serif; 
+}
+
+.indexNavbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #111A23;
+    display: block;
+}
+
+.indexNavbarRight {
+    float: right;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+li {
+    display: inline;
+}
+
+#firstPage {
+    background: url(https://images.unsplash.com/photo-1512699142433-897666c9908f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b23a64618bdea77a844b1c4d32c9135a&auto=format&fit=crop&w=3068&q=80);
+    background-repeat: no-repeat;
+    background-position:center; 
+    width: 100%;
+    height: 100vh;
+}
+
+#teaser {
+    text-align: center;
+    font-size: 40px;
+}
+
+
+.indexButton {
+    font-family: 'Fjalla One', sans-serif;
+    align-content: center;
+    border-radius: 8px;
+    width: 25%;
+}
+
+.indexButton #headerButtons {
+    font-size: 18px;
+}
+
+#secondPage {
+    background-color: #FBFF12;
+}
