@@ -1,9 +1,5 @@
 //Introduce User with credentials
-var users = {
-    userId: 12873,
-    userName: "Jesus",
-    password: "helloworld",
-};
+var users = JSON.parse(localStorage.getItem("users"));
 
 // PSEUDO CODE - Chagne the user array
 
