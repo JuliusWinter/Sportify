@@ -1,31 +1,44 @@
+body {
+    font-family: 'Fjalla One', sans-serif; 
+    size: 100%;
+}
+
 /* Add a black background color to the top navigation */
-.topnav {
-    background-color: #333;
+.eventCatalogueNavbar {
+    position: fixed;
+    background-color: black;
     overflow: hidden;
     width: 100%;
-    }
-    
-    /* Style the links inside the navigation bar */
-    .topnav a {
-    
+    top: 0%;
+    left: 0%;
+}
+
+/* Style the links inside the navigation bar */
+.eventCatalogueNavbar a {
+    float: left;
     color: #f2f2f2;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
-    }
-    
-    /* Change the color of links on hover */
-    .topnav a:hover {
-    background-color: #ddd;
+}
+
+/* Change the color of links on hover */
+.eventCatalogueNavbar a:hover {
+    background-color: whitesmoke;
     color: black;
-    }
-    
-    /* Add a color to the active/current link */
-    .topnav a.active {
-    background-color: #4CAF50;
-    color: white;
-    } 
+}
+
+/* Add a color to the active/current link */
+.eventCatalogueNavbar a.active {
+    background-color:black;
+    color: whitesmoke;
+}
+
+.eventCatalogueNavbar a.eventCatalogueNavbarRight {
+    float: right;
+}
+
 h1{
     color:darkslategray;
     font-family:Arial, Helvetica, sans-serif;
@@ -38,9 +51,9 @@ background-color: #f2f2f2
 }
 table, th, td{
     border: 1px solid white; 
-    border-collapse: collapse;
-    f   
-} 
+    border-collapse: collapse; 
+}
+
 table th{
 background-color: lightgreen;
 color: black;
@@ -88,7 +101,10 @@ border-bottom: 1px solid #ddd;
 background-color: #b3fd6d;
 }
 
-foatLeft{
+.floatLeft {
     float: left;
+    left: 0%;
+    right: 0%;
+    padding-top: 0%;
 }
 
