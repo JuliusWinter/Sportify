@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/userProfileStyle.css"/>
+
+    <!-- <link rel="style" href="styling.css"/> -->
+
+     <script src="assets/js/userProfile.js"></script>
+    <!-- Navagation bar, css located on userProfile.css -->
+     <div class="topnav">
+  <a class="active" href="#Home">Home</a>
+  <a href="#Sample2" >Sample 2</a>
+  <a href="#Sample3" >Sample 3</a>
+  <a href="#Sample4" >Sample 4</a>
+</div>
+    
+</head>
+<div>
+<body>
+
+      </div id="profileItems" class="profileItems">
+
+            <h1><img src="ninja-512.png" id alt="Avatar" class="avatar">
+                  User Profile Name as entered in registration</h1>
+            </h2>Location as entered in registration</h2>
+    <p id="clip">Interest list goes here list can be edited</p>
+</div>
+
+    <textarea name="text area sample" id="textBox" cols="50" rows="8" placeholder="Enter your bio here..."></textarea>
+
+          <script src="source.js" type="text/javascript"></script>
+
+
+        <!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." style="width: 200px"/> -->
+
+  <div class="catalogueTable">
+  <input type="text" id="myInput" onkeyup="myFunction()" placeholder="filter events" class="Bio"/>
+  <div>
+  <table id="myTable" style = "width: 200px">
+                <tr title="Catalogue Snapshot">
+                        <th >Events</th>
+                        <th >Type</th> 
+                        <th >Date</th>
+                  </tr>
+                  <tr >
+                        <td>Game</td>
+                        <td>Description</td> 
+                        <td>01.11.2018</td>
+                  </tr>
+                  <tr>
+                        <td>Basketball</td>
+                        <td>Description</td> 
+                        <td>01.11.2018</td>
+                  </tr>
+                  <tr >
+                        <td>Football</td>
+                        <td>Description</td> 
+                        <td>01.11.2018</td>
+                  </tr>
+                  <tr>
+                        <td>Frisbee</td>
+                        <td>Description</td> 
+                        <td>01.11.2018</td>
+                  </tr>     
+                </table>
+            </div>
+      </div>
+                <div class="btn-group" style="padding-top: 30px">
+                  <button onclick="toggleUpcomingEvents()">Events to be attending</button>
+                  <div id="upcomingEvents">
+                  
+                            </div>
+                  <button onclick="togglePastEvents()">Previously attended events</button>
+                  <div id="pastEvents">
+                  
+                            </div>
+                  <button onclick="toggleInterests()">Events of Interest</button>
+                  <div id="interests">
+                        </div>
+                  </div>
+          </body>
+      </div> 
+      <script src="assets/js/userProfile.js"></script>
+</html>
