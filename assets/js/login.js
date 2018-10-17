@@ -5,6 +5,8 @@ var users = {
     password: "helloworld",
 };
 
+// PSEUDO CODE - Chagne the user array
+
 //Select Button
 var submit = document.getElementById('submit');
 
@@ -23,6 +25,8 @@ submit.onclick = function(){
         document.getElementById("loginResult").innerHTML = "Oops, username or password is wrong...try again!!!"
     }
 };
+
+
 
 //
 
