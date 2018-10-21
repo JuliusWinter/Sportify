@@ -9,23 +9,36 @@
     <link rel="stylesheet" href="assets/css/eventCatalogueStyle.css">
 
 <body>
-<!-- navigation bar -->
-<div class="eventCatalogueNavbar">
+<!-- Create a navigation bar that contains a subnavigation bar, which opens when hovering over the top navigation bar -->
+<div class="navbar">
       <a class="active" href="#home">SPORTIFY</a>
-      <a class="profilePage" href="#">Profile Page</a>
-      <a class="secondPage" href="#">Event Catalogue</a>
-      <a class='eventCatalogueNavbarRight' href="#register">Logout</a>
+      <div class="subNavbar">
+            <button class="subNavbarButton">Profile</button>
+            <div class="subNavbarContent">
+              <a href="#profilePage">Profile Page</a>
+              <a href="#profileManagementPage">Profile Management</a>
+            </div>
+      </div>
+      <div class="subNavbar">
+            <button class="subNavbarButton">Events</button>
+            <div class="subNavbarContent">
+              <a href="#eventCatalogue">Event Catalogue</a>
+              <a href="#createEventPage">Create an Event</a>
+            </div>
+      </div>
+      <a class='navbarRight' href="#logout">Logout</a>
 </div>
 
+<div class='container'>
 <div class ="floatLeft">
     <h1>Course Catalogue</h1>
     <h2>Import data from creating event page</h2>
 
-      <input type="text" id="userInput" onkeyup="myFunction()" placeholder="Search for names here..." style="width: 200px"/>
+    <input type="text" id="userInput" onkeyup="myFunction()" placeholder="Search for names here..." style="width: 200px"/>
 
-  </div>
+</div>
 
-<div>
+<div class='floatRight'>
     <table id="currentCatalogue">
 
                 <tr >
@@ -66,5 +79,6 @@
       </table>
 </body>
 </div> 
+</div>
 <script src="assets/js/eventCatalogue.js"></script>
 </html>

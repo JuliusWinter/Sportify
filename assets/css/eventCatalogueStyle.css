@@ -4,7 +4,7 @@ body {
 }
 
 /* Add a black background color to the top navigation */
-.eventCatalogueNavbar {
+.navbar {
     position: fixed;
     background-color: black;
     overflow: hidden;
@@ -14,7 +14,7 @@ body {
 }
 
 /* Style the links inside the navigation bar */
-.eventCatalogueNavbar a {
+.navbar a {
     float: left;
     color: #f2f2f2;
     text-align: center;
@@ -23,51 +23,111 @@ body {
     font-size: 17px;
 }
 
-/* Change the color of links on hover */
-.eventCatalogueNavbar a:hover {
-    background-color: whitesmoke;
-    color: black;
-}
-
 /* Add a color to the active/current link */
-.eventCatalogueNavbar a.active {
+.navbar a.active {
     background-color:black;
     color: whitesmoke;
 }
 
-.eventCatalogueNavbar a.eventCatalogueNavbarRight {
+.navbar a.navbarRight {
     float: right;
 }
 
-h1{
+/* The subnavigation menu */
+.subNavbar {
+    float: left;
+    overflow: hidden;
+}
+
+/* subNavbar button */
+.subNavbar .subNavbarButton {
+    font-size: 17px; 
+    border: none;
+    outline: none;
+    color: whitesmoke;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+    display: inline-block;    
+}
+
+/* Add a white background color to navigation links on hover */
+/* Change the color of links on hover */
+.subNavbar:hover .subNavbarButton {
+    background-color: whitesmoke;
+    color: black;
+}
+  
+/* Style the subnav content - positioned absolute */
+.subNavbarContent {
+    display: none;
+    position: absolute;
+    left: 0;
+    background-color:whitesmoke;
+    width: 100%;
+    z-index: 1;
+}
+  
+/* Style the subnav links */
+.subNavbarContent a {
+    float: left;
+    color: black;
+    text-decoration: none;
+}
+  
+/* Add a grey background color on hover */
+.subNavbarContent a:hover {
+    background-color: grey;
+    color: black;
+}
+  
+/* When you move the mouse over the subnav container, open the subnav content */
+.subNavbar:hover .subNavbarContent {
+    display: block;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    left: 0%;
+    right: 0%;
+    padding-top: 0%;
+    background-color: grey;
+}
+
+
+h1 {
     color:darkslategray;
     font-family:Arial, Helvetica, sans-serif;
     font-size: 175%; 
-
 }
-/* changes olor in every other row of table */
+
+/* changes color in every other row of table */
 tr:nth-child(even) {
 background-color: #f2f2f2
 }
-table, th, td{
+
+table, th, td {
     border: 1px solid white; 
     border-collapse: collapse; 
 }
 
-table th{
+table th {
 background-color: lightgreen;
 color: black;
 }
 
-div{
+div {
     float: left;
     width: 50%;
 }
-input{
+
+input {
    margin-left: 15%;
    height: 15px;
-
 }
+
 #myInput {
 background-image: url('/css/searchicon.png'); /* Add a search icon to input */
 background-position: 10px 12px; /* Position the search icon */
@@ -106,5 +166,14 @@ background-color: #b3fd6d;
     left: 0%;
     right: 0%;
     padding-top: 0%;
+    width: 30%;
+}
+
+.floatRight {
+    float: right;
+    left: 0%;
+    right: 0%;
+    padding-top: 0%;
+    width: 70%;
 }
 
