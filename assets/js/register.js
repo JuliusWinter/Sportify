@@ -4,6 +4,7 @@ var users = JSON.parse(localStorage.getItem("users"));
 
 // Introduce User Object Model
 var user = {
+    isLoggedin: false,
     userName:"",
     firstName:"",
     lastName: "",

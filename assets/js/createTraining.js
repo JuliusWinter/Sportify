@@ -1,14 +1,16 @@
 // introduce events binding that carries event array that are saved in the local storage
 // JSON.parse is the opposite operation of stringify and turns the string back into an array
+
 var events = [];
+
 
 // introduce our event object model
 var event = {
-    type:"course",
+    type:"training",
     privacy:"",
     pic: "",
     name: "",
-    data:"",
+    date:"",
     time:"",
     sportType:"",
     description:"",

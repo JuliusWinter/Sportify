@@ -14,6 +14,7 @@ submit.onclick = function(){
     //check if the input equals the credentials and change 
     for(var i = 0; i < users.length; i++){
         if(userName == users[i].userName && password == users[i].password){
+            users[i].isLoggedIn = true;
             document.getElementById("loginResult").innerHTML = "Yeah, your credentials are right!!!";
             document.location.href = "userProfile.html";
         }
