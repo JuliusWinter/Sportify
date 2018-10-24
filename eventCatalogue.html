@@ -12,6 +12,29 @@
 
 <!-- Create a navigation bar that contains a subnavigation bar, which opens when hovering over the top navigation bar -->
 <!-- The navigation menu -->
+<!-- The navigation menu -->
+<div class="navbar">
+            <a href="#home">SPORTIFY</a>
+            <div class="subNavbar">
+              <button class="subNavbarButton">Profile</button>
+              <div class="subNavbarContent">
+                <a href="#">Profile Page</a>
+                <a href="#">Profile Management</a>
+              </div>
+            </div>
+            <div class="subNavbar">
+                        <button class="subNavbarButton">Events</button>
+                        <div class="subNavbarContent">
+                          <a href="#company">Event Catalogue</a>
+                          <a href="#team">Create Event</a>
+                        </div>
+                      </div> 
+            <a class='navbarRight' href="#logout">Logout</a>
+          </div>
+
+
+
+<!--
 <div class="navbar">
       <a class="active" href="#home">SPORTIFY</a>
       <div class="subNavbar">
@@ -30,6 +53,7 @@
       </div>
       <a class='navbarRight' href="#logout">Logout</a>
 </div>
+-->
 
 <div class='container'>
 
@@ -43,32 +67,43 @@
       </div>
       <div id='filtering'>
                   <fieldset>
-                              <legend>Choose Event Type</legend>
-                              <div>
-                                    <input type="checkbox" class='eventType' id='trainingEvent' value='training'>
-                                    <label for='trainingEvent'>Training</label>
-                              </div>
-                              <div>
-                                    <input type="checkbox" class='eventType' id='courseEvent'       value='course'>
-                                    <label for='courseEvent'>Course</label>
-                              </div>
-                              <div>
-                                    <input type="checkbox" class='eventType' id='tournamentEvent' value='tournament'>
-                                    <label for='tournamentEvent'>Tournament</label>
-                              </div>
-                            </fieldset>
+                        <legend>Choose Event Type</legend>
+                        <div>
+                              <input type="checkbox" class='eventType' id='trainingEvent' value='training'>
+                              <label for='trainingEvent'>Training</label>
+                        </div>
+                        <div>
+                              <input type="checkbox" class='eventType' id='courseEvent' value='course'>
+                              <label for='courseEvent'>Course</label>
+                        </div>
+                        <div>
+                              <input type="checkbox" class='eventType' id='tournamentEvent' value='tournament'>
+                              <label for='tournamentEvent'>Tournament</label>
+                        </div>
+                  </fieldset>
+                  <fieldset>
+                        <legend>Choose Sport Category</legend>
+                        <ul id='sportList'>
+                                    <li>
+                                          <input type="checkbox" class='sport' value=''>
+                                          <label for='trainingEvent'></label>
+                                    </li>
+                                    
+                        </ul>
+                        
+                  </fieldset>
       </div>
 </div>
 
 <!--create a div that includes all events-->
 <div id='catalogueItems'>      
 
-      <!--create a div, that displays the basic structure of how an event is displayed in the catalogue; by clicking on the title of the event the user should be redirected to event page-->
+      <!--create a div, that displays the basic structure of how an event is displayed in the catalogue; by clicking on the title of the event or the event button, the user should be redirected to event page-->
       <div class='event'> 
             <div class='link'>
                   <a href="#eventPage">Yoga Course @Amager Strand</a>
             </div>
-            <div class='sportCategory'>Yoga</div>
+            <div class='sportCategory' >Yoga</div>
             <div class='type'>Course</div>
             <div class='date'>21.11.2018</div>
             <div class='startTime'>18:00</div>

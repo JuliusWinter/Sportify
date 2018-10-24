@@ -3,89 +3,79 @@ body {
     size: 100%;
 }
 
-/* Add a black background color to the top navigation */
+/* The navigation menu */
 .navbar {
-    position: fixed;
-    background-color: black;
     overflow: hidden;
+    background-color:black;
     width: 100%;
-    top: 0%;
-    left: 0%;
-}
-
-/* Style the links inside the navigation bar */
+    margin-top: 0%;
+    margin-top: 0%;
+    margin-left: 0%;
+  }
+  
+  /* Navigation links */
 .navbar a {
     float: left;
-    color: #f2f2f2;
+    font-size: 16px;
+    color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 17px;
-    display: block;
-}
-
-/* Add a color to the active/current link */
-.navbar a.active {
-    background-color:black;
-    color: whitesmoke;
-}
-
-.navbar a.navbarRight {
-    float: right;
-}
-
-/* The subnavigation menu */
-.subNavbar {
+  }
+  
+  /* The subnavigation menu */
+  .subNavbar {
     float: left;
     overflow: hidden;
-}
-
-/* subNavbar button */
-.subNavbar .subNavbarButton {
-    font-size: 17px; 
+  }
+  
+  /* Subnav button */
+  .subNavbar .subNavbarButton {
+    font-size: 16px; 
     border: none;
     outline: none;
-    color: whitesmoke;
+    color: white;
     padding: 14px 16px;
     background-color: inherit;
     font-family: inherit;
     margin: 0;
-    display: inline-block;    
-}
-
-/* Add a white background color to navigation links on hover */
-/* Change the color of links on hover */
-.subNavbar:hover .subNavbarButton {
+  }
+  
+  /* Add a red background color to navigation links on hover */
+  .navbar a:hover, .subNavbar:hover .subNavbarButton {
     background-color: whitesmoke;
     color: black;
-}
+  }
   
-/* Style the subnav content - positioned absolute */
-.subNavbarContent {
+  /* Style the subnav content - positioned absolute */
+  .subNavbarContent {
     display: none;
     position: absolute;
     left: 0;
-    background-color:whitesmoke;
-    width: 100%;
+    background-color: silver;
     z-index: 1;
-}
+  }
   
-/* Style the subnav links */
-.subNavbarContent a {
+  /* Style the subnav links */
+  .subNavbarContent a {
     float: left;
-    color: black;
+    color: white;
     text-decoration: none;
-}
+  }
   
-/* Add a grey background color on hover */
-.subNavbarContent a:hover {
-    background-color: grey;
+  /* Add a grey background color on hover */
+  .subNavbarContentt a:hover {
+    background-color: #eee;
     color: black;
-}
+  }
   
-/* When you move the mouse over the subnav container, open the subnav content */
-.subNavbar:hover .subNavbarContent {
+  /* When you move the mouse over the subnav container, open the subnav content */
+  .subNavbar:hover .subNavbarContent {
     display: block;
+  }
+
+  .navbar a.navbarRight {
+    float: right;
 }
 
 .container {
@@ -100,11 +90,6 @@ body {
     color:darkslategray;
     font-family:Arial, Helvetica, sans-serif;
     font-size: 175%; 
-}
-
-div {
-    float: left;
-    width: 50%;
 }
 
 input {
@@ -131,7 +116,7 @@ margin-bottom: 12px; /* Add some space below the input */
     width: 30%;
 }
 
-.catalogueItems {
+#catalogueItems {
     float: right;
     left: 0%;
     right: 0%;
@@ -142,18 +127,14 @@ margin-bottom: 12px; /* Add some space below the input */
 .event {
     border-style: solid;
     border-color: black;
-    width: 80%;
+    width: 50%;
     height: 200px;
     margin-top: 2px;
     margin-bottom: 2px;
+    margin-left: 20%;
     background-color: silver;
-    
-}
-
-.event #category {
-    float: left;
-    padding-left: 1px;
-
+    align-content: center;
+    padding-left: 2%;
 }
 
 .event #picture {
