@@ -12,19 +12,17 @@ submit.onclick = function(){
     var userName = document.getElementById('username').value;
     var password = document.getElementById('password').value;
     //check if the input equals the credentials and change 
-    if(userName == user.userName && password == user.password){
-        document.getElementById("loginResult").innerHTML = "Yeah, your credentials are right!!!";
-        document.location.href = "register.html";
-    }
-    //If credentials not match show error message
-    else{
-        document.getElementById("loginResult").innerHTML = "Oops, username or password is wrong...try again!!!"
+    for(var i = 0; i < users.length; i++){
+        if(userName == users[i].userName && password == users[i].password){
+            document.getElementById("loginResult").innerHTML = "Yeah, your credentials are right!!!";
+            document.location.href = "userProfile.html";
+        }
+        //If credentials not match show error message
+        else{
+            document.getElementById("loginResult").innerHTML = "Oops, username or password is wrong...try again!!!"
+        }
     }
 };
-
-
-
-//
 
 
 
