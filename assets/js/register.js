@@ -1,7 +1,8 @@
 // Introduce Array of registered Users
+// Call Users array string from localStorage and parse it back into an array of objects
 var users = JSON.parse(localStorage.getItem("users"));
 
-// Introduce User Object
+// Introduce User Object Model
 var user = {
     userName:"",
     firstName:"",
@@ -10,8 +11,7 @@ var user = {
     email:"",
     password:""
 }
-
-// Select all input fileds
+// Select all input form fileds from register.html
 var userNameReg = document.getElementById("regUserName");
 var firstNameReg = document.getElementById("regFirstName");
 var lastNameReg = document.getElementById("regLastName");
@@ -23,30 +23,34 @@ var passwordConReg = document.getElementById("regConPassword");
 var checkboxReg = document.getElementById("checkbox");
 var submit = document.getElementById("submit");
 
-// Sign up 
+// Add click listener to the submit button
 submit.addEventListener("click", function(){
+    // safe content of input form fields to local bindings
     const userName = userNameReg.value;
     const firstName = firstNameReg.value;
     const lastName = lastNameReg.value;
-    // console.log(birthdayReg.value)
+    const birthday = birthdayReg.value;
     const email = emailReg.value;
     const conEmail = emailConReg.value;
     const password = passwordReg.value;
     const conPassword = passwordConReg.value;
-    // const checkbox = checkboxReg.value;
-    if(userName && firstName && lastName && email && password && email === conEmail && password === conPassword){
-        // push input values to user object, if all fields are filled out, and email and password are matching their confirmation pairs
+    const checkbox = checkboxReg.checked;
+    // check if they are all filled out and email = confirmed email + password = confirmed password
+    if(userName && firstName && lastName && birthday && email && password && email === conEmail && password === conPassword && checkbox){
+        // if true, push input values to user object model
         user.userName = userName;
         user.firstName = firstName;
         user.lastName = lastName;
+        user.birthday = birthday;
         user.email = email;
         user.password = password;
-        // push user to users array
+        // push new user to users array
         users.push(user);
-        // stringify users array
+        // stringify users array, because localStorage can only safe strings
         usersString = JSON.stringify(users);
         // save users array to local storage
         localStorage.setItem("users", usersString);
+        // redirect to login.html
         document.location.href = "login.html";
     }
     else{

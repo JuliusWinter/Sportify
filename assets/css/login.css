@@ -38,6 +38,7 @@ input:focus{
 .formelement{
     font-family: Roboto;
     width: 80%;
+    min-height: 25px;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 30px;
@@ -50,6 +51,31 @@ input:focus{
     color: white;
 }
 
+.eventModal{
+    margin: 0 auto;
+    display: inline-block;
+    width: 150px;
+    height: 100px;
+    background: lightblue;
+    font-size: 9pt;
+    border-radius: 
+}
+
+#training{
+    margin: 0 20px;
+}
+
+.dropdown{
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+#description{
+    resize: vertical;
+    overflow: auto;
+    min-height: 30px;
+}
 /* navigate to folder
 git pull
 git status
