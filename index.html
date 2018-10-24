@@ -6,35 +6,31 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
     <link rel='stylesheet' href='assets/css/index.css'>
-    <title>sportify.com</title>
+    <title>Intensive Workouts and Trainings in your hood | Sportify</title>
 </head>
 <body>
 
 <!-- Insert nav bar that is aligned with overall nav bar; specialities: Login (redirects to login page), register ((redirects to registration page), no logout button -->
 <!-- Insert Sportify Logo on left end of nav bar (purpose of a home button) -->
-<nav class="indexNavbar">
-    <div class="navbarContainer">
-        <div class="navbarHeader">
-            <a class="navbarBrand" href="#">sportify.com</a>
-        </div>
-        <ul class="indexNavbarRight">
-            <li><a href="#">Register</a></li>
-            <li><a href="#">Login</a></li>
-        </ul>
-    </div>
-</nav>
+<div class="indexNavbar">
+    <a class="active" href="#home">SPORTIFY</a>
+    <a class="secondPage" href="#">Products</a>
+    <a class="thirdPage" href="#">About us</a>
+    <a class='indexNavbarRight' href="#login">Login</a>
+    <a class='indexNavbarRight' href="#register">Register</a>
+ </div>
 
 <!-- create a div to simplify alignment of first background image -->
-<div id='firstPage'>
+<div id='WelcomeSection'>
 
 <!--create a section including a short description/teaser-->
 <div id='teaser'>
     <h1>Sportify</h1>
     <h2>TRAIN ANYWHERE, ANYTIME, WITH ANYONE</h2>
-    <p>Reach your fitness goals and match up with athletes in your neigbourhood</p> 
+    <h3> Reach your fitness goals and match up with athletes in your neigbourhood</h3> 
 </div>
     
-
+<div id='buttons'>
 <!--create a button that redirects to registration page-->
 <button name="regRed" class='indexButton' id="regRed">
     <p id=headerButton>Register</p>
@@ -45,6 +41,7 @@
 </button>
 
 <!--create a button that redirects to login page-->
+
     <button name='loginRed' class='indexButton' id="loginRed">
         <p id='headerButton'>Login</p>
         <br/>
@@ -53,19 +50,43 @@
         <p>Release the beast!</p> 
     </button>
 </div>
+</div>
 
 
-<!--create a second div that informs users about the app and displays screenshots of the application -->
-<div id='secondPage'>
+<!--create a second div that informs users about the feautures of the app and displays screenshots of the application -->
+<div id='productSection'>
 
-<div id='informationText'>
+    <div id='eventCatalogue'>
+        <h4>Access to our Event Catalogue</h4>
+        <p id='subtitle'>Dig into the world of sports and search for events in our catalogue</p>
+        <p id='description'>See all courses, trainings and tournaments the community is offering you around the globe.</p>
+        <!--insert a screenshot or proto.io image to display the course catalogue feature (not interactive)-->
+        <img src=''>
+    </div>
+
+    <div id='createEvents'>
+        <h4>Create your own Events</h4>
+        <p id='subtitle'>Every user has the power to shape his neighbourhood however he wants.</p>
+        <p id='description'>Create trainings, courses and tournaments that you always wished for and offer them to the community. </p>
+        <!--insert a screenshot or proto.io image to display the create event feature (not interactive)-->
+        <img src=''>
+    </div>
+    <div id='profilePage'>
+        <h4>Create your individual Profile Page</h4>
+        <p id='subtitle'>Show the community your interests.</p>
+        <p id='description'>Display all events you will attend, have attended or are interested in. </p>
+        <!--insert a screenshot or proto.io image to display the create event feature (not interactive)-->
+        <img src=''>
+    </div>
+</div>
+
+<!--create a third div that informs users the company -->
+<div id='aboutSection'>
     <p>Sportify shows you all sport events based on your location and interest.
     If it may be just a basketball match in your leisure, a casual run, where you need some company for or a professional instruction - we have it all for you.</p>
-    <p>And the best: You, as a registered user, can create all these events whenever you want or even tournaments.</p>
-    
+    <p>And the best: You, as a registered user, can create all these events whenever you want.</p>            
     <p>So let's start today and change the lifestyle of your neighbourhood.</p>
     <p>Get people out of their beds and form a strong community.</p>
-    
 </div>
 
 </body>
