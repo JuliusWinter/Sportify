@@ -1,6 +1,6 @@
 // Introduce Array of registered Users
 // Call Users array string from localStorage and parse it back into an array of objects
-var users = JSON.parse(localStorage.getItem("users"));
+var users = [];
 
 // Introduce User Object Model
 var user = {
@@ -57,4 +57,5 @@ submit.addEventListener("click", function(){
     else{
         alert("You Fool!");
     }
+    users = JSON.parse(localStorage.getItem("users"));
 });
