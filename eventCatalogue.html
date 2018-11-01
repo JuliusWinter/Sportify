@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="assets/css/eventCatalogueStyle.css">
 
 <body>
-      
+ 
+<!--create navbar that displays a subnavbar when hovering over field; Navbar includes Home Button (Logo) that redirects to user profile, Profile Button that lets appear subnavbar with Profile Page and Management, Events button that lets appear subnavbar with Event Catalogue and Create Event, and logout button that redirects to index page and quits access to system-->
 <div class="navbar">
       <a href="#home">SPORTIFY</a>
       <div class="subNavbar">
@@ -29,16 +30,18 @@
       <a class='navbarRight' href="#logout">Logout</a>
 </div>
 
+<!--create a div that contains all page elements except from Navbar-->
 <div class='container'>
-
+<!--create a div that includes the entire Search/Filtering functions and form elements / should be displayed on the left side of page and take 30% of page width-->
 <div class ="floatLeft">
     
       <h1>Event Catalogue</h1>
-    
+<!--create a div that includes two search fields to search for city and sport category; only one search item at a time per search field-->
       <div id='searching'>
             <input type="text" class="searchbar" id="userCategoryInput" onkeyup="categorySearchFunction()" placeholder="Search for sport categories here">
             <input type='text' class="searchbar" id="userLocationInput" onkeyup="locationSearchFunction()" placeholder='Search for cities here'>
       </div>
+<!--create a div that includes all filter parameters except from two top search fields-->
       <div id='filtering'>
                   <fieldset>
                         <legend>Choose Event Type</legend>
@@ -57,12 +60,19 @@
                   </fieldset>
                   <fieldset>
                         <legend>Choose Sport Category</legend>
-                        <ul id='sportList'>
-                                    <li>
-                                          <input type="checkbox" class='sport' value=''>
-                                          <label for='trainingEvent'></label>
-                                    </li>
-                                    
+                        <form>
+                                    <div class="multiselect">
+                                      <div class="selectBox" onclick="showCheckboxes()">
+                                        <select>
+                                          <option>Select an option</option>
+                                        </select>
+                                        <div class="overSelect"></div>
+                                      </div>
+                                      <div id="checkboxes">
+                                          <input type="checkbox" id="one" />First checkbox</label>
+                                      </div>
+                                    </div>
+                        </form>
                         </ul>
                         
                   </fieldset>
