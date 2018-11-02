@@ -6,10 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
     <title>Event Catalogue | SPORTIFY</title>
+    <!--link to own stylesheet-->
     <link rel="stylesheet" href="assets/css/eventCatalogueStyle.css">
-
+</head>
 <body>
- 
+
 <!--create navbar that displays a subnavbar when hovering over field; Navbar includes Home Button (Logo) that redirects to user profile, Profile Button that lets appear subnavbar with Profile Page and Management, Events button that lets appear subnavbar with Event Catalogue and Create Event, and logout button that redirects to index page and quits access to system-->
 <div class="navbar">
       <a href="#home">SPORTIFY</a>
@@ -31,7 +32,7 @@
 </div>
 
 <!--create a div that contains all page elements except from Navbar-->
-<div class='container'>
+<div class='container1'>
 <!--create a div that includes the entire Search/Filtering functions and form elements / should be displayed on the left side of page and take 30% of page width-->
 <div class ="floatLeft">
     
@@ -44,37 +45,26 @@
 <!--create a div that includes all filter parameters except from two top search fields-->
       <div id='filtering'>
                   <fieldset>
+                        <div>
                         <legend>Choose Event Type</legend>
-                        <div>
-                              <input type="checkbox" class='eventType' id='trainingEvent' value='training'>
-                              <label for='trainingEvent'>Training</label>
-                        </div>
-                        <div>
-                              <input type="checkbox" class='eventType' id='courseEvent' value='course'>
-                              <label for='courseEvent'>Course</label>
-                        </div>
-                        <div>
-                              <input type="checkbox" class='eventType' id='tournamentEvent' value='tournament'>
-                              <label for='tournamentEvent'>Tournament</label>
+                              <div>
+                                    <input type="checkbox" class='eventType' id='trainingEvent' value='training'>
+                                    <label for='trainingEvent'>Training</label>
+                              </div>
+                              <div>
+                                    <input type="checkbox" class='eventType' id='courseEvent' value='course'>
+                                    <label for='courseEvent'>Course</label>
+                              </div>
+                              <div>
+                                    <input type="checkbox" class='eventType' id='tournamentEvent' value='tournament'>
+                                    <label for='tournamentEvent'>Tournament</label>
+                              </div>
                         </div>
                   </fieldset>
                   <fieldset>
-                        <legend>Choose Sport Category</legend>
-                        <form>
-                                    <div class="multiselect">
-                                      <div class="selectBox" onclick="showCheckboxes()">
-                                        <select>
-                                          <option>Select an option</option>
-                                        </select>
-                                        <div class="overSelect"></div>
-                                      </div>
-                                      <div id="checkboxes">
-                                          <input type="checkbox" id="one" />First checkbox</label>
-                                      </div>
-                                    </div>
-                        </form>
-                        </ul>
-                        
+                        <button class="collapsible">Open Collapsible</button>
+                        <div id="content">
+                        </div>
                   </fieldset>
       </div>
 </div>

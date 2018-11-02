@@ -38,22 +38,47 @@ function locationSearchFunction (){
   }
 }
 
-//create a function that displays checkbox list with all sport categeories when clicking on dropdown  
-var expanded = false;
+//dropdown sport category selection 
+var coll = document.getElementsByClassName("collapsible");
+var i;
 
-function showCheckboxes() {
-  var checkboxes = document.getElementById("checkboxes");
-  if (!expanded) {
-    checkboxes.style.display = "block";
-    expanded = true;
-  } else {
-    checkboxes.style.display = "none";
-    expanded = false;
-  }
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
 }
 
+
 //create an array including all sports categories
-var categories = ['American Football', 'Athletics','Badminton','Basketball','Boxing ','Canoeing','Cricket','Cross-Fit','Cycling ','Dancing','Darts','Disability Sports','Diving','Fitness-Training','Football','Golf','Handball','Hiking','Hockey','Ice Hockey','Longboarding','Mixed Martial Arts','Modern Pentathlon','Motor Sports','Netball','Parkour','Rowing','Rugby','Running','Sailing','Shooting','Skateboarding','Skiing','Snooker','Snowboarding','Squash','Surfing','Swimming','Table Tennis','Tai Chi','Tennis','Triathlon','Tricking','Ultimate Frisbee','Volleyball','Weightlifting','Winter Sports','Wrestling','Yoga',]
+
+var select = document.getElementById("content"); 
+var options = ['American Football', 'Athletics','Badminton','Basketball','Boxing ','Canoeing','Cricket','Cross-Fit','Cycling ','Dancing','Darts','Disability Sports','Diving','Fitness-Training','Football','Golf','Handball','Hiking','Hockey','Ice Hockey','Longboarding','Mixed Martial Arts','Modern Pentathlon','Motor Sports','Netball','Parkour','Rowing','Rugby','Running','Sailing','Shooting','Skateboarding','Skiing','Snooker','Snowboarding','Squash','Surfing','Swimming','Table Tennis','Tai Chi','Tennis','Triathlon','Tricking','Ultimate Frisbee','Volleyball','Weightlifting','Winter Sports','Wrestling','Yoga'];
 
 
+//     var el = document.createElement("");
+//     el.textContent = opt;
+//     el.value = opt;
+//     select.appendChild(el);
+// }
 
+for(var i = 0; i < options.length; i++) {
+    var opt = options[i];
+    var div = document.createElement('DIV');
+    div.setAttribute('class', 'checkboxCat');
+    var para = document.createElement("INPUT");
+    para.setAttribute("type", "checkbox",);
+    para.setAttribute('id', options[i]);
+    var lab = document.createElement('LABEL');
+    lab.setAttribute('for', options[i]);
+    lab.innerHTML = options[i];
+    var element = document.getElementById("content");
+    element.appendChild(div);
+    element.appendChild(para);
+    element.appendChild(lab);
+}
