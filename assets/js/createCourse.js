@@ -3,21 +3,24 @@
 var events = [];
 
 // introduce our event object model
-var event = {
-    type:"course",
-    privacy:"",
-    pic: "",
-    name: "",
-    data:"",
-    time:"",
-    sportType:"",
-    description:"",
-    difficulty:"",
-    maxPart:"",
-    frequency:"",
-    location:"",
-    price:""
-}
+class event {
+    constructor(_type, _privacy, _pic, _name, _data, _time, _sportType, _description, _difficulty, _maxPart, _frequency, _location, _price){
+        this.type = _type;
+        this.privacy = _privacy;
+        this.pic = _pic;
+        this.name = _name;
+        this.data = _data;
+        this.time = _time;
+        this.sportType = _sportType;
+        this.description = _description;
+        this.difficulty = _difficulty;
+        this.maxPart = _maxPart;
+        this.frequency = _frequency;
+        this.location = _location;
+        this.price = _price;
+        }
+    }
+
 // select all input fileds of the create course html page
 var eventPrivacy = document.getElementById("privacyDropdown");
 // var eventPic = document.getElementById("eventPic");
@@ -33,88 +36,11 @@ var eventLocation = document.getElementById("eventLocation");
 var eventPrice = document.getElementById("eventPrice");
 var eventSubmitButton = document.getElementById("submit");
 
-// Create Tags functionality
-// [].forEach.call(document.getElementsByClassName('tags-input'), function (el) {
-//     let hiddenInput = document.createElement('input'),
-//         mainInput = document.createElement('input'),
-//         tags = [];
-    
-//     hiddenInput.setAttribute('type', 'hidden');
-//     hiddenInput.setAttribute('name', el.getAttribute('data-name'));
-
-//     mainInput.setAttribute('type', 'text');
-//     mainInput.classList.add('main-input');
-//     mainInput.addEventListener('input', function () {
-//         let enteredTags = mainInput.value.split(',');
-//         if (enteredTags.length > 1) {
-//             enteredTags.forEach(function (t) {
-//                 let filteredTag = filterTag(t);
-//                 if (filteredTag.length > 0)
-//                     addTag(filteredTag);
-//             });
-//             mainInput.value = '';
-//         }
-//     });
-
-//     mainInput.addEventListener('keydown', function (e) {
-//         let keyCode = e.which || e.keyCode;
-//         if (keyCode === 8 && mainInput.value.length === 0 && tags.length > 0) {
-//             removeTag(tags.length - 1);
-//         }
-//     });
-
-//     el.appendChild(mainInput);
-//     el.appendChild(hiddenInput);
-
-//     addTag();
-
-//     function addTag (text) {
-//         let tag = {
-//             text: text,
-//             element: document.createElement('span'),
-//         };
-
-//         tag.element.classList.add('tag');
-//         tag.element.textContent = tag.text;
-
-//         let closeBtn = document.createElement('span');
-//         closeBtn.classList.add('close');
-//         closeBtn.addEventListener('click', function () {
-//             removeTag(tags.indexOf(tag));
-//         });
-//         tag.element.appendChild(closeBtn);
-
-//         tags.push(tag);
-
-//         el.insertBefore(tag.element, mainInput);
-
-//         refreshTags();
-//     }
-
-//     function removeTag (index) {
-//         let tag = tags[index];
-//         tags.splice(index, 1);
-//         el.removeChild(tag.element);
-//         refreshTags();
-//     }
-
-//     function refreshTags () {
-//         let tagsList = [];
-//         tags.forEach(function (t) {
-//             tagsList.push(t.text);
-//         });
-//         hiddenInput.value = tagsList.join(',');
-//     }
-
-//     function filterTag (tag) {
-//         return tag.replace(/[^\w -]/g, '').trim().replace(/\W+/g, '-');
-//     }
-// });
-
 // add click event listener
 // on click trigger function
 eventSubmitButton.addEventListener("click", function(){
     // this function saves all input values to new variables
+    var type = "course"
     var privacy = eventPrivacy.value;
     // var pic = eventPic.value;
     var name = eventName.value;
@@ -131,26 +57,15 @@ eventSubmitButton.addEventListener("click", function(){
     // check if all fields are filled out
     if(privacy && name && date && sportType){
     // if yes -> get all values of the fields and push them to the event object
-        event.privacy = privacy;
-        // event.pic = pic;
-        event.name = name;
-        event.date = date;
-        event.time = time;
-        event.sportType = sportType;
-        // event.description = description;
-        event.difficulty = difficulty;
-        event.maxPart = maxPart;
-        event.frequency = frequency;
-        event.location = location;
-        event.price = price;
+        let _event = new event(type, privacy, name, date, time, sportType, difficulty, maxPart, frequency, location, price);
         // push our new event to the events array
-        events.push(event);
+        events.push(_event);
         // stringify events array to be able to save it in localStorage
-        eventsString = JSON.stringify(events);
+        var eventsString = JSON.stringify(events);
         // save strinified version of events array (eventsString) to the localStorage
         localStorage.setItem("events", eventsString);
         // redirect user to the events catalogue page
-        document.location.href = "eventCatalogue.html"
+        // document.location.href = "eventCatalogue.html"
     }
     // if not -> display error message an mark input field that is not filled out
     else{
