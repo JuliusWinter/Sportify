@@ -6,40 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/login.css">
-    <link rel="stylesheet" href="assets/css/eventCatalogueStyle.css">
     <title>Create Course</title>
 </head>
 <body>
-    <!-- navbar -->
-        <div class="navbar">
-                <a href="#home">SPORTIFY</a>
-                <div class="subNavbar">
-                  <button class="subNavbarButton">Profile</button>
-                  <div class="subNavbarContent">
-                    <a href="#">Profile Page</a>
-                    <a href="#">Profile Management</a>
-                  </div>
-                </div>
-                <div class="subNavbar">
-                            <button class="subNavbarButton">Events</button>
-                            <div class="subNavbarContent">
-                              <a href="#company">Event Catalogue</a>
-                              <a href="#team">Create Event</a>
-                            </div>
-                          </div> 
-                <a class='navbarRight' href="#logout">Logout</a>
-              </div>
               <!-- form -->
     <div id="container">
         <h1>Create Course</h1>
-        <form action="privacyDropdown"></form>
-        <select id="privacyDropdown" class="dropdown">
+        <form id="privacyDropdown">
+        <select id="privacyDropdown" class="dropdown" required>
             <option value="private">Private Event</option>
             <option value="public">Public Event</option>
         </select>
          <!-- dropdown for all the sport types -->
-         <select class="dropdown" id="eventSportType">
-            <option value="chooseSport">Choose Sport</option>
+         <select class="dropdown" id="eventSportType" required>
+            <option value="chooseSport" focused>Choose Sport</option>
             <option value="American Football">American Football</option>
             <option value="public">Athletics</option>
             <option value="public">Badminton</option>
@@ -119,6 +99,7 @@
             <div class="tags-input" data-name="tags-input">
             </div>
         </p> -->
+    </form>
     </div>
     <script type="text/javascript" src="assets/js/createCourse.js"></script>
 </body>
