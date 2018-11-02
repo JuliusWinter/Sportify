@@ -185,3 +185,15 @@ margin-bottom: 12px; /* Add some space below the input */
 .checkboxCat {
   display: block;
 }
+
+/*slider*/
+
+.slider {
+  width: 75%;
+  height: 15px;
+  border-radius: 5px;   
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity .2s;
+}
