@@ -5,8 +5,11 @@ body{
     background: #24C6DC;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #514A9D, #24C6DC);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #514A9D, #24C6DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
-
 }
+
+/* .regError{
+    border: 1px solid red;
+} */
 
 input:focus{	
 	border:2px solid darkblue;
@@ -49,16 +52,24 @@ input:focus{
 #submit{
     background: #2000CC;
     color: white;
+    width: 500px;
+    height: 45px;
+}
+
+#welcomeMessage{
+    font-size: 16pt;
+    font-weight: 400;
 }
 
 .eventModal{
     margin: 0 auto;
     display: inline-block;
-    width: 150px;
-    height: 100px;
-    background: lightblue;
+    width: 250px;
+    height: 150px;
+    border-radius: 12px;
     font-size: 9pt;
     cursor: pointer;
+    background-color:#514A9D;
 }
 
 #training{
