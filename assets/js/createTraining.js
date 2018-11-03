@@ -3,23 +3,23 @@
 
 var events = [];
 
-
 // introduce our event object model
-var event = {
-    type:"training",
-    privacy:"",
-    pic: "",
-    name: "",
-    date:"",
-    time:"",
-    sportType:"",
-    description:"",
-    difficulty:"",
-    maxPart:"",
-    frequency:"",
-    location:"",
-    price:""
-}
+class Event {
+    constructor(_type, _privacy, _name, _date, _time, _sportType, _description, _difficulty, _maxPart, _frequency, _location, _price){
+        this.type = _type;
+        this.privacy = _privacy;
+        this.name = _name;
+        this.date = _date;
+        this.time = _time;
+        this.sportType = _sportType;
+        this.description = _description;
+        this.difficulty = _difficulty;
+        this.maxPart = _maxPart;
+        this.frequency = _frequency;
+        this.location = _location;
+        this.price = _price;
+        }
+    }
 // select all input fileds of the create course html page
 var eventPrivacy = document.getElementById("privacyDropdown");
 // var eventPic = document.getElementById("eventPic");
@@ -34,6 +34,23 @@ var eventFrequency = document.getElementById("eventFrequency");
 var eventLocation = document.getElementById("eventLocation");
 var eventPrice = document.getElementById("eventPrice");
 var eventSubmitButton = document.getElementById("submit");
+
+// add click event listener
+// on click trigger function
+document.getElementById("eventForm").addEventListener("submit", function(event){
+    // Prevent the page to automatically push the input into the URL and prevent the page to reload
+    event.preventDefault();
+    // check if all fields are filled out
+    if(privacy && name && date && sportType){
+        // if yes -> get all values of the fields and push them to the event object
+        var eventType = "training"
+        // push new event to events array
+        events.push(new Event(eventType, event.target.privacyDropdown.value, event.target.eventName.value, event.target.eventDate.value, event.target.eventTime.value, event.target.eventSportType.value, event.target.eventDescription.value, event.target.eventDifficulty.value, event.target.eventMaxPart.value, event.target.eventFrequency.value, event.target.eventLocation.value, event.target.eventPrice.value));
+        // store stringified version of events array in localStorage
+        localStorage.setItem("events", JSON.stringify(events));
+        document.location.href = "eventCatalogue.html";
+    }
+});
 
 // Create Tags functionality
 // [].forEach.call(document.getElementsByClassName('tags-input'), function (el) {

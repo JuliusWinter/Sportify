@@ -16,6 +16,23 @@ input:focus{
 	outline: none;
 }
 
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    display: block;
+    width: 500px;
+    height: 45px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 30px;
+    border: none;
+    background-color: lightgray;
+    background: url(assets/img/Bildschirmfoto 2018-11-03 um 01.23.55.png) no-repeat 95% center ;
+}
+
 .checkbox{
     margin-bottom: 10px;
     float: left;

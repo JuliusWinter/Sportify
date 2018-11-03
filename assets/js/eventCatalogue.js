@@ -84,7 +84,7 @@ function catSearch (){
   let searchInputCat = document.getElementById('categorySearch').value.toUpperCase();
   //Declare variables - getting values from the div elements
   let catItems = document.getElementById('content');
-  let category = catItems.getElementsByClassName('checkboxCat');
+  let category = document.getElementsByClassName('checkboxCat');
 
   //loop through the divs to search for elements, and hide those that do not match the search query//
   for (var i=0; i<category.length; i++){

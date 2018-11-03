@@ -9,97 +9,104 @@
     <title>Create Course</title>
 </head>
 <body>
+        
               <!-- form -->
     <div id="container">
         <h1>Create Course</h1>
-        <form id="privacyDropdown">
+        <form id="eventForm">
+            <label for="privacyDropdown"></label>
         <select id="privacyDropdown" class="dropdown" required>
             <option value="private">Private Event</option>
             <option value="public">Public Event</option>
         </select>
          <!-- dropdown for all the sport types -->
+         <label for="eventSportType"></label>
          <select class="dropdown" id="eventSportType" required>
-            <option value="chooseSport" focused>Choose Sport</option>
-            <option value="American Football">American Football</option>
-            <option value="public">Athletics</option>
-            <option value="public">Badminton</option>
-            <option value="public">Badminton</option>
-            <option value="public">Basketball</option>
-            <option value="public">Boxing</option>
-            <option value="public">Canoeing</option>
-            <option value="public">Cricket</option>
-            <option value="public">Cross-Fit</option>
-            <option value="public">Cycling</option>
-            <option value="public">Dancing</option>
-            <option value="public">Darts</option>
-            <option value="public">Disability Sports</option>
-            <option value="public">Diving</option>
-            <option value="public">Fitness-Training</option>
-            <option value="public">Football</option>
-            <option value="public">Golf</option>
-            <option value="public">Handball</option>
-            <option value="public">Hiking</option>
-            <option value="public">Hockey</option>
-            <option value="public">Ice Hockey</option>
-            <option value="public">Mixed Martial Arts</option>
-            <option value="public">Modern Pentathlon</option>
-            <option value="public">Motor Sports</option>
-            <option value="public">Netball</option>
-            <option value="public">Parkour</option>
-            <option value="public">Rowing</option>
-            <option value="public">Rugby</option>
-            <option value="public">Running</option>
-            <option value="public">Sailing</option>
-            <option value="public">Shooting</option>
-            <option value="public">Skateboarding</option>
-            <option value="public">Skiing</option>
-            <option value="public">Snooker</option>
-            <option value="public">Squash</option>
-            <option value="public">Surfing</option>
-            <option value="public">Swimming</option>
-            <option value="public">Table Tennis</option>
-            <option value="public">Tai Chi</option>
-            <option value="public">Tennis</option>
-            <option value="public">Triathlon</option>
-            <option value="public">Tricking</option>
-            <option value="public">Ultimate Frisbee</option>
-            <option value="public">Volleyball</option>
-            <option value="public">Weightlifting</option>
-            <option value="public">Winter Sports</option>
-            <option value="public">Wrestling</option>
-            <option value="public">Yoga</option>
-        </select>
-        <!-- FIND OUT HOW TO SAVE A PICTURE TO A LOCAL FOLDER AND SAFE THE PATH TO IT IN THE OBJECT!!! -->
-        <!-- <input type="file" placeholder="Event Picture" id="eventPic" class="formelement"> -->
-        <input type="text" placeholder="Event Name" id="eventName" class="formelement">
-        <!-- date input -->
-        <input type="date" placeholder="Event Date" id="eventDate" class="formelement">
-        <!-- time input -->
-        <input type="time" placeholder="Event Time" id="eventTime" class="formelement">
-       
-        <!-- expandable text area for suitable for long -->
-        <input type="text" placeholder="Description" id="eventDescription" class="formelement">
-        <input type="number" placeholder="Difficulty Level" id="eventDifficulty" class="formelement" min="1" max="5">
-        <!-- number input for max nr participants -->
-        <input type="number" placeholder="Maximum Number of Participants" id="eventMaxPart" class="formelement">
-        <!-- dropdown for frequency; on the last point (other), a modal calendar should appear, where it is possible to choose multiple dates -->
-        <select class="dropdown" id="eventFrequency">
-            <option value="Choose Frequency">Choose Frequency</option>
-            <option value="single">single event</option>
-            <option value="daily">daily</option>
-            <option value="weekly">weekly</option>
-        </select>
-        <!-- text input for location might be extended with an api that can links to real locations -->
-        <input type="text" placeholder="Location" id="eventLocation" class="formelement">
-        <!-- price -> an additional currency can be added to the input -->
-        <input type="number" placeholder="Price in €" id="eventPrice" class="formelement">
-        <input type="submit" value="Create Event" name="submit" id="submit" class="formelement">
-        <!-- Tag input -->
-        <!-- <p>
-            <div class="tags-input" data-name="tags-input">
-            </div>
-        </p> -->
-    </form>
+                <option value="chooseSport">Choose Sport</option>
+                <option value="American Football">American Football</option>
+                <option value="Athletics">Athletics</option>
+                <option value="Badminton">Badminton</option>
+                <option value="Badminton">Badminton</option>
+                <option value="Basketball">Basketball</option>
+                <option value="Boxing">Boxing</option>
+                <option value="Canoeing">Canoeing</option>
+                <option value="Cricket">Cricket</option>
+                <option value="Cross">Cross-Fit</option>
+                <option value="Cycling">Cycling</option>
+                <option value="Dancing">Dancing</option>
+                <option value="Darts">Darts</option>
+                <option value="Disability Sports">Disability Sports</option>
+                <option value="Diving">Diving</option>
+                <option value="Fitness-Training">Fitness-Training</option>
+                <option value="Football">Football</option>
+                <option value="Golf">Golf</option>
+                <option value="Handball">Handball</option>
+                <option value="Hiking">Hiking</option>
+                <option value="Hockey">Hockey</option>
+                <option value="Ice Hockey">Ice Hockey</option>
+                <option value="Mixed Martial Arts">Mixed Martial Arts</option>
+                <option value="Modern Pentathlo">Modern Pentathlon</option>
+                <option value="Motor Sports">Motor Sports</option>
+                <option value="Netball">Netball</option>
+                <option value="Parkour">Parkour</option>
+                <option value="Rowing">Rowing</option>
+                <option value="Rugby">Rugby</option>
+                <option value="Running">Running</option>
+                <option value="Sailing">Sailing</option>
+                <option value="Shooting">Shooting</option>
+                <option value="Skateboarding">Skateboarding</option>
+                <option value="Skiing">Skiing</option>
+                <option value="Snooker">Snooker</option>
+                <option value="Squash">Squash</option>
+                <option value="Surfing">Surfing</option>
+                <option value="Swimming">Swimming</option>
+                <option value="Table Tennis">Table Tennis</option>
+                <option value="Tai Chi">Tai Chi</option>
+                <option value="Tennis">Tennis</option>
+                <option value="Triathlon">Triathlon</option>
+                <option value="Tricking">Tricking</option>
+                <option value="Ultimate Frisbee">Ultimate Frisbee</option>
+                <option value="Volleyball">Volleyball</option>
+                <option value="Weightlifting">Weightlifting</option>
+                <option value="Winter Sports">Winter Sports</option>
+                <option value="Wrestling">Wrestling</option>
+                <option value="Yoga">Yoga</option>
+            </select>
+            <!-- FIND OUT HOW TO SAVE A PICTURE TO A LOCAL FOLDER AND SAFE THE PATH TO IT IN THE OBJECT!!! -->
+            <!-- <input type="file" placeholder="Event Picture" id="eventPic" class="formelement"> -->
+            <label for="eventName"></label>
+            <input type="text" placeholder="Event Name" id="eventName" class="formelement" required>
+            <!-- date input -->
+            <label for="eventDate"></label>
+            <input type="date" placeholder="Event Date" id="eventDate" class="formelement" required>
+            <!-- time input -->
+            <label for="eventTime"></label>
+            <input type="time" placeholder="Event Time" id="eventTime" class="formelement">
+            <!-- expandable text area for suitable for long -->
+            <label for="eventDescription"></label>
+            <input type="text" placeholder="Description" id="eventDescription" class="formelement" required>
+            <!-- difficulty level -->
+            <label for="eventDifficulty"></label>
+            <input type="number" placeholder="Difficulty Level" id="eventDifficulty" class="formelement" min="1" max="5">
+            <!-- number input for max nr participants -->
+            <label for="eventMaxPart"></label>
+            <input type="number" placeholder="Maximum Number of Participants" id="eventMaxPart" class="formelement">
+            <!-- dropdown for frequency; on the last point (other), a modal calendar should appear, where it is possible to choose multiple dates -->
+            <label for="eventFrequency"></label>
+            <select class="dropdown" id="eventFrequency">
+                <option value="Choose Frequency">Choose Frequency</option>
+                <option value="single">single event</option>
+                <option value="daily">daily</option>
+                <option value="weekly">weekly</option>
+            </select>
+            <!-- text input for location might be extended with an api that can links to real locations -->
+            <label for="eventLocation"></label>
+            <input type="text" placeholder="Location" id="eventLocation" class="formelement" required>
+            <!-- price -> an additional currency can be added to the input -->
+            <label for="eventPrice"></label>
+            <input type="number" placeholder="Price in €" id="eventPrice" class="formelement">
+            <input type="submit" value="Create Event" name="submit" id="submit" class="formelement">
+        </form>
     </div>
     <script type="text/javascript" src="assets/js/createCourse.js"></script>
 </body>
