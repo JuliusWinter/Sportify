@@ -78,6 +78,7 @@ for(var i = 0; i < sports.length; i++) {
     element.appendChild(lab);
 }
 
+<<<<<<< HEAD
 //define a function that searches for event categories and displays only applicable events//
 function catSearch (){
   //declare variables - getting values from search box//
@@ -85,17 +86,33 @@ function catSearch (){
   //Declare variables - getting values from the div elements
   let catItems = document.getElementById('content');
   let category = document.getElementsByClassName('checkboxCat');
+=======
+// //define a function that searches for event categories and displays only applicable events//
+// function catSearch (){
+//   //declare variables - getting values from search box//
+//   let searchInputCat = document.getElementById('categorySearch').value.toUpperCase();
+//   //Declare variables - getting values from the div elements
+//   let catItems = document.getElementById('content');
+//   let category = catItems.getElementsByClassName('checkboxCat');
+>>>>>>> 686945e81c0bf73a8a32aa0555af0a94dd815574
 
-  //loop through the divs to search for elements, and hide those that do not match the search query//
-  for (var i=0; i<category.length; i++){
-    var cat = category[i].value;
+//   //loop through the divs to search for elements, and hide those that do not match the search query//
+//   for (var i=0; i<category.length; i++){
+//     var cat = category[i].value;
     
-    if(cat[0].innerHTML.toUpperCase().includes(searchInputCat)){
-      category[i].style.display ="";
-    }else{
-      category[i].style.display ="none";
-    }
-  }
+//     if(cat[i].toUpperCase().includes(searchInputCat)){
+//       category[i].style.display ="";
+//     }else{
+//       category[i].style.display ="none";
+//     }
+//   }
+// }
+
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value; // Display the default slider value
+
+// Update the current slider value (each time you drag the slider handle)
+slider.oninput = function() {
+    output.innerHTML = this.value;
 }
-
-

@@ -5,21 +5,40 @@
     <title>Login function</title>
     <link rel="stylesheet" href="assets/css/login.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous">
+    </script>
 </head>
 <body>
-<div id="container">
-    <h1>Login</h1>
-    <form action="" id="loginForm">
-        <label for="userName"></label>
-            <input type="text" name="username" id="userName" placeholder="Username" class="formelement" required />
-        <label for="password"></label>
-            <input type="password" name="password"  id="password" placeholder="Password" class="formelement" required />
-        <br>
-            <button class="formelement" id="submit">Login</button>
-    </form> 
-    <br>
-    <span id="loginResult"></span>
-</div>
-<script type="text/javascript" src="assets/js/login.js"></script>
+    <div class="wrapper">
+        <nav>
+            <div class="logo">SPORTIFY</div>
+            <ul>
+                <li><a href="#">HOME</a></li>
+                <li><a href="#">ABOUT</a></li>
+                <li><a href="#">BLOG</a></li>
+                <li><a href="#">CONTACT</a></li>
+                <li><a class="active" href="#">LOG IN</a></li>
+            </ul>
+        </nav>
+    </div>
+        <section class="navMargin"></section>
+        <section class="sec1">
+                <div id="container">
+                        <h1>Login</h1>
+                        <form action="" id="loginForm">
+                            <label for="userName"></label>
+                                <input type="text" name="username" id="userName" placeholder="Username" class="formelement" required />
+                            <label for="password"></label>
+                                <input type="password" name="password"  id="password" placeholder="Password" class="formelement" required />
+                            <br>
+                                <button class="formelement" id="submit">Login</button>
+                        </form> 
+                        <br>
+                        <span id="loginResult"></span>
+                    </div>
+        </section>
+    <script type="text/javascript" src="assets/js/login.js"></script>
 </body>
 </html>
