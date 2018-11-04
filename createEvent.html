@@ -6,18 +6,38 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/login.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="assets/js/navbar.js"></script>
     <title>Create Event</title>
 </head>
 <body>
-    <div id="container">
-        <h1>Create Event</h1>
-        <div id="course" class="eventModal">
-            <h1>Course</h1>
-        </div>
-        <div id="training" class="eventModal">
-            <h1>Training</h1>
-        </div>
-    </div> 
+    <div class="wrapper">
+        <nav>
+            <div class="logo">SPORTIFY</div>
+            <ul>
+                <li><a href="#">HOME</a></li>
+                <li><a href="createEvent.html">CREATE EVENT</a></li>
+                <li><a href="eventCatalogue.html">EVENT CATALOGUE</a></li>
+                <li><a href="userProfile.html">PROFILE</a></li>
+                <li><a class="active" href="index.html">LOG OUT</a></li>
+            </ul>
+        </nav>
+        <section class="navMargin"></section>
+        <section class="sec1">
+            <div id="container">
+                <h1>Create Event</h1>
+                <div id="course" class="eventModal">
+                    <h1>Course</h1>
+                </div>
+                <div id="training" class="eventModal">
+                    <h1>Training</h1>
+                </div>
+            </div>
+        </section>
+    </div>
     <script type="text/javascript" src="assets/js/createEvent.js"></script>
 </body>
 </html>
