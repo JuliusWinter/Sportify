@@ -5,6 +5,9 @@ body{
     font-weight: 300;
 }
 
+
+
+/* NAVBAR */
 nav{
     position: fixed;
     top:0;
@@ -85,6 +88,11 @@ section.sec1{
     background: linear-gradient(to right, #514A9D, #24C6DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
 }
 
+
+
+
+
+/* INDEX.HTML "HERO" SECTION */
 .hero{
     /* Sizing */
     width: 100vw;
@@ -140,35 +148,90 @@ section.sec1{
     border-radius: 20px;
 }
 
-/* slide show */
+
+
+
+
+/* SLIDE SHOW */
 #slider, .wrap, .slideContent{
     width: 100vw;
     height: 100vh;
     margin: 0;
     padding: 0;
-    /* overflow-x: hidden; */
+    /* avoid horizontal scroll bars */
+    overflow-x: hidden;
 }
+
 
 .wrap{
-    /* position: relative; */
+    /* allows the wrap div to be adjusted away from its normal position */
+    position: relative;
 }
 
+/* basic adjustments to all slides */
 .slide{
+    /* make sure that slides cover the whole screen */
     background-size: cover;
     background-position: center;
+    /* are 100% visbale without distorition */
     background-repeat: no-repeat;
+}
+
+/* basic adjustments to slide content div */
+.slideContent{
+    display: flex;
+    /* when resizing screen content adjusts vertically */
+    flex-direction: column;
+    /* align everything to the center */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* centered text on slides */
+.slideContent span{
+    /* rem is a relative size related to the default font-size */
+    font-size: 5rem;
+    color: white;
+}
+
+/* pure css arrows */
+.arrow{
+    /* make the cursor a pointer */
+    cursor: pointer;
+    /* make the position of the arrow permanent */
+    position: absolute;
+    /* bring the curser down to the middle */
+    top: 50%;
+    /* bring it up a little further with a negativ margin top */
+    margin-top: -35px;
+    /* we only work with the border to get the arrow so we dont need width and height */
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+/* styling the left arrow */
+#leftArrow{
+    /* styling the arrow with border width from top-right-bottom-left */
+    border-width: 30px 40px 30px 0;
+    /* make everything transparent except for the right */
+    border-color: transparent #fff transparent transparent;
+    left: 0;
+    margin-left: 30px;
+}
+
+#rightArrow{
+    /* styling the arrow with border width from top-right-bottom-left */
+    border-width: 30px 0 30px 40px;
+    /* make everything transparent except for the left */
+    border-color: transparent transparent transparent  #fff;
+    right: 0;
+    margin-right: 30px;
 }
 
 .slide1{
     background-image: url(../img/training.jpg);
-        /* Makes sure that our background is large enough to cover the entire section*/
-        background-size: cover;
-        /* Positions the image so that it is in the center of the screen */
-        background-position: center center;
-        /* Stops the image from repeating/tiling. */
-        background-repeat: no-repeat;
-        /* Makes the background image stay in the same spot, even you scroll down the page. */
-        background-attachment: fixed;
 }
 
 .slide2{
