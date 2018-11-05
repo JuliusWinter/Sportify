@@ -85,6 +85,96 @@ section.sec1{
     background: linear-gradient(to right, #514A9D, #24C6DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
 }
 
+.hero{
+    /* Sizing */
+    width: 100vw;
+    height: 100vh;
+    
+    /* Flexbox stuff */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Text styles */
+    text-align: center;
+    color: white;
+    
+    /* Background styles */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('https://codetheweb.blog/assets/img/posts/full-image-hero/image.jpg');
+    /* Makes sure that our background is large enough to cover the entire section*/
+    background-size: cover;
+    /* Positions the image so that it is in the center of the screen */
+    background-position: center center;
+    /* Stops the image from repeating/tiling. */
+    background-repeat: no-repeat;
+    /* Makes the background image stay in the same spot, even you scroll down the page. */
+    background-attachment: fixed;
+}
+
+.hero h1 {
+    /* Text styles */
+    font-size: 5em;
+    /* Margins */
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+
+.hero .btn {
+    /* Positioning and sizing */
+    display: block;
+    width: 200px;
+    
+    /* Padding and margins */
+    padding: 1em;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    /* Text styles */
+    color: white;
+    text-decoration: none;
+    font-size: 1.5em;
+    
+    /* Border styles */
+    border: 3px solid white;
+    border-radius: 20px;
+}
+
+/* slide show */
+#slider, .wrap, .slideContent{
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    /* overflow-x: hidden; */
+}
+
+.wrap{
+    /* position: relative; */
+}
+
+.slide{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.slide1{
+    background-image: url(../img/training.jpg);
+        /* Makes sure that our background is large enough to cover the entire section*/
+        background-size: cover;
+        /* Positions the image so that it is in the center of the screen */
+        background-position: center center;
+        /* Stops the image from repeating/tiling. */
+        background-repeat: no-repeat;
+        /* Makes the background image stay in the same spot, even you scroll down the page. */
+        background-attachment: fixed;
+}
+
+.slide2{
+    background-image: url(../img/course.jpg);
+}
+
 input:focus{	
 	border:2px solid darkblue;
 	outline: none;
