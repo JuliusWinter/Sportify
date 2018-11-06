@@ -9,38 +9,34 @@
 
     <!-- <link rel="style" href="styling.css"/> -->
 
-     <script src="assets/js/userProfile.js"></script>
     <!-- Navagation bar, css located on userProfile.css -->
-     <div class="topnav">
-  <a class="active" href="#Home">Home</a>
-  <a href="#Sample2" >Sample 2</a>
-  <a href="#Sample3" >Sample 3</a>
-  <a href="#Sample4" >Sample 4</a>
-</div>
-    
-</head>
-<div>
+            <div class="topnav">
+                  <a class="#Home" href="#Home">Home</a>
+                  <a href="#Sample2" >Sample 2</a>
+                  <a href="#Sample3" >Sample 3</a>
+                  <a href="#Sample4" >Sample 4</a>
+            </div>
+      </head>
 <body>
 
-      </div id="profileItems" class="profileItems">
+            </div id="profileItems" class="profileItems">
+                  <h1 ><img src="ninja-512.png" id alt="Avatar" class="avatar">
+                        User Profile Name as entered in registration 
+                        <div style="font-size: 60%">Location as entered in registration</div>
+                  </h1>
+                  
+                   <p id="userName"></p>
+             </div>
 
-            <h1><img src="ninja-512.png" id alt="Avatar" class="avatar">
-                  User Profile Name as entered in registration</h1>
-            </h2>Location as entered in registration</h2>
-    <p id="clip">Interest list goes here list can be edited</p>
-</div>
-
-    <textarea name="text area sample" id="textBox" cols="50" rows="8" placeholder="Enter your bio here..."></textarea>
-
-          <script src="source.js" type="text/javascript"></script>
+             <textarea name="text area sample" id="textBox" cols="50" rows="8" placeholder="Enter your bio here..."></textarea>
 
 
         <!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." style="width: 200px"/> -->
 
-  <div class="catalogueTable">
-  <input type="text" id="myInput" onkeyup="myFunction()" placeholder="filter events" class="Bio"/>
-  <div>
-  <table id="myTable" style = "width: 200px">
+  <div class="userEvents">
+  <div id="eventsTableTitle">View and search your created events </div>
+  <input type="text" id="tableInput" onkeyup="searchCatalogueTable()" placeholder="filter events" class="Bio"/>
+  <table id="userEventsTable">
                 <tr title="Catalogue Snapshot">
                         <th >Events</th>
                         <th >Type</th> 
@@ -67,21 +63,203 @@
                         <td>01.11.2018</td>
                   </tr>     
                 </table>
-            </div>
+
       </div>
-                <div class="btn-group" style="padding-top: 30px">
-                  <button onclick="toggleUpcomingEvents()">Events to be attending</button>
-                  <div id="upcomingEvents">
-                  
-                            </div>
-                  <button onclick="togglePastEvents()">Previously attended events</button>
-                  <div id="pastEvents">
-                  
-                            </div>
-                  <button onclick="toggleInterests()">Events of Interest</button>
-                  <div id="interests">
-                        </div>
+      <!-- Buttons for toggle user windows has been grouped below with CSS included-->
+            <div id="userDisplayArea">
+                  <div class="btn-group">  
+                        <!-- all buttons are refrenecing toggle script with names of ID's in single quotes segmenting the DIV's -->
+                        <button onclick="togglePanes('upcomingEvents')">Events to be attending</button>
+                        <button onclick="togglePanes('pastEvents')">Previously attended events</button>
+                        <button onclick="togglePanes('interests')">Events of Interest</button>
+                        <!-- Tabs have been partitioned for future styling purposes -->
+                        <br>
+                              <div class="userTabs">
+                                          <div class="upcomingEvents" id="upcomingEvents">
+                                                <div class="event">
+                                                            <div class='link'><a href="#eventPage">Free Swimming Session @Islands Brygge </a> </div> 
+                                                            <div class="eventInfo"> 
+                                                                  <div class='sportCategory'>Swimming</div>
+                                                                  <div class='type'>Training</div>
+                                                                  <div class='date'>23.11.2018</div>
+                                                                  <div class='startTime'>14:00</div>
+                                                            </div>     
+                                                            <div class="eventInfo">
+                                                                  <div class='duration'>1h00m</div>
+                                                                  <div class='city'>Copenhagen</div>
+                                                                  <div class='district'>Islands Brygge</div>
+                                                                  <div class='street'>XYZ</div>
+                                                            </div>    
+                                                            <div class="eventInfo">
+                                                                  <div class='price'>0 kr.</div>
+                                                                  <button class="eventLink">Event Page</button>
+                                                            </div>
+                                                      </div>
+                                                <div class="event">
+                                                            <div class='link'><a href="#eventPage">Free Swimming Session @Islands Brygge </a> </div> 
+                                                            <div class="eventInfo"> 
+                                                                  <div class='sportCategory'>Basketball</div>
+                                                                  <div class='type'>Training</div>
+                                                                  <div class='date'>23.20.2018</div>
+                                                                  <div class='startTime'>14:00</div>
+                                                            </div>     
+                                                            <div class="eventInfo">
+                                                                  <div class='duration'>1h00m</div>
+                                                                  <div class='city'>Roskilde</div>
+                                                                  <div class='district'>Islands Brygge</div>
+                                                                  <div class='street'>XYZ</div>
+                                                            </div>    
+                                                            <div class="eventInfo">
+                                                                  <div class='price'>0 kr.</div>
+                                                                  <button class="eventLink">Event Page</button>
+                                                            </div>
+                                                      </div>
+                                                <div class="event">
+                                                            <div class='link'><a href="#eventPage">Free Swimming Session @Islands Brygge </a> </div> 
+                                                            <div class="eventInfo"> 
+                                                                  <div class='sportCategory'>Swimming</div>
+                                                                  <div class='type'>Training</div>
+                                                                  <div class='date'>23.11.2018</div>
+                                                                  <div class='startTime'>14:00</div>
+                                                            </div>     
+                                                            <div class="eventInfo">
+                                                                  <div class='duration'>1h00m</div>
+                                                                  <div class='city'>Copenhagen</div>
+                                                                  <div class='district'>Islands Brygge</div>
+                                                                  <div class='street'>XYZ</div>
+                                                            </div>    
+                                                            <div class="eventInfo">
+                                                                  <div class='price'>0 kr.</div>
+                                                                  <button class="eventLink">Event Page</button>
+                                                            </div>
+                                                      </div>
+                                          </div>
+                              
+                                          <div class="pastEvents" id="pastEvents">
+                                                      <div class="event">
+                                                                  <div class='link'><a href="#eventPage">Free Swimming Session @Islands Brygge </a> </div> 
+                                                                  <div class="eventInfo"> 
+                                                                        <div class='sportCategory'>Swimming</div>
+                                                                        <div class='type'>Training</div>
+                                                                        <div class='date'>23.11.2018</div>
+                                                                        <div class='startTime'>14:00</div>
+                                                                  </div>     
+                                                                  <div class="eventInfo">
+                                                                        <div class='duration'>1h00m</div>
+                                                                        <div class='city'>Copenhagen</div>
+                                                                        <div class='district'>Islands Brygge</div>
+                                                                        <div class='street'>XYZ</div>
+                                                                  </div>    
+                                                                  <div class="eventInfo">
+                                                                        <div class='price'>0 kr.</div>
+                                                                        <button class="eventLink">Event Page</button>
+                                                                  </div>
+                                                            </div>
+                                                      <div class="event">
+                                                                  <div class='link'><a href="#eventPage">Free Swimming Session @Islands Brygge </a> </div> 
+                                                                  <div class="eventInfo"> 
+                                                                        <div class='sportCategory'>Football</div>
+                                                                        <div class='type'>Training</div>
+                                                                        <div class='date'>23.11.2018</div>
+                                                                        <div class='startTime'>14:00</div>
+                                                                  </div>     
+                                                                  <div class="eventInfo">
+                                                                        <div class='duration'>1h00m</div>
+                                                                        <div class='city'>Aarhus</div>
+                                                                        <div class='district'>-</div>
+                                                                        <div class='street'>Ingerslevsgade</div>
+                                                                  </div>    
+                                                                  <div class="eventInfo">
+                                                                        <div class='price'>0 kr.</div>
+                                                                        <button class="eventLink">Event Page</button>
+                                                                  </div>
+                                                            </div>
+                                                      <div class="event">
+                                                                  <div class='link'><a href="#eventPage">Free Swimming Session @Islands Brygge </a> </div> 
+                                                                  <div class="eventInfo"> 
+                                                                        <div class='sportCategory'>Swimming</div>
+                                                                        <div class='type'>Training</div>
+                                                                        <div class='date'>23.11.2018</div>
+                                                                        <div class='startTime'>14:00</div>
+                                                                  </div>     
+                                                                  <div class="eventInfo">
+                                                                        <div class='duration'>1h00m</div>
+                                                                        <div class='city'>Copenhagen</div>
+                                                                        <div class='district'>Islands Brygge</div>
+                                                                        <div class='street'>XYZ</div>
+                                                                  </div>    
+                                                                  <div class="eventInfo">
+                                                                        <div class='price'>0 kr.</div>
+                                                                        <button class="eventLink">Event Page</button>
+                                                                  </div>
+                                                            </div>
+
+                                          </div>
+
+                                          <div class="interests" id="interests">
+
+                                                      <div class="event">
+                                                                  <div class='link'><a href="#eventPage">Free Swimming Session @Islands Brygge </a> </div> 
+                                                                  <div class="eventInfo"> 
+                                                                        <div class='sportCategory'>Swimming</div>
+                                                                        <div class='type'>Training</div>
+                                                                        <div class='date'>23.11.2018</div>
+                                                                        <div class='startTime'>14:00</div>
+                                                                  </div>     
+                                                                  <div class="eventInfo">
+                                                                        <div class='duration'>1h00m</div>
+                                                                        <div class='city'>Copenhagen</div>
+                                                                        <div class='district'>Amager</div>
+                                                                        <div class='street'>XYZ</div>
+                                                                  </div>    
+                                                                  <div class="eventInfo">
+                                                                        <div class='price'>0 kr.</div>
+                                                                        <button class="eventLink">Event Page</button>
+                                                                  </div>
+                                                            </div>
+                                                      <div class="event">
+                                                                  <div class='link'><a href="#eventPage">Free Swimming Session @Islands Brygge </a> </div> 
+                                                                  <div class="eventInfo"> 
+                                                                        <div class='sportCategory'>Swimming</div>
+                                                                        <div class='type'>Training</div>
+                                                                        <div class='date'>23.11.2018</div>
+                                                                        <div class='startTime'>14:00</div>
+                                                                  </div>     
+                                                                  <div class="eventInfo">
+                                                                        <div class='duration'>1h00m</div>
+                                                                        <div class='city'>Copenhagen</div>
+                                                                        <div class='district'>Islands Brygge</div>
+                                                                        <div class='street'>XYZ</div>
+                                                                  </div>    
+                                                                  <div class="eventInfo">
+                                                                        <div class='price'>0 kr.</div>
+                                                                        <button class="eventLink">Event Page</button>
+                                                                  </div>
+                                                            </div>
+                                                      <div class="event">
+                                                                  <div class='link'><a href="#eventPage">Free Swimming Session @Islands Brygge </a> </div> 
+                                                                  <div class="eventInfo"> 
+                                                                        <div class='sportCategory'>Swimming</div>
+                                                                        <div class='type'>Training</div>
+                                                                        <div class='date'>23.11.2018</div>
+                                                                        <div class='startTime'>14:00</div>
+                                                                  </div>     
+                                                                  <div class="eventInfo">
+                                                                        <div class='duration'>1h00m</div>
+                                                                        <div class='city'>Copenhagen</div>
+                                                                        <div class='district'>Islands Brygge</div>
+                                                                        <div class='street'>XYZ</div>
+                                                                  </div>    
+                                                                  <div class="eventInfo">
+                                                                        <div class='price'>0 kr.</div>
+                                                                        <button class="eventLink">Event Page</button>
+                                                                  </div>
+                                                            </div>
+
+                                          </div>
                   </div>
+            </div>
+
           </body>
       </div> 
       <script src="assets/js/userProfile.js"></script>
