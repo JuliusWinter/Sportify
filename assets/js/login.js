@@ -3,15 +3,6 @@ var users = JSON.parse(localStorage.getItem("users"));
 // introduct currentUser array
 var currentUser = []; 
 
-// jQuery Scroll Effect
-$(window).on("scroll", function(){
-    if($(window).scrollTop()){
-        $("nav").addClass("black");
-    }
-    else{
-        $("nav").removeClass("black");
-    }
-})
 // Where does this event come from and what is it?
 document.getElementById("loginForm").addEventListener("submit", function(event){
     // Prevent the page to automatically push the input into the URL and prevent the page to reload

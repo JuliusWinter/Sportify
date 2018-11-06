@@ -70,6 +70,7 @@ nav ul li a.active{
     background: #E2472F;
     color: #fff;
     border-radius: 3px;
+    margin-right: 10px;
 }
 
 section.navMargin{
