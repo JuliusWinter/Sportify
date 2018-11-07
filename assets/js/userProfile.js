@@ -1,3 +1,30 @@
+//User first and last name entered into header via userName
+var users = JSON.parse(localStorage.getItem("users"));
+// get current user from local storage
+var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+// select anchor tags that should be manipulated
+var userProfile = document.querySelector("#userProfile");
+var createEvent = document.querySelector("#createEvent");
+var eventCatalogue = document.querySelector("#eventCatalogue");
+var learnMore = document.querySelector("#learnMore");
+var about = document.querySelector("#about");
+var registerBtn = document.querySelector("#registerBtn");
+var loginBtn = document.querySelector("#loginBtn");
+var logoutBtn = document.querySelector("#logoutBtn");
+// check if a user is logged in
+if(currentUser){
+    userProfile.style.display = "inline";
+    createEvent.style.display = "inline";
+    eventCatalogue.style.display = "inline";
+    learnMore.style.display = "none";
+    about.style.display = "none";
+    registerBtn.style.display = "none";
+    loginBtn.style.display = "none";
+    logoutBtn.style.display = "inline";
+}
+else{
+    // document.location.href = "login.html";
+}
 
 //Search function applied to table in profile page, filtering all created events by current user
 function searchCatalogueTable() {
@@ -7,7 +34,6 @@ function searchCatalogueTable() {
     filter = input.value.toUpperCase();
     table = document.getElementById("userEventsTable");
     tr = table.getElementsByTagName("tr");
-  
     // Loop through all table rows, and hide those who don't match the search query
     for (i = 0; i < tr.length; i++) {
       td = tr[i].getElementsByTagName("td")[0];
@@ -20,10 +46,6 @@ function searchCatalogueTable() {
       } 
     }
   }
-
-
-//User first and last name entered into header via userName
-var users = JSON.parse(localStorage.getItem("users"));
 
 //set variables for button ID's
 var btnUpcoming = document.getElementById("upcomingEventsBtn");

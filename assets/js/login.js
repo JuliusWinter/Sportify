@@ -3,13 +3,24 @@ var users = JSON.parse(localStorage.getItem("users"));
 // introduct currentUser array
 var currentUser = [];
 // select anchor tags that should be manipulated
+var userProfile = document.querySelector("#userProfile");
+var createEvent = document.querySelector("#createEvent");
+var eventCatalogue = document.querySelector("#eventCatalogue");
+var learnMore = document.querySelector("#learnMore");
+var about = document.querySelector("#about");
 var registerBtn = document.querySelector("#registerBtn");
 var loginBtn = document.querySelector("#loginBtn");
 var logoutBtn = document.querySelector("#logoutBtn");
 // check if a user is logged in
-    registerBtn.style.display = "inline";
-    loginBtn.style.display = "none";
-    logoutBtn.style.display = "none";
+userProfile.style.display = "none";
+createEvent.style.display = "none";
+eventCatalogue.style.display = "none";
+learnMore.style.display = "inline";
+about.style.display = "inline";
+registerBtn.style.display = "inline";
+loginBtn.style.display = "none";
+logoutBtn.style.display = "none";
+
 // Where does this event come from and what is it?
 document.getElementById("loginForm").addEventListener("submit", function(event){
     // Prevent the page to automatically push the input into the URL and prevent the page to reload

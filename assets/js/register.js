@@ -16,13 +16,23 @@ class user {
     }
 }
 // select anchor tags that should be manipulated
+var userProfile = document.querySelector("#userProfile");
+var createEvent = document.querySelector("#createEvent");
+var eventCatalogue = document.querySelector("#eventCatalogue");
+var learnMore = document.querySelector("#learnMore");
+var about = document.querySelector("#about");
 var registerBtn = document.querySelector("#registerBtn");
 var loginBtn = document.querySelector("#loginBtn");
 var logoutBtn = document.querySelector("#logoutBtn");
-// Hide register and logout button
-    registerBtn.style.display = "none";
-    loginBtn.style.display = "inline";
-    logoutBtn.style.display = "none";
+// check if a user is logged in
+userProfile.style.display = "none";
+createEvent.style.display = "none";
+eventCatalogue.style.display = "none";
+learnMore.style.display = "inline";
+about.style.display = "inline";
+registerBtn.style.display = "none";
+loginBtn.style.display = "inline";
+logoutBtn.style.display = "none";
 
 
 // Unique User ID Generator Function
