@@ -1,5 +1,7 @@
+
+//Search function applied to table in profile page, filtering all created events by current user
 function searchCatalogueTable() {
-    // Declare variables 
+    // Declare variables in table
     var input, filter, table, tr, td, i;
     input = document.getElementById("tableInput");
     filter = input.value.toUpperCase();
@@ -20,47 +22,49 @@ function searchCatalogueTable() {
   }
 
 
-// function togglePastEvents() {
-//   var show = document.getElementById("pastEvents");
-//   if (show.style.display === "none") {
-//     show.style.display = "block";
-//   } else {
-//     show.style.display = "none";
-//   }
-// }
-
-
-//toggle function applied to buttons to hide/show div's when div ID is placed into function on HTML
-// function togglePanes(id) {
-//   var x = document.getElementById(id);
-//   if (x.style.display === "block") {
-//     x.style.display = "none";
-//   } else {
-//     x.style.display = "block";
-//   }
-// }
-
-var userProfileDIV = {};
-function togglePanes(id) {
-    if (document.getElementById) {
-        var x = document.getElementById(id);
-        userProfileDIV[id] = (userProfileDIV[id]) ? false : true;
-        //close others
-        for (var div in userProfileDIV){
-            if (userProfileDIV[div] && div != id){
-                document.getElementById(div).style.display = 'none';
-                userProfileDIV[div] = false;
-            }
-        }
-        x.style.display = (x.style.display == 'block' ? 'none' : 'block');
-    }
-}
-
 //User first and last name entered into header via userName
 var users = JSON.parse(localStorage.getItem("users"));
 
-//var firstName = users["firstName"];
+//set variables for button ID's
+var btnUpcoming = document.getElementById("upcomingEventsBtn");
+var btnPast = document.getElementById("pastEventsBtn");
+var btnInterests = document.getElementById("interestsBtn");
+//set variable for DIV ID's
+var upcomingEventsDIV = document.getElementById("upcomingEvents");
+var pastEventsDIV= document.getElementById("pastEvents");
+var interestsDIV = document.getElementById("interests");  
 
-//var test = localStorage.getItem("users");
-document.getElementById("userName").innerHTML = users["firstName"];
-
+//function for first button in upcoming events
+btnUpcoming.addEventListener("click", function(){
+//DIV is set to display 'none' in userProfileStyle.css
+    if (upcomingEventsDIV.style.display === "block") {
+      //if clicked display 'block'
+      upcomingEventsDIV.style.display = "none";
+      //otherwise, diplay 'none'
+    } else {
+      // else if upcoming events DIV is set to 'block', remaining DIV's are display 'none'
+      upcomingEventsDIV.style.display = "block";
+      pastEventsDIV.style.display = "none";
+      interestsDIV.style.display = "none";
+    }
+});
+//identical function runs for past events DIV
+btnPast.addEventListener("click", function() {
+    if (pastEventsDIV.style.display === "block") {
+      pastEventsDIV.style.display = "none";
+    } else {
+      pastEventsDIV.style.display = "block";
+      interestsDIV.style.display = "none";
+        upcomingEventsDIV.style.display = "none";
+    }
+});
+//identical function runs for interests
+btnInterests.addEventListener("click", function(){
+    if (interestsDIV.style.display === "block") {
+      interestsDIV.style.display = "none";
+    } else {
+      interestsDIV.style.display = "block";
+        upcomingEventsDIV.style.display = "none";
+        pastEventsDIV.style.display = "none";
+    }
+});
