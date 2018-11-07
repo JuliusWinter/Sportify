@@ -7,7 +7,7 @@ setTimeout(function(){
 // Get Current User from localStorage
 var currentUser = JSON.parse(localStorage.getItem("currentUser"));
 // Set HTML Paragraph to personalized welcome message
-document.getElementById("welcomeMessage").innerHTML = "Hello " + currentUser[0].firstName + " thank you for choosing Sportify";
+document.getElementById("welcomeMessage").innerHTML = "Hello " + currentUser[0].firstName + ", thank you for choosing Sportify";
 
 // Set a countdown from 10sec to 0, that manipulates the html and displays the countdown
 var timleft = 10

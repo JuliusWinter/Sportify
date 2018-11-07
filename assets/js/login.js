@@ -9,17 +9,20 @@ document.getElementById("loginForm").addEventListener("submit", function(event){
     event.preventDefault();
     // loop over users array and check if credentials match a registered user
     for(var i = 0; i < users.length; i++){
-        if(event.target.username.value == users[i].userName && event.target.password.value == users[i].password){
+        if(event.target.userName.value == users[i].userName && event.target.password.value == users[i].password){
+            // safe current user to a var
+            var current = users[i];
             // if true change isLoggedIn attribute to true
             users[i].isLoggedIn = true;
             // push user to currentUser array
-            currentUser.push(users[i].push);
+            currentUser.push(current);
             // Safe stringified currentUser array to local storage
             localStorage.setItem("currentUser", JSON.stringify(currentUser));
             // redirect to user profile
             document.location.href = "userProfile.html";
         }
         else{
+            // if the condition is not met, display an error message
             document.getElementById("loginResult").innerHTML = "Oops, username or password is wrong...try again!!!"
         }
     }
