@@ -50,6 +50,7 @@ document.getElementById("eventForm").addEventListener("submit", function(event){
     // // store stringified version of events array in localStorage
     localStorage.setItem("events", JSON.stringify(events));
     document.location.href = "eventCatalogue.html";
+    }
 });
 
 // eventSubmitButton.addEventListener("click", function(){
