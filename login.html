@@ -13,10 +13,12 @@
 </head>
 <body>
     <div class="wrapper">
-        <!-- <div id="navbar"></div>      -->
+        <!-- introduce navbar -->
         <nav>
+            <!-- Sportify logo -->
             <div class="logo">SPORTIFY</div>
             <ul>
+                <!-- navbar links -->
                 <li><a href="index.html">HOME</a></li>
                 <li><a href="#">ABOUT</a></li>
                 <li><a href="#">BLOG</a></li>
@@ -25,21 +27,25 @@
             </ul>
         </nav>
     </div>
+        <!-- add a margin section that pushes the content down a bit -->
         <section class="navMargin"></section>
+        <!-- intoduce a section that holds the content -->
         <section class="sec1">
-                <div id="container">
-                        <h1>Login</h1>
-                        <form action="" id="loginForm">
-                            <label for="userName"></label>
-                                <input type="text" name="username" id="userName" placeholder="Username" class="formelement" required />
-                            <label for="password"></label>
-                                <input type="password" name="password"  id="password" placeholder="Password" class="formelement" required />
-                            <br>
-                                <button class="formelement" id="submit">Login</button>
-                        </form> 
-                        <br>
-                        <span id="loginResult"></span>
-                    </div>
+            <!-- container that holds our content -->
+            <div id="container">
+                <h1>Login</h1>
+                <!-- login form -->
+                <form action="" id="loginForm">
+                    <label for="userName"></label>
+                        <input type="text" name="userName" id="userName" placeholder="Username" class="formelement" required />
+                    <label for="password"></label>
+                        <input type="password" name="password"  id="password" placeholder="Password" class="formelement" required />
+                    <br>
+                        <button class="formelement" id="submit">Login</button>
+                </form> 
+                <br>
+                <span id="loginResult"></span>
+            </div>>
         </section>
     <script type="text/javascript" src="assets/js/login.js"></script>
 </body>

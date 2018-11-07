@@ -29,6 +29,7 @@ nav .logo{
     padding: 22px 20px;
     height: 80px;
     float: left;
+    color: #fff;
     font-size: 24px;
     transition: .8s;
 }
@@ -51,7 +52,7 @@ nav ul li{
 
 nav ul li a{
     line-height: 80px;
-    color: #151515;
+    color: #fff;
     padding: 12px 30px;
     text-decoration: none;
     text-transform: uppercase;
