@@ -2,7 +2,7 @@
 setTimeout(function(){
     localStorage.removeItem("currentUser")
     window.location.href = "login.html";
-   }, 10000);
+   }, 3000);
 
 // Get Current User from localStorage
 var currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -10,7 +10,7 @@ var currentUser = JSON.parse(localStorage.getItem("currentUser"));
 document.getElementById("welcomeMessage").innerHTML = "Hello " + currentUser[0].firstName + ", thank you for choosing Sportify";
 
 // Set a countdown from 10sec to 0, that manipulates the html and displays the countdown
-var timleft = 10
+var timleft = 3;
 setInterval(function(){
     timeleft = timleft --;
     document.getElementById("countdowntimer").innerHTML = timeleft;

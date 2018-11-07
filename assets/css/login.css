@@ -25,7 +25,8 @@ nav.black{
     padding: 10px 100px;
 }
 
-nav .logo{
+nav #sportifyLogo{
+    cursor: pointer;
     padding: 22px 20px;
     height: 80px;
     float: left;
@@ -34,7 +35,7 @@ nav .logo{
     transition: .8s;
 }
 
-nav.black .logo{
+nav.black #sportifyLogo{
     color: #fff;
 }
 

@@ -5,22 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="assets/css/login.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous">
+    </script>
     <link rel="stylesheet" href="assets/css/userProfileStyle.css"/>
-
-    <!-- <link rel="style" href="styling.css"/> -->
-
-    <!-- Navagation bar, css located on userProfile.css -->
-            <div class="topnav">
-                  <a class="#Home" href="#Home">Home</a>
-                  <a href="#Sample2" >Sample 2</a>
-                  <a href="#Sample3" >Sample 3</a>
-                  <a href="#Sample4" >Sample 4</a>
-            </div>
       </head>
 <body>
-
-            </div id="profileItems" class="profileItems">
-                  <h1 ><img src="ninja-512.png" id alt="Avatar" class="avatar">
+      <div class="wrapper">
+            <section class="navMargin"></section>
+            <!-- intoduce a section that holds the content -->
+            <section class="sec1">
+            <div id="profileItems" class="profileItems">
+                  <h1><img src="ninja-512.png" id alt="Avatar" class="avatar">
                         User Profile Name as entered in registration 
                         <div style="font-size: 60%">Location as entered in registration</div>
                   </h1>
@@ -32,7 +31,7 @@
 
 
         <!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." style="width: 200px"/> -->
-
+            </section>
   <div class="userEvents">
   <div id="eventsTableTitle">View and search your created events </div>
   <input type="text" id="tableInput" onkeyup="searchCatalogueTable()" placeholder="filter events" class="Bio"/>
@@ -261,8 +260,9 @@
                                           </div>
                   </div>
             </div>
-
-          </body>
-      </div> 
+      </div>
+</body>
+      <script type="text/javascript" src="assets/js/insertNavbar.js"></script>
+      <script type="text/javascript" src="assets/js/navbarScroll.js"></script>
       <script src="assets/js/userProfile.js"></script>
 </html>
