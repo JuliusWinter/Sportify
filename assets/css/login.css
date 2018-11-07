@@ -67,7 +67,21 @@ nav ul li a:focus {
     outline: none;
 }
 
-nav ul li a.active{
+nav ul li a#registerBtn{
+    background: mediumblue;
+    color: #fff;
+    border-radius: 3px;
+    margin-right: 10px;
+}
+
+nav ul li a#loginBtn{
+    background: #50ce5f;
+    color: #fff;
+    border-radius: 3px;
+    margin-right: 10px;
+}
+
+nav ul li a#logoutBtn{
     background: #E2472F;
     color: #fff;
     border-radius: 3px;
