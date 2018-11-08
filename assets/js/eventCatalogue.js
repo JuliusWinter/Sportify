@@ -1,29 +1,28 @@
 //get the event array from local storage//
 var events = JSON.parse(localStorage.getItem("events"));
+
 //display the events in the course catalogue//
-for(var i = 0; i < events.length; i++) {
-  var catItem = events[i];
-  var divContainer = document.createElement('DIV');
-  var att1 = document.createAttribute('class');
-  att1.value = 'event';
-  divContainer.setAttributeNode(att1);
-  var att2 = document.createAttribute('id');
-  att2.value = catItem.eventID;
-  divContainer.setAttributeNode(att2);
+// for(var i = 0; i < events.length; i++) {
+//   var catItem = events[i];
+//   var divContainer = document.createElement('DIV');
+//   var att1 = document.createAttribute('class');
+//   att1.value = 'event';
+//   divContainer.setAttributeNode(att1);
+//   var att2 = document.createAttribute('id');
+//   att2.value = catItem.eventID;
+//   divContainer.setAttributeNode(att2);
   
-  for(var prop in catItem) {
-    console.log(prop);
-    if (prop != catItem.privacy) {
-    var x = document.createElement('p');
-    x.setAttribute('class', prop);
-    var xContent = document.createTextNode(prop);
-    x.appendChild(xContent);
-    divContainer.appendChild(x);
-    }
-  }
-  var ec = document.getElementById('catalogueItems');
-  ec.appendChild(divContainer);
-}
+//   for(var prop in catItem) {
+//     var x = document.createElement('p');
+//     x.setAttribute('class', prop);
+//     var xContent = document.createTextNode(catItem.prop.value);
+//     // if (x.className !== catItem.eventID) {
+//     x.appendChild(xContent);
+//     divContainer.appendChild(x);
+//     }
+//   var ec = document.getElementById('catalogueItems');
+//   ec.appendChild(divContainer);
+// }
 
 //  this.eventID = _eventID;
 // this.type = _type;
@@ -39,73 +38,74 @@ for(var i = 0; i < events.length; i++) {
 // this.location = _location;
 // this.price = _price;
 
+for(var i = 0; i < events.length; i++) {
+  var catItem = events[i];
+  if (catItems.date >= )
+  var divContainer = document.createElement('DIV');
+  divContainer.setAttribute('class', 'event');
+  divContainer.setAttribute('id', catItem.eventID);
 
+  var naming = document.createElement('DIV');
+  naming.setAttribute('class', 'name');
+  var namingContent = document.createTextNode(events[i].name);
+  naming.appendChild(namingContent);
 
-  // var type = document.createElement('P');
-  // type.setAttribute('class', 'type');
-  // var typeContent = document.createTextNode(events[i].type);
-  // type.appendChild(typeContent);
+  var sportType = document.createElement('DIV');
+  sportType.setAttribute('class', 'sportType');
+  var sportTypeContent = document.createTextNode(events[i].sportType);
+  sportType.appendChild(sportTypeContent);
 
-  // var name = document.createElement('DIV');
-  // name.setAttribute('class', 'name');
-  // var nameContent = document.createTextNode(events[i].name);
-  // name.appendChild(nameContent);
+  var type = document.createElement('DIV');
+  type.setAttribute('class', 'type');
+  var typeContent = document.createTextNode('Event Type: ' + events[i].type);
+  type.appendChild(typeContent);
 
-  // var date = document.createElement('DIV');
-  // date.setAttribute('class', 'date');
-  // var dateContent = document.createTextNode(events[i].date);
-  // date.appendChild(dateContent);
+  var date = document.createElement('DIV');
+  date.setAttribute('class', 'date');
+  var dateContent = document.createTextNode('Date: ' + events[i].date);
+  date.appendChild(dateContent);
 
-  // var date = document.createElement('DIV');
-  // time.setAttribute('class', 'time');
-  // var timeContent = document.createTextNode(events[i].time);
-  // time.appendChild(timeContent);
-  
-  // var date = document.createElement('DIV');
-  // date.setAttribute('class', 'date');
-  // var dateContent = document.createTextNode(events[i].date);
-  // date.appendChild(dateContent);
+  var time = document.createElement('DIV');
+  time.setAttribute('class', 'time');
+  var timeContent = document.createTextNode('Time: ' + events[i].time);
+  time.appendChild(timeContent);
 
-  // var time = document.createElement('DIV');
-  // time.setAttribute('class', 'time');
-  // var timeContent = document.createTextNode(events[i].time);
-  // time.appendChild(timeContent);
+  var difficulty = document.createElement('DIV');
+  difficulty.setAttribute('class', 'difficulty');
+  var difficultyContent = document.createTextNode('Difficulty Level: ' + events[i].difficulty);
+  difficulty.appendChild(difficultyContent);
 
-  // var sportType = document.createElement('DIV');
-  // sportType.setAttribute('class', 'sportType');
-  // var sportTypeContent = document.createTextNode(events[i].sportType);
-  // sportType.appendChild(sportTypeContent);
+  var maxPart = document.createElement('DIV');
+  maxPart.setAttribute('class', 'maxPart');
+  var maxPartContent = document.createTextNode('Max. participants: ' + events[i].maxPart);
+  maxPart.appendChild(maxPartContent);
 
-  // var difficulty = document.createElement('DIV');
-  // difficulty.setAttribute('class', 'difficulty');
-  // var difficultyContent = document.createTextNode(events[i].difficulty);
-  // difficulty.appendChild(difficultyContent);
+  var frequency = document.createElement('DIV');
+  frequency.setAttribute('class', 'frequency');
+  var frequencyContent = document.createTextNode('Frequency: ' + events[i].frequency);
+  frequency.appendChild(frequencyContent);
 
-  // var maxPart = document.createElement('DIV');
-  // maxPart.setAttribute('class', 'maxPart');
-  // var maxPart = document.createTextNode(events[i].maxPart);
-  // maxPart.appendChild(maxPartContent);
-
-  // var frequency = document.createElement('DIV');
-  // frequency.setAttribute('class', 'frequency');
-  // var frequencyContent = document.createTextNode(events[i].frequency);
-  // frequency.appendChild(frequencyContent);
-
-  // var price = document.createElement('DIV');
-  // price.setAttribute('class', 'price');
-  // var timeContent = document.createTextNode(events[i].time);
-  // time.appendChild(timeContent);
-
-
+  var price = document.createElement('DIV');
+  price.setAttribute('class', 'price');
+  var priceContent = document.createTextNode('Price: ' + events[i].price + ' kr.');
+  price.appendChild(priceContent);
 
   //add all previously created sub divs to the divContainer
-  // var x = getElementById(events[i].eventID);
-  // x.appendChild(type);
+  divContainer.appendChild(naming);
+  divContainer.appendChild(sportType);
+  divContainer.appendChild(type);
+  divContainer.appendChild(difficulty);
+  divContainer.appendChild(date);
+  divContainer.appendChild(time);
+  divContainer.appendChild(frequency);
+  divContainer.appendChild(price);
+  divContainer.appendChild(maxPart);
   
-  // //add all divContainers to event catalogue (=div('catalogueItems') in HTML
-  // var element = document.getElementById('catalogueItems');
-  // element.appendChild(divContainer);
-  
+  //add all divContainers to event catalogue (=div('catalogueItems') in HTML
+  var element = document.getElementById('catalogueItems');
+  element.appendChild(divContainer);
+}
+
 // get current user from local storage
 var currentUser = JSON.parse(localStorage.getItem("currentUser"));
 // get events from local storage
