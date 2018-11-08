@@ -1,11 +1,5 @@
 // Get current user data from local storage
-if(!JSON.parse(localStorage.getItem("currentUser"))){
-    var currentUser
-}
-else{
-    var currentUser = JSON.parse(localStorage.getItem("currentUser"));
-}
-
+var currentUser = JSON.parse(localStorage.getItem("currentUser"));
 // select anchor tags that should be manipulated
 var userProfile = document.querySelector("#userProfile");
 var createEvent = document.querySelector("#createEvent");
