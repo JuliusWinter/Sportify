@@ -1,7 +1,12 @@
 // introduce events binding that carries event array that are saved in the local storage
 // JSON.parse is the opposite operation of stringify and turns the string back into an array
-var currentUser = JSON.parse(localStorage.getItem("currentUser"));
-var events = [];
+// var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+if(!JSON.parse(localStorage.getItem("events"))){
+    var events = [];
+}else{
+    var events = JSON.parse(localStorage.getItem("events"));
+}
+
 
 // select anchor tags that should be manipulated
 var userProfile = document.querySelector("#userProfile");
