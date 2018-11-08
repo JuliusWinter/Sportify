@@ -4,43 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
     <title>Event Catalogue | SPORTIFY</title>
     <!--link to own stylesheet-->
-    <link rel="stylesheet" href="assets/css/eventCatalogueStyle.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/login.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous">
+    </script>
 </head>
 <body>
+<div class="wrapper">
 
+      <section class="navMargin"></section>
+      <section class="sec1">
+      </section>
+      <script type="text/javascript" src="assets/js/insertNavbar.js"></script>
+<script type="text/javascript" src="assets/js/navbarScroll.js"></script>
+<script src="assets/js/eventCatalogue.js"></script>     
 <!--create navbar that displays a subnavbar when hovering over field; Navbar includes Home Button (Logo) that redirects to user profile, Profile Button that lets appear subnavbar with Profile Page and Management, Events button that lets appear subnavbar with Event Catalogue and Create Event, and logout button that redirects to index page and quits access to system-->
-<div class="navbar">
-      <a href="#home">SPORTIFY</a>
-      <div class="subNavbar">
-            <button class="subNavbarButton">Profile</button>
-            <div class="subNavbarContent">
-                  <a href="#">Profile Page</a>
-                  <a href="#">Profile Management</a>
-            </div>
-      </div>
-      <div class="subNavbar">
-            <button class="subNavbarButton">Events</button>
-            <div class="subNavbarContent">
-                  <a href="#company">Event Catalogue</a>
-                  <a href="#team">Create Event</a>
-            </div>
-      </div> 
-      <a class='navbarRight' href="#logout">Logout</a>
 </div>
-
 <!--create a div that contains all page elements except from Navbar-->
 <div class='container1'>
 <!--create a div that includes the entire Search/Filtering functions and form elements / should be displayed on the left side of page and take 30% of page width-->
-<div class ="floatLeft">
-    
-      <h1>Event Catalogue</h1>
+<div id="floatLeftEC">
+            <!-- <nav id='navbar'><div id='sportifyLogo'>SPORTIFY</div><ul><li><a id='userProfile' href='userProfile.html'>USER PROFILE</a></li><li><a id='createEvent' href='createCourse.html'>CREATE EVENT</a></li><li><a id='eventCatalogue' href='eventCatalogue.html'>EVENT CATALOGUE</a></li><li><a id='logoutBtn' href='index.html'>LOG OUT</a></li></ul></nav> -->
+      <h1 id='eventCatalogueh1'>Event Catalogue</h1>
 <!--create a div that includes two search fields to search for city and sport category; only one search item at a time per search field-->
       <div id='searching'>
-            <input type="text" class="searchbar" id="userCategoryInput" onkeyup="categorySearchFunction()" placeholder="Search for sport categories here">
-            <input type='text' class="searchbar" id="userLocationInput" onkeyup="locationSearchFunction()" placeholder='Search for cities here'>
+            <input type="text" class="searchbarEC" id="userCategoryInput" onkeyup="categorySearchFunction()" placeholder="Search for sport categories here">
+            <input type='text' class="searchbarEC" id="userLocationInput" onkeyup="locationSearchFunction()" placeholder='Search for cities here'>
       </div>
 <!--create a div that includes all filter parameters except from two top search fields-->
       <div id='filtering'>
@@ -110,149 +103,8 @@
             </div>
             <button>Event Page</button>
       </div>
-      <div class='event'> 
-            <div class='link'>
-                  <a href="#eventPage">Free Swimming Session @Islands Brygge </a>
-            </div>
-            <div class='sportCategory'>Swimming</div>
-            <div class='type'>Training</div>
-            <div class='date'>23.11.2018</div>
-            <div class='startTime'>14:00</div>
-            <div class='duration'>1h00m</div>
-            <div class='city'>Copenhagen</div>
-            <div class='district'>Islands Brygge</div>
-            <div class='street'>XYZ</div>
-            <div class='price'>0 kr.</div>
-            <div class='capacity'>
-                  <span class="status"></span>
-                  Unlimited
-            </div>
-            <button>Event Page</button>
-      </div>
-
-      <div class='event'> 
-            <div class='link'>
-                  <a href="#eventPage">Sunday Basketball Match</a>
-            </div>
-            <div class='sportCategory'>Basketball</div>
-            <div class='type'>Training</div>
-            <div class='date'>25.11.2018</div>
-            <div class='startTime'>12:00</div>
-            <div class='duration'>2h30m</div>
-            <div class='city'>Roskilde</div>
-            <div class='district'>Roskilhof</div>
-            <div class='street'>XYZ</div>
-            <div class='price'>0 kr.</div>
-            <div class='capacity'>
-                  <span class="status"></span>
-                  5 spots available
-            </div>
-            <button>Event Page</button>
-      </div>
-      
-      <div class='event'> 
-            <div class='link'>
-                  <a href="#eventPage">Sunday Basketball Match</a>
-            </div>
-            <div class='sportCategory'>Football</div>
-            <div class='type'>Training</div>
-            <div class='date'>25.11.2018</div>
-            <div class='startTime'>12:00</div>
-            <div class='duration'>2h30m</div>
-            <div class='city'>Roskilde</div>
-            <div class='district'>Roskilhof</div>
-            <div class='street'>XYZ</div>
-            <div class='price'>0 kr.</div>
-            <div class='capacity'>
-                  <span class="status"></span>
-                  5 spots available
-            </div>
-            <button>Event Page</button>
-      </div>
-
-      <div class='event'> 
-            <div class='link'>
-                  <a href="#eventPage">Sunday Basketball Match</a>
-            </div>
-            <div class='sportCategory'>Basketball</div>
-            <div class='type'>Training</div>
-            <div class='date'>25.11.2018</div>
-            <div class='startTime'>12:00</div>
-            <div class='duration'>2h30m</div>
-            <div class='city'>Roskilde</div>
-            <div class='district'>Roskilhof</div>
-            <div class='street'>XYZ</div>
-            <div class='price'>0 kr.</div>
-            <div class='capacity'>
-                  <span class="status"></span>
-                  5 spots available
-            </div>
-            <button>Event Page</button>
-      </div>
-
-      <div class='event'> 
-            <div class='link'>
-                  <a href="#eventPage">Sunday Basketball Match</a>
-            </div>
-            <div class='sportCategory'>Basketball</div>
-            <div class='type'>Training</div>
-            <div class='date'>25.11.2018</div>
-            <div class='startTime'>12:00</div>
-            <div class='duration'>2h30m</div>
-            <div class='city'>Roskilde</div>
-            <div class='district'>Roskilhof</div>
-            <div class='street'>XYZ</div>
-            <div class='price'>0 kr.</div>
-            <div class='capacity'>
-                  <span class="status"></span>
-                  5 spots available
-            </div>
-            <button>Event Page</button>
-      </div>
-
-      <div class='event'> 
-            <div class='link'>
-                  <a href="#eventPage">Sunday Basketball Match</a>
-            </div>
-            <div class='sportCategory'>Basketball</div>
-            <div class='type'>Training</div>
-            <div class='date'>25.11.2018</div>
-            <div class='startTime'>12:00</div>
-            <div class='duration'>2h30m</div>
-            <div class='city'>Roskilde</div>
-            <div class='district'>Roskilhof</div>
-            <div class='street'>XYZ</div>
-            <div class='price'>0 kr.</div>
-            <div class='capacity'>
-                  <span class="status"></span>
-                  5 spots available
-            </div>
-            <button>Event Page</button>
-      </div>
-
-      <div class='event'> 
-            <div class='link'>
-                  <a href="#eventPage">Sunday Basketball Match</a>
-            </div>
-            <div class='sportCategory'>Basketball</div>
-            <div class='type'>Training</div>
-            <div class='date'>25.11.2018</div>
-            <div class='startTime'>12:00</div>
-            <div class='duration'>2h30m</div>
-            <div class='city'>Roskilde</div>
-            <div class='district'>Roskilhof</div>
-            <div class='street'>XYZ</div>
-            <div class='price'>0 kr.</div>
-            <div class='capacity'>
-                  <span class="status"></span>
-                  5 spots available
-            </div>
-            <button>Event Page</button>
-      </div>
-      
-      </div>
-</div> 
-                  
+     
+ 
+<script src="assets/js/eventCatalogue.js"></script>                 
 </body>
-<script src="assets/js/eventCatalogue.js"></script>
 </html>

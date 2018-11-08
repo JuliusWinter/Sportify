@@ -1,19 +1,40 @@
 // Introduce Array of registered Users
 // Call Users array string from localStorage and parse it back into an array of objects
 var users = [];
+// get current user from local storage
 var currentUser = [];
 // Introduce User Object Model
 class user {
-    constructor(_userID, _userName, _firstName, _lastName, _birthday, _email, _password){
-        this.userID = _userID;
+    constructor(_ID, _userName, _firstName, _lastName, _birthday, _email, _password){
+        this.ID = _ID;
         this.userName = _userName;
         this.firstName = _firstName;
         this.lastName = _lastName;
         this.birthday = _birthday;
         this.email = _email;
         this.password = _password;
+        this.events = [];
     }
 }
+// select anchor tags that should be manipulated
+var userProfile = document.querySelector("#userProfile");
+var createEvent = document.querySelector("#createEvent");
+var eventCatalogue = document.querySelector("#eventCatalogue");
+var learnMore = document.querySelector("#learnMore");
+var about = document.querySelector("#about");
+var registerBtn = document.querySelector("#registerBtn");
+var loginBtn = document.querySelector("#loginBtn");
+var logoutBtn = document.querySelector("#logoutBtn");
+// check if a user is logged in
+userProfile.style.display = "none";
+createEvent.style.display = "none";
+eventCatalogue.style.display = "none";
+learnMore.style.display = "inline";
+about.style.display = "inline";
+registerBtn.style.display = "none";
+loginBtn.style.display = "inline";
+logoutBtn.style.display = "none";
+
 
 // Unique User ID Generator Function
 function guid() {
@@ -36,13 +57,13 @@ document.getElementById("registrationForm").addEventListener("submit", function(
     // Prevent the page to automatically push the input into the URL and prevent the page to reload
     event.preventDefault();
     // generate User ID
-    var userID = guid();
+    var ID = guid();
     // push new user to users array
-    users.push(new user (userID, event.target.regUserName.value, event.target.regFirstName.value, event.target.regLastName.value, event.target.regBirthday.value, event.target.regEmail.value, event.target.regPassword.value));
+    users.push(new user (ID, event.target.regUserName.value, event.target.regFirstName.value, event.target.regLastName.value, event.target.regBirthday.value, event.target.regEmail.value, event.target.regPassword.value));
     // store stringified version of users array in localStorage
     localStorage.setItem("users", JSON.stringify(users));
     // push the same user to current User array
-    currentUser.push(new user (userID, event.target.regUserName.value, event.target.regFirstName.value, event.target.regLastName.value, event.target.regBirthday.value, event.target.regEmail.value, event.target.regPassword.value));
+    currentUser.push(new user (ID, event.target.regUserName.value, event.target.regFirstName.value, event.target.regLastName.value, event.target.regBirthday.value, event.target.regEmail.value, event.target.regPassword.value));
     // safe stringified version of current user array to local storage
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
     // redirect to loginSuccessful.html

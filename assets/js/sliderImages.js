@@ -1,8 +1,10 @@
 // Select all slides
-let sliderImages = document.querySelectorAll(".slide");
+var sliderImages = document.querySelectorAll(".slide");
 let leftArrow = document.querySelector("#leftArrow");
 let rightArrow = document.querySelector("#rightArrow");
 var current = 0;
+
+console.log(sliderImages);
 
 // clear all images
 function reset(){
@@ -46,7 +48,8 @@ leftArrow.addEventListener("click", function(){
 
 rightArrow.addEventListener("click", function(){
     // check if current slide is the last slide
-    if(current === sliderImages.lenght-1){
+    if(current === sliderImages.length -1){
+        
         // set the slide to the first image
         current = -1;
     }
