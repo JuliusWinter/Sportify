@@ -1,33 +1,3 @@
-<<<<<<< HEAD
-// Get users array from local Storage for authentification
-
-
-
-
-// // Where does this event come from and what is it?
-// document.getElementById("loginForm").addEventListener("submit", function(event){
-//     // Prevent the page to automatically push the input into the URL and prevent the page to reload
-//     event.preventDefault();
-//     // loop over users array and check if credentials match a registered user
-//     for(var i = 0; i < users.length; i++){
-//         if(event.target.username.value == users[i].userName && event.target.password.value == users[i].password){
-//             // if true change isLoggedIn attribute to true
-//             users[i].isLoggedIn = true;
-//             // push user to currentUser array
-//             currentUser.push(users[i].push);
-//             // Safe stringified currentUser array to local storage
-//             localStorage.setItem("currentUser", JSON.stringify(currentUser));
-//             // redirect to user profile
-//             document.location.href = "userProfile.html";
-//         }
-//         else{
-//             document.getElementById("loginResult").innerHTML = "Oops, username or password is wrong...try again!!!"
-//         }
-//     }
-// })
-
-
-=======
 //User first and last name entered into header via userName
 var users = JSON.parse(localStorage.getItem("users"));
 // get current user from local storage
@@ -55,7 +25,6 @@ if(currentUser){
 else{
     // document.location.href = "login.html";
 }
->>>>>>> 428e815f1f09ee2503c062b86c07d8199af109f0
 
 //Search function applied to table in profile page, filtering all created events by current user
 function searchCatalogueTable() {
@@ -77,12 +46,6 @@ function searchCatalogueTable() {
       } 
     }
   }
-<<<<<<< HEAD
-  //import current user values
-var currentUser = JSON.parse(localStorage.getItem("currentUser"));
-=======
-
->>>>>>> 428e815f1f09ee2503c062b86c07d8199af109f0
 //set variables for button ID's
 var btnUpcoming = document.getElementById("upcomingEventsBtn");
 var btnPast = document.getElementById("pastEventsBtn");
