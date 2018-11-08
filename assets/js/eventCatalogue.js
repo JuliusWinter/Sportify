@@ -40,7 +40,7 @@ var events = JSON.parse(localStorage.getItem("events"));
 
 for(var i = 0; i < events.length; i++) {
   var catItem = events[i];
-  if (catItems.date >= )
+  if (catItems.date >= );
   var divContainer = document.createElement('DIV');
   divContainer.setAttribute('class', 'event');
   divContainer.setAttribute('id', catItem.eventID);

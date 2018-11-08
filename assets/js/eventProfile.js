@@ -1,3 +1,5 @@
+// get event id of the selected event and compare
+
 if(!JSON.parse(localStorage.getItem("currentUser"))){
     document.location.href = "login.html";
 }else{
