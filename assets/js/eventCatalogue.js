@@ -13,7 +13,7 @@ for(var i = 0; i < events.length; i++) {
   
   for(var prop in catItem) {
     console.log(prop);
-    if (prop != 'privacy' && prop != 'eventID') {
+    if (prop != catItem.privacy) {
     var x = document.createElement('p');
     x.setAttribute('class', prop);
     var xContent = document.createTextNode(prop);
