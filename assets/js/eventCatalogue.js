@@ -4,75 +4,106 @@ var events = JSON.parse(localStorage.getItem("events"));
 for(var i = 0; i < events.length; i++) {
   var catItem = events[i];
   var divContainer = document.createElement('DIV');
-  div.setAttribute('class', 'event');
-  div.setAttribute('id', events[i].eventID);
+  var att1 = document.createAttribute('class');
+  att1.value = 'event';
+  divContainer.setAttributeNode(att1);
+  var att2 = document.createAttribute('id');
+  att2.value = catItem.eventID;
+  divContainer.setAttributeNode(att2);
   
-  var type = document.createElement('DIV');
-  type.setAttribute('class', 'type');
-  var typeContent = document.createTextNode(events[i].type);
-  type.appendChild(typeContent);
+  for(var property in events[i]) {
+    if (catItem.keys != catItem.privacy && catItem.keys != catItem.eventID) {
+    var x = document.createElement('p');
+    x.setAttribute('class', catItem.keys);
+    var xContent = document.createTextNode(property.value);
+    x.appendChild(xContent);
+    divContainer.appendChild(x);
+    }
+  }
+}
 
-  var name = document.createElement('DIV');
-  name.setAttribute('class', 'name');
-  var nameContent = document.createTextNode(events[i].name);
-  name.appendChild(nameContent);
+//  this.eventID = _eventID;
+// this.type = _type;
+// this.privacy = _privacy;
+// this.name = _name;
+// this.date = _date;
+// this.time = _time;
+// this.sportType = _sportType;
+// this.description = _description;
+// this.difficulty = _difficulty;
+// this.maxPart = _maxPart;
+// this.frequency = _frequency;
+// this.location = _location;
+// this.price = _price;
 
-  var date = document.createElement('DIV');
-  date.setAttribute('class', 'date');
-  var dateContent = document.createTextNode(events[i].date);
-  date.appendChild(dateContent);
 
-  var date = document.createElement('DIV');
-  time.setAttribute('class', 'time');
-  var timeContent = document.createTextNode(events[i].time);
-  time.appendChild(timeContent);
+
+  // var type = document.createElement('P');
+  // type.setAttribute('class', 'type');
+  // var typeContent = document.createTextNode(events[i].type);
+  // type.appendChild(typeContent);
+
+  // var name = document.createElement('DIV');
+  // name.setAttribute('class', 'name');
+  // var nameContent = document.createTextNode(events[i].name);
+  // name.appendChild(nameContent);
+
+  // var date = document.createElement('DIV');
+  // date.setAttribute('class', 'date');
+  // var dateContent = document.createTextNode(events[i].date);
+  // date.appendChild(dateContent);
+
+  // var date = document.createElement('DIV');
+  // time.setAttribute('class', 'time');
+  // var timeContent = document.createTextNode(events[i].time);
+  // time.appendChild(timeContent);
   
-  var date = document.createElement('DIV');
-  date.setAttribute('class', 'date');
-  var dateContent = document.createTextNode(events[i].date);
-  date.appendChild(dateContent);
+  // var date = document.createElement('DIV');
+  // date.setAttribute('class', 'date');
+  // var dateContent = document.createTextNode(events[i].date);
+  // date.appendChild(dateContent);
 
-  var time = document.createElement('DIV');
-  time.setAttribute('class', 'time');
-  var timeContent = document.createTextNode(events[i].time);
-  time.appendChild(timeContent);
+  // var time = document.createElement('DIV');
+  // time.setAttribute('class', 'time');
+  // var timeContent = document.createTextNode(events[i].time);
+  // time.appendChild(timeContent);
 
-  var sportType = document.createElement('DIV');
-  sportType.setAttribute('class', 'sportType');
-  var sportTypeContent = document.createTextNode(events[i].sportType);
-  sportType.appendChild(sportTypeContent);
+  // var sportType = document.createElement('DIV');
+  // sportType.setAttribute('class', 'sportType');
+  // var sportTypeContent = document.createTextNode(events[i].sportType);
+  // sportType.appendChild(sportTypeContent);
 
-  var difficulty = document.createElement('DIV');
-  difficulty.setAttribute('class', 'difficulty');
-  var difficultyContent = document.createTextNode(events[i].difficulty);
-  difficulty.appendChild(difficultyContent);
+  // var difficulty = document.createElement('DIV');
+  // difficulty.setAttribute('class', 'difficulty');
+  // var difficultyContent = document.createTextNode(events[i].difficulty);
+  // difficulty.appendChild(difficultyContent);
 
-  var maxPart = document.createElement('DIV');
-  maxPart.setAttribute('class', 'maxPart');
-  var maxPart = document.createTextNode(events[i].maxPart);
-  maxPart.appendChild(maxPartContent);
+  // var maxPart = document.createElement('DIV');
+  // maxPart.setAttribute('class', 'maxPart');
+  // var maxPart = document.createTextNode(events[i].maxPart);
+  // maxPart.appendChild(maxPartContent);
 
-  var frequency = document.createElement('DIV');
-  frequency.setAttribute('class', 'frequency');
-  var frequencyContent = document.createTextNode(events[i].frequency);
-  frequency.appendChild(frequencyContent);
+  // var frequency = document.createElement('DIV');
+  // frequency.setAttribute('class', 'frequency');
+  // var frequencyContent = document.createTextNode(events[i].frequency);
+  // frequency.appendChild(frequencyContent);
 
-  var price = document.createElement('DIV');
-  price.setAttribute('class', 'price');
-  var timeContent = document.createTextNode(events[i].time);
-  time.appendChild(timeContent);
+  // var price = document.createElement('DIV');
+  // price.setAttribute('class', 'price');
+  // var timeContent = document.createTextNode(events[i].time);
+  // time.appendChild(timeContent);
 
-  
+
 
   //add all previously created sub divs to the divContainer
-  var x = getElementById(events[i].eventID);
-  x.appendChild(type);
+  // var x = getElementById(events[i].eventID);
+  // x.appendChild(type);
   
-  //add all divContainers to event catalogue (=div('catalogueItems') in HTML
-  var element = document.getElementById('catalogueItems');
-  element.appendChild(divContainer);
+  // //add all divContainers to event catalogue (=div('catalogueItems') in HTML
+  // var element = document.getElementById('catalogueItems');
+  // element.appendChild(divContainer);
   
-}
+
 //define a function that searches for event categories and displays only applicable events//
 function categorySearchFunction (){
   //declare variables - getting values from search box//
@@ -159,17 +190,6 @@ function catSearch (){
   //Declare variables - getting values from the div elements
   let catItems = document.getElementById('content');
   let category = document.getElementsByClassName('checkboxCat');
-// //define a function that searches for event categories and displays only applicable events//
-// function catSearch (){
-//   //declare variables - getting values from search box//
-//   let searchInputCat = document.getElementById('categorySearch').value.toUpperCase();
-//   //Declare variables - getting values from the div elements
-//   let catItems = document.getElementById('content');
-//   let category = catItems.getElementsByClassName('checkboxCat');
-
-//   //loop through the divs to search for elements, and hide those that do not match the search query//
-//   for (var i=0; i<category.length; i++){
-//     var cat = category[i].value;
     
     if(cat[i].toUpperCase().includes(searchInputCat)){
       category[i].style.display ="";
@@ -177,13 +197,12 @@ function catSearch (){
       category[i].style.display ="none";
     }
   }
-}
 
-var slider = document.getElementById("myRange");
-var output = document.getElementById("demo");
-output.innerHTML = slider.value; // Display the default slider value
+// var slider = document.getElementById("myRange");
+// var output = document.getElementById("demo");
+// output.innerHTML = slider.value; // Display the default slider value
 
 // Update the current slider value (each time you drag the slider handle)
-slider.oninput = function() {
-    output.innerHTML = this.value;
-}
+// slider.oninput = function() {
+//     output.innerHTML = this.value;
+// }
