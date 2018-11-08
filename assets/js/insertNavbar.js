@@ -1,4 +1,10 @@
-var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+if(!JSON.parse(localStorage.getItem("currentUser"))){
+    document.location.href = "login.html";
+}
+else{
+    var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    var users = JSON.parse(localStorage.getItem("users"));
+}
 // Select the wrapper div
 var navbar = document.querySelector(".wrapper");
 // add the following html after the opening/begin of the div with class wrapper
@@ -23,9 +29,8 @@ else{
 
 // delete current user from local storage, when logout is clicked and redirect him to index.html
 logoutBtn.addEventListener("click", function(){
-    localStorage.removeItem("currentUser");
-    document.location.href = "index.html";
+            localStorage.removeItem("currentUser");
+            document.location.href = "index.html";
 })
-
 
 

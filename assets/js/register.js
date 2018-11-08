@@ -1,7 +1,10 @@
 // Introduce Array of registered Users
 // Call Users array string from localStorage and parse it back into an array of objects
-var users = [];
-// get current user from local storage
+if(!JSON.parse(localStorage.getItem("users"))){
+    var users = [];
+}else{
+    var users = JSON.parse(localStorage.getItem("users"));
+}
 var currentUser = [];
 // Introduce User Object Model
 class user {
