@@ -1,4 +1,4 @@
-//get the event array from local storage//
+//get the event array from local storage and parse it//
 var events = JSON.parse(localStorage.getItem("events"));
 
 //display the events in the course catalogue//
@@ -24,108 +24,97 @@ var events = JSON.parse(localStorage.getItem("events"));
 //   ec.appendChild(divContainer);
 // }
 
-//  this.eventID = _eventID;
-// this.type = _type;
-// this.privacy = _privacy;
-// this.name = _name;
-// this.date = _date;
-// this.time = _time;
-// this.sportType = _sportType;
-// this.description = _description;
-// this.difficulty = _difficulty;
-// this.maxPart = _maxPart;
-// this.frequency = _frequency;
-// this.location = _location;
-// this.price = _price;
-
+//display events of certain condition that are stored in local storage in event catalogue
+//loop over array that contains all events that are stored in local storage// 
 for(var i = 0; i < events.length; i++) {
+  //introduce variable an individual event //
   var catItem = events[i];
+  //
   var today = new Date();
   var dd = today.getDate();
   var mm = today.getMonth()+1; 
   var yyyy = today.getFullYear();
-  if(dd<10) {
-      dd = '0'+dd
-  } 
-  if(mm<10) {
-      mm = '0'+mm
-  } 
+  if(dd<10) {dd = '0'+dd} 
+  if(mm<10) {mm = '0'+mm} 
   today = yyyy + '-' + mm + '-' + dd;
-  if (catItem.date >= today) {
-  var divContainer = document.createElement('DIV');
-  divContainer.setAttribute('class', 'event');
-  divContainer.setAttribute('id', catItem.eventID);
-
-  var naming = document.createElement('DIV');
-  naming.setAttribute('class', 'name');
-  var namingContent = document.createTextNode(events[i].name);
-  naming.appendChild(namingContent);
-
-  var location = document.createElement('DIV');
-  location.setAttribute('class', 'location');
-  var locationContent = document.createTextNode(events[i].location);
-  location.appendChild(locationContent);
-
-  var sportType = document.createElement('DIV');
-  sportType.setAttribute('class', 'sportType');
-  var sportTypeContent = document.createTextNode(events[i].sportType);
-  sportType.appendChild(sportTypeContent);
-
-  var type = document.createElement('DIV');
-  type.setAttribute('class', 'type');
-  var typeContent = document.createTextNode('Event Type: ' + events[i].type);
-  type.appendChild(typeContent);
-
-  var date = document.createElement('DIV');
-  date.setAttribute('class', 'date');
-  var dateContent = document.createTextNode('Date: ' + events[i].date);
-  date.appendChild(dateContent);
-
-  var time = document.createElement('DIV');
-  time.setAttribute('class', 'time');
-  var timeContent = document.createTextNode('Time: ' + events[i].time);
-  time.appendChild(timeContent);
-
-  var difficulty = document.createElement('DIV');
-  difficulty.setAttribute('class', 'difficulty');
-  var difficultyContent = document.createTextNode('Difficulty Level: ' + events[i].difficulty);
-  difficulty.appendChild(difficultyContent);
-
-  var maxPart = document.createElement('DIV');
-  maxPart.setAttribute('class', 'maxPart');
-  var maxPartContent = document.createTextNode('Max. participants: ' + events[i].maxPart);
-  maxPart.appendChild(maxPartContent);
-
-  var frequency = document.createElement('DIV');
-  frequency.setAttribute('class', 'frequency');
-  var frequencyContent = document.createTextNode('Frequency: ' + events[i].frequency);
-  frequency.appendChild(frequencyContent);
-
-  var price = document.createElement('DIV');
-  price.setAttribute('class', 'price');
-  var priceContent = document.createTextNode('Price: ' + events[i].price + ' kr.');
-  price.appendChild(priceContent);
-
-  var description = document.createElement('DIV');
-  description.setAttribute('class', 'description');
-  var descriptionContent = document.createTextNode(events[i].description);
-  description.appendChild(descriptionContent);
-
-  //add all previously created sub divs to the divContainer
-  divContainer.appendChild(naming);
-  divContainer.appendChild(sportType);
-  divContainer.appendChild(type);
-  divContainer.appendChild(difficulty);
-  divContainer.appendChild(date);
-  divContainer.appendChild(time);
-  divContainer.appendChild(frequency);
-  divContainer.appendChild(price);
-  divContainer.appendChild(maxPart);
   
-  //add all divContainers to event catalogue (=div('catalogueItems') in HTML
-  var element = document.getElementById('catalogueItems');
-  element.appendChild(divContainer);
-}
+  if (catItem.date >= today) {
+    var divContainer = document.createElement('DIV');
+    divContainer.setAttribute('class', 'event');
+    divContainer.setAttribute('id', catItem.eventID);
+
+    var naming = document.createElement('DIV');
+    naming.setAttribute('class', 'name');
+    var namingContent = document.createTextNode(events[i].name);
+    naming.appendChild(namingContent);
+
+    var loc = document.createElement('DIV');
+    loc.setAttribute('class', 'location');
+    var locContent = document.createTextNode('Location: ' + events[i].location);
+    loc.appendChild(locContent);
+
+    var sportType = document.createElement('DIV');
+    sportType.setAttribute('class', 'sportType');
+    var sportTypeContent = document.createTextNode(events[i].sportType);
+    sportType.appendChild(sportTypeContent);
+
+    var type = document.createElement('DIV');
+    type.setAttribute('class', 'type');
+    var typeContent = document.createTextNode('Event Type: ' + events[i].type);
+    type.appendChild(typeContent);
+
+    var date = document.createElement('DIV');
+    date.setAttribute('class', 'date');
+    var dateContent = document.createTextNode('Date: ' + events[i].date);
+    date.appendChild(dateContent);
+
+    var time = document.createElement('DIV');
+    time.setAttribute('class', 'time');
+    var timeContent = document.createTextNode('Time: ' + events[i].time);
+    time.appendChild(timeContent);
+
+    var difficulty = document.createElement('DIV');
+    difficulty.setAttribute('class', 'difficulty');
+    var difficultyContent = document.createTextNode('Difficulty Level: ' + events[i].difficulty);
+    difficulty.appendChild(difficultyContent);
+
+    var maxPart = document.createElement('DIV');
+    maxPart.setAttribute('class', 'maxPart');
+    var maxPartContent = document.createTextNode('Max. participants: ' + events[i].maxPart);
+    maxPart.appendChild(maxPartContent);
+
+    var frequency = document.createElement('DIV');
+    frequency.setAttribute('class', 'frequency');
+    var frequencyContent = document.createTextNode('Frequency: ' + events[i].frequency);
+    frequency.appendChild(frequencyContent);
+
+    var price = document.createElement('DIV');
+    price.setAttribute('class', 'price');
+    var priceContent = document.createTextNode('Price: ' + events[i].price + ' kr.');
+    price.appendChild(priceContent);
+
+    var description = document.createElement('DIV');
+    description.setAttribute('class', 'description');
+    var descriptionContent = document.createTextNode('Event Description: ' + events[i].description);
+    description.appendChild(descriptionContent);
+
+    //add all previously created sub divs to the divContainer
+    divContainer.appendChild(naming);
+    divContainer.appendChild(sportType);
+    divContainer.appendChild(type);
+    divContainer.appendChild(loc);
+    divContainer.appendChild(difficulty);
+    divContainer.appendChild(date);
+    divContainer.appendChild(time);
+    divContainer.appendChild(frequency);
+    divContainer.appendChild(price);
+    divContainer.appendChild(maxPart);
+    divContainer.appendChild(description);
+    
+    //add all divContainers to event catalogue (=div('catalogueItems') in HTML
+    var element = document.getElementById('catalogueItems');
+    element.appendChild(divContainer);
+  }
 }
 
 // get current user from local storage
