@@ -8,15 +8,19 @@ if(!JSON.parse(localStorage.getItem("users"))){
 var currentUser = [];
 // Introduce User Object Model
 class user {
-    constructor(_ID, _userName, _firstName, _lastName, _birthday, _email, _password){
+    constructor(_ID, _userName, _firstName, _lastName, _gender, _birthday, _email, _password){
         this.ID = _ID;
         this.userName = _userName;
         this.firstName = _firstName;
         this.lastName = _lastName;
         this.birthday = _birthday;
+        this.gender = _gender;
         this.email = _email;
         this.password = _password;
         this.events = [];
+        this.sports = [];
+        this.slogan = string;
+        this.award = string;
     }
 }
 // select anchor tags that should be manipulated
@@ -66,7 +70,7 @@ document.getElementById("registrationForm").addEventListener("submit", function(
     // store stringified version of users array in localStorage
     localStorage.setItem("users", JSON.stringify(users));
     // push the same user to current User array
-    currentUser.push(new user (ID, event.target.regUserName.value, event.target.regFirstName.value, event.target.regLastName.value, event.target.regBirthday.value, event.target.regEmail.value, event.target.regPassword.value));
+    currentUser.push(new user (ID, event.target.regUserName.value, event.target.regFirstName.value, event.target.regLastName.value, event.target.regBirthday.value, event.target.gender.value, event.target.regEmail.value, event.target.regPassword.value));
     // safe stringified version of current user array to local storage
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
     // redirect to loginSuccessful.html

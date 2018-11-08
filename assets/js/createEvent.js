@@ -47,9 +47,9 @@ else{
 
 // introduce our event object model
 class Event {
-    constructor(_ID, _userID, _type, _privacy, _name, _date, _time, _sportType, _description, _difficulty, _maxPart, _frequency, _location, _price){
+    constructor(_ID, _creatorID, _type, _privacy, _name, _date, _time, _sportType, _description, _difficulty, _maxPart, _frequency, _location, _price){
         this.eventID = _ID;
-        this.userID = _userID;
+        this.userID = _creatorID;
         this.type = _type;
         this.privacy = _privacy;
         this.name = _name;
@@ -59,6 +59,7 @@ class Event {
         this.description = _description;
         this.difficulty = _difficulty;
         this.maxPart = _maxPart;
+        this.attendees = [];
         this.frequency = _frequency;
         this.location = _location;
         this.price = _price;
@@ -102,11 +103,11 @@ document.getElementById("eventForm").addEventListener("submit", function(event){
     event.preventDefault();
     // generate unique event ID
     var eventID = geid();
-    var userID = currentUser[0].ID;
+    var creatorID = currentUser[0].ID;
     // check if all fields are filled out
         // if yes -> get all values of the fields and push them to the event object
         // push new event to events array
-        events.push(new Event(eventID, userID, event.target.eventType.value, event.target.privacyDropdown.value, event.target.eventName.value, event.target.eventDate.value, event.target.eventTime.value, event.target.eventSportType.value, event.target.eventDescription.value, event.target.eventDifficulty.value, event.target.eventMaxPart.value, event.target.eventFrequency.value, event.target.eventLocation.value, event.target.eventPrice.value));
+        events.push(new Event(eventID, creatorID, event.target.eventType.value, event.target.privacyDropdown.value, event.target.eventName.value, event.target.eventDate.value, event.target.eventTime.value, event.target.eventSportType.value, event.target.eventDescription.value, event.target.eventDifficulty.value, event.target.eventMaxPart.value, event.target.eventFrequency.value, event.target.eventLocation.value, event.target.eventPrice.value));
         // store stringified version of events array in localStorage
         localStorage.setItem("events", JSON.stringify(events));
         for(var i = 0; i < users.length; i++){

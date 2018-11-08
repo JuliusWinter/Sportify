@@ -20,6 +20,7 @@ nav{
     padding: 10px 100px;
     box-sizing: border-box;
     transition: .8s;
+    z-index: 1;
 }
 
 nav.black{
