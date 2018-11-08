@@ -103,6 +103,33 @@ for(var i = 0; i < events.length; i++) {
   // var element = document.getElementById('catalogueItems');
   // element.appendChild(divContainer);
   
+// get current user from local storage
+var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+// get events from local storage
+var events = JSON.parse(localStorage.getItem("events"))
+// select anchor tags that should be manipulated
+var userProfile = document.querySelector("#userProfile");
+var createEvent = document.querySelector("#createEvent");
+var eventCatalogue = document.querySelector("#eventCatalogue");
+var learnMore = document.querySelector("#learnMore");
+var about = document.querySelector("#about");
+var registerBtn = document.querySelector("#registerBtn");
+var loginBtn = document.querySelector("#loginBtn");
+var logoutBtn = document.querySelector("#logoutBtn");
+// check if a user is logged in
+if(currentUser){
+  userProfile.style.display = "inline";
+  createEvent.style.display = "inline";
+  eventCatalogue.style.display = "inline";
+  learnMore.style.display = "none";
+  about.style.display = "none";
+  registerBtn.style.display = "none";
+  loginBtn.style.display = "none";
+  logoutBtn.style.display = "inline";
+}
+else{
+  document.location.href = "index.html";
+}
 
 //define a function that searches for event categories and displays only applicable events//
 function categorySearchFunction (){
@@ -197,6 +224,7 @@ function catSearch (){
       category[i].style.display ="none";
     }
   }
+
 
 // var slider = document.getElementById("myRange");
 // var output = document.getElementById("demo");

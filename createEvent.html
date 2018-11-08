@@ -10,34 +10,118 @@
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous">
     </script>
-    <script type="text/javascript" src="assets/js/navbar.js"></script>
+     <script type="text/javascript" src="assets/js/navbarScroll.js"></script>
     <title>Create Event</title>
 </head>
 <body>
     <div class="wrapper">
-        <nav>
-            <div class="logo">SPORTIFY</div>
-            <ul>
-                <li><a href="#">HOME</a></li>
-                <li><a href="createEvent.html">CREATE EVENT</a></li>
-                <li><a href="eventCatalogue.html">EVENT CATALOGUE</a></li>
-                <li><a href="userProfile.html">PROFILE</a></li>
-                <li><a class="active" href="index.html">LOG OUT</a></li>
-            </ul>
-        </nav>
         <section class="navMargin"></section>
         <section class="sec1">
             <div id="container">
                 <h1>Create Event</h1>
-                <div id="course" class="eventModal">
-                    <h1>Course</h1>
-                </div>
-                <div id="training" class="eventModal">
-                    <h1>Training</h1>
-                </div>
-            </div>
+                <form id="eventForm">
+                    <label for="eventType"></label>
+                    <select id="eventType" class="dropdown">
+                        <option value="training">Training</option>
+                        <option value="course">Course</option>
+                    </select>
+                    <label for="privacyDropdown"></label>
+                    <select id="privacyDropdown" class="dropdown">
+                        <option value="private">Private Event</option>
+                        <option value="public">Public Event</option>
+                    </select>
+                    <!-- dropdown for all the sport types -->
+                    <label for="eventSportType"></label>
+                    <select class="dropdown" id="eventSportType">
+                        <option value="chooseSport">Choose Sport</option>
+                        <option value="American Football">American Football</option>
+                        <option value="Athletics">Athletics</option>
+                        <option value="Badminton">Badminton</option>
+                        <option value="Badminton">Badminton</option>
+                        <option value="Basketball">Basketball</option>
+                        <option value="Boxing">Boxing</option>
+                        <option value="Canoeing">Canoeing</option>
+                        <option value="Cricket">Cricket</option>
+                        <option value="Cross">Cross-Fit</option>
+                        <option value="Cycling">Cycling</option>
+                        <option value="Dancing">Dancing</option>
+                        <option value="Darts">Darts</option>
+                        <option value="Disability Sports">Disability Sports</option>
+                        <option value="Diving">Diving</option>
+                        <option value="Fitness-Training">Fitness-Training</option>
+                        <option value="Football">Football</option>
+                        <option value="Golf">Golf</option>
+                        <option value="Handball">Handball</option>
+                        <option value="Hiking">Hiking</option>
+                        <option value="Hockey">Hockey</option>
+                        <option value="Ice Hockey">Ice Hockey</option>
+                        <option value="Mixed Martial Arts">Mixed Martial Arts</option>
+                        <option value="Modern Pentathlo">Modern Pentathlon</option>
+                        <option value="Motor Sports">Motor Sports</option>
+                        <option value="Netball">Netball</option>
+                        <option value="Parkour">Parkour</option>
+                        <option value="Rowing">Rowing</option>
+                        <option value="Rugby">Rugby</option>
+                        <option value="Running">Running</option>
+                        <option value="Sailing">Sailing</option>
+                        <option value="Shooting">Shooting</option>
+                        <option value="Skateboarding">Skateboarding</option>
+                        <option value="Skiing">Skiing</option>
+                        <option value="Snooker">Snooker</option>
+                        <option value="Squash">Squash</option>
+                        <option value="Surfing">Surfing</option>
+                        <option value="Swimming">Swimming</option>
+                        <option value="Table Tennis">Table Tennis</option>
+                        <option value="Tai Chi">Tai Chi</option>
+                        <option value="Tennis">Tennis</option>
+                        <option value="Triathlon">Triathlon</option>
+                        <option value="Tricking">Tricking</option>
+                        <option value="Ultimate Frisbee">Ultimate Frisbee</option>
+                        <option value="Volleyball">Volleyball</option>
+                        <option value="Weightlifting">Weightlifting</option>
+                        <option value="Winter Sports">Winter Sports</option>
+                        <option value="Wrestling">Wrestling</option>
+                        <option value="Yoga">Yoga</option>
+                    </select>
+                <!-- FIND OUT HOW TO SAVE A PICTURE TO A LOCAL FOLDER AND SAFE THE PATH TO IT IN THE OBJECT!!! -->
+                <!-- <input type="file" placeholder="Event Picture" id="eventPic" class="formelement"> -->
+                <label for="eventName"></label>
+                <input type="text" placeholder="Event Name" id="eventName" class="formelement">
+                <!-- date input -->
+                <label for="eventDate"></label>
+                <input type="date" placeholder="Event Date" id="eventDate" class="formelement">
+                <!-- time input -->
+                <label for="eventTime"></label>
+                <input type="time" placeholder="Event Time" id="eventTime" class="formelement">
+                <!-- expandable text area for suitable for long -->
+                <label for="eventDescription"></label>
+                <input type="text" placeholder="Description" id="eventDescription" class="formelement">
+                <!-- Difficultiy level input -->
+                <label for="eventDifficulty"></label>
+                <input type="number" placeholder="Difficulty Level" id="eventDifficulty" class="formelement" min="1" max="5">
+                <!-- number input for max nr participants -->
+                <label for="eventMaxPart"></label>
+                <input type="number" placeholder="Maximum Number of Participants" id="eventMaxPart" class="formelement">
+                <!-- dropdown for frequency; on the last point (other), a modal calendar should appear, where it is possible to choose multiple dates -->
+                <label for="eventFrequency"></label>
+                <select class="dropdown" id="eventFrequency">
+                    <option value="Choose Frequency">Choose Frequency</option>
+                    <option value="single">single event</option>
+                    <option value="daily">daily</option>
+                    <option value="weekly">weekly</option>
+                </select>
+                <!-- text input for location might be extended with an api that can links to real locations -->
+                <label for="eventLocation"></label>
+                <input type="text" placeholder="Location" id="eventLocation" class="formelement">
+                <!-- price -> an additional currency can be added to the input -->
+                <label for="eventPrice"></label>
+                <input type="number" placeholder="Price in €" id="eventPrice" class="formelement">
+                <input type="submit" value="Create Event" name="submit" id="submit" class="formelement">
+            </form>
+        </div>
         </section>
     </div>
-    <script type="text/javascript" src="assets/js/createEvent.js"></script>
+    <script type="text/javascript" src="assets/js/insertNavbar.js"></script>
+<script type="text/javascript" src="assets/js/createEvent.js"></script>
 </body>
 </html>
