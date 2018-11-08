@@ -66,11 +66,11 @@ document.getElementById("registrationForm").addEventListener("submit", function(
     // generate User ID
     var ID = guid();
     // push new user to users array
-    users.push(new user (ID, event.target.regUserName.value, event.target.regFirstName.value, event.target.regLastName.value, event.target.regBirthday.value, event.target.regEmail.value, event.target.regPassword.value));
+    users.push(new user (ID, event.target.regUserName.value, event.target.regFirstName.value, event.target.regLastName.value, event.target.gender.value, event.target.regBirthday.value, event.target.regEmail.value, event.target.regPassword.value));
     // store stringified version of users array in localStorage
     localStorage.setItem("users", JSON.stringify(users));
     // push the same user to current User array
-    currentUser.push(new user (ID, event.target.regUserName.value, event.target.regFirstName.value, event.target.regLastName.value, event.target.regBirthday.value, event.target.gender.value, event.target.regEmail.value, event.target.regPassword.value));
+    currentUser.push(new user (ID, event.target.regUserName.value, event.target.regFirstName.value, event.target.regLastName.value, event.target.gender.value, event.target.regBirthday.value, event.target.gender.value, event.target.regEmail.value, event.target.regPassword.value));
     // safe stringified version of current user array to local storage
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
     // redirect to loginSuccessful.html
