@@ -172,9 +172,7 @@ section.sec1{
 
 
 
-
-
-/* SLIDE SHOW */
+/* --------------------------FULL SCREEN PICTURE SLIDE SHOW ----------------------------------*/
 #slider, .wrap, .slideContent{
     width: 100vw;
     height: 100vh;
@@ -259,6 +257,7 @@ section.sec1{
 .slide2{
     background-image: url(../img/course.jpg);
 }
+/* ////////////////////////// FULL SCREEN SLIDE SHOW END //////////////////////////////// */
 
 input:focus{	
 	border:2px solid darkblue;
@@ -364,7 +363,7 @@ div#container{
     height: 100vh;
     left: 0%;
     right: 0%;
-    padding-top: 80px;
+    /* padding-top: 80px; */
 }
 
 #eventCatalogueh1 {

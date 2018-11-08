@@ -7,25 +7,25 @@ navbar.insertAdjacentHTML("afterbegin", "<nav id='navbar'><div id='sportifyLogo'
 var sportifyLogo = document.getElementById("sportifyLogo");
 var logoutBtn = document.getElementById("logoutBtn");
 // check if user is logged in
-if(currentUser){
+// if(currentUser){
     // if he is logged in and clicks on logo -> redirect him to eventCatalogue.html
-    sportifyLogo.addEventListener("click", function(){
-        document.location.href = "eventCatalogue.html";
-    })
-}
-else{
+//     sportifyLogo.addEventListener("click", function(){
+//         document.location.href = "eventCatalogue.html";
+//     })
+// }
+// else{
     // if he is not logged in -> redirect him to index.html
-    sportifyLogo.addEventListener("click", function(){
-        document.location.href = "index.html";
-    })
-}
+//     sportifyLogo.addEventListener("click", function(){
+//         document.location.href = "index.html";
+//     })
+// }
 
 
 // delete current user from local storage, when logout is clicked and redirect him to index.html
-logoutBtn.addEventListener("click", function(){
-    localStorage.removeItem("currentUser");
-    document.location.href = "index.html";
-})
+// logoutBtn.addEventListener("click", function(){
+//     localStorage.removeItem("currentUser");
+//     document.location.href = "index.html";
+// })
 
 
 

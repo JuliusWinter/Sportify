@@ -1,3 +1,4 @@
+alert("hello");
 // get current user from local storage
 var currentUser = JSON.parse(localStorage.getItem("currentUser"));
 // get events from local storage
@@ -12,7 +13,6 @@ var registerBtn = document.querySelector("#registerBtn");
 var loginBtn = document.querySelector("#loginBtn");
 var logoutBtn = document.querySelector("#logoutBtn");
 // check if a user is logged in
-if(currentUser){
   userProfile.style.display = "inline";
   createEvent.style.display = "inline";
   eventCatalogue.style.display = "inline";
@@ -21,10 +21,7 @@ if(currentUser){
   registerBtn.style.display = "none";
   loginBtn.style.display = "none";
   logoutBtn.style.display = "inline";
-}
-else{
-  document.location.href = "index.html";
-}
+
 //define a function that searches for event categories and displays only applicable events//
 function categorySearchFunction (){
   //declare variables - getting values from search box//
