@@ -91,6 +91,12 @@ nav ul li a#logoutBtn{
     border-radius: 3px;
     margin-right: 10px;
 }
+nav ul li a.inactive{
+    background: #E2472F;
+    color: #fff;
+    border-radius: 3px;
+    margin-right: 10px;
+}
 
 section.navMargin{
     width: 100%;
@@ -537,3 +543,121 @@ if zou open the file, zou will see the merge confilct and have to resolve it man
 git add *
 git commit -m "message"
 git push origin master */
+
+
+/* added by george, from user profile css hereafter*/
+.avatar {
+    vertical-align: middle;
+    height: 10%;
+    width: 10%;
+
+}
+
+.btn-group button {
+    background-color: #256edb; /* Green background */
+    border-collapse: collapse; /* Green border */
+    color: snow; /* White text */
+    padding: 10px; /* Some padding */
+    width: 33%;/* stretch accross screen */
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side */
+    display:inline-block;
+}
+#userDisplayArea{
+    text-align: center;
+}
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+.btn-group button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+    background-color: rgb(123, 174, 241);
+    color: rgb(26, 26, 26);
+    border:white;
+    font-size: 15pt;
+}
+.Bio{
+    float:left;
+    widows: 20px;
+}
+.profileItems{
+    float:left;
+}
+
+.userTabs{
+    margin-top: 5%;
+}
+/* Display area for the current, past, and potential events for the user */
+div.upcomingEvents {
+    width: 100%;
+    padding: 50px 0;
+    text-align: center;
+    background-color: lightblue;
+    margin-top: 5px;
+    display:none;
+}
+div.pastEvents {
+    width: 100%;
+    padding: 50px 0;
+    text-align: center;
+    background-color: lightgreen;
+   	margin-top: 5px;
+    display:none;
+}
+div.interests {
+    width: 100%;
+    padding: 50px 0;
+    text-align: center;
+    background-color: lightpink;
+   	margin-top: 5px;
+    display:none;
+} 
+
+.userEvents{
+    float:right;
+    width:40%;
+    font-size: 120%;
+}
+/* Table that is located at the top of the profile page */
+#eventsTableTitle{
+    font-size: 150%;
+    font: bold;
+    color: darkblue;
+    text-align: center;
+}
+#userDisplayArea{
+    margin-top: 15%;
+}
+.userTabs{
+    margin-top: 2%;
+}
+/*div styling setup*/
+.event {
+    position: relative;
+    width: 95%;
+    height: 150px;
+    background-color:rgba(0, 0, 0, 0.281);
+    margin: auto;
+    margin-top: 5px;
+    ;
+} 
+
+div.eventInfo{
+    float:left;
+    width: 32.4%;
+    height: 80px;
+    border: 3px solid rgb(255, 5, 5);
+    margin-top: 20px;
+    color: white;
+}
+.event .eventLink{
+    float:right;
+    margin-top: 40px;
+}

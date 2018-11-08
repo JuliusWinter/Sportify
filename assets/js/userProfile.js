@@ -46,7 +46,6 @@ function searchCatalogueTable() {
       } 
     }
   }
-
 //set variables for button ID's
 var btnUpcoming = document.getElementById("upcomingEventsBtn");
 var btnPast = document.getElementById("pastEventsBtn");
@@ -55,6 +54,17 @@ var btnInterests = document.getElementById("interestsBtn");
 var upcomingEventsDIV = document.getElementById("upcomingEvents");
 var pastEventsDIV= document.getElementById("pastEvents");
 var interestsDIV = document.getElementById("interests");  
+
+var inActive = document.getElementById("inactive");
+var userLogout = currentUser[0].isLoggedIn;
+// var btnUpcoming, btnPast, btnInterests, upcomingEventsDIV, pastEventsDIV, interestsDIV;
+// btnUpcoming = document.getElementById("upcomingEventsBtn");
+// btnPast = document.getElementById("pastEventsBtn");
+// btnInterests = document.getElementById("interestsBtn");
+// upcomingEventsDIV = document.getElementById("upcomingEvents");
+// pastEventsDIV = document.getElementById("pastEvents");
+// interestsDIV = document.getElementById("interests");
+
 
 //function for first button in upcoming events
 btnUpcoming.addEventListener("click", function(){
@@ -90,3 +100,28 @@ btnInterests.addEventListener("click", function(){
         pastEventsDIV.style.display = "none";
     }
 });
+//logout function currently only performs html ref
+ inActive.addEventListener("click", function(){
+ //if (userLogout = "False") {
+
+//    currentUser[0].isLoggedIn === "False";
+    document.location.href = "login.html";
+// } else (event.target.userName.value == users[i].userName && event.target.password.value == users[i].password){
+//   userLogout= "True" ;
+//   userLogout = "login.html";
+ //   alert("User has been logged out");
+// }else{
+ //  alert("User is not logged out");
+ 
+// }  JSON.parse(localStorage.getItem("currentUser"))[0].isLoggedIn;
+ });
+
+
+
+// Access first name of first User and last name of first User
+document.getElementById("localUserName").innerHTML = "Hello " + currentUser[0].firstName + " " +currentUser[0].lastName;
+
+// Access location from reg form, not implemented yet :::  currentUser[0].location;
+document.getElementById("userLocation").innerHTML = "Sample Location, inserted once implemeneted";
+// Access email of first User
+//      document.getElementById("null").innerHTML = currentUser[0].email;
