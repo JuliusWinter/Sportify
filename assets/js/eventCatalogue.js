@@ -50,8 +50,8 @@ for(var i = 0; i < events.length; i++) {
   if(mm<10) {
       mm = '0'+mm
   } 
-  today = mm + '-' + dd + '-' + yyyy;
-  if (catItems.date >= date)
+  today = yyyy + '-' + mm + '-' + dd;
+  if (catItem.date >= today) {
   var divContainer = document.createElement('DIV');
   divContainer.setAttribute('class', 'event');
   divContainer.setAttribute('id', catItem.eventID);
@@ -115,6 +115,7 @@ for(var i = 0; i < events.length; i++) {
   //add all divContainers to event catalogue (=div('catalogueItems') in HTML
   var element = document.getElementById('catalogueItems');
   element.appendChild(divContainer);
+}
 }
 
 // get current user from local storage
