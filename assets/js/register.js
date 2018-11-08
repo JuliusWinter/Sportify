@@ -19,8 +19,8 @@ class user {
         this.password = _password;
         this.events = [];
         this.sports = [];
-        this.slogan = string;
-        this.award = string;
+        this.slogan;
+        this.awards = [];
     }
 }
 // select anchor tags that should be manipulated
