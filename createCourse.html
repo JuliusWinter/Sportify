@@ -10,21 +10,10 @@
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous">
     </script>
-    <script type="text/javascript" src="assets/js/navbar.js"></script>
     <title>Create Course</title>
 </head>
 <body>
     <div class="wrapper">
-            <nav>
-                <div class="logo">SPORTIFY</div>
-                <ul>
-                    <li><a href="#">HOME</a></li>
-                    <li><a href="createEvent.html">CREATE EVENT</a></li>
-                    <li><a href="eventCatalogue.html">EVENT CATALOGUE</a></li>
-                    <li><a href="userProfile.html">PROFILE</a></li>
-                    <li><a class="active" href="index.html">LOG OUT</a></li>
-                </ul>
-            </nav>
             <section class="navMargin"></section>
             <section class="sec1">
                 <div id="container">
@@ -116,10 +105,10 @@
                             <option value="weekly">weekly</option>
                         </select>
                         <!-- text input for location might be extended with an api that can links to real locations -->
-                        <label for="eventCity"></label>
+                        <!-- <label for="eventCity"></label>
                         <input type="text" placeholder="City" id="eventCity" class="formelement" required>
                         <label for="eventCity"></label>
-                        <input type="text" placeholder="City" id="eventCity" class="formelement" required>
+                        <input type="text" placeholder="City" id="eventCity" class="formelement" required> -->
                         <!-- price -> an additional currency can be added to the input -->
                         <label for="eventPrice"></label>
                         <input type="number" placeholder="Price in DKK" id="eventPrice" class="formelement">
@@ -128,6 +117,8 @@
                 </div>
             </section>
         </div>
+    <script type="text/javascript" src="assets/js/insertNavbar.js"></script>
+    <script type="text/javascript" src="assets/js/navbarScroll.js"></script>
     <script type="text/javascript" src="assets/js/createCourse.js"></script>
 </body>
 </html>

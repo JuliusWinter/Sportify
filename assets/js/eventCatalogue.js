@@ -73,47 +73,6 @@ for(var i = 0; i < events.length; i++) {
   element.appendChild(divContainer);
   
 }
-
-// class Event {
-//   constructor(_eventID, _type, _privacy, _name, _date, _time, _sportType, _description, _difficulty, _maxPart, _frequency, _location, _price){
-//       this.eventID = _eventID;
-//       this.type = _type;
-//       this.privacy = _privacy;
-//       this.name = _name;
-//       this.date = _date;
-//       this.time = _time;
-//       this.sportType = _sportType;
-//       this.description = _description;
-//       this.difficulty = _difficulty;
-//       this.maxPart = _maxPart;
-//       this.frequency = _frequency;
-//       this.location = _location;
-//       this.price = _price;
-//       }
-//   }
-
-// {/* <div class='event'>  */}
-//             <div class='link'>
-//                   <a href="#eventPage">Yoga Course @Amager Strand</a>
-//             </div>
-//             <div class='sportCategory'>Yoga</div>
-//             <div class='type'>Course</div>
-//             <div class='date'>21.11.2018</div>
-//             <div class='startTime'>18:00</div>
-//             <div class='duration'>2h00m</div>
-//             <div class='city'>Copenhagen</div>
-//             <div class='district'>Amagerbro</div>
-//             <div class='street'>XYZ</div>
-//             <div class='price'>5 kr.</div>
-//             <div class='capacity'>
-//                   <span class="status"></span>
-//                   5 spots available
-//             </div>
-//             <button>Event Page</button>
-//       </div>
-
-
-
 //define a function that searches for event categories and displays only applicable events//
 function categorySearchFunction (){
   //declare variables - getting values from search box//
@@ -200,10 +159,17 @@ function catSearch (){
   //Declare variables - getting values from the div elements
   let catItems = document.getElementById('content');
   let category = document.getElementsByClassName('checkboxCat');
+// //define a function that searches for event categories and displays only applicable events//
+// function catSearch (){
+//   //declare variables - getting values from search box//
+//   let searchInputCat = document.getElementById('categorySearch').value.toUpperCase();
+//   //Declare variables - getting values from the div elements
+//   let catItems = document.getElementById('content');
+//   let category = catItems.getElementsByClassName('checkboxCat');
 
-  //loop through the divs to search for elements, and hide those that do not match the search query//
-  for (var i=0; i<category.length; i++){
-    var cat = category[i].value;
+//   //loop through the divs to search for elements, and hide those that do not match the search query//
+//   for (var i=0; i<category.length; i++){
+//     var cat = category[i].value;
     
     if(cat[i].toUpperCase().includes(searchInputCat)){
       category[i].style.display ="";
