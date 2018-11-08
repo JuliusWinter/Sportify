@@ -62,6 +62,8 @@ for(var i = 0; i < events.length; i++) {
   var timeContent = document.createTextNode(events[i].time);
   time.appendChild(timeContent);
 
+  
+
   //add all previously created sub divs to the divContainer
   var x = getElementById(events[i].eventID);
   x.appendChild(type);
