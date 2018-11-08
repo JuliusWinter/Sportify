@@ -1,3 +1,30 @@
+// get current user from local storage
+var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+// get events from local storage
+var events = JSON.parse(localStorage.getItem("events"))
+// select anchor tags that should be manipulated
+var userProfile = document.querySelector("#userProfile");
+var createEvent = document.querySelector("#createEvent");
+var eventCatalogue = document.querySelector("#eventCatalogue");
+var learnMore = document.querySelector("#learnMore");
+var about = document.querySelector("#about");
+var registerBtn = document.querySelector("#registerBtn");
+var loginBtn = document.querySelector("#loginBtn");
+var logoutBtn = document.querySelector("#logoutBtn");
+// check if a user is logged in
+if(currentUser){
+  userProfile.style.display = "inline";
+  createEvent.style.display = "inline";
+  eventCatalogue.style.display = "inline";
+  learnMore.style.display = "none";
+  about.style.display = "none";
+  registerBtn.style.display = "none";
+  loginBtn.style.display = "none";
+  logoutBtn.style.display = "inline";
+}
+else{
+  document.location.href = "index.html";
+}
 //define a function that searches for event categories and displays only applicable events//
 function categorySearchFunction (){
   //declare variables - getting values from search box//
@@ -78,7 +105,6 @@ for(var i = 0; i < sports.length; i++) {
     element.appendChild(lab);
 }
 
-<<<<<<< HEAD
 //define a function that searches for event categories and displays only applicable events//
 function catSearch (){
   //declare variables - getting values from search box//
@@ -86,7 +112,6 @@ function catSearch (){
   //Declare variables - getting values from the div elements
   let catItems = document.getElementById('content');
   let category = document.getElementsByClassName('checkboxCat');
-=======
 // //define a function that searches for event categories and displays only applicable events//
 // function catSearch (){
 //   //declare variables - getting values from search box//
@@ -94,7 +119,6 @@ function catSearch (){
 //   //Declare variables - getting values from the div elements
 //   let catItems = document.getElementById('content');
 //   let category = catItems.getElementsByClassName('checkboxCat');
->>>>>>> 686945e81c0bf73a8a32aa0555af0a94dd815574
 
 //   //loop through the divs to search for elements, and hide those that do not match the search query//
 //   for (var i=0; i<category.length; i++){
