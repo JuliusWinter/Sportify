@@ -82,7 +82,7 @@ nav ul li a.inactive{
 section.navMargin{
     width: 100%;
     height: 250px;
-    background: rgb(238, 0, 0);  /* fallback for old browsers */
+    background: #24C6DC;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #514A9D, #24C6DC);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #514A9D, #24C6DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */       
 }
@@ -493,13 +493,13 @@ div.interests {
     margin-top: 2%;
 }
 /*div styling setup*/
-div.event {
+.event {
     position: relative;
     width: 95%;
-    height: 140px;
-    top: 20%;
-    background-color: #ddd;
+    height: 150px;
+    background-color:rgba(0, 0, 0, 0.281);
     margin: auto;
+    margin-top: 5px;
     ;
 } 
 
@@ -509,6 +509,7 @@ div.eventInfo{
     height: 80px;
     border: 3px solid rgb(255, 5, 5);
     margin-top: 20px;
+    color: white;
 }
 .event .eventLink{
     float:right;
