@@ -468,6 +468,9 @@ margin-bottom: 12px; /* Add some space below the input */
   transition: opacity .2s;
 }
 
+.event p {
+    display: inline-block;
+}
 
 /* //////////////////////////////////////// EVENT CATALOGUE STYLING END //////////////////////////////////////// */
 
