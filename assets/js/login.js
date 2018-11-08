@@ -1,7 +1,25 @@
 // Get users array from local Storage for authentification
 var users = JSON.parse(localStorage.getItem("users"));
 // introduct currentUser array
-var currentUser = []; 
+var currentUser = [];
+// select anchor tags that should be manipulated
+var userProfile = document.querySelector("#userProfile");
+var createEvent = document.querySelector("#createEvent");
+var eventCatalogue = document.querySelector("#eventCatalogue");
+var learnMore = document.querySelector("#learnMore");
+var about = document.querySelector("#about");
+var registerBtn = document.querySelector("#registerBtn");
+var loginBtn = document.querySelector("#loginBtn");
+var logoutBtn = document.querySelector("#logoutBtn");
+// check if a user is logged in
+userProfile.style.display = "none";
+createEvent.style.display = "none";
+eventCatalogue.style.display = "none";
+learnMore.style.display = "inline";
+about.style.display = "inline";
+registerBtn.style.display = "inline";
+loginBtn.style.display = "none";
+logoutBtn.style.display = "none";
 
 // Where does this event come from and what is it?
 document.getElementById("loginForm").addEventListener("submit", function(event){
@@ -9,21 +27,27 @@ document.getElementById("loginForm").addEventListener("submit", function(event){
     event.preventDefault();
     // loop over users array and check if credentials match a registered user
     for(var i = 0; i < users.length; i++){
-        if(event.target.username.value == users[i].userName && event.target.password.value == users[i].password){
+        if(event.target.userName.value == users[i].userName && event.target.password.value == users[i].password){
+            // safe current user to a var
+            var current = users[i];
             // if true change isLoggedIn attribute to true
             users[i].isLoggedIn = true;
             // push user to currentUser array
-            currentUser.push(users[i].push);
+            currentUser.push(current);
             // Safe stringified currentUser array to local storage
             localStorage.setItem("currentUser", JSON.stringify(currentUser));
             // redirect to user profile
             document.location.href = "userProfile.html";
         }
         else{
+            // if the condition is not met, display an error message
             document.getElementById("loginResult").innerHTML = "Oops, username or password is wrong...try again!!!"
         }
     }
 })
+
+
+
 
 
 // //Select Button

@@ -25,15 +25,17 @@ nav.black{
     padding: 10px 100px;
 }
 
-nav .logo{
+nav #sportifyLogo{
+    cursor: pointer;
     padding: 22px 20px;
     height: 80px;
     float: left;
+    color: #fff;
     font-size: 24px;
     transition: .8s;
 }
 
-nav.black .logo{
+nav.black #sportifyLogo{
     color: #fff;
 }
 
@@ -51,7 +53,7 @@ nav ul li{
 
 nav ul li a{
     line-height: 80px;
-    color: #151515;
+    color: #fff;
     padding: 12px 30px;
     text-decoration: none;
     text-transform: uppercase;
@@ -66,7 +68,21 @@ nav ul li a:focus {
     outline: none;
 }
 
-nav ul li a.active{
+nav ul li a#registerBtn{
+    background: mediumblue;
+    color: #fff;
+    border-radius: 3px;
+    margin-right: 10px;
+}
+
+nav ul li a#loginBtn{
+    background: #50ce5f;
+    color: #fff;
+    border-radius: 3px;
+    margin-right: 10px;
+}
+
+nav ul li a#logoutBtn{
     background: #E2472F;
     color: #fff;
     border-radius: 3px;
