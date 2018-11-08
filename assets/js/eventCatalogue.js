@@ -1,35 +1,12 @@
-//get the event array from local storage and parse it//
+//get the event array, that contains all event objects, from local storage and parse it//
 var events = JSON.parse(localStorage.getItem("events"));
-
-//display the events in the course catalogue//
-// for(var i = 0; i < events.length; i++) {
-//   var catItem = events[i];
-//   var divContainer = document.createElement('DIV');
-//   var att1 = document.createAttribute('class');
-//   att1.value = 'event';
-//   divContainer.setAttributeNode(att1);
-//   var att2 = document.createAttribute('id');
-//   att2.value = catItem.eventID;
-//   divContainer.setAttributeNode(att2);
-  
-//   for(var prop in catItem) {
-//     var x = document.createElement('p');
-//     x.setAttribute('class', prop);
-//     var xContent = document.createTextNode(catItem.prop.value);
-//     // if (x.className !== catItem.eventID) {
-//     x.appendChild(xContent);
-//     divContainer.appendChild(x);
-//     }
-//   var ec = document.getElementById('catalogueItems');
-//   ec.appendChild(divContainer);
-// }
 
 //display events of certain condition that are stored in local storage in event catalogue
 //loop over array that contains all events that are stored in local storage// 
 for(var i = 0; i < events.length; i++) {
   //introduce variable an individual event //
   var catItem = events[i];
-  //
+  //create the current date and set it in the format that matches the format of event dates (yyyy-mm-dd)// 
   var today = new Date();
   var dd = today.getDate();
   var mm = today.getMonth()+1; 
@@ -38,67 +15,71 @@ for(var i = 0; i < events.length; i++) {
   if(mm<10) {mm = '0'+mm} 
   today = yyyy + '-' + mm + '-' + dd;
   
-  if (catItem.date >= today) {
+  //if the event date is in the past, do not create elements in the event catalogue; hence, do not display event in catalogue//
+  if (catItem.date >= today && catItem.privacy == 'public') {
+    //create a container (=div) for each event; purpose: store all relevant information (name, location, etc. ) in that container//
     var divContainer = document.createElement('DIV');
     divContainer.setAttribute('class', 'event');
     divContainer.setAttribute('id', catItem.eventID);
 
-    var naming = document.createElement('DIV');
-    naming.setAttribute('class', 'name');
-    var namingContent = document.createTextNode(events[i].name);
-    naming.appendChild(namingContent);
+      //create a div for each property of the event object that is of relevance for the user (leave out event id, creator id, user id's in attendees array, privacy setting and other automatically generated properties of the event object) 
+      var naming = document.createElement('DIV');
+      naming.setAttribute('class', 'name');
+      var namingContent = document.createTextNode(events[i].name);
+      naming.appendChild(namingContent);
 
-    var loc = document.createElement('DIV');
-    loc.setAttribute('class', 'location');
-    var locContent = document.createTextNode('Location: ' + events[i].location);
-    loc.appendChild(locContent);
+      var loc = document.createElement('DIV');
+      loc.setAttribute('class', 'location');
+      var locContent = document.createTextNode('Location: ' + events[i].location);
+      loc.appendChild(locContent);
 
-    var sportType = document.createElement('DIV');
-    sportType.setAttribute('class', 'sportType');
-    var sportTypeContent = document.createTextNode(events[i].sportType);
-    sportType.appendChild(sportTypeContent);
+      var sportType = document.createElement('DIV');
+      sportType.setAttribute('class', 'sportType');
+      var sportTypeContent = document.createTextNode(events[i].sportType);
+      sportType.appendChild(sportTypeContent);
 
-    var type = document.createElement('DIV');
-    type.setAttribute('class', 'type');
-    var typeContent = document.createTextNode('Event Type: ' + events[i].type);
-    type.appendChild(typeContent);
+      var type = document.createElement('DIV');
+      type.setAttribute('class', 'type');
+      var typeContent = document.createTextNode('Event Type: ' + events[i].type);
+      type.appendChild(typeContent);
 
-    var date = document.createElement('DIV');
-    date.setAttribute('class', 'date');
-    var dateContent = document.createTextNode('Date: ' + events[i].date);
-    date.appendChild(dateContent);
+      var date = document.createElement('DIV');
+      date.setAttribute('class', 'date');
+      var dateContent = document.createTextNode('Date: ' + events[i].date);
+      date.appendChild(dateContent);
 
-    var time = document.createElement('DIV');
-    time.setAttribute('class', 'time');
-    var timeContent = document.createTextNode('Time: ' + events[i].time);
-    time.appendChild(timeContent);
+      var time = document.createElement('DIV');
+      time.setAttribute('class', 'time');
+      var timeContent = document.createTextNode('Time: ' + events[i].time);
+      time.appendChild(timeContent);
 
-    var difficulty = document.createElement('DIV');
-    difficulty.setAttribute('class', 'difficulty');
-    var difficultyContent = document.createTextNode('Difficulty Level: ' + events[i].difficulty);
-    difficulty.appendChild(difficultyContent);
+      var difficulty = document.createElement('DIV');
+      difficulty.setAttribute('class', 'difficulty');
+      var difficultyContent = document.createTextNode('Difficulty Level: ' + events[i].difficulty);
+      difficulty.appendChild(difficultyContent);
 
-    var maxPart = document.createElement('DIV');
-    maxPart.setAttribute('class', 'maxPart');
-    var maxPartContent = document.createTextNode('Max. participants: ' + events[i].maxPart);
-    maxPart.appendChild(maxPartContent);
+      var maxPart = document.createElement('DIV');
+      maxPart.setAttribute('class', 'maxPart');
+      var maxPartContent = document.createTextNode('Max. participants: ' + events[i].maxPart);
+      maxPart.appendChild(maxPartContent);
 
-    var frequency = document.createElement('DIV');
-    frequency.setAttribute('class', 'frequency');
-    var frequencyContent = document.createTextNode('Frequency: ' + events[i].frequency);
-    frequency.appendChild(frequencyContent);
+      var frequency = document.createElement('DIV');
+      frequency.setAttribute('class', 'frequency');
+      var frequencyContent = document.createTextNode('Frequency: ' + events[i].frequency);
+      frequency.appendChild(frequencyContent);
 
-    var price = document.createElement('DIV');
-    price.setAttribute('class', 'price');
-    var priceContent = document.createTextNode('Price: ' + events[i].price + ' kr.');
-    price.appendChild(priceContent);
+      var price = document.createElement('DIV');
+      price.setAttribute('class', 'price');
+      var priceContent = document.createTextNode('Price: ' + events[i].price + ' kr.');
+      price.appendChild(priceContent);
 
-    var description = document.createElement('DIV');
-    description.setAttribute('class', 'description');
-    var descriptionContent = document.createTextNode('Event Description: ' + events[i].description);
-    description.appendChild(descriptionContent);
+      var description = document.createElement('DIV');
+      description.setAttribute('class', 'description');
+      var descriptionContent = document.createTextNode('Event Description: ' + events[i].description);
+      description.appendChild(descriptionContent);
 
-    //add all previously created sub divs to the divContainer
+
+    //add all previously created divs, that contain the property values of each event, to the div container //
     divContainer.appendChild(naming);
     divContainer.appendChild(sportType);
     divContainer.appendChild(type);
@@ -111,11 +92,38 @@ for(var i = 0; i < events.length; i++) {
     divContainer.appendChild(maxPart);
     divContainer.appendChild(description);
     
-    //add all divContainers to event catalogue (=div('catalogueItems') in HTML
+    //add all divContainers to the event catalogue (=div('catalogueItems') in HTML //
     var element = document.getElementById('catalogueItems');
     element.appendChild(divContainer);
   }
 }
+
+// ALTERNATIVE APPROACH of creating events and displaying them in the event catalogue
+// Decision for not pursuing this approach: 
+// (i) unable to display the values of the properties (either only key name or undefined appears) 
+// (ii) if statements were not effective; this means they did not filter out the properties that should not be displayed like eventID           or isTrusted; source of the error was being unable to compare the key names with 
+// Advantage of alternative approach: less code
+
+// for(var i = 0; i < events.length; i++) {
+//   var catItem = events[i];
+//   var divContainer = document.createElement('DIV');
+//   divContainer.setAttribute('class', 'event');
+//   divContainer.setAttribute('id', catItem.eventID);
+//
+//   Difference: instead of creating a div for each property of the event objects/class manually
+//    (i) loop over the properties (ii) create a paragraph for each property (iii)
+//   for(var prop in catItem) {
+//     var x = document.createElement('p');
+//     x.setAttribute('class', prop);
+//     var xContent = document.createTextNode(catItem.prop.value);
+//     // if (x.className !== catItem.eventID) {
+//     x.appendChild(xContent);
+//     divContainer.appendChild(x);
+//     }
+//   var ec = document.getElementById('catalogueItems');
+//   ec.appendChild(divContainer);
+// }
+
 
 // get current user from local storage
 var currentUser = JSON.parse(localStorage.getItem("currentUser"));
