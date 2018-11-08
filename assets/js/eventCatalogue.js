@@ -40,7 +40,18 @@ var events = JSON.parse(localStorage.getItem("events"));
 
 for(var i = 0; i < events.length; i++) {
   var catItem = events[i];
-  if (catItems.date >= );
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; 
+  var yyyy = today.getFullYear();
+  if(dd<10) {
+      dd = '0'+dd
+  } 
+  if(mm<10) {
+      mm = '0'+mm
+  } 
+  today = mm + '-' + dd + '-' + yyyy;
+  if (catItems.date >= date)
   var divContainer = document.createElement('DIV');
   divContainer.setAttribute('class', 'event');
   divContainer.setAttribute('id', catItem.eventID);
