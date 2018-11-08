@@ -16,18 +16,18 @@ for(var i = 0; i < events.length; i++) {
   today = yyyy + '-' + mm + '-' + dd;
   
   //if the event date is in the past, do not create elements in the event catalogue; hence, do not display event in catalogue//
-  // if (catItem.date >= today && catItem.privacy == 'public') {
-    if (catItem.date >= today) {
+    if (catItem.date >= today && catItem.privacy == 'public') {
     //create a container (=div) for each event; purpose: store all relevant information (name, location, etc. ) in that container//
     var divContainer = document.createElement('DIV');
     divContainer.setAttribute('class', 'event');
     divContainer.setAttribute('id', catItem.eventID);
 
       //create a div for each property of the event object that is of relevance for the user (leave out event id, creator id, user id's in attendees array, privacy setting and other automatically generated properties of the event object) 
-      var naming = document.createElement('DIV');
-      naming.setAttribute('class', 'left');
-      var namingContent = document.createTextNode(catItem.name);
-      naming.appendChild(namingContent);
+      
+      var naming = document.createElement("a");
+      naming.setAttribute("href", '');
+      newText = document.createTextNode(catItem.name);
+      naming.appendChild(newText);
 
       var loc = document.createElement('DIV');
       loc.setAttribute('class', 'left');
@@ -79,6 +79,15 @@ for(var i = 0; i < events.length; i++) {
       var descriptionContent = document.createTextNode('Event Description: ' + catItem.description);
       description.appendChild(descriptionContent);
 
+      var attButton = document.createElement('button');
+      attButton.setAttribute('class', 'attButton');
+      attButton.setAttribute('id', catItem.eventID);
+      var attButtonContent = document.createTextNode('Attend');
+      attButton.appendChild(attButtonContent);
+
+      var capacity = document.createElement('div');
+      capacity
+      var 
 
     //add all previously created divs, that contain the property values of each event, to the div container //
     divContainer.appendChild(naming);
@@ -92,6 +101,8 @@ for(var i = 0; i < events.length; i++) {
     divContainer.appendChild(price);
     divContainer.appendChild(maxPart);
     divContainer.appendChild(description);
+    divContainer.appendChild(attButton);
+    
     
 
     //add all divContainers to the event catalogue (=div('catalogueItems') in HTML //

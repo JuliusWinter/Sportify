@@ -381,11 +381,13 @@ div#container{
 }
 
 .left {
-    display: inline;
+    display: block;
+    float: left;
 }
 
 .right {
-    display: inline;
+    display: block;
+    float: right;
 }
 
 #catalogueItems .event div {
