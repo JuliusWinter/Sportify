@@ -1,5 +1,5 @@
 if(!JSON.parse(localStorage.getItem("currentUser"))){
-    document.location.href = "login.html";
+    currentUser = [];
 }
 else{
     var currentUser = JSON.parse(localStorage.getItem("currentUser"));
