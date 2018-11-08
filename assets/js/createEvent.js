@@ -12,7 +12,10 @@ if(!JSON.parse(localStorage.getItem("events"))){
 }else{
     var events = JSON.parse(localStorage.getItem("events"));
 }
-
+// Activate Google Places API autocomplete
+function activatePlacesSearch(){
+    var input = document.getElementById()
+}
 
 // select anchor tags that should be manipulated
 var userProfile = document.querySelector("#userProfile");
@@ -201,51 +204,51 @@ document.getElementById("eventForm").addEventListener("submit", function(event){
 
 // add click event listener
 // on click trigger function
-eventSubmitButton.addEventListener("click", function(){
+// eventSubmitButton.addEventListener("click", function(){
     // this function saves all input values to new variables
-    var privacy = eventPrivacy.value;
+    // var privacy = eventPrivacy.value;
     // var pic = eventPic.value;
-    var name = eventName.value;
-    var date = eventDate.value;
-    var time = eventTime.value;
-    var sportType = eventSportType.value;
+    // var name = eventName.value;
+    // var date = eventDate.value;
+    // var time = eventTime.value;
+    // var sportType = eventSportType.value;
     // var description = eventDescription.value;
-    var difficulty = eventDifficulty.value;
-    var maxPart = eventMaxPart.value;
-    var frequency = eventFrequency.value;
-    var location = eventLocation.value;
-    var price = eventPrice.value;
+    // var difficulty = eventDifficulty.value;
+    // var maxPart = eventMaxPart.value;
+    // var frequency = eventFrequency.value;
+    // var location = eventLocation.value;
+    // var price = eventPrice.value;
     // then stores these values in the event object
     // check if all fields are filled out
-    if(privacy && name && date && sportType){
+    // if(privacy && name && date && sportType){
     // if yes -> get all values of the fields and push them to the event object
-        event.privacy = privacy;
+        // event.privacy = privacy;
         // event.pic = pic;
-        event.name = name;
-        event.date = date;
-        event.time = time;
-        event.sportType = sportType;
+        // event.name = name;
+        // event.date = date;
+        // event.time = time;
+        // event.sportType = sportType;
         // event.description = description;
-        event.difficulty = difficulty;
-        event.maxPart = maxPart;
-        event.frequency = frequency;
-        event.location = location;
-        event.price = price;
+        // event.difficulty = difficulty;
+        // event.maxPart = maxPart;
+        // event.frequency = frequency;
+        // event.location = location;
+        // event.price = price;
         // push our new event to the events array
-        events.push(event);
+        // events.push(event);
         // stringify events array to be able to save it in localStorage
-        eventsString = JSON.stringify(events);
+        // eventsString = JSON.stringify(events);
         // save strinified version of events array (eventsString) to the localStorage
-        localStorage.setItem("events", eventsString);
+        // localStorage.setItem("events", eventsString);
         // redirect user to the events catalogue page
-        document.location.href = "eventCatalogue.html"
-    }
+        // document.location.href = "eventCatalogue.html"
+    // }
     // if not -> display error message an mark input field that is not filled out
-    else{
-        alert("You fool!");
-    }
-    events = JSON.parse(localStorage.getItem("events"));
-})
+//     else{
+//         alert("You fool!");
+//     }
+//     events = JSON.parse(localStorage.getItem("events"));
+// })
 
 
 
