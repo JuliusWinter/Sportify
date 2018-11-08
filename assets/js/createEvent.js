@@ -14,7 +14,8 @@ if(!JSON.parse(localStorage.getItem("events"))){
 }
 // Activate Google Places API autocomplete
 function activatePlacesSearch(){
-    var input = document.getElementById()
+    var input = document.getElementById("eventLocation");
+    var autocomplete = new google.maps.places.Autocomplete(input);
 }
 
 // select anchor tags that should be manipulated
