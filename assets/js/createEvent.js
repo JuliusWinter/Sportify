@@ -1,5 +1,11 @@
 // introduce events binding that carries event array that are saved in the local storage
 // JSON.parse is the opposite operation of stringify and turns the string back into an array
+if(!JSON.parse(localStorage.getItem("currentUser"))){
+    document.location.href = "login.html";
+}else{
+    var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    var users = JSON.parse(localStorage.getItem("users"));
+}
 // var currentUser = JSON.parse(localStorage.getItem("currentUser"));
 if(!JSON.parse(localStorage.getItem("events"))){
     var events = [];
@@ -41,8 +47,9 @@ else{
 
 // introduce our event object model
 class Event {
-    constructor(_ID, _type, _privacy, _name, _date, _time, _sportType, _description, _difficulty, _maxPart, _frequency, _location, _price){
+    constructor(_ID, _userID, _type, _privacy, _name, _date, _time, _sportType, _description, _difficulty, _maxPart, _frequency, _location, _price){
         this.eventID = _ID;
+        this.userID = _userID;
         this.type = _type;
         this.privacy = _privacy;
         this.name = _name;
@@ -95,12 +102,21 @@ document.getElementById("eventForm").addEventListener("submit", function(event){
     event.preventDefault();
     // generate unique event ID
     var eventID = geid();
+    var userID = currentUser[0].ID;
     // check if all fields are filled out
         // if yes -> get all values of the fields and push them to the event object
         // push new event to events array
-        events.push(new Event(eventID, event.target.eventType.value, event.target.privacyDropdown.value, event.target.eventName.value, event.target.eventDate.value, event.target.eventTime.value, event.target.eventSportType.value, event.target.eventDescription.value, event.target.eventDifficulty.value, event.target.eventMaxPart.value, event.target.eventFrequency.value, event.target.eventLocation.value, event.target.eventPrice.value));
+        events.push(new Event(eventID, userID, event.target.eventType.value, event.target.privacyDropdown.value, event.target.eventName.value, event.target.eventDate.value, event.target.eventTime.value, event.target.eventSportType.value, event.target.eventDescription.value, event.target.eventDifficulty.value, event.target.eventMaxPart.value, event.target.eventFrequency.value, event.target.eventLocation.value, event.target.eventPrice.value));
         // store stringified version of events array in localStorage
         localStorage.setItem("events", JSON.stringify(events));
+        for(var i = 0; i < users.length; i++){
+            if(currentUser[0].ID === users[i].ID){
+                currentUser[0].events.push(eventID);
+                users[i].events.push(eventID);
+                localStorage.setItem("currentUser", JSON.stringify(currentUser));
+                localStorage.setItem("users", JSON.stringify(users));
+            }
+        }
         document.location.href = "eventCatalogue.html";
 });
 
