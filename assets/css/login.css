@@ -375,9 +375,25 @@ div#container{
 
 /* ----------------------------------------EVENT CATALOGUE STYLING START ---------------------------------------- */
 
+
+.event {
+    height: auto;
+}
+
+.left {
+    display: inline;
+}
+
+.right {
+    display: inline;
+}
+
+#catalogueItems .event div {
+    padding: 5px;
+}
+
 .container1 {
     width: 100%;
-    height: 100vh;
     left: 0%;
     right: 0%;
     /* padding-top: 80px; */
