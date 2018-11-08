@@ -61,6 +61,11 @@ for(var i = 0; i < events.length; i++) {
   var namingContent = document.createTextNode(events[i].name);
   naming.appendChild(namingContent);
 
+  var location = document.createElement('DIV');
+  location.setAttribute('class', 'location');
+  var locationContent = document.createTextNode(events[i].location);
+  location.appendChild(locationContent);
+
   var sportType = document.createElement('DIV');
   sportType.setAttribute('class', 'sportType');
   var sportTypeContent = document.createTextNode(events[i].sportType);
@@ -100,6 +105,11 @@ for(var i = 0; i < events.length; i++) {
   price.setAttribute('class', 'price');
   var priceContent = document.createTextNode('Price: ' + events[i].price + ' kr.');
   price.appendChild(priceContent);
+
+  var description = document.createElement('DIV');
+  description.setAttribute('class', 'description');
+  var descriptionContent = document.createTextNode(events[i].description);
+  description.appendChild(descriptionContent);
 
   //add all previously created sub divs to the divContainer
   divContainer.appendChild(naming);
