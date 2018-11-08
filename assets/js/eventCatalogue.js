@@ -24,8 +24,16 @@ for(var i = 0; i < events.length; i++) {
 
       //create a div for each property of the event object that is of relevance for the user (leave out event id, creator id, user id's in attendees array, privacy setting and other automatically generated properties of the event object) 
       
+      // Give the a tag a class
+      // select that a with document.getElementByClassName
+      // add an event listener to the a
+      // on click safe the id of the event to an array called currentEvent
+      // upload that array to local storage
+      // redirect to eventProfile.html
+
       var naming = document.createElement("a");
-      naming.setAttribute("href", '');
+      naming.setAttribute("href", 'eventProfile.html');
+      naming.setAttribute('class', '')
       newText = document.createTextNode(catItem.name);
       naming.appendChild(newText);
 
@@ -74,20 +82,15 @@ for(var i = 0; i < events.length; i++) {
       var priceContent = document.createTextNode('Price: ' + catItem.price + ' kr.');
       price.appendChild(priceContent);
 
-      var description = document.createElement('DIV');
-      description.setAttribute('class', 'right');
-      var descriptionContent = document.createTextNode('Event Description: ' + catItem.description);
-      description.appendChild(descriptionContent);
-
       var attButton = document.createElement('button');
       attButton.setAttribute('class', 'attButton');
       attButton.setAttribute('id', catItem.eventID);
       var attButtonContent = document.createTextNode('Attend');
       attButton.appendChild(attButtonContent);
 
-      var capacity = document.createElement('div');
-      capacity
-      var 
+      // var capacity = document.createElement('div');
+      // capacity
+      // var 
 
     //add all previously created divs, that contain the property values of each event, to the div container //
     divContainer.appendChild(naming);
@@ -100,7 +103,6 @@ for(var i = 0; i < events.length; i++) {
     divContainer.appendChild(frequency);
     divContainer.appendChild(price);
     divContainer.appendChild(maxPart);
-    divContainer.appendChild(description);
     divContainer.appendChild(attButton);
     
     
