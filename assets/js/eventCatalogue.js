@@ -11,15 +11,18 @@ for(var i = 0; i < events.length; i++) {
   att2.value = catItem.eventID;
   divContainer.setAttributeNode(att2);
   
-  for(var property in events[i]) {
-    if (catItem.keys != catItem.privacy && catItem.keys != catItem.eventID) {
+  for(var prop in catItem) {
+    console.log(prop);
+    if (prop != 'privacy' && prop != 'eventID') {
     var x = document.createElement('p');
-    x.setAttribute('class', catItem.keys);
-    var xContent = document.createTextNode(property.value);
+    x.setAttribute('class', prop);
+    var xContent = document.createTextNode(prop);
     x.appendChild(xContent);
     divContainer.appendChild(x);
     }
   }
+  var ec = document.getElementById('catalogueItems');
+  ec.appendChild(divContainer);
 }
 
 //  this.eventID = _eventID;
