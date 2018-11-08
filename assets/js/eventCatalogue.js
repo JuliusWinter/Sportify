@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // get current user from local storage
 var currentUser = JSON.parse(localStorage.getItem("currentUser"));
 // get events from local storage
@@ -26,122 +25,6 @@ if(currentUser){
 else{
   document.location.href = "index.html";
 }
-=======
-//get the event array from local storage//
-var events = JSON.parse(localStorage.getItem("events"));
-//display the events in the course catalogue//
-for(var i = 0; i < events.length; i++) {
-  var catItem = events[i];
-  var divContainer = document.createElement('DIV');
-  div.setAttribute('class', 'event');
-  div.setAttribute('id', events[i].eventID);
-  
-  var type = document.createElement('DIV');
-  type.setAttribute('class', 'type');
-  var typeContent = document.createTextNode(events[i].type);
-  type.appendChild(typeContent);
-
-  var name = document.createElement('DIV');
-  name.setAttribute('class', 'name');
-  var nameContent = document.createTextNode(events[i].name);
-  name.appendChild(nameContent);
-
-  var date = document.createElement('DIV');
-  date.setAttribute('class', 'date');
-  var dateContent = document.createTextNode(events[i].date);
-  date.appendChild(dateContent);
-
-  var date = document.createElement('DIV');
-  time.setAttribute('class', 'time');
-  var timeContent = document.createTextNode(events[i].time);
-  time.appendChild(timeContent);
-  
-  var date = document.createElement('DIV');
-  date.setAttribute('class', 'date');
-  var dateContent = document.createTextNode(events[i].date);
-  date.appendChild(dateContent);
-
-  var time = document.createElement('DIV');
-  time.setAttribute('class', 'time');
-  var timeContent = document.createTextNode(events[i].time);
-  time.appendChild(timeContent);
-
-  var sportType = document.createElement('DIV');
-  sportType.setAttribute('class', 'sportType');
-  var sportTypeContent = document.createTextNode(events[i].sportType);
-  sportType.appendChild(sportTypeContent);
-
-  var difficulty = document.createElement('DIV');
-  difficulty.setAttribute('class', 'difficulty');
-  var difficultyContent = document.createTextNode(events[i].difficulty);
-  difficulty.appendChild(difficultyContent);
-
-  var maxPart = document.createElement('DIV');
-  maxPart.setAttribute('class', 'maxPart');
-  var maxPart = document.createTextNode(events[i].maxPart);
-  maxPart.appendChild(maxPartContent);
-
-  var frequency = document.createElement('DIV');
-  frequency.setAttribute('class', 'frequency');
-  var frequencyContent = document.createTextNode(events[i].frequency);
-  frequency.appendChild(frequencyContent);
-
-  var price = document.createElement('DIV');
-  price.setAttribute('class', 'price');
-  var timeContent = document.createTextNode(events[i].time);
-  time.appendChild(timeContent);
-
-  //add all previously created sub divs to the divContainer
-  var x = getElementById(events[i].eventID);
-  x.appendChild(type);
-  
-  //add all divContainers to event catalogue (=div('catalogueItems') in HTML
-  var element = document.getElementById('catalogueItems');
-  element.appendChild(divContainer);
-  
-}
-
-// class Event {
-//   constructor(_eventID, _type, _privacy, _name, _date, _time, _sportType, _description, _difficulty, _maxPart, _frequency, _location, _price){
-//       this.eventID = _eventID;
-//       this.type = _type;
-//       this.privacy = _privacy;
-//       this.name = _name;
-//       this.date = _date;
-//       this.time = _time;
-//       this.sportType = _sportType;
-//       this.description = _description;
-//       this.difficulty = _difficulty;
-//       this.maxPart = _maxPart;
-//       this.frequency = _frequency;
-//       this.location = _location;
-//       this.price = _price;
-//       }
-//   }
-
-// {/* <div class='event'>  */}
-//             <div class='link'>
-//                   <a href="#eventPage">Yoga Course @Amager Strand</a>
-//             </div>
-//             <div class='sportCategory'>Yoga</div>
-//             <div class='type'>Course</div>
-//             <div class='date'>21.11.2018</div>
-//             <div class='startTime'>18:00</div>
-//             <div class='duration'>2h00m</div>
-//             <div class='city'>Copenhagen</div>
-//             <div class='district'>Amagerbro</div>
-//             <div class='street'>XYZ</div>
-//             <div class='price'>5 kr.</div>
-//             <div class='capacity'>
-//                   <span class="status"></span>
-//                   5 spots available
-//             </div>
-//             <button>Event Page</button>
-//       </div>
-
-
-
->>>>>>> 4dd19261ecb14db04afa4f0d24ab30e551ba8a4f
 //define a function that searches for event categories and displays only applicable events//
 function categorySearchFunction (){
   //declare variables - getting values from search box//
@@ -228,7 +111,6 @@ function catSearch (){
   //Declare variables - getting values from the div elements
   let catItems = document.getElementById('content');
   let category = document.getElementsByClassName('checkboxCat');
-<<<<<<< HEAD
 // //define a function that searches for event categories and displays only applicable events//
 // function catSearch (){
 //   //declare variables - getting values from search box//
@@ -240,12 +122,6 @@ function catSearch (){
 //   //loop through the divs to search for elements, and hide those that do not match the search query//
 //   for (var i=0; i<category.length; i++){
 //     var cat = category[i].value;
-=======
-
-  //loop through the divs to search for elements, and hide those that do not match the search query//
-  for (var i=0; i<category.length; i++){
-    var cat = category[i].value;
->>>>>>> 4dd19261ecb14db04afa4f0d24ab30e551ba8a4f
     
     if(cat[i].toUpperCase().includes(searchInputCat)){
       category[i].style.display ="";
