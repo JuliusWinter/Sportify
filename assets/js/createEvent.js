@@ -13,21 +13,16 @@ if(!JSON.parse(localStorage.getItem("events"))){
     var events = JSON.parse(localStorage.getItem("events"));
 }
 
-
-
-
-
-
-
-
 var placeSearch, autocomplete;
-var componentForm = {
-  street_number: 'short_name',
-  route: 'long_name',
-  locality: 'long_name',
-  administrative_area_level_1: 'short_name',
-  country: 'long_name',
-  postal_code: 'short_name'
+class Address {
+    constructor (streetNr, route, locality, adminAreaLvl1, country, postalCode){
+        this.street_number = 'short_name',
+        this.route = 'long_name',
+        this.locality = 'long_name',
+        this.administrative_area_level_1 = 'short_name',
+        this.country = 'long_name',
+        this.postal_code = 'short_name'
+    }
 };
 
 function initAutocomplete() {
@@ -41,40 +36,24 @@ function initAutocomplete() {
   // fields in the form.
   autocomplete.addListener('place_changed', fillInAddress);
 }
+// 
+var address = new Address;
 
 function fillInAddress() {
   // Get the place details from the autocomplete object.
   var place = autocomplete.getPlace();
-  console.log(place);
-
-//   for (var component in componentForm) {
-//     document.getElementById(component).value = '';
-//     document.getElementById(component).disabled = false;
-//   }
-
+ 
   // Get each component of the address from the place details
-  // and fill the corresponding field on the form.
-//   for (var i = 0; i < place.address_components.length; i++) {
-//     var addressType = place.address_components[i].types[0];
-//     if (componentForm[addressType]) {
-//       var val = place.address_components[i][componentForm[addressType]];
-//       document.getElementById(addressType).value = val;
-//     }
-//   }
+  // and build up the address object
+  for (var i = 0; i < place.address_components.length; i++) {
+    var addressType = place.address_components[i].types[0];
+    if (address[addressType]) {
+      var val = place.address_components[i][address[addressType]];
+      address[addressType] = val;
+    }
+  }
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // select anchor tags that should be manipulated
 var userProfile = document.querySelector("#userProfile");
@@ -185,7 +164,7 @@ document.getElementById("eventForm").addEventListener("submit", function(event){
     // check if all fields are filled out
         // if yes -> get all values of the fields and push them to the event object
         // push new event to events array
-        events.push(new Event(eventID, creatorID, event.target.eventType.value, event.target.privacyDropdown.value, event.target.eventName.value, event.target.eventDate.value, event.target.eventTime.value, event.target.eventSportType.value, event.target.eventDescription.value, event.target.eventDifficulty.value, event.target.eventMaxPart.value, event.target.eventFrequency.value, event.target.eventLocation.value, event.target.eventPrice.value));
+        events.push(new Event(eventID, creatorID, event.target.eventType.value, event.target.privacyDropdown.value, event.target.eventName.value, event.target.eventDate.value, event.target.eventTime.value, event.target.eventSportType.value, event.target.eventDescription.value, event.target.eventDifficulty.value, event.target.eventMaxPart.value, event.target.eventFrequency.value, address, event.target.eventPrice.value));
         // store stringified version of events array in localStorage
         localStorage.setItem("events", JSON.stringify(events));
         for(var i = 0; i < users.length; i++){
