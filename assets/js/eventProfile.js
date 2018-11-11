@@ -1,21 +1,21 @@
 // fake current event array with one event
 // delete later and get current event array from local storage
-var currentEvent = [{
-    date: "2017-10-29",
-    description: "Here is the description",
-    difficulty: "1",
-    eventID: "07eff11b-5009-adad-a0f8-f2c81793f9d3",
-    frequency: "single",
-    location: "djnajkn",
-    maxPart: 2,
-    name: "Hello",
-    price: 2,
-    privacy: "public",
-    sportType: "Canoeing",
-    time: "22:58",
-    type: "course",
-    userID: "481ccb0b-f451-a271-32d6-86144a772970",
-}];
+var currentEvent = JSON.parse(localStorage.getItem("currentEvent"));
+//     date: "2017-10-29",
+//     description: "Here is the description",
+//     difficulty: "1",
+//     eventID: "07eff11b-5009-adad-a0f8-f2c81793f9d3",
+//     frequency: "single",
+//     location: "djnajkn",
+//     maxPart: 2,
+//     name: "Hello",
+//     price: 2,
+//     privacy: "public",
+//     sportType: "Canoeing",
+//     time: "22:58",
+//     type: "course",
+//     userID: "481ccb0b-f451-a271-32d6-86144a772970",
+// }];
 
 
 // NAVBAR

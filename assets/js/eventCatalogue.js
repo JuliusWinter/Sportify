@@ -1,5 +1,7 @@
-//get the event array, that contains all event objects, from local storage and parse it//
+ //get the event array, that contains all event objects, from local storage and parse it//
 var events = JSON.parse(localStorage.getItem("events"));
+
+var currentEvent=[];
 
 //display events of certain condition that are stored in local storage in event catalogue
 //loop over array that contains all events that are stored in local storage// 
@@ -7,16 +9,19 @@ for(var i = 0; i < events.length; i++) {
   //introduce variable an individual event //
   var catItem = events[i];
   //create the current date and set it in the format that matches the format of event dates (yyyy-mm-dd)// 
-  var today = new Date();
-  var dd = today.getDate();
-  var mm = today.getMonth()+1; 
-  var yyyy = today.getFullYear();
-  if(dd<10) {dd = '0'+dd} 
-  if(mm<10) {mm = '0'+mm} 
-  today = yyyy + '-' + mm + '-' + dd;
+  function todayDate() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; 
+    var yyyy = today.getFullYear();
+    if(dd<10) {dd = '0'+dd} 
+    if(mm<10) {mm = '0'+mm} 
+    today = yyyy + '-' + mm + '-' + dd;
+    return today
+  }
   
   //if the event date is in the past, do not create elements in the event catalogue; hence, do not display event in catalogue//
-    if (catItem.date >= today && catItem.privacy == 'public') {
+    if (catItem.date >= todayDate() && catItem.privacy == 'public') {
     //create a container (=div) for each event; purpose: store all relevant information (name, location, etc. ) in that container//
     var divContainer = document.createElement('DIV');
     divContainer.setAttribute('class', 'event');
@@ -24,16 +29,10 @@ for(var i = 0; i < events.length; i++) {
 
       //create a div for each property of the event object that is of relevance for the user (leave out event id, creator id, user id's in attendees array, privacy setting and other automatically generated properties of the event object) 
       
-      // Give the a tag a class
-      // select that a with document.getElementByClassName
-      // add an event listener to the a
-      // on click safe the id of the event to an array called currentEvent
-      // upload that array to local storage
-      // redirect to eventProfile.html
-
       var naming = document.createElement("a");
       naming.setAttribute("href", 'eventProfile.html');
-      naming.setAttribute('class', '')
+      naming.setAttribute('class', 'linkEventPage');
+      naming.setAttribute('id', catItem.eventID);
       newText = document.createTextNode(catItem.name);
       naming.appendChild(newText);
 
@@ -88,9 +87,9 @@ for(var i = 0; i < events.length; i++) {
       var attButtonContent = document.createTextNode('Attend');
       attButton.appendChild(attButtonContent);
 
+      // CREATE CAPACITY DIV WITH COLOURED CIRCLE ACCORDING TO CAPICITY STATUS//
       // var capacity = document.createElement('div');
-      // capacity
-      // var 
+      
 
     //add all previously created divs, that contain the property values of each event, to the div container //
     divContainer.appendChild(naming);
@@ -112,6 +111,17 @@ for(var i = 0; i < events.length; i++) {
     element.appendChild(divContainer);
   }
 }
+
+  // Give the a tag a class
+  // select that a with document.getElementByClassName
+  // add an event listener to the a
+  // on click push the id of the event to an array called currentEvent
+  // upload that array to local storage
+  // redirect to eventProfile.html
+  document.getElementsByClassName("linkEventPage").addEventListener("click", function(event){
+    currentEvent.push(event.eventID);
+    localStorage.setItem("currentEvent", JSON.stringify(currentEvent));
+  });
 
 // ALTERNATIVE APPROACH of creating events and displaying them in the event catalogue
 // Decision for not pursuing this approach: 
@@ -142,8 +152,6 @@ for(var i = 0; i < events.length; i++) {
 
 // get current user from local storage
 var currentUser = JSON.parse(localStorage.getItem("currentUser"));
-// get events from local storage
-var events = JSON.parse(localStorage.getItem("events"))
 // select anchor tags that should be manipulated
 var userProfile = document.querySelector("#userProfile");
 var createEvent = document.querySelector("#createEvent");
@@ -167,6 +175,7 @@ if(currentUser){
 else{
   document.location.href = "index.html";
 }
+
 
 //define a function that searches for event categories and displays only applicable events//
 function categorySearchFunction (){
