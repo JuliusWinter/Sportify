@@ -18,6 +18,8 @@ class user {
         this.email = _email;
         this.password = _password;
         this.events = [];
+        this.intEvents = [];
+        this.attEvents = [];
         this.sports = [];
         this.slogan;
         this.awards = [];
