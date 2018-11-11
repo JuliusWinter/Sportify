@@ -20,6 +20,7 @@ for(var i = 0; i < events.length; i++) {
     return today
   }
   
+  //create an if statement that triggers the creation of divs only in case the local storage is not empty
   //if the event date is in the past, do not create elements in the event catalogue; hence, do not display event in catalogue//
     if (catItem.date >= todayDate() && catItem.privacy == 'public') {
     //create a container (=div) for each event; purpose: store all relevant information (name, location, etc. ) in that container//
@@ -35,7 +36,7 @@ for(var i = 0; i < events.length; i++) {
       naming.setAttribute('id', catItem.eventID);
       newText = document.createTextNode(catItem.name);
       naming.appendChild(newText);
-
+      
       var loc = document.createElement('DIV');
       loc.setAttribute('class', 'left');
       var locContent = document.createTextNode('Location: ' + catItem.location);
@@ -87,9 +88,8 @@ for(var i = 0; i < events.length; i++) {
       var attButtonContent = document.createTextNode('Attend');
       attButton.appendChild(attButtonContent);
 
-      // CREATE CAPACITY DIV WITH COLOURED CIRCLE ACCORDING TO CAPICITY STATUS//
+      // CREATE CAPACITY DIV WITH COLOURED CIRCLE ACCORDING TO CAPACITY STATUS//
       // var capacity = document.createElement('div');
-      
 
     //add all previously created divs, that contain the property values of each event, to the div container //
     divContainer.appendChild(naming);
@@ -103,8 +103,6 @@ for(var i = 0; i < events.length; i++) {
     divContainer.appendChild(price);
     divContainer.appendChild(maxPart);
     divContainer.appendChild(attButton);
-    
-    
 
     //add all divContainers to the event catalogue (=div('catalogueItems') in HTML //
     var element = document.getElementById('catalogueItems');
@@ -118,10 +116,41 @@ for(var i = 0; i < events.length; i++) {
   // on click push the id of the event to an array called currentEvent
   // upload that array to local storage
   // redirect to eventProfile.html
-  document.getElementsByClassName("linkEventPage").addEventListener("click", function(event){
-    currentEvent.push(event.eventID);
-    localStorage.setItem("currentEvent", JSON.stringify(currentEvent));
-  });
+  var redEP = document.getElementsByClassName("linkEventPage");
+ 
+  for (i = 0; i < redEP.length; i++) {
+      redEP[i].addEventListener("click", function() {
+      currentEvent.push(naming.id);
+      localStorage.setItem("currentEvent", JSON.stringify(currentEvent));
+    })
+  }
+  
+//   document.getElementById("loginForm").addEventListener("submit", function(event){
+//     // Prevent the page to automatically push the input into the URL and prevent the page to reload
+//     event.preventDefault();
+//     // loop over users array and check if credentials match a registered user
+//     for(var i = 0; i < users.length; i++){
+//         if(event.target.userName.value == users[i].userName && event.target.password.value == users[i].password){
+//             // safe current user to a var
+//             var current = users[i];
+//             // if true change isLoggedIn attribute to true
+//             users[i].isLoggedIn = true;
+//             // push user to currentUser array
+//             currentUser.push(current);
+//             // Safe stringified currentUser array to local storage
+//             localStorage.setItem("currentUser", JSON.stringify(currentUser));
+//             // redirect to user profile
+//             document.location.href = "userProfile.html";
+//         }
+//         else{
+//             // if the condition is not met, display an error message
+//             document.getElementById("loginResult").innerHTML = "Oops, username or password is wrong...try again!!!"
+//         }
+//     }
+// })
+
+
+
 
 // ALTERNATIVE APPROACH of creating events and displaying them in the event catalogue
 // Decision for not pursuing this approach: 
@@ -149,7 +178,6 @@ for(var i = 0; i < events.length; i++) {
 //   ec.appendChild(divContainer);
 // }
 
-
 // get current user from local storage
 var currentUser = JSON.parse(localStorage.getItem("currentUser"));
 // select anchor tags that should be manipulated
@@ -175,7 +203,6 @@ if(currentUser){
 else{
   document.location.href = "index.html";
 }
-
 
 //define a function that searches for event categories and displays only applicable events//
 function categorySearchFunction (){
@@ -233,7 +260,6 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 
-
 //create an function that creates a div, including a checkbox and an individual label for each array value
 
 var sports = ['American Football', 'Athletics','Badminton','Basketball','Boxing ','Canoeing','Cricket','Cross-Fit','Cycling ','Dancing','Darts','Disability Sports','Diving','Fitness-Training','Football','Golf','Handball','Hiking','Hockey','Ice Hockey','Longboarding','Mixed Martial Arts','Modern Pentathlon','Motor Sports','Netball','Parkour','Rowing','Rugby','Running','Sailing','Shooting','Skateboarding','Skiing','Snooker','Snowboarding','Squash','Surfing','Swimming','Table Tennis','Tai Chi','Tennis','Triathlon','Tricking','Ultimate Frisbee','Volleyball','Weightlifting','Winter Sports','Wrestling','Yoga'];
@@ -263,14 +289,13 @@ function catSearch (){
   //Declare variables - getting values from the div elements
   let catItems = document.getElementById('content');
   let category = document.getElementsByClassName('checkboxCat');
-    
+
     if(cat[i].toUpperCase().includes(searchInputCat)){
       category[i].style.display ="";
     }else{
       category[i].style.display ="none";
     }
   }
-
 
 // var slider = document.getElementById("myRange");
 // var output = document.getElementById("demo");
