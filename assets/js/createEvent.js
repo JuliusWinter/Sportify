@@ -14,6 +14,8 @@ if(!JSON.parse(localStorage.getItem("events"))){
 }
 // Activate Google Places API autocomplete
 function activatePlacesSearch(){
+    // Create the autocomplete object, restricting the search to geographical
+    // location types.
     var input = document.getElementById("eventLocation");
     var autocomplete = new google.maps.places.Autocomplete(input);
 }
@@ -100,11 +102,28 @@ function geid() {
     return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
   }
 
+//create the current date and set it in the format that matches the format of event dates (yyyy-mm-dd)// 
+function todayDate() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; 
+    var yyyy = today.getFullYear();
+    if(dd<10) {dd = '0'+dd} 
+    if(mm<10) {mm = '0'+mm} 
+    today = yyyy + '-' + mm + '-' + dd;
+    return today.toString()
+}
+
+function setMinDate (){
+    eventTime.setAttribute("min", todayDate());
+}
+
 // add click event listener
 // on click trigger function
 document.getElementById("eventForm").addEventListener("submit", function(event){
     // Prevent the page to automatically push the input into the URL and prevent the page to reload
     event.preventDefault();
+    console.log(getPlace());
     // generate unique event ID
     var eventID = geid();
     var creatorID = currentUser[0].ID;
