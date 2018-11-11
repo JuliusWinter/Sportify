@@ -51,10 +51,6 @@ document.getElementById("loginForm").addEventListener("submit", function(event){
     }
 })
 
-
-
-
-
 // //Select Button
 // var submit = document.getElementById('submit');
 

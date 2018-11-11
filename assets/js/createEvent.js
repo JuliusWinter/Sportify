@@ -123,7 +123,6 @@ function setMinDate (){
 document.getElementById("eventForm").addEventListener("submit", function(event){
     // Prevent the page to automatically push the input into the URL and prevent the page to reload
     event.preventDefault();
-    console.log(getPlace());
     // generate unique event ID
     var eventID = geid();
     var creatorID = currentUser[0].ID;
