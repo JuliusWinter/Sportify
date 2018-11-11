@@ -31,12 +31,12 @@ for(var i = 0; i < events.length; i++) {
       //create a div for each property of the event object that is of relevance for the user (leave out event id, creator id, user id's in attendees array, privacy setting and other automatically generated properties of the event object) 
       
       var naming = document.createElement("a");
-      // naming.setAttribute("href", '');
+      naming.setAttribute("href", 'eventProfile.html');
       naming.setAttribute('class', 'linkEventPage');
       naming.setAttribute('id', catItem.eventID);
       newText = document.createTextNode(catItem.name);
       naming.appendChild(newText);
-
+      
       var loc = document.createElement('DIV');
       loc.setAttribute('class', 'left');
       var locContent = document.createTextNode('Location: ' + catItem.location);
@@ -117,11 +117,10 @@ for(var i = 0; i < events.length; i++) {
   // upload that array to local storage
   // redirect to eventProfile.html
   var redEP = document.getElementsByClassName("linkEventPage");
-  console.log(redEP);
+ 
   for (i = 0; i < redEP.length; i++) {
-      console.log(redEP[i]);
       redEP[i].addEventListener("click", function() {
-      currentEvent.push(redEP[i].id);
+      currentEvent.push(naming.id);
       localStorage.setItem("currentEvent", JSON.stringify(currentEvent));
     })
   }
