@@ -16,9 +16,13 @@ if(!JSON.parse(localStorage.getItem("events"))){
 var placeSearch, autocomplete;
 class Address {
     constructor (streetNr, route, locality, adminAreaLvl1, country, postalCode){
+        this.ID;
+        this.name;
+        this.formatted_address;
         this.street_number = 'short_name',
         this.route = 'long_name',
         this.locality = 'long_name',
+        this.sublocality_level_1 = 'long_name',
         this.administrative_area_level_1 = 'short_name',
         this.country = 'long_name',
         this.postal_code = 'short_name'
@@ -29,20 +33,20 @@ function initAutocomplete() {
   // Create the autocomplete object, restricting the search to geographical
   // location types.
   autocomplete = new google.maps.places.Autocomplete(
-     (document.getElementById('eventLocation')),
-      {types: ['geocode']});
+     (document.getElementById('eventLocation')))
+    //   {types: ['geocode']};
 
   // When the user selects an address from the dropdown, populate the address
   // fields in the form.
   autocomplete.addListener('place_changed', fillInAddress);
 }
-// 
+// create new address object to work with, when the google places api autocomplete function is triggerd
 var address = new Address;
 
 function fillInAddress() {
   // Get the place details from the autocomplete object.
   var place = autocomplete.getPlace();
- 
+  console.log(place);
   // Get each component of the address from the place details
   // and build up the address object
   for (var i = 0; i < place.address_components.length; i++) {
@@ -52,7 +56,9 @@ function fillInAddress() {
       address[addressType] = val;
     }
   }
-
+  address.ID = place.id;
+  address.formatted_address = place.formatted_address;
+  address.name = place.name;
 }
 
 // select anchor tags that should be manipulated
@@ -169,8 +175,8 @@ document.getElementById("eventForm").addEventListener("submit", function(event){
         localStorage.setItem("events", JSON.stringify(events));
         for(var i = 0; i < users.length; i++){
             if(currentUser[0].ID === users[i].ID){
-                currentUser[0].events.push(eventID);
-                users[i].events.push(eventID);
+                currentUser[0].ownEvents.push(eventID);
+                users[i].ownEvents.push(eventID);
                 localStorage.setItem("currentUser", JSON.stringify(currentUser));
                 localStorage.setItem("users", JSON.stringify(users));
             }
