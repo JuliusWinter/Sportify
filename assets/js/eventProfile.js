@@ -79,7 +79,7 @@ var price = document.getElementById("price");
 // get event id of the selected event and compare it to events array
 // if match -> 
 for(var i = 0; i < events.length; i++){
-    if(currentEvent[0].eventID === events[i].eventID){
+    if(currentEvent[0] === events[i].eventID){
         eventName.innerHTML = events[i].name;
         date.innerHTML = events[i].date;
         time.innerHTML = events[i].time;
