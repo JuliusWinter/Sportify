@@ -1,7 +1,13 @@
  //get the event array, that contains all event objects, from local storage and parse it//
 var events = JSON.parse(localStorage.getItem("events"));
 
-var currentEvent=[];
+if(!JSON.parse(localStorage.getItem("currentEvent"))){
+  var currentEvent=[];
+}
+else{
+  localStorage.removeItem("currentEvent");
+  var currentEvent=[];
+}
 
 //display events of certain condition that are stored in local storage in event catalogue
 //loop over array that contains all events that are stored in local storage// 
@@ -31,7 +37,7 @@ for(var i = 0; i < events.length; i++) {
       //create a div for each property of the event object that is of relevance for the user (leave out event id, creator id, user id's in attendees array, privacy setting and other automatically generated properties of the event object) 
       
       var naming = document.createElement("a");
-      naming.setAttribute("href", 'eventProfile.html');
+      // naming.setAttribute("href", 'eventProfile.html');
       naming.setAttribute('class', 'linkEventPage');
       naming.setAttribute('id', catItem.eventID);
       newText = document.createTextNode(catItem.name);
@@ -116,14 +122,17 @@ for(var i = 0; i < events.length; i++) {
   // on click push the id of the event to an array called currentEvent
   // upload that array to local storage
   // redirect to eventProfile.html
-  var redEP = document.getElementsByClassName("linkEventPage");
- 
-  for (i = 0; i < redEP.length; i++) {
-      redEP[i].addEventListener("click", function() {
-      currentEvent.push(naming.id);
-      localStorage.setItem("currentEvent", JSON.stringify(currentEvent));
-    })
+  
+var redirectEventProfile = document.querySelectorAll(".linkEventPage");
+ for (i = 0; i < redirectEventProfile.length; i++) {
+    redirectEventProfile[i].addEventListener("click", function(e) {
+        let eventID = e.target.id;
+        currentEvent.push(eventID);
+        localStorage.setItem("currentEvent", JSON.stringify(currentEvent));
+        document.location.href = "eventProfile.html";
+    });
   }
+
   
 //   document.getElementById("loginForm").addEventListener("submit", function(event){
 //     // Prevent the page to automatically push the input into the URL and prevent the page to reload
@@ -296,6 +305,7 @@ function catSearch (){
       category[i].style.display ="none";
     }
   }
+
 
 // var slider = document.getElementById("myRange");
 // var output = document.getElementById("demo");

@@ -107,6 +107,7 @@ class Event {
         this.difficulty = _difficulty;
         this.maxPart = _maxPart;
         this.attendees = [];
+        this.interested = [];
         this.frequency = _frequency;
         this.location = _location;
         this.price = _price;
