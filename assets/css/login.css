@@ -544,24 +544,142 @@ git add *
 git commit -m "message"
 git push origin master */
 
+/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ USER PROFILE STYLING STARTS //////////////////////////////////////// */
+#containerUser{
+width: 600px;
+margin: auto;
+background: white;
+border-top-left-radius: 16px;
+border-top-right-radius: 16px;
+box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+text-align: center;
+padding: 2em;
+display: block;
+}
+#containerAwards{
+    width: 200px;
+    float: right;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 2em;
+    display: block;
+    margin-right: 30px;
+    margin-top: -320px;
+}
+#userAwardsTitle{
+    margin-top: -20px;
+    font-weight: 400;
+}
 
-/* added by george, from user profile css hereafter*/
+/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\ Setting Icon Styleing Start  /////////////////////////// */
+#settingsContainer {
+    position: relative;
+    float: right;
+    margin-top: 2%;
+    height: 5%;
+    width: 5%;
+}
+
+#settingsImage {
+  opacity: 1;
+  display: block;
+  transition: .5s ease;
+  backface-visibility: hidden;
+  float: right;
+  margin-top: 2%;
+  height: 100%;
+  width: 100%;
+}
+
+#middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+#settingsContainer:hover #settingsImage {
+  opacity: 0.2;
+}
+
+#settingsContainer:hover #middle {
+  opacity: 1;
+}
+
+#settingsText {
+  
+  color: rgba(0, 0, 0, 0.623);
+  font-size: 10px;
+  padding: 8px 8px;
+  font-weight: 800;
+}
+/* ////////////////////////////  Setting Icon Styleing Ends, Profile Page cont. \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+ 
+/* this should activate text "Edit Settings" when hovered */
+/* a:hover + #settingsArea {
+    display: block;
+} */
+/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\ USER PROFILE CARD STARTS ////////////////////////////////////////////// */
 .avatar {
     vertical-align: middle;
     height: 10%;
     width: 10%;
 
 }
+.award {
+    verticals-align: middle;
+    height: 10%;
+    width: 10%;
 
-.btn-group button {
-    background-color: #256edb; /* Green background */
-    border-collapse: collapse; /* Green border */
+}
+.profilePic{
+    margin-left: 12%;
+    height: 10%;
+    width: 10%;
+
+}
+/* ////////////////////////////  USER PRFILE CARD ENDS, PROFILE PAGE CONT. \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+#containerBtnGroup{
+    width: 665px;
+    margin: 0 auto;
+    background: #24C6DC;  /* fallback for old browsers */
+    border-bottom-left-radius:16px ;
+    border-bottom-right-radius: 16px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: block;
+    margin-top: 1px;
+    border: none;
+    height: 40px;
+
+}
+.btn-group button{
+    background: #012e70; /* Green background */
+   
     color: snow; /* White text */
-    padding: 10px; /* Some padding */
-    width: 33%;/* stretch accross screen */
+    padding: 20px; /* Some padding */
+    width: 33.3%;/* stretch accross section */
     cursor: pointer; /* Pointer/hand icon */
     float: left; /* Float the buttons side by side */
     display:inline-block;
+    height: 10px;
+    border: none;
+    margin:auto;
+    
+
+}
+#upcomingEventsBtn{
+    border-bottom-left-radius: 14px;
+}
+#interestsBtn{
+    border-bottom-right-radius: 14px;
+}
 }
 #userDisplayArea{
     text-align: center;
@@ -578,34 +696,22 @@ git push origin master */
 
 /* Add a background color on hover */
 .btn-group button:hover {
-    background-color: rgb(123, 174, 241);
-    color: rgb(26, 26, 26);
-    border:white;
-    font-size: 15pt;
+    background-color: rgb(0, 110, 255);
+    font-size: 80%;
 }
-.Bio{
-    float:left;
-    widows: 20px;
-}
-.profileItems{
-    float:left;
-}
-
 .userTabs{
     margin-top: 5%;
 }
 /* Display area for the current, past, and potential events for the user */
 div.upcomingEvents {
     width: 100%;
-    padding: 50px 0;
     text-align: center;
     background-color: lightblue;
-    margin-top: 5px;
+    margin-top: 0px;
     display:none;
 }
 div.pastEvents {
     width: 100%;
-    padding: 50px 0;
     text-align: center;
     background-color: lightgreen;
    	margin-top: 5px;
@@ -613,7 +719,6 @@ div.pastEvents {
 }
 div.interests {
     width: 100%;
-    padding: 50px 0;
     text-align: center;
     background-color: lightpink;
    	margin-top: 5px;
@@ -633,7 +738,7 @@ div.interests {
     text-align: center;
 }
 #userDisplayArea{
-    margin-top: 15%;
+
 }
 .userTabs{
     margin-top: 2%;
@@ -642,22 +747,80 @@ div.interests {
 .event {
     position: relative;
     width: 95%;
-    height: 150px;
-    background-color:rgba(0, 0, 0, 0.281);
+    height: 100px;
+    background-color:rgba(0, 0, 0, 0.15);
     margin: auto;
     margin-top: 5px;
-    ;
+    border-width: 0px;
 } 
 
 div.eventInfo{
     float:left;
-    width: 32.4%;
-    height: 80px;
+    width: 25%;
+    height: 40px;
     border: 3px solid rgb(255, 5, 5);
-    margin-top: 20px;
+    margin-top: 10px;
     color: white;
+    font-size: 50%;
 }
 .event .eventLink{
     float:right;
-    margin-top: 40px;
+    margin-top: 5px;
 }
+/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\  SEARCH BAR STYLING BEGINS //////////////////////////////////////// */  
+#containerCreatedEvents{
+    width: 200px;
+    float: left;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 1.5em;
+    display: block;
+    margin-left: 30px;
+    margin-top: -320px;
+}
+#createdEventsTitle{
+    margin-top: -20px;
+    font-weight: 400;
+}
+#searchCreatedEvent {
+    background-image: ;
+    background-position: 100px;
+    background-repeat: no-repeat;
+    margin: auto;
+    font-size: 16px;
+    padding: 12px 20px 12px 15px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+  }
+  
+  #createdEventsList {
+    list-style-type: none;
+    padding: 12px 20px 12px 15px;
+    margin: 0;
+  }
+  
+  #createdEventsList li a {
+    margin-top: -1px; /* Prevent double borders */
+    background-color: #f6f6f6;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block
+  }
+  
+  #createdEventsList li a:hover:not(.header) {
+    background-color: #eee;
+  }
+/* //////////////////////////////////////// SEARCH BAR STYLING ENDS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */  
+
+/* //////////////////////////////////////// USER PROFILE STYLING END \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+
+
+
+/* //////////////////////////////////////// USER PROFILE MNGR STYLING STARTS //////////////////////////////////////// */
+
+
+/* //////////////////////////////////////// USER PROFILE MNGR STYLING ENDS //////////////////////////////////////// */
