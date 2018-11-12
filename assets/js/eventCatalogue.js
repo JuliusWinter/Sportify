@@ -93,16 +93,30 @@ for(var i = 0; i < events.length; i++) {
       var priceContent = document.createTextNode('Price: ' + catItem.price + ' kr.');
       price.appendChild(priceContent);
 
-      var attButton = document.createElement('div');
-      attButton.innerHTML = catItem.attendBtn;
-      var unAttButton = document.createElement('div');
-      unAttButton.innerHTML = catItem.unAttendBtn;
-      var intButton = document.createElement('div');
-      intButton.innerHTML = catItem.intBtn;
-      var unIntButton = document.createElement('div');
-      unIntButton.innerHTML = catItem.unIntBtn;
+      var attButton = document.createElement('button');
+      attButton.setAttribute('class', 'attButton');
+      attButton.setAttribute('name', catItem.eventID);
+      attButtonContent = document.createTextNode("Attend Event");
+      attButton.appendChild(attButtonContent);
 
-    
+      var unAttButton = document.createElement('button');
+      unAttButton.setAttribute('class', 'unAttButton');
+      unAttButton.setAttribute('name', catItem.eventID);
+      unAttButtonContent = document.createTextNode("Unattend Event");
+      unAttButton.appendChild(unAttButtonContent);
+
+      var intButton = document.createElement('button');
+      intButton.setAttribute('class', 'intButton');
+      intButton.setAttribute('name', catItem.eventID);
+      intButtonContent = document.createTextNode("Interested");
+      intButton.appendChild(intButtonContent);
+
+      var unIntButton = document.createElement('button');
+      unIntButton.setAttribute('class', 'unIntButton');
+      unIntButton.setAttribute('name', catItem.eventID);
+      unIntButtonContent = document.createTextNode("Uninterest");
+      unIntButton.appendChild(unIntButtonContent);
+
       // CREATE CAPACITY DIV WITH COLOURED CIRCLE ACCORDING TO CAPACITY STATUS//
       // var capacity = document.createElement('div');
 
@@ -129,24 +143,84 @@ for(var i = 0; i < events.length; i++) {
   }
 }
 
-// var attend = document.getElementsByClassName(attButton);
+// set visibility of buttons
+
+
+
+// get all type of buttons by ClassNames
   var att = document.getElementsByClassName('attButton');
   var unAtt = document. getElementsByClassName('unAttButton');
   var int = document.getElementsByClassName('intButton');
   var unInt = document.getElementsByClassName('unIntButton');
   var catItem = events[i];
-
+//attend button: add functionality (push userID to attendees array of event and push eventID to attendedEvents array of user + change the visibility of the buttons)  
   for (i=0; i < att.length; i++) {
     att[i].addEventListener('click', function(e) {
+      let event = e.target.name;
+      for (i=0; i<users.length; i++) {
+        if (currentUser[0].id === users[i].id) {
+          users[i].attEvents.push(event);
+          localStorage.setItem("users", JSON.stringify(users));
+        }
+      }
+      for (i=0; i<events.length; i++) {
+        if (event === events[i].eventID) {
+          // console.log(e.target.name);
+          events[i].attendees.push(currentUser[0].ID);
+          localStorage.setItem('events', JSON.stringify(events));
+        }
+      }
+        att[event].style.display = 'none';
+        unAtt[event].style.display = 'inline';
+        int[event].style.display = 'none';
+        unInt[event].style.display = 'none';
+      
+  })
+}
 
-      //let event = e.target.dataset
-      let tempEvent = JSON.parse(e.target.dataset)
-      console.log(tempEvent)
+// for (i=0; i < att.length; i++) {
+//   att[i].addEventListener('click', function(e) {
+//     let event = e.target.name;
+//     for (i=0; i<users.length; i++) {
+//       if (currentUser[0].id === users[i].id) {
+//         users[i].attEvents.push(event);
+//         localStorage.setItem("users", JSON.stringify(users));
+//       }
+//     }
+//     for (i=0; i<events.length; i++) {
+//       if (event === events[i].eventID) {
+//         // console.log(e.target.name);
+//         events[i].attendees.push(currentUser[0].ID);
+//         localStorage.setItem('events', JSON.stringify(events));
+//       }
+//     }
+//       att[event].style.display = 'none';
+//       unAtt[event].style.display = 'inline';
+//       int[event].style.display = 'none';
+//       unInt[event].style.display = 'none';
+    
+// })
+// }
+
+
+    
+
+  //     localStorage.setItem("currentEvent", JSON.stringify(currentEvent));
+  //     document.location.href = "eventProfile.html";
+  //   });
+  //   })
+  // }
+  // for (i=0; i < att.length; i++) {
+  //   att[i].addEventListener('click', function(e) {
+
+  //     //let event = e.target.dataset
+  //     let tempEvent = JSON.parse(e.target.dataset)
+  //     console.log(tempEvent)
       //console.log(tempEvent)
 
       //console.log(event.name)
-    })
-  }
+  //   })
+  // }
 
 //   function attending () {
 //     catItem.attendees.push(currentUser.id);
@@ -158,6 +232,8 @@ for(var i = 0; i < events.length; i++) {
 //     int[i].style.visibility = 'hidden';
 //     unInt[i].style.visibility = 'hidden';
 // }
+
+
   // when the link (=click on name of event) to an event is clicked, the event id is pushed to the array currentEvent, stored in the local Storage and the user is redirected to the event Profile -> on the event Profile the Data gets filled out automatically based on the entry of the id in the currentEvent array
   // Give the a tag a class
   // select that a with document.getElementByClassName
@@ -277,7 +353,7 @@ function categorySearchFunction (){
   //loop through the divs to search for elements, and hide those that do not match the search query//
   for (var i=0; i<events.length; i++){
     var cat = events[i].getElementsByClassName('sportCategory');
-    
+  
     if(cat[0].innerHTML.toUpperCase().includes(searchInputCat)){
       events[i].style.display ="";
     }else{
@@ -358,6 +434,7 @@ function catSearch (){
       category[i].style.display ="none";
     }
   }
+
 
 // var slider = document.getElementById("myRange");
 // var output = document.getElementById("demo");
