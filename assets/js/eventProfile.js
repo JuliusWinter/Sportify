@@ -1,3 +1,12 @@
+// get current event from local storage
+if(!JSON.parse(localStorage.getItem("currentUser"))){
+    document.location.href = "login.html";
+}else{
+    var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    var users = JSON.parse(localStorage.getItem("users"));
+    var events = JSON.parse(localStorage.getItem("events"));
+    var currentEvent = JSON.parse(localStorage.getItem("currentEvent"))
+}
 // NAVBAR
 // select anchor tags that should be manipulated 
 var userProfile = document.querySelector("#userProfile");
@@ -29,18 +38,6 @@ else{
     loginBtn.style.display = "inline";
     logoutBtn.style.display = "none";
 }
-// get current event from local storage
-var currentEvent = JSON.parse(localStorage.getItem("currentEvent"));
-var currentUser = JSON.parse(localStorage.getItem("currentUser"));
-
-if(!JSON.parse(localStorage.getItem("currentUser"))){
-    document.location.href = "login.html";
-}else{
-    var currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    var users = JSON.parse(localStorage.getItem("users"));
-    var events = JSON.parse(localStorage.getItem("events"));
-    var currentEvent = JSON.parse(localStorage.getItem("currentEvent"))
-}
 
 // select all html elements to manipulate
 var editBtn = document.getElementById("editEventBtn");
@@ -56,13 +53,18 @@ var maxPart = document.getElementById("maxPart");
 var eventLocation = document.getElementById("location");
 var price = document.getElementById("price");
 
+console.log(currentUser[0]);
+console.log(currentEvent[0]);
 // if current users own events is equal to event id
 // show edit button
 for(var i = 0; i < currentUser[0].ownEvents.length; i++){
+    console.log("I am my event");
     if(currentUser[0].ownEvents[i] === currentEvent[0]){  
-        console.log("yes");
+        console.log(currentUser[0].ownEvents[i]);
+        editBtn.style.display = "inline";
     }
     else{
+        console.log("yes");
         editBtn.style.display = "none";
     }
 }

@@ -71,7 +71,7 @@ eventMaxPart.value = currentEvent[0].maxPart;
 eventFrequency.value = currentEvent[0].frequency;
 eventLocation.value = currentEvent[0].location;
 eventPrice.value = currentEvent[0].price;
-eventTime.value = currentEvent[0].time;
+
 
 // allow current user to change values
 // create a button "save" that on click, finds the events in the events array
@@ -79,6 +79,7 @@ eventTime.value = currentEvent[0].time;
 eventEditButton.addEventListener("submit", function(){
     for(var i = 0; i < events.length; i++){
         if(currentEvent[0].id === events[i].id){
+            // update the event values
             events[i].type = event.target.eventType.value;
             events[i].privacy = event.target.privacyDropdown.value;
             events[i].privacy = event.target.privacyDropdown.value;
@@ -86,7 +87,16 @@ eventEditButton.addEventListener("submit", function(){
             events[i].date = event.target.eventDate.value;
             events[i].time = event.target.eventTime.value;
             events[i].sportType = event.target.eventSportType.value;
+            events[i].description = event.target.eventDescription.value;
+            events[i].difficulty = event.target.eventDifficulty.value;
+            events[i].maxPart = event.target.eventMaxPart.value;
+            events[i].frequency = event.target.eventFrequency.value;
+            events[i].location = event.target.eventLocation.value;
+            events[i].price = event.target.eventPrice.value;
+            events[i].price = event.target.eventPrice.value;
+            console.log(events[i]);
             
+
         }
     }
 })
