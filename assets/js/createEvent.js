@@ -13,6 +13,53 @@ if(!JSON.parse(localStorage.getItem("events"))){
     var events = JSON.parse(localStorage.getItem("events"));
 }
 
+var placeSearch, autocomplete;
+class Address {
+    constructor (streetNr, route, locality, adminAreaLvl1, country, postalCode){
+        this.ID;
+        this.name;
+        this.formatted_address;
+        this.street_number = 'short_name',
+        this.route = 'long_name',
+        this.locality = 'long_name',
+        this.sublocality_level_1 = 'long_name',
+        this.administrative_area_level_1 = 'short_name',
+        this.country = 'long_name',
+        this.postal_code = 'short_name'
+    }
+};
+
+function initAutocomplete() {
+  // Create the autocomplete object, restricting the search to geographical
+  // location types.
+  autocomplete = new google.maps.places.Autocomplete(
+     (document.getElementById('eventLocation')))
+    //   {types: ['geocode']};
+
+  // When the user selects an address from the dropdown, populate the address
+  // fields in the form.
+  autocomplete.addListener('place_changed', fillInAddress);
+}
+// create new address object to work with, when the google places api autocomplete function is triggerd
+var address = new Address;
+
+function fillInAddress() {
+  // Get the place details from the autocomplete object.
+  var place = autocomplete.getPlace();
+  console.log(place);
+  // Get each component of the address from the place details
+  // and build up the address object
+  for (var i = 0; i < place.address_components.length; i++) {
+    var addressType = place.address_components[i].types[0];
+    if (address[addressType]) {
+      var val = place.address_components[i][address[addressType]];
+      address[addressType] = val;
+    }
+  }
+  address.ID = place.id;
+  address.formatted_address = place.formatted_address;
+  address.name = place.name;
+}
 
 // select anchor tags that should be manipulated
 var userProfile = document.querySelector("#userProfile");
@@ -47,9 +94,9 @@ else{
 
 // introduce our event object model
 class Event {
-    constructor(_ID, _userID, _type, _privacy, _name, _date, _time, _sportType, _description, _difficulty, _maxPart, _frequency, _location, _price){
+    constructor(_ID, _creatorID, _type, _privacy, _name, _date, _time, _sportType, _description, _difficulty, _maxPart, _frequency, _location, _price){
         this.eventID = _ID;
-        this.userID = _userID;
+        this.userID = _creatorID;
         this.type = _type;
         this.privacy = _privacy;
         this.name = _name;
@@ -59,6 +106,7 @@ class Event {
         this.description = _description;
         this.difficulty = _difficulty;
         this.maxPart = _maxPart;
+        this.attendees = [];
         this.frequency = _frequency;
         this.location = _location;
         this.price = _price;
@@ -95,6 +143,22 @@ function geid() {
     return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
   }
 
+//create the current date and set it in the format that matches the format of event dates (yyyy-mm-dd)// 
+function todayDate() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; 
+    var yyyy = today.getFullYear();
+    if(dd<10) {dd = '0'+dd} 
+    if(mm<10) {mm = '0'+mm} 
+    today = yyyy + '-' + mm + '-' + dd;
+    return today.toString()
+}
+
+function setMinDate (){
+    eventTime.setAttribute("min", todayDate());
+}
+
 // add click event listener
 // on click trigger function
 document.getElementById("eventForm").addEventListener("submit", function(event){
@@ -102,17 +166,17 @@ document.getElementById("eventForm").addEventListener("submit", function(event){
     event.preventDefault();
     // generate unique event ID
     var eventID = geid();
-    var userID = currentUser[0].ID;
+    var creatorID = currentUser[0].ID;
     // check if all fields are filled out
         // if yes -> get all values of the fields and push them to the event object
         // push new event to events array
-        events.push(new Event(eventID, userID, event.target.eventType.value, event.target.privacyDropdown.value, event.target.eventName.value, event.target.eventDate.value, event.target.eventTime.value, event.target.eventSportType.value, event.target.eventDescription.value, event.target.eventDifficulty.value, event.target.eventMaxPart.value, event.target.eventFrequency.value, event.target.eventLocation.value, event.target.eventPrice.value));
+        events.push(new Event(eventID, creatorID, event.target.eventType.value, event.target.privacyDropdown.value, event.target.eventName.value, event.target.eventDate.value, event.target.eventTime.value, event.target.eventSportType.value, event.target.eventDescription.value, event.target.eventDifficulty.value, event.target.eventMaxPart.value, event.target.eventFrequency.value, address, event.target.eventPrice.value));
         // store stringified version of events array in localStorage
         localStorage.setItem("events", JSON.stringify(events));
         for(var i = 0; i < users.length; i++){
             if(currentUser[0].ID === users[i].ID){
-                currentUser[0].events.push(eventID);
-                users[i].events.push(eventID);
+                currentUser[0].ownEvents.push(eventID);
+                users[i].ownEvents.push(eventID);
                 localStorage.setItem("currentUser", JSON.stringify(currentUser));
                 localStorage.setItem("users", JSON.stringify(users));
             }
@@ -200,51 +264,51 @@ document.getElementById("eventForm").addEventListener("submit", function(event){
 
 // add click event listener
 // on click trigger function
-eventSubmitButton.addEventListener("click", function(){
+// eventSubmitButton.addEventListener("click", function(){
     // this function saves all input values to new variables
-    var privacy = eventPrivacy.value;
+    // var privacy = eventPrivacy.value;
     // var pic = eventPic.value;
-    var name = eventName.value;
-    var date = eventDate.value;
-    var time = eventTime.value;
-    var sportType = eventSportType.value;
+    // var name = eventName.value;
+    // var date = eventDate.value;
+    // var time = eventTime.value;
+    // var sportType = eventSportType.value;
     // var description = eventDescription.value;
-    var difficulty = eventDifficulty.value;
-    var maxPart = eventMaxPart.value;
-    var frequency = eventFrequency.value;
-    var location = eventLocation.value;
-    var price = eventPrice.value;
+    // var difficulty = eventDifficulty.value;
+    // var maxPart = eventMaxPart.value;
+    // var frequency = eventFrequency.value;
+    // var location = eventLocation.value;
+    // var price = eventPrice.value;
     // then stores these values in the event object
     // check if all fields are filled out
-    if(privacy && name && date && sportType){
+    // if(privacy && name && date && sportType){
     // if yes -> get all values of the fields and push them to the event object
-        event.privacy = privacy;
+        // event.privacy = privacy;
         // event.pic = pic;
-        event.name = name;
-        event.date = date;
-        event.time = time;
-        event.sportType = sportType;
+        // event.name = name;
+        // event.date = date;
+        // event.time = time;
+        // event.sportType = sportType;
         // event.description = description;
-        event.difficulty = difficulty;
-        event.maxPart = maxPart;
-        event.frequency = frequency;
-        event.location = location;
-        event.price = price;
+        // event.difficulty = difficulty;
+        // event.maxPart = maxPart;
+        // event.frequency = frequency;
+        // event.location = location;
+        // event.price = price;
         // push our new event to the events array
-        events.push(event);
+        // events.push(event);
         // stringify events array to be able to save it in localStorage
-        eventsString = JSON.stringify(events);
+        // eventsString = JSON.stringify(events);
         // save strinified version of events array (eventsString) to the localStorage
-        localStorage.setItem("events", eventsString);
+        // localStorage.setItem("events", eventsString);
         // redirect user to the events catalogue page
-        document.location.href = "eventCatalogue.html"
-    }
+        // document.location.href = "eventCatalogue.html"
+    // }
     // if not -> display error message an mark input field that is not filled out
-    else{
-        alert("You fool!");
-    }
-    events = JSON.parse(localStorage.getItem("events"));
-})
+//     else{
+//         alert("You fool!");
+//     }
+//     events = JSON.parse(localStorage.getItem("events"));
+// })
 
 
 

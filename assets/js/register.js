@@ -1,19 +1,28 @@
 // Introduce Array of registered Users
 // Call Users array string from localStorage and parse it back into an array of objects
-var users = [];
-// get current user from local storage
+if(!JSON.parse(localStorage.getItem("users"))){
+    var users = [];
+}else{
+    var users = JSON.parse(localStorage.getItem("users"));
+}
 var currentUser = [];
 // Introduce User Object Model
 class user {
-    constructor(_ID, _userName, _firstName, _lastName, _birthday, _email, _password){
+    constructor(_ID, _userName, _firstName, _lastName, _gender, _birthday, _email, _password){
         this.ID = _ID;
         this.userName = _userName;
         this.firstName = _firstName;
         this.lastName = _lastName;
         this.birthday = _birthday;
+        this.gender = _gender;
         this.email = _email;
         this.password = _password;
-        this.events = [];
+        this.ownEvents = [];
+        this.intEvents = [];
+        this.attEvents = [];
+        this.sports = [];
+        this.slogan;
+        this.awards = [];
     }
 }
 // select anchor tags that should be manipulated
@@ -59,11 +68,11 @@ document.getElementById("registrationForm").addEventListener("submit", function(
     // generate User ID
     var ID = guid();
     // push new user to users array
-    users.push(new user (ID, event.target.regUserName.value, event.target.regFirstName.value, event.target.regLastName.value, event.target.regBirthday.value, event.target.regEmail.value, event.target.regPassword.value));
+    users.push(new user (ID, event.target.regUserName.value, event.target.regFirstName.value, event.target.regLastName.value, event.target.gender.value, event.target.regBirthday.value, event.target.regEmail.value, event.target.regPassword.value));
     // store stringified version of users array in localStorage
     localStorage.setItem("users", JSON.stringify(users));
     // push the same user to current User array
-    currentUser.push(new user (ID, event.target.regUserName.value, event.target.regFirstName.value, event.target.regLastName.value, event.target.regBirthday.value, event.target.regEmail.value, event.target.regPassword.value));
+    currentUser.push(new user (ID, event.target.regUserName.value, event.target.regFirstName.value, event.target.regLastName.value, event.target.gender.value, event.target.regBirthday.value, event.target.gender.value, event.target.regEmail.value, event.target.regPassword.value));
     // safe stringified version of current user array to local storage
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
     // redirect to loginSuccessful.html

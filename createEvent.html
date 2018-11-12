@@ -10,7 +10,7 @@
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous">
     </script>
-     <script type="text/javascript" src="assets/js/navbarScroll.js"></script>
+    <script type="text/javascript" src="assets/js/navbarScroll.js"></script>
     <title>Create Event</title>
 </head>
 <body>
@@ -89,7 +89,7 @@
                 <input type="text" placeholder="Event Name" id="eventName" class="formelement">
                 <!-- date input -->
                 <label for="eventDate"></label>
-                <input type="date" placeholder="Event Date" id="eventDate" class="formelement">
+                <input type="date" placeholder="Event Date" id="eventDate" min="2016-10-13" class="formelement">
                 <!-- time input -->
                 <label for="eventTime"></label>
                 <input type="time" placeholder="Event Time" id="eventTime" class="formelement">
@@ -120,8 +120,11 @@
             </form>
         </div>
         </section>
+        <section class="secBottom"></section>
     </div>
     <script type="text/javascript" src="assets/js/insertNavbar.js"></script>
 <script type="text/javascript" src="assets/js/createEvent.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3Xzb447qx-5ZsVS6oIZBOgQ4JPzcO04Y&libraries=places&callback=initAutocomplete"
+async defer></script>
 </body>
 </html>

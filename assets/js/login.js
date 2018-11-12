@@ -1,5 +1,10 @@
 // Get users array from local Storage for authentification
-var users = JSON.parse(localStorage.getItem("users"));
+if(!JSON.parse(localStorage.getItem("users"))){
+    document.location.href = "register.html";
+}else{
+    var users = JSON.parse(localStorage.getItem("users"));
+}
+
 // introduct currentUser array
 var currentUser = [];
 // select anchor tags that should be manipulated
@@ -45,10 +50,6 @@ document.getElementById("loginForm").addEventListener("submit", function(event){
         }
     }
 })
-
-
-
-
 
 // //Select Button
 // var submit = document.getElementById('submit');
