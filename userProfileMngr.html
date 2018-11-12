@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="assets/css/login.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous">
+    </script>
+      </head>
+<body>
+      <div class="wrapper">
+            <section class="navMargin"></section>
+            <!-- intoduce a section that holds the content -->
+            <section class="sec1">
+                  <div id="userProfileItems">
+            <div id="profileItems" class="profileItems">
+                  <h1><img src="ninja-512.png" alt="Avatar" class="avatar">
+                        <a id="localUserName"></a>
+                        
+                        
+                        
+                  </h1>
+                  <div id ="userLocation"></div>
+                   
+             </div>
+
+
+
+
+        <!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." style="width: 200px"/> -->
+
+
+            <br>
+            <p style="color: rgba(250, 71, 0, 0.699)">for user, we need, gender, interests, awards, prizes, certification, age(calc through birthday, password change</p>
+      <!-- Buttons for toggle user windows has been grouped below with CSS included-->
+            <div id="userDisplayArea">
+                  <div class="btn-group">  
+                        <!-- all buttons are refrenecing toggle script with names of ID's in single quotes segmenting the DIV's -->
+
+                        <button id="profileInfoBtn">View your Profile Info</button>
+                        <button id="profileSettingBtn">Change your prfile settings</button>
+                        <button id="accountInfoBtn">Manage your account info</button>
+
+                        <!-- Tabs have been partitioned for future styling purposes -->
+                        <br>
+                       
+                              <div class="userTabs">
+                                          
+                                                <div class="profileInfo" id="profileInfo">
+                                                      <div class="event">
+                                                            <div >View your Profile Info</div> 
+                                                            <div class="eventInfo"> 
+                                                                  <div id="localUserName"></div>
+                                                                  <div class='type'>Training</div>
+                                                                  <div class='date'>23.11.2018</div>
+                                                                  <div class='startTime'>14:00</div>
+                                                            </div>     
+                                                            <div class="eventInfo">
+                                                                  <div class='duration'>1h00m</div>
+                                                                  <div class='city'>Copenhagen</div>
+                                                                  <div class='district'>Islands Brygge</div>
+                                                                  <div class='street'>XYZ</div>
+                                                            </div>    
+                                                            <div class="eventInfo">
+                                                                  <div class='price'>0 kr.</div>
+                                                                  <button class="eventLink">Event Page</button>
+                                                            </div>
+                                                      </div>
+                                                </div>
+                              
+                                                <div class="profileSetting" id="profileSetting">
+                                                            <div class="event">
+                                                                  <div >Change your prfile settings </div> 
+                                                                  <div class="eventInfo"> 
+                                                                        <div class='sportCategory'>Swimming</div>
+                                                                        <div class='type'>Training</div>
+                                                                        <div class='date'>23.11.2018</div>
+                                                                        <div class='startTime'>14:00</div>
+                                                                  </div>     
+                                                                  <div class="eventInfo">
+                                                                        <div class='duration'>1h00m</div>
+                                                                        <div class='city'>Copenhagen</div>
+                                                                        <div class='district'>Islands Brygge</div>
+                                                                        <div class='street'>XYZ</div>
+                                                                  </div>    
+                                                                  <div class="eventInfo">
+                                                                        <div class='price'>0 kr.</div>
+                                                                        <button class="eventLink">Event Page</button>
+                                                                  </div>
+                                                            </div>
+                                                </div>
+
+                                                <div class="accountInfo" id="accountInfo">
+                                                      <div class="event">
+                                                                  <div >Manage your account info</div> 
+                                                                  <div class="eventInfo"> 
+                                                                        <div class='sportCategory'>Gender</div>
+                                                                        <div class='type'>Email</div>
+                                                                        <div class='date'>Password</div>
+                                                                        <div class='startTime'>14:00</div>
+                                                                  </div>     
+                                                                  <div class="eventInfo">
+                                                                        <div class='duration'>1h00m</div>
+                                                                        <div class='city'>Copenhagen</div>
+                                                                        <div class='district'>Islands Brygge</div>
+                                                                        <div class='street'>XYZ</div>
+                                                                  </div>    
+                                                                  <div class="eventInfo">
+                                                                        <div class='price'>0 kr.</div>
+                                                                        <button class="eventLink">Event Page</button>
+                                                                  </div>
+                                                            </div>
+
+                                                </div>
+                              </div>
+                   </div>
+            </div>
+      </div>
+</div>
+</section>
+</body>
+      <script type="text/javascript" src="assets/js/insertNavbar.js"></script>
+      <script type="text/javascript" src="assets/js/navbarScroll.js"></script>
+      <script src="assets/js/userProfile.js"></script>
+</html>

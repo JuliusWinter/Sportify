@@ -23,7 +23,7 @@ if(currentUser){
     logoutBtn.style.display = "inline";
 }
 else{
-    document.location.href = "login.html";
+    // document.location.href = "login.html";
 }
 
 //Search function applied to table in profile page, filtering all created events by current user
@@ -47,13 +47,13 @@ function searchCatalogueTable() {
     }
   }
 //set variables for button ID's
-var btnUpcoming = document.getElementById("upcomingEventsBtn");
-var btnPast = document.getElementById("pastEventsBtn");
-var btnInterests = document.getElementById("interestsBtn");
+var profileBtn = document.getElementById("profileInfoBtn");
+var settingsBtn = document.getElementById("profileSettingBtn");
+var accountBtn = document.getElementById("accountInfoBtn");
 //set variable for DIV ID's
-var upcomingEventsDIV = document.getElementById("upcomingEvents");
-var pastEventsDIV= document.getElementById("pastEvents");
-var interestsDIV = document.getElementById("interests");  
+var profileInfoDIV = document.getElementById("profileInfo");
+var profileSettingDIV= document.getElementById("profileSetting");
+var accountInfoDIV = document.getElementById("accountInfo");  
 
 // var btnUpcoming, btnPast, btnInterests, upcomingEventsDIV, pastEventsDIV, interestsDIV;
 // btnUpcoming = document.getElementById("upcomingEventsBtn");
@@ -64,79 +64,46 @@ var interestsDIV = document.getElementById("interests");
 // interestsDIV = document.getElementById("interests");
 
 //function for first button in upcoming events
-btnUpcoming.addEventListener("click", function(){
+profileBtn.addEventListener("click", function(){
 //DIV is set to display 'none' in userProfileStyle.css
-    if (upcomingEventsDIV.style.display === "block") {
+    if (profileInfoDIV.style.display === "block") {
       //if clicked display 'block'
-      upcomingEventsDIV.style.display = "none";
+      profileInfoDIV.style.display = "none";
       //otherwise, diplay 'none'
     } else {
       // else if upcoming events DIV is set to 'block', remaining DIV's are display 'none'
-      upcomingEventsDIV.style.display = "block";
-      pastEventsDIV.style.display = "none";
-      interestsDIV.style.display = "none";
+      profileInfoDIV.style.display = "block";
+      profileSettingDIV.style.display = "none";
+      accountInfoDIV.style.display = "none";
     }
 });
 //identical function runs for past events DIV
-btnPast.addEventListener("click", function() {
-    if (pastEventsDIV.style.display === "block") {
-      pastEventsDIV.style.display = "none";
+settingsBtn.addEventListener("click", function() {
+    if (profileSettingDIV.style.display === "block") {
+      profileSettingDIV.style.display = "none";
     } else {
-      pastEventsDIV.style.display = "block";
-      interestsDIV.style.display = "none";
-        upcomingEventsDIV.style.display = "none";
+      profileSettingDIV.style.display = "block";
+      accountInfoDIV.style.display = "none";
+      profileInfoDIV.style.display = "none";
     }
 });
 //identical function runs for interests
-btnInterests.addEventListener("click", function(){
-    if (interestsDIV.style.display === "block") {
-      interestsDIV.style.display = "none";
+accountBtn.addEventListener("click", function(){
+    if (accountInfoDIV.style.display === "block") {
+      accountInfoDIV.style.display = "none";
     } else {
-      interestsDIV.style.display = "block";
-        upcomingEventsDIV.style.display = "none";
-        pastEventsDIV.style.display = "none";
+      accountInfoDIV.style.display = "block";
+      profileInfoDIV.style.display = "none";
+      profileSettingDIV.style.display = "none";
     }
 });
 
 
 
 // Access first name of first User and last name of first User
-document.getElementById("localUserName").innerHTML = currentUser[0].userName + " is in the game";
+document.getElementById("localUserName").innerHTML = "Hello " + currentUser[0].firstName + " " +currentUser[0].lastName;
 
 // Access location from reg form, not implemented yet :::  currentUser[0].location;
-document.getElementById("userLocation").innerHTML = currentUser[0].location;
-// this element will come from user typing in slogon
-document.getElementById("currentUserSlogan").innerHTML = "Sample slogan that is limited to characters entered here";
-// this element will come from the user's status after pariciptating in games and friending others
-document.getElementById("currentUserStatus").innerHTML = "Status: " + "Baller";
+document.getElementById("userLocation").innerHTML = "Sample Location, inserted once implemeneted";
 // Access email of first User
 //      document.getElementById("null").innerHTML = currentUser[0].email;
-
-
-var i = 0;
-var original = document.getElementById('event');
-
-function duplicate() {
-    var clone = original.cloneNode(true); // "deep" clone
-    clone.id = "event" + ++i;
-    // or clone.id = ""; if the divs don't need an ID
-    original.parentNode.appendChild(clone);
-}
-/////////////////////////////// LIST SEARCH FUNCTION BELOW \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-var searchEvents = document.getElementById("searchCreatedEvent");
-
-searchEvents.addEventListener("keyup", function(){
-  var input, filter, ul, li, a, i;
-  input = document.getElementById("searchCreatedEvent");
-  filter = input.value.toUpperCase();
-  ul = document.getElementById("createdEventsList");
-  li = ul.getElementsByTagName("li");
-  for (i = 0; i < li.length; i++) {
-      a = li[i].getElementsByTagName("a")[0];
-      if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-          li[i].style.display = "";
-      } else {
-          li[i].style.display = "none";
-      }
-  }
-});
