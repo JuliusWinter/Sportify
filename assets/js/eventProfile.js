@@ -17,7 +17,6 @@ var currentEvent = JSON.parse(localStorage.getItem("currentEvent"));
 //     userID: "481ccb0b-f451-a271-32d6-86144a772970",
 // }];
 
-
 // NAVBAR
 // select anchor tags that should be manipulated 
 var userProfile = document.querySelector("#userProfile");

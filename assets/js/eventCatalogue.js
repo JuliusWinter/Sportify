@@ -1,5 +1,10 @@
  //get the event array, that contains all event objects, from local storage and parse it//
 var events = JSON.parse(localStorage.getItem("events"));
+// get current user from local storage
+var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+// get users from local storage
+var users = JSON.parse(localStorage.getItem("users"));
+
 
 var currentEvent=[];
 
@@ -82,12 +87,16 @@ for(var i = 0; i < events.length; i++) {
       var priceContent = document.createTextNode('Price: ' + catItem.price + ' kr.');
       price.appendChild(priceContent);
 
-      var attButton = document.createElement('button');
-      attButton.setAttribute('class', 'attButton');
-      attButton.setAttribute('id', catItem.eventID);
-      var attButtonContent = document.createTextNode('Attend');
-      attButton.appendChild(attButtonContent);
+      var attButton = document.createElement('div');
+      attButton.innerHTML = catItem.attendBtn;
+      var unAttButton = document.createElement('div');
+      unAttButton.innerHTML = catItem.unAttendBtn;
+      var intButton = document.createElement('div');
+      intButton.innerHTML = catItem.intBtn;
+      var unIntButton = document.createElement('div');
+      unIntButton.innerHTML = catItem.unIntBtn;
 
+    
       // CREATE CAPACITY DIV WITH COLOURED CIRCLE ACCORDING TO CAPACITY STATUS//
       // var capacity = document.createElement('div');
 
@@ -103,6 +112,10 @@ for(var i = 0; i < events.length; i++) {
     divContainer.appendChild(price);
     divContainer.appendChild(maxPart);
     divContainer.appendChild(attButton);
+    divContainer.appendChild(unAttButton);
+    divContainer.appendChild(intButton);
+    divContainer.appendChild(unIntButton);
+    
 
     //add all divContainers to the event catalogue (=div('catalogueItems') in HTML //
     var element = document.getElementById('catalogueItems');
@@ -110,47 +123,74 @@ for(var i = 0; i < events.length; i++) {
   }
 }
 
-  // Give the a tag a class
-  // select that a with document.getElementByClassName
-  // add an event listener to the a
-  // on click push the id of the event to an array called currentEvent
-  // upload that array to local storage
-  // redirect to eventProfile.html
-  var redEP = document.getElementsByClassName("linkEventPage");
- 
-  for (i = 0; i < redEP.length; i++) {
-      redEP[i].addEventListener("click", function() {
-      currentEvent.push(naming.id);
-      localStorage.setItem("currentEvent", JSON.stringify(currentEvent));
+// var attend = document.getElementsByClassName(attButton);
+  var att = document.getElementsByClassName('attButton');
+  var unAtt = document. getElementsByClassName('unAttButton');
+  var int = document.getElementsByClassName('intButton');
+  var unInt = document.getElementsByClassName('unIntButton');
+  var catItem = events[i];
+
+  for (i=0; i < att.length; i++) {
+    att[i].addEventListener('click', function(e) {
+
+      //let event = e.target.dataset
+      let tempEvent = JSON.parse(e.target.dataset)
+      console.log(tempEvent)
+      //console.log(tempEvent)
+
+      //console.log(event.name)
     })
   }
+
+//   function attending () {
+//     catItem.attendees.push(currentUser.id);
+//     catItem.attEvents.push(catItem.eventID);
+//     localStorage.setItem("events", JSON.stringify(events));
+//     localStorage.setItem("users", JSON.stringify(users));
+//     att[i].style.visibility = 'hidden';
+//     unAtt[i].style.visibility = 'visibile';
+//     int[i].style.visibility = 'hidden';
+//     unInt[i].style.visibility = 'hidden';
+// }
+  // when the link (=click on name of event) to an event is clicked, the event id is pushed to the array currentEvent, stored in the local Storage and the user is redirected to the event Profile -> on the event Profile the Data gets filled out automatically based on the entry of the id in the currentEvent array
   
-//   document.getElementById("loginForm").addEventListener("submit", function(event){
-//     // Prevent the page to automatically push the input into the URL and prevent the page to reload
-//     event.preventDefault();
-//     // loop over users array and check if credentials match a registered user
-//     for(var i = 0; i < users.length; i++){
-//         if(event.target.userName.value == users[i].userName && event.target.password.value == users[i].password){
-//             // safe current user to a var
-//             var current = users[i];
-//             // if true change isLoggedIn attribute to true
-//             users[i].isLoggedIn = true;
-//             // push user to currentUser array
-//             currentUser.push(current);
-//             // Safe stringified currentUser array to local storage
-//             localStorage.setItem("currentUser", JSON.stringify(currentUser));
-//             // redirect to user profile
-//             document.location.href = "userProfile.html";
-//         }
-//         else{
-//             // if the condition is not met, display an error message
-//             document.getElementById("loginResult").innerHTML = "Oops, username or password is wrong...try again!!!"
+  // select the a with document.getElementByClassName
+  // var redEP = document.getElementsByClassName("linkEventPage");
+  // on click push the id of the event to an array called currentEvent
+  // upload that array to local storage
+  //neccessary to loop over redEP due to characteristic of class (=list)
+  // for (i = 0; i < redEP.length; i++) {
+  //     redEP[i].addEventListener("click", function() {
+  //     currentEvent.push(naming.id);
+  //     localStorage.setItem("currentEvent", JSON.stringify(currentEvent));
+  //   })
+  // }
+  
+//   var attend = document.getElementsByClassName('attButton')
+//   for (i = 0; i < attend.length; i++) {
+//     attend[i].addEventListener("click", function() {
+//     if (attButtonContent = 'attend') {
+//         for (i=0; i < users.length; i++) {
+//           if (users[i].id = currentUser.id) {
+//               events[i].attendees.push(currentUser.id);
+//               users[i].attEvents.push(events[i].eventID);
+//               localStorage.setItem("events", JSON.stringify(events));
+//               localStorage.setItem("users", JSON.stringify(users));
+//           }
 //         }
 //     }
+//   else {
+//     for (i=0; i < users.length; i++) {
+//       if (users[i].id = currentUser.id) {
+//           events[i].attendees.pop(currentUser.id);
+//           users[i].attEvents.pop(events[i].eventID);
+//           localStorage.setItem("events", JSON.stringify(events));
+//           localStorage.setItem("users", JSON.stringify(users));
+//       }
+//   }
+//   }
 // })
-
-
-
+// }
 
 // ALTERNATIVE APPROACH of creating events and displaying them in the event catalogue
 // Decision for not pursuing this approach: 
@@ -178,8 +218,7 @@ for(var i = 0; i < events.length; i++) {
 //   ec.appendChild(divContainer);
 // }
 
-// get current user from local storage
-var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
 // select anchor tags that should be manipulated
 var userProfile = document.querySelector("#userProfile");
 var createEvent = document.querySelector("#createEvent");

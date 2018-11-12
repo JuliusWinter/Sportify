@@ -104,6 +104,11 @@ class Event {
         this.frequency = _frequency;
         this.location = _location;
         this.price = _price;
+        // this.link = <a href='eventProfile.html' class=' >
+        this.attendBtn = '<button class="attButton" data-object="'+JSON.stringify(this)+'">Attend Event</button>'
+        this.unAttendBtn = '<button class="unAttButtonn" data-object="'+ JSON.stringify(this)  +'">Unattend Event</button>'
+        this.intBtn = '<button class="intButton" data-object="'+ JSON.stringify(this)  +'">Interested</button>'
+        this.unIntBtn = '<button class="unIntButton" data-object="'+ JSON.stringify(this)  +'">Uninterest</button>'
         }
     }
 // select all input fileds of the create course html page
