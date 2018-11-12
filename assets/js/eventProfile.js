@@ -72,18 +72,16 @@ var maxPart = document.getElementById("maxPart");
 var eventLocation = document.getElementById("location");
 var price = document.getElementById("price");
 
-console.log(currentUser[0]);
-console.log(currentEvent[0]);
 // if current users own events is equal to event id
 // show edit button
 for(var i = 0; i < currentUser[0].ownEvents.length; i++){
-    console.log("I am my event");
     if(currentUser[0].ownEvents[i] === currentEvent[0]){  
-        console.log(currentUser[0].ownEvents[i]);
+        // when this statement matches display btn inline
         editBtn.style.display = "inline";
+        // after that exit the loop with the break statement
+        break;
     }
     else{
-        console.log("yes");
         editBtn.style.display = "none";
     }
 }
@@ -103,6 +101,7 @@ for(var i = 0; i < events.length; i++){
         maxPart.innerHTML = events[i].maxPart;
         eventLocation.innerHTML = events[i].location;
         price.innerHTML = events[i].price;
+        localStorage.setItem("currentEvent", JSON.stringify(events));
     }
     }
 
