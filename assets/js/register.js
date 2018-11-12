@@ -17,7 +17,7 @@ class user {
         this.gender = _gender;
         this.email = _email;
         this.password = _password;
-        this.events = [];
+        this.ownEvents = [];
         this.intEvents = [];
         this.attEvents = [];
         this.sports = [];

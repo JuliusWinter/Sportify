@@ -17,6 +17,15 @@ var currentEvent = JSON.parse(localStorage.getItem("currentEvent"));
 //     userID: "481ccb0b-f451-a271-32d6-86144a772970",
 // }];
 
+// get current event from local storage
+if(!JSON.parse(localStorage.getItem("currentUser"))){
+    document.location.href = "login.html";
+}else{
+    var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    var users = JSON.parse(localStorage.getItem("users"));
+    var events = JSON.parse(localStorage.getItem("events"));
+    var currentEvent = JSON.parse(localStorage.getItem("currentEvent"))
+}
 // NAVBAR
 // select anchor tags that should be manipulated 
 var userProfile = document.querySelector("#userProfile");
@@ -49,20 +58,8 @@ else{
     logoutBtn.style.display = "none";
 }
 
-if(!JSON.parse(localStorage.getItem("currentUser"))){
-    document.location.href = "login.html";
-}else{
-    var currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    var users = JSON.parse(localStorage.getItem("users"));
-}
-// var currentUser = JSON.parse(localStorage.getItem("currentUser"));
-if(!JSON.parse(localStorage.getItem("events"))){
-    var events = [];
-}else{
-    var events = JSON.parse(localStorage.getItem("events"));
-}
-
 // select all html elements to manipulate
+var editBtn = document.getElementById("editEventBtn");
 var eventName = document.getElementById("name");
 var date = document.getElementById("date");
 var time = document.getElementById("time");
@@ -74,6 +71,22 @@ var frequency = document.getElementById("frequency");
 var maxPart = document.getElementById("maxPart");
 var eventLocation = document.getElementById("location");
 var price = document.getElementById("price");
+
+console.log(currentUser[0]);
+console.log(currentEvent[0]);
+// if current users own events is equal to event id
+// show edit button
+for(var i = 0; i < currentUser[0].ownEvents.length; i++){
+    console.log("I am my event");
+    if(currentUser[0].ownEvents[i] === currentEvent[0]){  
+        console.log(currentUser[0].ownEvents[i]);
+        editBtn.style.display = "inline";
+    }
+    else{
+        console.log("yes");
+        editBtn.style.display = "none";
+    }
+}
 
 // get event id of the selected event and compare it to events array
 // if match -> 
