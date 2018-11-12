@@ -178,29 +178,74 @@ for(var i = 0; i < events.length; i++) {
   })
 }
 
-// for (i=0; i < att.length; i++) {
-//   att[i].addEventListener('click', function(e) {
-//     let event = e.target.name;
-//     for (i=0; i<users.length; i++) {
-//       if (currentUser[0].id === users[i].id) {
-//         users[i].attEvents.push(event);
-//         localStorage.setItem("users", JSON.stringify(users));
-//       }
-//     }
-//     for (i=0; i<events.length; i++) {
-//       if (event === events[i].eventID) {
-//         // console.log(e.target.name);
-//         events[i].attendees.push(currentUser[0].ID);
-//         localStorage.setItem('events', JSON.stringify(events));
-//       }
-//     }
-//       att[event].style.display = 'none';
-//       unAtt[event].style.display = 'inline';
-//       int[event].style.display = 'none';
-//       unInt[event].style.display = 'none';
+for (i=0; i < unAtt.length; i++) {
+  unAtt[i].addEventListener('click', function(e) {
+    let event = e.target.name;
+    for (i=0; i<users.length; i++) {
+      if (currentUser[0].id === users[i].id) {
+        users[i].attEvents.pop(event);
+        localStorage.setItem("users", JSON.stringify(users));
+      }
+    }
+    for (i=0; i<events.length; i++) {
+      if (event === events[i].eventID) {
+        events[i].attendees.pop(currentUser[0].ID);
+        localStorage.setItem('events', JSON.stringify(events));
+      }
+    }
+      att[event].style.display = 'inline';
+      unAtt[event].style.display = 'none';
+      int[event].style.display = 'inline';
+      unInt[event].style.display = 'none';
     
-// })
-// }
+})
+}
+
+for (i=0; i < int.length; i++) {
+  int[i].addEventListener('click', function(e) {
+    let event = e.target.name;
+    for (i=0; i<users.length; i++) {
+      if (currentUser[0].id === users[i].id) {
+        users[i].intEvents.push(event);
+        localStorage.setItem("users", JSON.stringify(users));
+      }
+    }
+    for (i=0; i<events.length; i++) {
+      if (event === events[i].eventID) {
+        events[i].interested.push(currentUser[0].ID);
+        localStorage.setItem('events', JSON.stringify(events));
+      }
+    }
+      att[event].style.display = 'inline';
+      unAtt[event].style.display = 'none';
+      int[event].style.display = 'none';
+      unInt[event].style.display = 'inline';
+})
+}
+
+for (i=0; i < unInt.length; i++) {
+  unInt[i].addEventListener('click', function(e) {
+    let event = e.target.name;
+    for (i=0; i<users.length; i++) {
+      if (currentUser[0].id === users[i].id) {
+        users[i].intEvents.pop(event);
+        localStorage.setItem("users", JSON.stringify(users));
+      }
+    }
+    for (i=0; i<events.length; i++) {
+      if (event === events[i].eventID) {
+        events[i].interested.pop(currentUser[0].ID);
+        localStorage.setItem('events', JSON.stringify(events));
+      }
+    }
+      att[event].style.display = 'inline';
+      unAtt[event].style.display = 'none';
+      int[event].style.display = 'inline';
+      unInt[event].style.display = 'none';
+    
+})
+}
+
 
 
     
