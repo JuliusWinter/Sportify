@@ -50,7 +50,7 @@ for(var i = 0; i < events.length; i++) {
       
       var loc = document.createElement('DIV');
       loc.setAttribute('class', 'left');
-      var locContent = document.createTextNode('Location: ' + catItem.location);
+      var locContent = document.createTextNode('Location: ' + catItem.location.formatted_address);
       loc.appendChild(locContent);
 
       var sportType = document.createElement('DIV');
