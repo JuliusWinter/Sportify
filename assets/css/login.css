@@ -330,7 +330,7 @@ div#container{
     background: lightgray;
 }
 
-#submit{
+.submit{
     background: #2000CC;
     color: white;
     width: 500px;

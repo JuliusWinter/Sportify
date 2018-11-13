@@ -1,6 +1,6 @@
 // fake current event array with one event
 // delete later and get current event array from local storage
-var currentEvent = JSON.parse(localStorage.getItem("currentEvent"));
+// var currentEvent = JSON.parse(localStorage.getItem("currentEvent"));
 //     date: "2017-10-29",
 //     description: "Here is the description",
 //     difficulty: "1",
@@ -99,10 +99,10 @@ for(var i = 0; i < events.length; i++){
         difficulty.innerHTML = events[i].difficulty;
         frequency.innerHTML = events[i].frequency;
         maxPart.innerHTML = events[i].maxPart;
-        eventLocation.innerHTML = events[i].location;
+        eventLocation.innerHTML = events[i].location.formatted_address;
         price.innerHTML = events[i].price;
-        localStorage.setItem("currentEvent", JSON.stringify(events));
-    }
+        // localStorage.setItem("events", JSON.stringify(events));
+        }
     }
 
 
