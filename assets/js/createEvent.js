@@ -46,7 +46,6 @@ var address = new Address;
 function fillInAddress() {
   // Get the place details from the autocomplete object.
   var place = autocomplete.getPlace();
-  console.log(place);
   // Get each component of the address from the place details
   // and build up the address object
   for (var i = 0; i < place.address_components.length; i++) {

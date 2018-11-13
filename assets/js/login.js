@@ -3,6 +3,7 @@ if(!JSON.parse(localStorage.getItem("users"))){
     document.location.href = "register.html";
 }else{
     var users = JSON.parse(localStorage.getItem("users"));
+    localStorage.removeItem("currentUser");
 }
 
 // introduct currentUser array

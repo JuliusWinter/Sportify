@@ -1,3 +1,31 @@
+// fake current event array with one event
+// delete later and get current event array from local storage
+// var currentEvent = JSON.parse(localStorage.getItem("currentEvent"));
+//     date: "2017-10-29",
+//     description: "Here is the description",
+//     difficulty: "1",
+//     eventID: "07eff11b-5009-adad-a0f8-f2c81793f9d3",
+//     frequency: "single",
+//     location: "djnajkn",
+//     maxPart: 2,
+//     name: "Hello",
+//     price: 2,
+//     privacy: "public",
+//     sportType: "Canoeing",
+//     time: "22:58",
+//     type: "course",
+//     userID: "481ccb0b-f451-a271-32d6-86144a772970",
+// }];
+
+// get current event from local storage
+if(!JSON.parse(localStorage.getItem("currentUser"))){
+    document.location.href = "login.html";
+}else{
+    var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    var users = JSON.parse(localStorage.getItem("users"));
+    var events = JSON.parse(localStorage.getItem("events"));
+    var currentEvent = JSON.parse(localStorage.getItem("currentEvent"))
+}
 // NAVBAR
 // select anchor tags that should be manipulated 
 var userProfile = document.querySelector("#userProfile");
@@ -29,18 +57,6 @@ else{
     loginBtn.style.display = "inline";
     logoutBtn.style.display = "none";
 }
-// get current event from local storage
-var currentEvent = JSON.parse(localStorage.getItem("currentEvent"));
-var currentUser = JSON.parse(localStorage.getItem("currentUser"));
-
-if(!JSON.parse(localStorage.getItem("currentUser"))){
-    document.location.href = "login.html";
-}else{
-    var currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    var users = JSON.parse(localStorage.getItem("users"));
-    var events = JSON.parse(localStorage.getItem("events"));
-    var currentEvent = JSON.parse(localStorage.getItem("currentEvent"))
-}
 
 // select all html elements to manipulate
 var editBtn = document.getElementById("editEventBtn");
@@ -60,7 +76,10 @@ var price = document.getElementById("price");
 // show edit button
 for(var i = 0; i < currentUser[0].ownEvents.length; i++){
     if(currentUser[0].ownEvents[i] === currentEvent[0]){  
-        console.log("yes");
+        // when this statement matches display btn inline
+        editBtn.style.display = "inline";
+        // after that exit the loop with the break statement
+        break;
     }
     else{
         editBtn.style.display = "none";
@@ -80,9 +99,10 @@ for(var i = 0; i < events.length; i++){
         difficulty.innerHTML = events[i].difficulty;
         frequency.innerHTML = events[i].frequency;
         maxPart.innerHTML = events[i].maxPart;
-        eventLocation.innerHTML = events[i].location;
+        eventLocation.innerHTML = events[i].location.formatted_address;
         price.innerHTML = events[i].price;
-    }
+        // localStorage.setItem("events", JSON.stringify(events));
+        }
     }
 
 

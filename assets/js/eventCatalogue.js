@@ -1,5 +1,10 @@
  //get the event array, that contains all event objects, from local storage and parse it//
 var events = JSON.parse(localStorage.getItem("events"));
+// get current user from local storage
+var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+// get users from local storage
+var users = JSON.parse(localStorage.getItem("users"));
+
 
 if(!JSON.parse(localStorage.getItem("currentEvent"))){
   var currentEvent=[];
@@ -9,6 +14,37 @@ else{
   var currentEvent=[];
 }
 
+// select anchor tags that should be manipulated
+var userProfile = document.querySelector("#userProfile");
+var createEvent = document.querySelector("#createEvent");
+var eventCatalogue = document.querySelector("#eventCatalogue");
+var learnMore = document.querySelector("#learnMore");
+var about = document.querySelector("#about");
+var registerBtn = document.querySelector("#registerBtn");
+var loginBtn = document.querySelector("#loginBtn");
+var logoutBtn = document.querySelector("#logoutBtn");
+// check if a user is logged in
+if(currentUser){
+  userProfile.style.display = "inline";
+  createEvent.style.display = "inline";
+  eventCatalogue.style.display = "inline";
+  learnMore.style.display = "none";
+  about.style.display = "none";
+  registerBtn.style.display = "none";
+  loginBtn.style.display = "none";
+  logoutBtn.style.display = "inline";
+}
+else{
+  document.location.href = "index.html";
+}
+
+// if (events.length != 0) {
+//   filtering()}
+// else {eC()}
+
+
+//create a function that includes everything related to display of events from local storage
+// function eC () {
 //display events of certain condition that are stored in local storage in event catalogue
 //loop over array that contains all events that are stored in local storage// 
 for(var i = 0; i < events.length; i++) {
@@ -45,7 +81,7 @@ for(var i = 0; i < events.length; i++) {
       
       var loc = document.createElement('DIV');
       loc.setAttribute('class', 'left');
-      var locContent = document.createTextNode('Location: ' + catItem.location);
+      var locContent = document.createTextNode('Location: ' + catItem.location.formatted_address);
       loc.appendChild(locContent);
 
       var sportType = document.createElement('DIV');
@@ -90,9 +126,27 @@ for(var i = 0; i < events.length; i++) {
 
       var attButton = document.createElement('button');
       attButton.setAttribute('class', 'attButton');
-      attButton.setAttribute('id', catItem.eventID);
-      var attButtonContent = document.createTextNode('Attend');
+      attButton.setAttribute('name', catItem.eventID);
+      attButtonContent = document.createTextNode("Attend Event");
       attButton.appendChild(attButtonContent);
+
+      var unAttButton = document.createElement('button');
+      unAttButton.setAttribute('class', 'unAttButton');
+      unAttButton.setAttribute('name', catItem.eventID);
+      unAttButtonContent = document.createTextNode("Unattend Event");
+      unAttButton.appendChild(unAttButtonContent);
+
+      var intButton = document.createElement('button');
+      intButton.setAttribute('class', 'intButton');
+      intButton.setAttribute('name', catItem.eventID);
+      intButtonContent = document.createTextNode("Interested");
+      intButton.appendChild(intButtonContent);
+
+      var unIntButton = document.createElement('button');
+      unIntButton.setAttribute('class', 'unIntButton');
+      unIntButton.setAttribute('name', catItem.eventID);
+      unIntButtonContent = document.createTextNode("Uninterest");
+      unIntButton.appendChild(unIntButtonContent);
 
       // CREATE CAPACITY DIV WITH COLOURED CIRCLE ACCORDING TO CAPACITY STATUS//
       // var capacity = document.createElement('div');
@@ -109,6 +163,10 @@ for(var i = 0; i < events.length; i++) {
     divContainer.appendChild(price);
     divContainer.appendChild(maxPart);
     divContainer.appendChild(attButton);
+    divContainer.appendChild(unAttButton);
+    divContainer.appendChild(intButton);
+    divContainer.appendChild(unIntButton);
+    
 
     //add all divContainers to the event catalogue (=div('catalogueItems') in HTML //
     var element = document.getElementById('catalogueItems');
@@ -116,6 +174,152 @@ for(var i = 0; i < events.length; i++) {
   }
 }
 
+
+// get all type of buttons by ClassNames
+  var att = document.getElementsByClassName('attButton');
+  var unAtt = document. getElementsByClassName('unAttButton');
+  var int = document.getElementsByClassName('intButton');
+  var unInt = document.getElementsByClassName('unIntButton');
+
+// set visibility of attend buttons when entering page
+for (i=0; i<events.length; i++) {
+  if (currentUser[0].id == events[i].attendees[i]) {
+    let ev = events[i].eventID;
+    for (i=0; i<att.length; i++) {
+      if (ev == att[i].name) {
+        att[i].style.display = 'none';
+        unAtt[i].style.display = 'inline';
+        int[i].style.display = 'none';
+        unInt[i].style.display = 'none';
+      }
+    }
+  }
+}
+  
+
+//attend button: add functionality (push userID to attendees array of event and push eventID to attendedEvents array of user + change the visibility of the buttons)  
+//Alternative: load data-set into button as an atrribute (hence, insert the event object which applies to specific button into button and access needed properties that way) - Problem: could not parse the data-set
+  for (i=0; i < att.length; i++) {
+    att[i].addEventListener('click', function(e) {
+      let event = e.target.name;
+      for (i=0; i<users.length; i++) {
+        if (currentUser[0].id === users[i].id) {
+          users[i].attEvents.push(event);
+          localStorage.setItem("users", JSON.stringify(users));
+        }
+      }
+      for (i=0; i<events.length; i++) {
+        if (event === events[i].eventID) {
+          // console.log(e.target.name);
+          events[i].attendees.push(currentUser[0].ID);
+          localStorage.setItem('events', JSON.stringify(events));
+        }
+      }
+        att[event].style.display = 'none';
+        unAtt[event].style.display = 'inline';
+        int[event].style.display = 'none';
+        unInt[event].style.display = 'none';
+  })
+}
+
+for (i=0; i < unAtt.length; i++) {
+  unAtt[i].addEventListener('click', function(e) {
+    let event = e.target.name;
+    for (i=0; i<users.length; i++) {
+      if (currentUser[0].id === users[i].id) {
+        users[i].attEvents.pop(event);
+        localStorage.setItem("users", JSON.stringify(users));
+      }
+    }
+    for (i=0; i<events.length; i++) {
+      if (event === events[i].eventID) {
+        events[i].attendees.pop(currentUser[0].ID);
+        localStorage.setItem('events', JSON.stringify(events));
+      }
+    }
+      att[event].style.display = 'inline';
+      unAtt[event].style.display = 'none';
+      int[event].style.display = 'inline';
+      unInt[event].style.display = 'none';
+    
+})
+}
+
+for (i=0; i < int.length; i++) {
+  int[i].addEventListener('click', function(e) {
+    let event = e.target.name;
+    for (i=0; i<users.length; i++) {
+      if (currentUser[0].id === users[i].id) {
+        users[i].intEvents.push(event);
+        localStorage.setItem("users", JSON.stringify(users));
+      }
+    }
+    for (i=0; i<events.length; i++) {
+      if (event === events[i].eventID) {
+        events[i].interested.push(currentUser[0].ID);
+        localStorage.setItem('events', JSON.stringify(events));
+      }
+    }
+      att[event].style.display = 'inline';
+      unAtt[event].style.display = 'none';
+      int[event].style.display = 'none';
+      unInt[event].style.display = 'inline';
+})
+}
+
+for (i=0; i < unInt.length; i++) {
+  unInt[i].addEventListener('click', function(e) {
+    let event = e.target.name;
+    for (i=0; i<users.length; i++) {
+      if (currentUser[0].id === users[i].id) {
+        users[i].intEvents.pop(event);
+        localStorage.setItem("users", JSON.stringify(users));
+      }
+    }
+    for (i=0; i<events.length; i++) {
+      if (event === events[i].eventID) {
+        events[i].interested.pop(currentUser[0].ID);
+        localStorage.setItem('events', JSON.stringify(events));
+      }
+    }
+      att[event].style.display = 'inline';
+      unAtt[event].style.display = 'none';
+      int[event].style.display = 'inline';
+      unInt[event].style.display = 'none';
+    
+})
+}
+
+  //     localStorage.setItem("currentEvent", JSON.stringify(currentEvent));
+  //     document.location.href = "eventProfile.html";
+  //   });
+  //   })
+  // }
+  // for (i=0; i < att.length; i++) {
+  //   att[i].addEventListener('click', function(e) {
+
+  //     //let event = e.target.dataset
+  //     let tempEvent = JSON.parse(e.target.dataset)
+  //     console.log(tempEvent)
+      //console.log(tempEvent)
+
+      //console.log(event.name)
+  //   })
+  // }
+
+//   function attending () {
+//     catItem.attendees.push(currentUser.id);
+//     catItem.attEvents.push(catItem.eventID);
+//     localStorage.setItem("events", JSON.stringify(events));
+//     localStorage.setItem("users", JSON.stringify(users));
+//     att[i].style.visibility = 'hidden';
+//     unAtt[i].style.visibility = 'visibile';
+//     int[i].style.visibility = 'hidden';
+//     unInt[i].style.visibility = 'hidden';
+// }
+
+
+  // when the link (=click on name of event) to an event is clicked, the event id is pushed to the array currentEvent, stored in the local Storage and the user is redirected to the event Profile -> on the event Profile the Data gets filled out automatically based on the entry of the id in the currentEvent array
   // Give the a tag a class
   // select that a with document.getElementByClassName
   // add an event listener to the a
@@ -134,32 +338,43 @@ var redirectEventProfile = document.querySelectorAll(".linkEventPage");
   }
 
   
-//   document.getElementById("loginForm").addEventListener("submit", function(event){
-//     // Prevent the page to automatically push the input into the URL and prevent the page to reload
-//     event.preventDefault();
-//     // loop over users array and check if credentials match a registered user
-//     for(var i = 0; i < users.length; i++){
-//         if(event.target.userName.value == users[i].userName && event.target.password.value == users[i].password){
-//             // safe current user to a var
-//             var current = users[i];
-//             // if true change isLoggedIn attribute to true
-//             users[i].isLoggedIn = true;
-//             // push user to currentUser array
-//             currentUser.push(current);
-//             // Safe stringified currentUser array to local storage
-//             localStorage.setItem("currentUser", JSON.stringify(currentUser));
-//             // redirect to user profile
-//             document.location.href = "userProfile.html";
-//         }
-//         else{
-//             // if the condition is not met, display an error message
-//             document.getElementById("loginResult").innerHTML = "Oops, username or password is wrong...try again!!!"
+  // select the a with document.getElementByClassName
+  // var redEP = document.getElementsByClassName("linkEventPage");
+  // on click push the id of the event to an array called currentEvent
+  // upload that array to local storage
+  //neccessary to loop over redEP due to characteristic of class (=list)
+  // for (i = 0; i < redEP.length; i++) {
+  //     redEP[i].addEventListener("click", function() {
+  //     currentEvent.push(naming.id);
+  //     localStorage.setItem("currentEvent", JSON.stringify(currentEvent));
+  //   })
+  // }
+  
+//   var attend = document.getElementsByClassName('attButton')
+//   for (i = 0; i < attend.length; i++) {
+//     attend[i].addEventListener("click", function() {
+//     if (attButtonContent = 'attend') {
+//         for (i=0; i < users.length; i++) {
+//           if (users[i].id = currentUser.id) {
+//               events[i].attendees.push(currentUser.id);
+//               users[i].attEvents.push(events[i].eventID);
+//               localStorage.setItem("events", JSON.stringify(events));
+//               localStorage.setItem("users", JSON.stringify(users));
+//           }
 //         }
 //     }
+//   else {
+//     for (i=0; i < users.length; i++) {
+//       if (users[i].id = currentUser.id) {
+//           events[i].attendees.pop(currentUser.id);
+//           users[i].attEvents.pop(events[i].eventID);
+//           localStorage.setItem("events", JSON.stringify(events));
+//           localStorage.setItem("users", JSON.stringify(users));
+//       }
+//   }
+//   }
 // })
-
-
-
+// }
 
 // ALTERNATIVE APPROACH of creating events and displaying them in the event catalogue
 // Decision for not pursuing this approach: 
@@ -186,32 +401,11 @@ var redirectEventProfile = document.querySelectorAll(".linkEventPage");
 //   var ec = document.getElementById('catalogueItems');
 //   ec.appendChild(divContainer);
 // }
+// }
 
-// get current user from local storage
-var currentUser = JSON.parse(localStorage.getItem("currentUser"));
-// select anchor tags that should be manipulated
-var userProfile = document.querySelector("#userProfile");
-var createEvent = document.querySelector("#createEvent");
-var eventCatalogue = document.querySelector("#eventCatalogue");
-var learnMore = document.querySelector("#learnMore");
-var about = document.querySelector("#about");
-var registerBtn = document.querySelector("#registerBtn");
-var loginBtn = document.querySelector("#loginBtn");
-var logoutBtn = document.querySelector("#logoutBtn");
-// check if a user is logged in
-if(currentUser){
-  userProfile.style.display = "inline";
-  createEvent.style.display = "inline";
-  eventCatalogue.style.display = "inline";
-  learnMore.style.display = "none";
-  about.style.display = "none";
-  registerBtn.style.display = "none";
-  loginBtn.style.display = "none";
-  logoutBtn.style.display = "inline";
-}
-else{
-  document.location.href = "index.html";
-}
+
+// create a function that includes everything related to filtering
+// function filtering(){
 
 //define a function that searches for event categories and displays only applicable events//
 function categorySearchFunction (){
@@ -224,7 +418,7 @@ function categorySearchFunction (){
   //loop through the divs to search for elements, and hide those that do not match the search query//
   for (var i=0; i<events.length; i++){
     var cat = events[i].getElementsByClassName('sportCategory');
-    
+  
     if(cat[0].innerHTML.toUpperCase().includes(searchInputCat)){
       events[i].style.display ="";
     }else{
@@ -314,4 +508,5 @@ function catSearch (){
 // Update the current slider value (each time you drag the slider handle)
 // slider.oninput = function() {
 //     output.innerHTML = this.value;
+// }
 // }
