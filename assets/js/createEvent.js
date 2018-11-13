@@ -182,6 +182,7 @@ document.getElementById("eventForm").addEventListener("submit", function(event){
                 localStorage.setItem("users", JSON.stringify(users));
             }
         }
+        
         document.location.href = "eventCatalogue.html";
 });
 
