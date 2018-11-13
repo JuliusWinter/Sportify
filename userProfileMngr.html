@@ -34,7 +34,7 @@
                         <label for="userLastName"></label>
                         <input type="text" placeholder="Last Name..." id="userLastName" class="formelement">
                         <!-- expandable text area for suitable for long -->
-                        <label for="userBurthday"></label>
+                        <label for="userBirthday"></label>
                         <input type="date" placeholder="Birthday" id="userBrithday" class="formelement">
                         
                         <label for="userGender" ></label>
@@ -45,10 +45,6 @@
                         <!-- number input for max nr participants -->
                         <label for="userSlogan"></label>
                         <input type="text" placeholder="Enter a short slogan for others to see..." id="userSlogan" class="formelement" max="150">
-                        <!-- text input for location might be extended with an api that can links to real locations -->
-                        <label for="userLocation"></label>
-                        <input type="text" placeholder="Your Location..." id="userLocation" class="formelement">
-                        <!-- Submit button will save changes to local stroage for currentUser[0] -->
                         <br>
                         <button class="formelement" id="submit1">Save Your Changes</button>
                     </form>  
@@ -56,18 +52,22 @@
                             <!-- FIND OUT HOW TO SAVE A PICTURE TO A LOCAL FOLDER AND SAFE THE PATH TO IT IN THE OBJECT!!! -->
                             <!-- Form element for old password insert, in js, check if equal to existing password, loop and === -->
                             <label for="oldPassword"></label>
-                            <input type="text" placeholder="Enter your old password here..." id="password" class="formelement">
+                            <input type="text" placeholder="Enter your old password here..." id="oldPassword" class="formelement">
                             <!-- form element for new password  -->
-                            <label for="newPassword1"></label>
-                            <input type="text" placeholder="Enter your new password here..." id="userFirstName" class="formelement">
-                            <!-- form element for new password repeat and check if equal to new password -->
-                            <label for="newPassword2"></label>
-                            <input type="text" placeholder="Enter your new password again..." id="userLastName" class="formelement">
-                            <label for="userEmail"></label>
-                            <input type="email" placeholder="Enter your email..." id="userEmail" class="formelement" email>
-
+                            <label for="newPassword"></label>
+                            <input type="password" name="regPassword" id="newPassword" class="formelement" placeholder="Enter your new password..." 
+                             required/>
+                            <label for="newConPassword"></label>
+                            <input type="password" name="regConPassword" id="newConPassword" class="formelement" placeholder="Confirm your new password..." required/>
+                        
+                            <label for="editEmail"></label>
+                            <input type="email" name="regEmail" id="newEmail" class="formelement" placeholder="Enter your new Email..." required/>
+                            <label for="editConEmail"></label>
+                            <input type="text" name="regConEmail" id="newConEmail" class="formelement" placeholder="Confirm your new Email..." required/>
+                        
                             <br>
                             <button class="formelement" id="submit2">Save Password Changes</button>
+                            <p id="result">" "</p>
                             
                     </form>
             </div> 
