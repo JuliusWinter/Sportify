@@ -4,127 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>User Profile</title>
-    <link rel="stylesheet" href="assets/css/login.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/login.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous">
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous">
     </script>
-      </head>
+    <title>Edit User Profile</title>
+</head>
 <body>
-      <div class="wrapper">
-            <section class="navMargin"></section>
-            <!-- intoduce a section that holds the content -->
-            <section class="sec1">
-                  <div id="userProfileItems">
-            <div id="profileItems" class="profileItems">
-                  <h1><img src="ninja-512.png" alt="Avatar" class="avatar">
-                        <a id="localUserName"></a>
+    <div class="wrapper">
+        <section class="navMargin"></section>
+        <section class="section1">
+            <div id="containerProfileMngr">
+                    <h1 id="formTitle">Edit Your Profile</h1>
+                    <div class = "dropdownProfileMngr">          
+                            <button id="editProfileTabBtn">Edit Your Profile</button>
+                            <button id="editPasswordTabBtn">Change password & email</button>
+                    </div>
+                    <form id="userFormEdit1">
+                        <!-- FIND OUT HOW TO SAVE A PICTURE TO A LOCAL FOLDER AND SAFE THE PATH TO IT IN THE OBJECT!!! -->
+                        <!-- <input type="file" placeholder="Event Picture" id="eventPic" class="formelement"> -->
+                        <label for="userUserName"></label>
+                        <input type="text" placeholder="Enter your username here..." id="userName" class="formelement">
+                        <!-- date input -->
+                        <label for="userFirstName"></label>
+                        <input type="text" placeholder="First Name..." id="userFirstName" class="formelement">
+                        <!-- time input -->
+                        <label for="userLastName"></label>
+                        <input type="text" placeholder="Last Name..." id="userLastName" class="formelement">
+                        <!-- expandable text area for suitable for long -->
+                        <label for="userBurthday"></label>
+                        <input type="date" placeholder="Birthday" id="userBrithday" class="formelement">
                         
-                        
-                        
-                  </h1>
-                  <div id ="userLocation"></div>
-                   
-             </div>
-
-
-
-
-        <!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." style="width: 200px"/> -->
-
-
-            <br>
-            <p style="color: rgba(250, 71, 0, 0.699)">for user, we need, gender, interests, awards, prizes, certification, age(calc through birthday, password change</p>
-      <!-- Buttons for toggle user windows has been grouped below with CSS included-->
-            <div id="userDisplayArea">
-                  <div class="btn-group">  
-                        <!-- all buttons are refrenecing toggle script with names of ID's in single quotes segmenting the DIV's -->
-
-                        <button id="profileInfoBtn">View your Profile Info</button>
-                        <button id="profileSettingBtn">Change your prfile settings</button>
-                        <button id="accountInfoBtn">Manage your account info</button>
-
-                        <!-- Tabs have been partitioned for future styling purposes -->
+                        <label for="userGender" ></label>
+                            <select id="userGender" class="dropdown" placeholder="Gender...">
+                                <option value="male">male</option>
+                                <option value="female">female</option>
+                            </select>
+                        <!-- number input for max nr participants -->
+                        <label for="userSlogan"></label>
+                        <input type="text" placeholder="Enter a short slogan for others to see..." id="userSlogan" class="formelement" max="150">
+                        <!-- text input for location might be extended with an api that can links to real locations -->
+                        <label for="userLocation"></label>
+                        <input type="text" placeholder="Your Location..." id="userLocation" class="formelement">
+                        <!-- Submit button will save changes to local stroage for currentUser[0] -->
                         <br>
-                       
-                              <div class="userTabs">
-                                          
-                                                <div class="profileInfo" id="profileInfo">
-                                                      <div class="event">
-                                                            <div >View your Profile Info</div> 
-                                                            <div class="eventInfo"> 
-                                                                  <div id="localUserName"></div>
-                                                                  <div class='type'>Training</div>
-                                                                  <div class='date'>23.11.2018</div>
-                                                                  <div class='startTime'>14:00</div>
-                                                            </div>     
-                                                            <div class="eventInfo">
-                                                                  <div class='duration'>1h00m</div>
-                                                                  <div class='city'>Copenhagen</div>
-                                                                  <div class='district'>Islands Brygge</div>
-                                                                  <div class='street'>XYZ</div>
-                                                            </div>    
-                                                            <div class="eventInfo">
-                                                                  <div class='price'>0 kr.</div>
-                                                                  <button class="eventLink">Event Page</button>
-                                                            </div>
-                                                      </div>
-                                                </div>
-                              
-                                                <div class="profileSetting" id="profileSetting">
-                                                            <div class="event">
-                                                                  <div >Change your prfile settings </div> 
-                                                                  <div class="eventInfo"> 
-                                                                        <div class='sportCategory'>Swimming</div>
-                                                                        <div class='type'>Training</div>
-                                                                        <div class='date'>23.11.2018</div>
-                                                                        <div class='startTime'>14:00</div>
-                                                                  </div>     
-                                                                  <div class="eventInfo">
-                                                                        <div class='duration'>1h00m</div>
-                                                                        <div class='city'>Copenhagen</div>
-                                                                        <div class='district'>Islands Brygge</div>
-                                                                        <div class='street'>XYZ</div>
-                                                                  </div>    
-                                                                  <div class="eventInfo">
-                                                                        <div class='price'>0 kr.</div>
-                                                                        <button class="eventLink">Event Page</button>
-                                                                  </div>
-                                                            </div>
-                                                </div>
+                        <button class="formelement" id="submit1">Save Your Changes</button>
+                    </form>  
+                    <form id="userFormEdit2">   
+                            <!-- FIND OUT HOW TO SAVE A PICTURE TO A LOCAL FOLDER AND SAFE THE PATH TO IT IN THE OBJECT!!! -->
+                            <!-- Form element for old password insert, in js, check if equal to existing password, loop and === -->
+                            <label for="oldPassword"></label>
+                            <input type="text" placeholder="Enter your old password here..." id="password" class="formelement">
+                            <!-- form element for new password  -->
+                            <label for="newPassword1"></label>
+                            <input type="text" placeholder="Enter your new password here..." id="userFirstName" class="formelement">
+                            <!-- form element for new password repeat and check if equal to new password -->
+                            <label for="newPassword2"></label>
+                            <input type="text" placeholder="Enter your new password again..." id="userLastName" class="formelement">
+                            <label for="userEmail"></label>
+                            <input type="email" placeholder="Enter your email..." id="userEmail" class="formelement" email>
 
-                                                <div class="accountInfo" id="accountInfo">
-                                                      <div class="event">
-                                                                  <div >Manage your account info</div> 
-                                                                  <div class="eventInfo"> 
-                                                                        <div class='sportCategory'>Gender</div>
-                                                                        <div class='type'>Email</div>
-                                                                        <div class='date'>Password</div>
-                                                                        <div class='startTime'>14:00</div>
-                                                                  </div>     
-                                                                  <div class="eventInfo">
-                                                                        <div class='duration'>1h00m</div>
-                                                                        <div class='city'>Copenhagen</div>
-                                                                        <div class='district'>Islands Brygge</div>
-                                                                        <div class='street'>XYZ</div>
-                                                                  </div>    
-                                                                  <div class="eventInfo">
-                                                                        <div class='price'>0 kr.</div>
-                                                                        <button class="eventLink">Event Page</button>
-                                                                  </div>
-                                                            </div>
+                            <br>
+                            <button class="formelement" id="submit2">Save Password Changes</button>
+                            
+                    </form>
+            </div> 
+        </section>
+    </div>
 
-                                                </div>
-                              </div>
-                   </div>
-            </div>
-      </div>
-</div>
-</section>
+<script type="text/javascript" src="assets/js/insertNavbar.js"></script>
+<script type="text/javascript" src="assets/js/navbarScroll.js"></script>
+<script type="text/javascript" src="assets/js/userProfileMngr.js"></script>
 </body>
-      <script type="text/javascript" src="assets/js/insertNavbar.js"></script>
-      <script type="text/javascript" src="assets/js/navbarScroll.js"></script>
-      <script src="assets/js/userProfile.js"></script>
 </html>

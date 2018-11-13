@@ -617,9 +617,9 @@ display: block;
 #settingsContainer {
     position: relative;
     float: right;
-    margin-top: 2%;
-    height: 5%;
-    width: 5%;
+    margin-top: 1%;
+    height: 7%;
+    width: 7%;
 }
 
 #settingsImage {
@@ -629,6 +629,7 @@ display: block;
   backface-visibility: hidden;
   float: right;
   margin-top: 2%;
+  margin-right: 10%;
   height: 100%;
   width: 100%;
 }
@@ -645,7 +646,9 @@ display: block;
 }
 
 #settingsContainer:hover #settingsImage {
-  opacity: 0.2;
+  opacity: 0.35;
+  height: 50%;
+  width: 50%;
 }
 
 #settingsContainer:hover #middle {
@@ -658,6 +661,7 @@ display: block;
   font-size: 10px;
   padding: 8px 8px;
   font-weight: 800;
+
 }
 /* ////////////////////////////  Setting Icon Styleing Ends, Profile Page cont. \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
  
@@ -861,6 +865,89 @@ div.eventInfo{
 
 
 /* //////////////////////////////////////// USER PROFILE MNGR STYLING STARTS //////////////////////////////////////// */
+section.section1{
+    padding: 1em;
+    width: 100%;
+    min-height: 100vh;
+    height: min-content;
+    background: #24C6DC;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #514A9D, #24C6DC);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #514A9D, #24C6DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+}
+section.section2{
+    width: 100%;
+    min-height: 100vh;
+    height: min-content;
+    background: #24C6DC;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #514A9D, #24C6DC);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #514A9D, #24C6DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+}
+#subNavProfileMngr{
+    width: 85%;
+    margin: 0 auto;
+    background: white;  /* fallback for old browsers */
+    border-top-left-radius:16px ;
+    border-top-right-radius: 16px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: block;
+    border: none;
+    height: 40px;
 
+}
+.subNavProfMang button{
+    background: #012e70; /* Green background */
+   
+    color: snow; /* White text */
+    padding: 20px; /* Some padding */
+    width: 50%;/* stretch accross section */
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side */
+    display:inline-block;
+    height: 2em;
+    border: none;
+    margin:0 auto;
+    top:0;
+}
+#editProfileTabBtn{
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+}
+#editPasswordTabBtn{
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
 
+form#userFormEdit1 {
+    display:block;
+}
+#submit1{
+    background: #2000CC;
+    color: white;
+    width: 500px;
+    height: 45px;
+}
+form#userFormEdit2 {
+    display:none;
+} 
+#submit2{
+    background: #2000CC;
+    color: white;
+    width: 500px;
+    height: 45px;
+}
+div#containerProfileMngr{
+    width: 600px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: block;
+}
+div.dropdownProfileMngr{
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
 /* //////////////////////////////////////// USER PROFILE MNGR STYLING ENDS //////////////////////////////////////// */

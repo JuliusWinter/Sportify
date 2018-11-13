@@ -106,22 +106,22 @@ document.getElementById("localUserName").innerHTML = currentUser[0].userName + "
 // Access location from reg form, not implemented yet :::  currentUser[0].location;
 document.getElementById("userLocation").innerHTML = currentUser[0].location;
 // this element will come from user typing in slogon
-document.getElementById("currentUserSlogan").innerHTML = "Sample slogan that is limited to characters entered here";
+document.getElementById("currentUserSlogan").innerHTML = currentUser[0].slogan;
 // this element will come from the user's status after pariciptating in games and friending others
 document.getElementById("currentUserStatus").innerHTML = "Status: " + "Baller";
 // Access email of first User
 //      document.getElementById("null").innerHTML = currentUser[0].email;
 
 
-var i = 0;
-var original = document.getElementById('event');
+// var i = 0;
+// var original = document.getElementById('event');
 
-function duplicate() {
-    var clone = original.cloneNode(true); // "deep" clone
-    clone.id = "event" + ++i;
-    // or clone.id = ""; if the divs don't need an ID
-    original.parentNode.appendChild(clone);
-}
+// function duplicate() {
+//     var clone = original.cloneNode(true); // "deep" clone
+//     clone.id = "event" + ++i;
+//     // or clone.id = ""; if the divs don't need an ID
+//     original.parentNode.appendChild(clone);
+// }
 /////////////////////////////// LIST SEARCH FUNCTION BELOW \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 var searchEvents = document.getElementById("searchCreatedEvent");
 
