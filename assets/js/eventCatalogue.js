@@ -14,6 +14,37 @@ else{
   var currentEvent=[];
 }
 
+// select anchor tags that should be manipulated
+var userProfile = document.querySelector("#userProfile");
+var createEvent = document.querySelector("#createEvent");
+var eventCatalogue = document.querySelector("#eventCatalogue");
+var learnMore = document.querySelector("#learnMore");
+var about = document.querySelector("#about");
+var registerBtn = document.querySelector("#registerBtn");
+var loginBtn = document.querySelector("#loginBtn");
+var logoutBtn = document.querySelector("#logoutBtn");
+// check if a user is logged in
+if(currentUser){
+  userProfile.style.display = "inline";
+  createEvent.style.display = "inline";
+  eventCatalogue.style.display = "inline";
+  learnMore.style.display = "none";
+  about.style.display = "none";
+  registerBtn.style.display = "none";
+  loginBtn.style.display = "none";
+  logoutBtn.style.display = "inline";
+}
+else{
+  document.location.href = "index.html";
+}
+
+// if (events.length != 0) {
+//   filtering()}
+// else {eC()}
+
+
+//create a function that includes everything related to display of events from local storage
+// function eC () {
 //display events of certain condition that are stored in local storage in event catalogue
 //loop over array that contains all events that are stored in local storage// 
 for(var i = 0; i < events.length; i++) {
@@ -143,17 +174,31 @@ for(var i = 0; i < events.length; i++) {
   }
 }
 
-// set visibility of buttons
-
-
 
 // get all type of buttons by ClassNames
   var att = document.getElementsByClassName('attButton');
   var unAtt = document. getElementsByClassName('unAttButton');
   var int = document.getElementsByClassName('intButton');
   var unInt = document.getElementsByClassName('unIntButton');
-  var catItem = events[i];
+
+// set visibility of attend buttons when entering page
+for (i=0; i<events.length; i++) {
+  if (currentUser[0].id == events[i].attendees[i]) {
+    let ev = events[i].eventID;
+    for (i=0; i<att.length; i++) {
+      if (ev == att[i].name) {
+        att[i].style.display = 'none';
+        unAtt[i].style.display = 'inline';
+        int[i].style.display = 'none';
+        unInt[i].style.display = 'none';
+      }
+    }
+  }
+}
+  
+
 //attend button: add functionality (push userID to attendees array of event and push eventID to attendedEvents array of user + change the visibility of the buttons)  
+//Alternative: load data-set into button as an atrribute (hence, insert the event object which applies to specific button into button and access needed properties that way) - Problem: could not parse the data-set
   for (i=0; i < att.length; i++) {
     att[i].addEventListener('click', function(e) {
       let event = e.target.name;
@@ -174,7 +219,6 @@ for(var i = 0; i < events.length; i++) {
         unAtt[event].style.display = 'inline';
         int[event].style.display = 'none';
         unInt[event].style.display = 'none';
-      
   })
 }
 
@@ -245,10 +289,6 @@ for (i=0; i < unInt.length; i++) {
     
 })
 }
-
-
-
-    
 
   //     localStorage.setItem("currentEvent", JSON.stringify(currentEvent));
   //     document.location.href = "eventProfile.html";
@@ -361,31 +401,11 @@ var redirectEventProfile = document.querySelectorAll(".linkEventPage");
 //   var ec = document.getElementById('catalogueItems');
 //   ec.appendChild(divContainer);
 // }
+// }
 
 
-// select anchor tags that should be manipulated
-var userProfile = document.querySelector("#userProfile");
-var createEvent = document.querySelector("#createEvent");
-var eventCatalogue = document.querySelector("#eventCatalogue");
-var learnMore = document.querySelector("#learnMore");
-var about = document.querySelector("#about");
-var registerBtn = document.querySelector("#registerBtn");
-var loginBtn = document.querySelector("#loginBtn");
-var logoutBtn = document.querySelector("#logoutBtn");
-// check if a user is logged in
-if(currentUser){
-  userProfile.style.display = "inline";
-  createEvent.style.display = "inline";
-  eventCatalogue.style.display = "inline";
-  learnMore.style.display = "none";
-  about.style.display = "none";
-  registerBtn.style.display = "none";
-  loginBtn.style.display = "none";
-  logoutBtn.style.display = "inline";
-}
-else{
-  document.location.href = "index.html";
-}
+// create a function that includes everything related to filtering
+// function filtering(){
 
 //define a function that searches for event categories and displays only applicable events//
 function categorySearchFunction (){
@@ -488,4 +508,5 @@ function catSearch (){
 // Update the current slider value (each time you drag the slider handle)
 // slider.oninput = function() {
 //     output.innerHTML = this.value;
+// }
 // }
