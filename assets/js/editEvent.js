@@ -1,3 +1,5 @@
+// var currentEvent = JSON.parse(localStorage.getItem("currentEvent"));
+// console.log(currentEvent);
 if(!JSON.parse(localStorage.getItem("currentUser"))){
     document.location.href = "login.html";
 }else{
@@ -56,51 +58,102 @@ var eventMaxPart = document.getElementById("eventMaxPart");
 var eventFrequency = document.getElementById("eventFrequency");
 var eventLocation = document.getElementById("eventLocation");
 var eventPrice = document.getElementById("eventPrice");
-var eventEditButton = document.getElementById("saveEventEdit");
+var eventEditButton = document.getElementById("saveChanges");
 
 // set the value of each element to the respective value of our current event
-eventType.value = currentEvent[0].type;
-eventPrivacy.value = currentEvent[0].privacy;
-eventName.value = currentEvent[0].name;
-eventDate.value = currentEvent[0].date;
-eventTime.value = currentEvent[0].time;
-eventSportType.value = currentEvent[0].sportType;
-eventDescription.value = currentEvent[0].description;
-eventDifficulty.value = currentEvent[0].difficulty;
-eventMaxPart.value = currentEvent[0].maxPart;
-eventFrequency.value = currentEvent[0].frequency;
-eventLocation.value = currentEvent[0].location;
-eventPrice.value = currentEvent[0].price;
+for(var i = 0; i < events.length; i++){
+    if(currentEvent[0] === events[i].eventID){
+        eventType.value = events[i].type;
+        eventPrivacy.value = events[i].privacy;
+        eventName.value = events[i].name;
+        eventDate.value = events[i].date;
+        eventTime.value = events[i].time;
+        eventSportType.value = events[i].sportType;
+        eventDescription.value = events[i].description;
+        eventDifficulty.value = events[i].difficulty;
+        eventMaxPart.value = events[i].maxPart;
+        eventFrequency.value = events[i].frequency;
+        eventLocation.value = events[i].location.formatted_address;
+        eventPrice.value = events[i].price;
+    }
+}
+
+var placeSearch, autocomplete;
+class Address {
+    constructor (streetNr, route, locality, adminAreaLvl1, country, postalCode){
+        this.ID;
+        this.name;
+        this.formatted_address;
+        this.street_number = 'short_name',
+        this.route = 'long_name',
+        this.locality = 'long_name',
+        this.sublocality_level_1 = 'long_name',
+        this.administrative_area_level_1 = 'short_name',
+        this.country = 'long_name',
+        this.postal_code = 'short_name'
+    }
+};
+
+function initAutocomplete() {
+    // Create the autocomplete object, restricting the search to geographical
+    // location types.
+    autocomplete = new google.maps.places.Autocomplete(
+       (document.getElementById('eventLocation')))
+      //   {types: ['geocode']};
+  
+    // When the user selects an address from the dropdown, populate the address
+    // fields in the form.
+    autocomplete.addListener('place_changed', fillInAddress);
+  }
+  // create new address object to work with, when the google places api autocomplete function is triggerd
+  var address = new Address;
+  
+  function fillInAddress() {
+    // Get the place details from the autocomplete object.
+    var place = autocomplete.getPlace();
+    // Get each component of the address from the place details
+    // and build up the address object
+    for (var i = 0; i < place.address_components.length; i++) {
+      var addressType = place.address_components[i].types[0];
+      if (address[addressType]) {
+        var val = place.address_components[i][address[addressType]];
+        address[addressType] = val;
+      }
+    }
+    address.ID = place.id;
+    address.formatted_address = place.formatted_address;
+    address.name = place.name;
+  }
 
 
-// allow current user to change values
-// create a button "save" that on click, finds the events in the events array
-// that matches the current events event ID
-eventEditButton.addEventListener("submit", function(){
+// // allow current user to change values
+// // create a button "save" that on click, finds the events in the events array
+// // that matches the current events event ID
+document.getElementById("editEventForm").addEventListener("submit", function(e){
+    // Prevent the page to automatically push the input into the URL and prevent the page to reload
+    event.preventDefault();
+    // loop over events array and check for the current event
     for(var i = 0; i < events.length; i++){
-        if(currentEvent[0].id === events[i].id){
+        if(currentEvent[0] === events[i].eventID){
             // update the event values
-            events[i].type = event.target.eventType.value;
-            events[i].privacy = event.target.privacyDropdown.value;
-            events[i].privacy = event.target.privacyDropdown.value;
-            events[i].name = event.target.eventName.value;
-            events[i].date = event.target.eventDate.value;
-            events[i].time = event.target.eventTime.value;
-            events[i].sportType = event.target.eventSportType.value;
-            events[i].description = event.target.eventDescription.value;
-            events[i].difficulty = event.target.eventDifficulty.value;
-            events[i].maxPart = event.target.eventMaxPart.value;
-            events[i].frequency = event.target.eventFrequency.value;
-            events[i].location = event.target.eventLocation.value;
-            events[i].price = event.target.eventPrice.value;
-            events[i].price = event.target.eventPrice.value;
-            console.log(events[i]);
-            
-
+            events[i].type = e.target.eventType.value;
+            events[i].privacy = e.target.privacyDropdown.value;
+            events[i].privacy = e.target.privacyDropdown.value;
+            events[i].name = e.target.eventName.value;
+            events[i].date = e.target.eventDate.value;
+            events[i].time = e.target.eventTime.value;
+            events[i].sportType = e.target.eventSportType.value;
+            events[i].description = e.target.eventDescription.value;
+            events[i].difficulty = e.target.eventDifficulty.value;
+            events[i].maxPart = e.target.eventMaxPart.value;
+            events[i].frequency = e.target.eventFrequency.value;
+            events[i].location = address;
+            events[i].price = e.target.eventPrice.value;
+            events[i].price = e.target.eventPrice.value;
+            // save updated event in local storage
+            localStorage.setItem("events", JSON.stringify(events));
         }
     }
+    // redirect to event page 
+    document.location.href = "eventProfile.html";
 })
-
-// update both events
-// save both events in their respective in local storage
-// redirect to event page 

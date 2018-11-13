@@ -10,6 +10,7 @@
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous">
     </script>
+    <script type="text/javascript" src="assets/js/navbarScroll.js"></script>
     <title>Edit Event</title>
 </head>
 <body>
@@ -17,71 +18,71 @@
             <section class="navMargin"></section>
                 <section class="sec1">
                     <div id="container">
-                            <h1>Edit Event</h1>
-                            <form id="eventForm">
-                                <label for="eventType"></label>
-                                <select id="eventType" class="dropdown">
-                                    <option value="training">Training</option>
-                                    <option value="course">Course</option>
-                                </select>
-                                <label for="privacyDropdown"></label>
-                                <select id="privacyDropdown" class="dropdown">
-                                    <option value="private">Private Event</option>
-                                    <option value="public">Public Event</option>
-                                </select>
-                                <!-- dropdown for all the sport types -->
-                                <label for="eventSportType"></label>
-                                <select class="dropdown" id="eventSportType">
-                                    <option value="chooseSport">Choose Sport</option>
-                                    <option value="American Football">American Football</option>
-                                    <option value="Athletics">Athletics</option>
-                                    <option value="Badminton">Badminton</option>
-                                    <option value="Badminton">Badminton</option>
-                                    <option value="Basketball">Basketball</option>
-                                    <option value="Boxing">Boxing</option>
-                                    <option value="Canoeing">Canoeing</option>
-                                    <option value="Cricket">Cricket</option>
-                                    <option value="Cross">Cross-Fit</option>
-                                    <option value="Cycling">Cycling</option>
-                                    <option value="Dancing">Dancing</option>
-                                    <option value="Darts">Darts</option>
-                                    <option value="Disability Sports">Disability Sports</option>
-                                    <option value="Diving">Diving</option>
-                                    <option value="Fitness-Training">Fitness-Training</option>
-                                    <option value="Football">Football</option>
-                                    <option value="Golf">Golf</option>
-                                    <option value="Handball">Handball</option>
-                                    <option value="Hiking">Hiking</option>
-                                    <option value="Hockey">Hockey</option>
-                                    <option value="Ice Hockey">Ice Hockey</option>
-                                    <option value="Mixed Martial Arts">Mixed Martial Arts</option>
-                                    <option value="Modern Pentathlo">Modern Pentathlon</option>
-                                    <option value="Motor Sports">Motor Sports</option>
-                                    <option value="Netball">Netball</option>
-                                    <option value="Parkour">Parkour</option>
-                                    <option value="Rowing">Rowing</option>
-                                    <option value="Rugby">Rugby</option>
-                                    <option value="Running">Running</option>
-                                    <option value="Sailing">Sailing</option>
-                                    <option value="Shooting">Shooting</option>
-                                    <option value="Skateboarding">Skateboarding</option>
-                                    <option value="Skiing">Skiing</option>
-                                    <option value="Snooker">Snooker</option>
-                                    <option value="Squash">Squash</option>
-                                    <option value="Surfing">Surfing</option>
-                                    <option value="Swimming">Swimming</option>
-                                    <option value="Table Tennis">Table Tennis</option>
-                                    <option value="Tai Chi">Tai Chi</option>
-                                    <option value="Tennis">Tennis</option>
-                                    <option value="Triathlon">Triathlon</option>
-                                    <option value="Tricking">Tricking</option>
-                                    <option value="Ultimate Frisbee">Ultimate Frisbee</option>
-                                    <option value="Volleyball">Volleyball</option>
-                                    <option value="Weightlifting">Weightlifting</option>
-                                    <option value="Winter Sports">Winter Sports</option>
-                                    <option value="Wrestling">Wrestling</option>
-                                    <option value="Yoga">Yoga</option>
-                                </select>
+                        <h1>Edit Event</h1>
+                        <form id="editEventForm">
+                            <label for="eventType"></label>
+                            <select id="eventType" class="dropdown">
+                                <option value="training">Training</option>
+                                <option value="course">Course</option>
+                            </select>
+                            <label for="privacyDropdown"></label>
+                            <select id="privacyDropdown" class="dropdown">
+                                <option value="private">Private Event</option>
+                                <option value="public">Public Event</option>
+                            </select>
+                            <!-- dropdown for all the sport types -->
+                            <label for="eventSportType"></label>
+                            <select class="dropdown" id="eventSportType">
+                                <option value="chooseSport">Choose Sport</option>
+                                <option value="American Football">American Football</option>
+                                <option value="Athletics">Athletics</option>
+                                <option value="Badminton">Badminton</option>
+                                <option value="Badminton">Badminton</option>
+                                <option value="Basketball">Basketball</option>
+                                <option value="Boxing">Boxing</option>
+                                <option value="Canoeing">Canoeing</option>
+                                <option value="Cricket">Cricket</option>
+                                <option value="Cross">Cross-Fit</option>
+                                <option value="Cycling">Cycling</option>
+                                <option value="Dancing">Dancing</option>
+                                <option value="Darts">Darts</option>
+                                <option value="Disability Sports">Disability Sports</option>
+                                <option value="Diving">Diving</option>
+                                <option value="Fitness-Training">Fitness-Training</option>
+                                <option value="Football">Football</option>
+                                <option value="Golf">Golf</option>
+                                <option value="Handball">Handball</option>
+                                <option value="Hiking">Hiking</option>
+                                <option value="Hockey">Hockey</option>
+                                <option value="Ice Hockey">Ice Hockey</option>
+                                <option value="Mixed Martial Arts">Mixed Martial Arts</option>
+                                <option value="Modern Pentathlo">Modern Pentathlon</option>
+                                <option value="Motor Sports">Motor Sports</option>
+                                <option value="Netball">Netball</option>
+                                <option value="Parkour">Parkour</option>
+                                <option value="Rowing">Rowing</option>
+                                <option value="Rugby">Rugby</option>
+                                <option value="Running">Running</option>
+                                <option value="Sailing">Sailing</option>
+                                <option value="Shooting">Shooting</option>
+                                <option value="Skateboarding">Skateboarding</option>
+                                <option value="Skiing">Skiing</option>
+                                <option value="Snooker">Snooker</option>
+                                <option value="Squash">Squash</option>
+                                <option value="Surfing">Surfing</option>
+                                <option value="Swimming">Swimming</option>
+                                <option value="Table Tennis">Table Tennis</option>
+                                <option value="Tai Chi">Tai Chi</option>
+                                <option value="Tennis">Tennis</option>
+                                <option value="Triathlon">Triathlon</option>
+                                <option value="Tricking">Tricking</option>
+                                <option value="Ultimate Frisbee">Ultimate Frisbee</option>
+                                <option value="Volleyball">Volleyball</option>
+                                <option value="Weightlifting">Weightlifting</option>
+                                <option value="Winter Sports">Winter Sports</option>
+                                <option value="Wrestling">Wrestling</option>
+                                <option value="Yoga">Yoga</option>
+                            </select>
                             <!-- FIND OUT HOW TO SAVE A PICTURE TO A LOCAL FOLDER AND SAFE THE PATH TO IT IN THE OBJECT!!! -->
                             <!-- <input type="file" placeholder="Event Picture" id="eventPic" class="formelement"> -->
                             <label for="eventName"></label>
@@ -115,13 +116,13 @@
                             <!-- price -> an additional currency can be added to the input -->
                             <label for="eventPrice"></label>
                             <input type="number" placeholder="Price in €" id="eventPrice" class="formelement">
-                            <input type="submit" value="Edit Event" name="submit" id="saveEventEdit" class="formelement">
+                            <input type="submit" value="Save Changes" name="submit" id="saveChanges" class="formelement submit">
                         </form>
                     </div>  
                 </section>
     </div>
-    <script type="text/javascript" src="assets/js/insertNavbar.js"></script>
-    <script type="text/javascript" src="assets/js/navbarScroll.js"></script>
-    <script type="text/javascript" src="assets/js/editEvent.js"></script>
+<script type="text/javascript" src="assets/js/insertNavbar.js"></script>
+<script type="text/javascript" src="assets/js/editEvent.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3Xzb447qx-5ZsVS6oIZBOgQ4JPzcO04Y&libraries=places&callback=initAutocomplete" async defer></script>
 </body>
 </html>
