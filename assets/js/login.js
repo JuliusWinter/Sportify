@@ -33,7 +33,7 @@ document.getElementById("loginForm").addEventListener("submit", function(event){
     event.preventDefault();
     // loop over users array and check if credentials match a registered user
     for(var i = 0; i < users.length; i++){
-        if(event.target.userName.value == users[i].userName && event.target.password.value == users[i].password){
+        if(event.target.userName.value === users[i].userName && event.target.password.value === window.atob(users[i].password)){
             // safe current user to a var
             var current = users[i];
             // if true change isLoggedIn attribute to true
@@ -47,7 +47,7 @@ document.getElementById("loginForm").addEventListener("submit", function(event){
         }
         else{
             // if the condition is not met, display an error message
-            document.getElementById("loginResult").innerHTML = "Oops, username or password is wrong...try again!!!"
+            document.getElementById("errorMsg").innerHTML = "Oops, username or password is wrong...try again!!!"
         }
     }
 })

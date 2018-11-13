@@ -6,9 +6,13 @@ setTimeout(function(){
 
 // Get Current User from localStorage
 var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+var users = JSON.parse(localStorage.getItem("users"));
 // Set HTML Paragraph to personalized welcome message
-document.getElementById("welcomeMessage").innerHTML = "Hello " + currentUser[0].firstName + ", thank you for choosing Sportify";
-
+for(var i = 0; i < users.length; i++){
+    if(users[i].ID === currentUser[0]){
+        document.getElementById("welcomeMessage").innerHTML = "Hello " + users[i].firstName + ", thank you for choosing Sportify";
+    }
+}
 // Set a countdown from 10sec to 0, that manipulates the html and displays the countdown
 var timleft = 3;
 setInterval(function(){
