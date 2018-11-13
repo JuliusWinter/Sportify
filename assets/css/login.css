@@ -789,9 +789,6 @@ div.interests {
     color: darkblue;
     text-align: center;
 }
-#userDisplayArea{
-
-}
 .userTabs{
     margin-top: 2%;
 }
@@ -917,13 +914,40 @@ section.section2{
     margin:0 auto;
     top:0;
 }
+/* EDIT PROFILE BUTTON STYLING IN PROFILE MNGR PAGE: FUNCTIONALITY LOADS PROFILE CHANGE FORM */
 #editProfileTabBtn{
-    border-top-left-radius: 16px;
-    border-bottom-left-radius: 16px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    font-family: Roboto;
+    width: 42%;
+    min-height: 25px;
+    height: 45px;
+    padding: 10px;
+    background-color: #012e70;
+    color:white;
+    border-collapse: collapse;
 }
+#editProfileTabBtn:hover {
+    background-color: rgb(102, 167, 252);
+    color:black;
+}
+/* EDIT PASSWORD BUTTON STYLING IN PROFILE MNGR PAGE: FUNCTIONALITY LOADS PASSWORD CHANGE FORM */
 #editPasswordTabBtn{
-    border-top-right-radius: 16px;
-    border-bottom-right-radius: 16px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    font-family: Roboto;
+    width: 42%;
+    min-height: 25px;
+    height: 45px;
+    padding: 10px;
+    border: none;
+    background-color: #012e70;
+    color:white;
+    border-collapse: collapse;
+}
+#editPasswordTabBtn:hover {
+    background-color: rgb(102, 167, 252);
+    color:black;
 }
 
 form#userFormEdit1 {
@@ -947,6 +971,7 @@ form#userFormEdit2 {
 div#containerProfileMngr{
     width: 600px;
     margin: 0 auto;
+    padding: 1em;
     background: white;
     border-radius: 16px;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
