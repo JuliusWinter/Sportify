@@ -5,6 +5,9 @@ if(!JSON.parse(localStorage.getItem("users"))){
 }else{
     var users = JSON.parse(localStorage.getItem("users"));
 }
+// remove currentUser from local storage
+localStorage.removeItem("currentUser");
+// set currentUser array 
 var currentUser = [];
 // Introduce User Object Model
 class user {
@@ -65,18 +68,55 @@ function guid() {
 document.getElementById("registrationForm").addEventListener("submit", function(event){
     // Prevent the page to automatically push the input into the URL and prevent the page to reload
     event.preventDefault();
-    // generate User ID
-    var ID = guid();
-    // push new user to users array
-    users.push(new user (ID, event.target.regUserName.value, event.target.regFirstName.value, event.target.regLastName.value, event.target.gender.value, event.target.regBirthday.value, event.target.regEmail.value, event.target.regPassword.value));
-    // store stringified version of users array in localStorage
-    localStorage.setItem("users", JSON.stringify(users));
-    // push the same user to current User array
-    currentUser.push(new user (ID, event.target.regUserName.value, event.target.regFirstName.value, event.target.regLastName.value, event.target.gender.value, event.target.regBirthday.value, event.target.gender.value, event.target.regEmail.value, event.target.regPassword.value));
-    // safe stringified version of current user array to local storage
-    localStorage.setItem("currentUser", JSON.stringify(currentUser));
-    // redirect to loginSuccessful.html
-    document.location.href = "loginSuccessful.html";
+    // check if user name is already taken
+    if(JSON.parse(localStorage.getItem("users"))){
+        for(var i = 0; i < users.length; i++){
+            if(users[i].userName === event.target.regUserName.value){
+                document.getElementById("userNameTaken").innerHTML = "This username is already taken";
+                document.getElementById("regUserName").style.border = "2px solid red";
+                if(users[i].email === event.target.regEmail.value){
+                    document.getElementById("emailTaken").innerHTML = "There already exists an account with this email address";
+                    document.getElementById("regEmail").style.border = "2px solid red";
+                }
+            }
+            else if(users[i].email === event.target.regEmail.value){
+                document.getElementById("emailTaken").innerHTML = "There already exists an account with this email address";
+                document.getElementById("regEmail").style.border = "2px solid red";
+            }
+            else{
+                // generate User ID
+                var ID = guid();
+                // hash password
+                password = window.btoa(event.target.regPassword.value);
+                // push new user to users array
+                users.push(new user (ID, event.target.regUserName.value, event.target.regFirstName.value, event.target.regLastName.value, event.target.gender.value, event.target.regBirthday.value, event.target.regEmail.value, password));
+                // store stringified version of users array in localStorage
+                localStorage.setItem("users", JSON.stringify(users));
+                // push the same user to current User array
+                currentUser.push(ID);
+                // safe stringified version of current user array to local storage
+                localStorage.setItem("currentUser", JSON.stringify(currentUser));
+                // redirect to loginSuccessful.html
+                document.location.href = "loginSuccessful.html";
+            }
+        }
+    }
+    else{
+        // generate User ID
+        var ID = guid();
+        // hash password
+        password = window.btoa(event.target.regPassword.value);
+        // push new user to users array
+        users.push(new user (ID, event.target.regUserName.value, event.target.regFirstName.value, event.target.regLastName.value, event.target.gender.value, event.target.regBirthday.value, event.target.regEmail.value, password));
+        // store stringified version of users array in localStorage
+        localStorage.setItem("users", JSON.stringify(users));
+        // push the same user to current User array
+        currentUser.push(ID);
+        // safe stringified version of current user array to local storage
+        localStorage.setItem("currentUser", JSON.stringify(currentUser));
+        // redirect to loginSuccessful.html
+        document.location.href = "loginSuccessful.html";
+    }
 });
 
 

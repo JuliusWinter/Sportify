@@ -268,11 +268,11 @@ section.secBottom{
 }
 
 .slide1{
-    background-image: url(../img/training.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)), url(../img/training.jpg);
 }
 
 .slide2{
-    background-image: url(../img/course.jpg);
+    background-image:linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)), url(../img/course.jpg);
 }
 /* ////////////////////////// FULL SCREEN SLIDE SHOW END //////////////////////////////// */
 
@@ -281,10 +281,18 @@ input:focus{
 	outline: none;
 }
 
-input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
-    background-color: lightgray !important;
-    background-image: none !important;
-    color: rgb(0, 0, 0) !important;
+/* Change autocomplete styles in WebKit */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  background-color: lightgrey;
+  -webkit-text-fill-color: black;
 }
 
 select {
