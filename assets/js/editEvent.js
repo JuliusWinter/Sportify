@@ -138,7 +138,6 @@ document.getElementById("editEventForm").addEventListener("submit", function(e){
             // update the event values
             events[i].type = e.target.eventType.value;
             events[i].privacy = e.target.privacyDropdown.value;
-            events[i].privacy = e.target.privacyDropdown.value;
             events[i].name = e.target.eventName.value;
             events[i].date = e.target.eventDate.value;
             events[i].time = e.target.eventTime.value;
@@ -148,7 +147,6 @@ document.getElementById("editEventForm").addEventListener("submit", function(e){
             events[i].maxPart = e.target.eventMaxPart.value;
             events[i].frequency = e.target.eventFrequency.value;
             events[i].location = address;
-            events[i].price = e.target.eventPrice.value;
             events[i].price = e.target.eventPrice.value;
             // save updated event in local storage
             localStorage.setItem("events", JSON.stringify(events));
