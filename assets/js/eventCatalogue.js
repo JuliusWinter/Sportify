@@ -38,11 +38,8 @@ else{
   document.location.href = "index.html";
 }
 
-// if (events.length != 0) {
-//   filtering()}
-// else {eC()}
-
-
+//only create event catalogue if events > 0
+if (events) {
 //create a function that includes everything related to display of events from local storage
 // function eC () {
 //display events of certain condition that are stored in local storage in event catalogue
@@ -351,7 +348,7 @@ var redirectEventProfile = document.querySelectorAll(".linkEventPage");
         document.location.href = "eventProfile.html";
     });
   }
-
+}
   
   // select the a with document.getElementByClassName
   // var redEP = document.getElementsByClassName("linkEventPage");
