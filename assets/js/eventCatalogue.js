@@ -130,11 +130,13 @@ for(var i = 0; i < events.length; i++) {
       attButtonContent = document.createTextNode("Attend Event");
       attButton.appendChild(attButtonContent);
 
+      //hide from default
       var unAttButton = document.createElement('button');
       unAttButton.setAttribute('class', 'unAttButton');
       unAttButton.setAttribute('name', catItem.eventID);
       unAttButtonContent = document.createTextNode("Unattend Event");
       unAttButton.appendChild(unAttButtonContent);
+      unAttButton.style.display = 'none';
 
       var intButton = document.createElement('button');
       intButton.setAttribute('class', 'intButton');
@@ -142,11 +144,13 @@ for(var i = 0; i < events.length; i++) {
       intButtonContent = document.createTextNode("Interested");
       intButton.appendChild(intButtonContent);
 
+      //hide from default
       var unIntButton = document.createElement('button');
       unIntButton.setAttribute('class', 'unIntButton');
       unIntButton.setAttribute('name', catItem.eventID);
       unIntButtonContent = document.createTextNode("Uninterest");
       unIntButton.appendChild(unIntButtonContent);
+      unIntButton.style.display = 'none';
 
       // CREATE CAPACITY DIV WITH COLOURED CIRCLE ACCORDING TO CAPACITY STATUS//
       // var capacity = document.createElement('div');
@@ -174,121 +178,132 @@ for(var i = 0; i < events.length; i++) {
   }
 }
 
-
 // get all type of buttons by ClassNames
   var att = document.getElementsByClassName('attButton');
   var unAtt = document. getElementsByClassName('unAttButton');
   var int = document.getElementsByClassName('intButton');
   var unInt = document.getElementsByClassName('unIntButton');
 
-// set visibility of attend buttons when entering page
-for (i=0; i<events.length; i++) {
-  if (currentUser[0].id == events[i].attendees[i]) {
-    let ev = events[i].eventID;
-    for (i=0; i<att.length; i++) {
-      if (ev == att[i].name) {
-        att[i].style.display = 'none';
-        unAtt[i].style.display = 'inline';
-        int[i].style.display = 'none';
-        unInt[i].style.display = 'none';
-      }
-    }
-  }
-}
-  
-
-//attend button: add functionality (push userID to attendees array of event and push eventID to attendedEvents array of user + change the visibility of the buttons)  
+  //attend button: add functionality (push userID to attendees array of event and push eventID to attendedEvents array of user + change the visibility of the buttons)  
 //Alternative: load data-set into button as an atrribute (hence, insert the event object which applies to specific button into button and access needed properties that way) - Problem: could not parse the data-set
-  for (i=0; i < att.length; i++) {
-    att[i].addEventListener('click', function(e) {
-      let event = e.target.name;
-      for (i=0; i<users.length; i++) {
-        if (currentUser[0].id === users[i].id) {
-          users[i].attEvents.push(event);
-          localStorage.setItem("users", JSON.stringify(users));
-        }
-      }
-      for (i=0; i<events.length; i++) {
-        if (event === events[i].eventID) {
-          // console.log(e.target.name);
-          events[i].attendees.push(currentUser[0].ID);
-          localStorage.setItem('events', JSON.stringify(events));
-        }
-      }
-        att[event].style.display = 'none';
-        unAtt[event].style.display = 'inline';
-        int[event].style.display = 'none';
-        unInt[event].style.display = 'none';
-  })
-}
-
-for (i=0; i < unAtt.length; i++) {
-  unAtt[i].addEventListener('click', function(e) {
+for (i=0; i < att.length; i++) {
+  att[i].addEventListener('click', function(e) {
     let event = e.target.name;
     for (i=0; i<users.length; i++) {
       if (currentUser[0].id === users[i].id) {
-        users[i].attEvents.pop(event);
+        users[i].attEvents.push(event);
         localStorage.setItem("users", JSON.stringify(users));
       }
     }
     for (i=0; i<events.length; i++) {
       if (event === events[i].eventID) {
-        events[i].attendees.pop(currentUser[0].ID);
+        events[i].attendees.push(currentUser[0].ID);
         localStorage.setItem('events', JSON.stringify(events));
       }
     }
-      att[event].style.display = 'inline';
-      unAtt[event].style.display = 'none';
-      int[event].style.display = 'inline';
+      att[event].style.display = 'none';
+      unAtt[event].style.display = 'inline';
+      int[event].style.display = 'none';
       unInt[event].style.display = 'none';
-    
+})
+}
+
+for (i=0; i < unAtt.length; i++) {
+unAtt[i].addEventListener('click', function(e) {
+  let event = e.target.name;
+  for (i=0; i<users.length; i++) {
+    if (currentUser[0].id === users[i].id) {
+      users[i].attEvents.pop(event);
+      localStorage.setItem("users", JSON.stringify(users));
+    }
+  }
+  for (i=0; i<events.length; i++) {
+    if (event === events[i].eventID) {
+      events[i].attendees.pop(currentUser[0].ID);
+      localStorage.setItem('events', JSON.stringify(events));
+    }
+  }
+    att[event].style.display = 'inline';
+    unAtt[event].style.display = 'none';
+    int[event].style.display = 'inline';
+    unInt[event].style.display = 'none';
+  
 })
 }
 
 for (i=0; i < int.length; i++) {
-  int[i].addEventListener('click', function(e) {
-    let event = e.target.name;
-    for (i=0; i<users.length; i++) {
-      if (currentUser[0].id === users[i].id) {
-        users[i].intEvents.push(event);
-        localStorage.setItem("users", JSON.stringify(users));
-      }
+int[i].addEventListener('click', function(e) {
+  let event = e.target.name;
+  for (i=0; i<users.length; i++) {
+    if (currentUser[0].id === users[i].id) {
+      users[i].intEvents.push(event);
+      localStorage.setItem("users", JSON.stringify(users));
     }
-    for (i=0; i<events.length; i++) {
-      if (event === events[i].eventID) {
-        events[i].interested.push(currentUser[0].ID);
-        localStorage.setItem('events', JSON.stringify(events));
-      }
+  }
+  for (i=0; i<events.length; i++) {
+    if (event === events[i].eventID) {
+      events[i].interested.push(currentUser[0].ID);
+      localStorage.setItem('events', JSON.stringify(events));
     }
-      att[event].style.display = 'inline';
-      unAtt[event].style.display = 'none';
-      int[event].style.display = 'none';
-      unInt[event].style.display = 'inline';
+  }
+    att[event].style.display = 'none';
+    unAtt[event].style.display = 'none';
+    int[event].style.display = 'none';
+    unInt[event].style.display = 'inline';
 })
 }
 
 for (i=0; i < unInt.length; i++) {
-  unInt[i].addEventListener('click', function(e) {
-    let event = e.target.name;
-    for (i=0; i<users.length; i++) {
-      if (currentUser[0].id === users[i].id) {
-        users[i].intEvents.pop(event);
-        localStorage.setItem("users", JSON.stringify(users));
-      }
+unInt[i].addEventListener('click', function(e) {
+  let event = e.target.name;
+  for (i=0; i<users.length; i++) {
+    if (currentUser[0].id === users[i].id) {
+      users[i].intEvents.pop(event);
+      localStorage.setItem("users", JSON.stringify(users));
     }
-    for (i=0; i<events.length; i++) {
-      if (event === events[i].eventID) {
-        events[i].interested.pop(currentUser[0].ID);
-        localStorage.setItem('events', JSON.stringify(events));
-      }
+  }
+  for (i=0; i<events.length; i++) {
+    if (event === events[i].eventID) {
+      events[i].interested.pop(currentUser[0].ID);
+      localStorage.setItem('events', JSON.stringify(events));
     }
-      att[event].style.display = 'inline';
-      unAtt[event].style.display = 'none';
-      int[event].style.display = 'inline';
-      unInt[event].style.display = 'none';
-    
+  }
+    att[event].style.display = 'inline';
+    unAtt[event].style.display = 'none';
+    int[event].style.display = 'inline';
+    unInt[event].style.display = 'none';
+  
 })
 }
+
+// set visibility of attend buttons when entering page and user attends or is interested
+
+for (var i=0; i< events.length; i++) {
+    if (events[i].attendees.length) {
+      for (var j=0; j<events[i].attendees.length; j++) {
+        if (currentUser[0].ID === events[i].attendees[j]){
+          att[i].style.display = 'none';
+          unAtt[i].style.display = 'inline';
+          int[i].style.display = 'none';
+          unInt[i].style.display = 'none';
+        }
+      }
+    }
+  }
+  for (var i=0; i<events.length; i++) {
+    if (events[i].interested) {
+      for (var j=0; j<events[i].interested.length; j++) {
+        if (currentUser[0].ID === events[i].interested[j]){
+          att[i].style.display = 'none';
+          unAtt[i].style.display = 'none';
+          int[i].style.display = 'none';
+          unInt[i].style.display = 'inline';
+        }
+      }
+    }
+  }
+  
+    
 
   //     localStorage.setItem("currentEvent", JSON.stringify(currentEvent));
   //     document.location.href = "eventProfile.html";
