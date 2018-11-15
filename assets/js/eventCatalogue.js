@@ -1,4 +1,4 @@
- //get the event array, that contains all event objects, from local storage and parse it//
+ //get the event array, that contains all event objects, from local storage and parse it
 var events = JSON.parse(localStorage.getItem("events"));
 // get current user from local storage
 var currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -38,10 +38,9 @@ else{
   document.location.href = "index.html";
 }
 
-//only create event catalogue if events > 0
+//only create event catalogue if events.length > 0
 if (events) {
-//create a function that includes everything related to display of events from local storage
-// function eC () {
+
 //display events of certain condition that are stored in local storage in event catalogue
 //loop over array that contains all events that are stored in local storage// 
 for(var i = 0; i < events.length; i++) {
@@ -77,12 +76,12 @@ for(var i = 0; i < events.length; i++) {
       naming.appendChild(newText);
       
       var loc = document.createElement('DIV');
-      loc.setAttribute('class', 'left');
-      var locContent = document.createTextNode('Location: ' + catItem.location.formatted_address);
+      loc.setAttribute('class', 'loc');
+      var locContent = document.createTextNode(catItem.location.formatted_address);
       loc.appendChild(locContent);
 
       var sportType = document.createElement('DIV');
-      sportType.setAttribute('class', 'left');
+      sportType.setAttribute('class', 'sportType');
       var sportTypeContent = document.createTextNode(catItem.sportType);
       sportType.appendChild(sportTypeContent);
 
@@ -167,7 +166,6 @@ for(var i = 0; i < events.length; i++) {
     divContainer.appendChild(unAttButton);
     divContainer.appendChild(intButton);
     divContainer.appendChild(unIntButton);
-    
 
     //add all divContainers to the event catalogue (=div('catalogueItems') in HTML //
     var element = document.getElementById('catalogueItems');
@@ -300,37 +298,6 @@ for (var i=0; i< events.length; i++) {
     }
   }
   
-    
-
-  //     localStorage.setItem("currentEvent", JSON.stringify(currentEvent));
-  //     document.location.href = "eventProfile.html";
-  //   });
-  //   })
-  // }
-  // for (i=0; i < att.length; i++) {
-  //   att[i].addEventListener('click', function(e) {
-
-  //     //let event = e.target.dataset
-  //     let tempEvent = JSON.parse(e.target.dataset)
-  //     console.log(tempEvent)
-      //console.log(tempEvent)
-
-      //console.log(event.name)
-  //   })
-  // }
-
-//   function attending () {
-//     catItem.attendees.push(currentUser.id);
-//     catItem.attEvents.push(catItem.eventID);
-//     localStorage.setItem("events", JSON.stringify(events));
-//     localStorage.setItem("users", JSON.stringify(users));
-//     att[i].style.visibility = 'hidden';
-//     unAtt[i].style.visibility = 'visibile';
-//     int[i].style.visibility = 'hidden';
-//     unInt[i].style.visibility = 'hidden';
-// }
-
-
   // when the link (=click on name of event) to an event is clicked, the event id is pushed to the array currentEvent, stored in the local Storage and the user is redirected to the event Profile -> on the event Profile the Data gets filled out automatically based on the entry of the id in the currentEvent array
   // Give the a tag a class
   // select that a with document.getElementByClassName
@@ -383,9 +350,9 @@ var redirectEventProfile = document.querySelectorAll(".linkEventPage");
 //           localStorage.setItem("events", JSON.stringify(events));
 //           localStorage.setItem("users", JSON.stringify(users));
 //       }
-//   }
-//   }
-// })
+//      }
+//    }
+//  })
 // }
 
 // ALTERNATIVE APPROACH of creating events and displaying them in the event catalogue
@@ -418,51 +385,41 @@ var redirectEventProfile = document.querySelectorAll(".linkEventPage");
 
 // create a function that includes everything related to filtering
 // function filtering(){
+  var category = document.getElementsByClassName('sportType');
 
 //define a function that searches for event categories and displays only applicable events//
-function categorySearchFunction (){
+function catSearch (){
   //declare variables - getting values from search box//
-  let searchInputCat = document.getElementById('userCategoryInput').value.toUpperCase();
+  var searchInputCat = document.getElementById('userCategoryInput').value.toUpperCase();
   //Declare variables - getting values from the div elements
-  let catItems = document.getElementById('catalogueItems');
-  let events = catItems.getElementsByClassName('event');
+  var category = document.getElementsByClassName('sportType').innerHTML;
+  // console.log(category)
+  // for (i=0; i < category.length; i++) {
+  //   if(category[].includes(searchInputCat)){
+  //     events[i].style.display ="";
+  //   }else{
+  //     events[i].style.display ="none";
+  //   }
+  // }
+} 
 
-  //loop through the divs to search for elements, and hide those that do not match the search query//
-  for (var i=0; i<events.length; i++){
-    var cat = events[i].getElementsByClassName('sportCategory');
-  
-    if(cat[0].innerHTML.toUpperCase().includes(searchInputCat)){
-      events[i].style.display ="";
-    }else{
-      events[i].style.display ="none";
-    }
-  }
-}
 
-//define a function that searches for event categories and displays only applicable events//
-function locationSearchFunction (){
-  //declare variables - getting values from search box//
-  let searchInputLoc = document.getElementById('userLocationInput').value.toUpperCase();
-  //Declare variables - getting values from the div elements
-  let catItems = document.getElementById('catalogueItems');
-  let events = catItems.getElementsByClassName('event');
-
-  //loop through the divs to search for elements, and hide those that do not match the search query//
-  for (var i=0; i<events.length; i++){
-    var loc = events[i].getElementsByClassName('city');
-    
-    if(loc[0].innerHTML.toUpperCase().includes(searchInputLoc)){
-      events[i].style.display ="";
-    }else{
-      events[i].style.display ="none";
-    }
-  }
-}
+// //define a function that searches for locations and displays only applicable events//
+// function locSearch (){
+//   //declare variables - getting values from search box//
+//   var searchInputLoc = document.getElementById('userLocationInput').value.toUpperCase();
+//   //Declare variables - getting values from the div elements
+//   var locat = document.getElementsByClassName('loc');
+//   console.log(locat)
+//     if(locat[i].toUpperCase().includes(searchInputLoc)){
+//       events[i].style.display ="";
+//     }else{
+//       events[i].style.display ="none";
+//     }
+//   }
 
 //dropdown sport category selection 
 var coll = document.getElementsByClassName("collapsible");
-var i;
-
 for (i = 0; i < coll.length; i++) {
   coll[i].addEventListener("click", function() {
     this.classList.toggle("active");
@@ -475,8 +432,7 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 
-//create an function that creates a div, including a checkbox and an individual label for each array value
-
+//create a function that creates a div, including a checkbox and an individual label for each array value
 var sports = ['American Football', 'Athletics','Badminton','Basketball','Boxing ','Canoeing','Cricket','Cross-Fit','Cycling ','Dancing','Darts','Disability Sports','Diving','Fitness-Training','Football','Golf','Handball','Hiking','Hockey','Ice Hockey','Longboarding','Mixed Martial Arts','Modern Pentathlon','Motor Sports','Netball','Parkour','Rowing','Rugby','Running','Sailing','Shooting','Skateboarding','Skiing','Snooker','Snowboarding','Squash','Surfing','Swimming','Table Tennis','Tai Chi','Tennis','Triathlon','Tricking','Ultimate Frisbee','Volleyball','Weightlifting','Winter Sports','Wrestling','Yoga'];
 
 for(var i = 0; i < sports.length; i++) {
@@ -497,22 +453,6 @@ for(var i = 0; i < sports.length; i++) {
     element.appendChild(lab);
 }
 
-//define a function that searches for event categories and displays only applicable events//
-function catSearch (){
-  //declare variables - getting values from search box//
-  let searchInputCat = document.getElementById('categorySearch').value.toUpperCase();
-  //Declare variables - getting values from the div elements
-  let catItems = document.getElementById('content');
-  let category = document.getElementsByClassName('checkboxCat');
-
-    if(cat[i].toUpperCase().includes(searchInputCat)){
-      category[i].style.display ="";
-    }else{
-      category[i].style.display ="none";
-    }
-  }
-
-
 // var slider = document.getElementById("myRange");
 // var output = document.getElementById("demo");
 // output.innerHTML = slider.value; // Display the default slider value
@@ -522,3 +462,4 @@ function catSearch (){
 //     output.innerHTML = this.value;
 // }
 // }
+  
