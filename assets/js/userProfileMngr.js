@@ -74,19 +74,27 @@ userSaveButton1.addEventListener("submit", function(event){  // Prevent the page
   // loop over users array and check for the current user
   for(var i = 0; i < users.length; i++){
       if(currentUser[0].ID === users[i].ID){
+        console.log(currentUser[0].ID);
+        console.log(users[i].ID);
           // update the user values
-        users[i].userName = event.target.userName.value;
-        users[i].firstName = event.target.userFirstName.value;
-        users[i].lastName = event.target.userLastName.value;
-        users[i].birthday = event.target.userBrithday.value;
-        users[i].gender = event.target.userGender.value;
-        users[i].slogan = event.target.userSlogan.value;
-          // save updated user in local storage
-          localStorage.setItem("users", JSON.stringify(users));
+        // event.target.userName.value = users[i].userName;
+        // users[i].firstName = event.target.userFirstName.value;
+        // users[i].lastName = event.target.userLastName.value;
+        // users[i].birthday = event.target.userBrithday.value;
+        // users[i].gender = event.target.userGender.value;
+        // users[i].slogan = event.target.userSlogan.value;
+        //   // save updated user in local storage
+        //   localStorage.setItem("users", JSON.stringify(users));
+        //   console.log(users[i]);
+          // document.location.href = "userProfile.html";
       }
+      
   }
   // redirect to user to their profile page 
-  document.location.href = "userProfile.html";
+
+  alert("not update");
+  // document.location.href = "userProfile.html";
+    // return false;
 })
 // /////////////////////////////////login event function///////////////////////////
 
