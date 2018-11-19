@@ -58,7 +58,7 @@ for(var i = 0; i < events.length; i++) {
     return today
   }
   
-  //create an if statement that triggers the creation of divs only in case the local storage is not empty
+  //only display public events, do not display any private events
   //if the event date is in the past, do not create elements in the event catalogue; hence, do not display event in catalogue//
     if (catItem.date >= todayDate() && catItem.privacy == 'public') {
     //create a container (=div) for each event; purpose: store all relevant information (name, location, etc. ) in that container//
@@ -148,8 +148,10 @@ for(var i = 0; i < events.length; i++) {
       unIntButton.appendChild(unIntButtonContent);
       unIntButton.style.display = 'none';
 
-      // CREATE CAPACITY DIV WITH COLOURED CIRCLE ACCORDING TO CAPACITY STATUS//
-      // var capacity = document.createElement('div');
+      var capacity = document.createElement('div');
+      capacity.setAttribute('class', 'capacity');
+      capacityContent = document.createTextNode(events[i].maxPart - events[i].attendees.length);
+      capacity.appendChild(capacityContent);
 
     //add all previously created divs, that contain the property values of each event, to the div container //
     divContainer.appendChild(naming);
@@ -162,6 +164,7 @@ for(var i = 0; i < events.length; i++) {
     divContainer.appendChild(frequency);
     divContainer.appendChild(price);
     divContainer.appendChild(maxPart);
+    divContainer.appendChild(capacity);
     divContainer.appendChild(attButton);
     divContainer.appendChild(unAttButton);
     divContainer.appendChild(intButton);
@@ -184,22 +187,35 @@ for(var i = 0; i < events.length; i++) {
 for (i=0; i < att.length; i++) {
   att[i].addEventListener('click', function(e) {
     let event = e.target.name;
-    for (i=0; i<users.length; i++) {
-      if (currentUser[0].id === users[i].id) {
-        users[i].attEvents.push(event);
-        localStorage.setItem("users", JSON.stringify(users));
-      }
-    }
     for (i=0; i<events.length; i++) {
-      if (event === events[i].eventID) {
-        events[i].attendees.push(currentUser[0].ID);
-        localStorage.setItem('events', JSON.stringify(events));
-      }
-    }
-      att[event].style.display = 'none';
-      unAtt[event].style.display = 'inline';
-      int[event].style.display = 'none';
-      unInt[event].style.display = 'none';
+      if (event === events[i].eventID && events[i].attendees.length < events[i].maxPart) {
+          for (i=0; i<users.length; i++) {
+            if (currentUser[0] === users[i].ID) {
+              users[i].attEvents.push(event);
+              localStorage.setItem("users", JSON.stringify(users));
+            }
+          }
+          for (i=0; i<events.length; i++) {
+            if (event === events[i].eventID) {
+              events[i].attendees.push(currentUser[0]);
+              localStorage.setItem('events', JSON.stringify(events));
+            }
+          }
+            att[event].style.display = 'none';
+            unAtt[event].style.display = 'inline';
+            int[event].style.display = 'none';
+            unInt[event].style.display = 'none';
+            var cap = document.getElementsByClassName('capacity')
+            console.log(cap)
+            for (i=0; i<events.length; i++) {
+              if (event === events[i].eventID) {
+                cap.nodeValue(events[i].maxPart - events[i].attendees.length)
+          }
+        } 
+      } 
+    else if (event === events[i].eventID && events[i].attendees.length >= events[i].maxPart) 
+      {alert('Sorry, the event is booked out')}
+  }
 })
 }
 
@@ -207,14 +223,14 @@ for (i=0; i < unAtt.length; i++) {
 unAtt[i].addEventListener('click', function(e) {
   let event = e.target.name;
   for (i=0; i<users.length; i++) {
-    if (currentUser[0].id === users[i].id) {
+    if (currentUser[0] === users[i].id) {
       users[i].attEvents.pop(event);
       localStorage.setItem("users", JSON.stringify(users));
     }
   }
   for (i=0; i<events.length; i++) {
     if (event === events[i].eventID) {
-      events[i].attendees.pop(currentUser[0].ID);
+      events[i].attendees.pop(currentUser[0]);
       localStorage.setItem('events', JSON.stringify(events));
     }
   }
@@ -230,14 +246,14 @@ for (i=0; i < int.length; i++) {
 int[i].addEventListener('click', function(e) {
   let event = e.target.name;
   for (i=0; i<users.length; i++) {
-    if (currentUser[0].id === users[i].id) {
+    if (currentUser[0] === users[i].id) {
       users[i].intEvents.push(event);
       localStorage.setItem("users", JSON.stringify(users));
     }
   }
   for (i=0; i<events.length; i++) {
     if (event === events[i].eventID) {
-      events[i].interested.push(currentUser[0].ID);
+      events[i].interested.push(currentUser[0]);
       localStorage.setItem('events', JSON.stringify(events));
     }
   }
@@ -252,14 +268,14 @@ for (i=0; i < unInt.length; i++) {
 unInt[i].addEventListener('click', function(e) {
   let event = e.target.name;
   for (i=0; i<users.length; i++) {
-    if (currentUser[0].id === users[i].id) {
+    if (currentUser[0] === users[i].id) {
       users[i].intEvents.pop(event);
       localStorage.setItem("users", JSON.stringify(users));
     }
   }
   for (i=0; i<events.length; i++) {
     if (event === events[i].eventID) {
-      events[i].interested.pop(currentUser[0].ID);
+      events[i].interested.pop(currentUser[0]);
       localStorage.setItem('events', JSON.stringify(events));
     }
   }
@@ -276,7 +292,7 @@ unInt[i].addEventListener('click', function(e) {
 for (var i=0; i< events.length; i++) {
     if (events[i].attendees.length) {
       for (var j=0; j<events[i].attendees.length; j++) {
-        if (currentUser[0].ID === events[i].attendees[j]){
+        if (currentUser[0] === events[i].attendees[j]){
           att[i].style.display = 'none';
           unAtt[i].style.display = 'inline';
           int[i].style.display = 'none';
@@ -288,7 +304,7 @@ for (var i=0; i< events.length; i++) {
   for (var i=0; i<events.length; i++) {
     if (events[i].interested) {
       for (var j=0; j<events[i].interested.length; j++) {
-        if (currentUser[0].ID === events[i].interested[j]){
+        if (currentUser[0] === events[i].interested[j]){
           att[i].style.display = 'none';
           unAtt[i].style.display = 'none';
           int[i].style.display = 'none';
@@ -334,8 +350,8 @@ var redirectEventProfile = document.querySelectorAll(".linkEventPage");
 //     attend[i].addEventListener("click", function() {
 //     if (attButtonContent = 'attend') {
 //         for (i=0; i < users.length; i++) {
-//           if (users[i].id = currentUser.id) {
-//               events[i].attendees.push(currentUser.id);
+//           if (users[i].id = currentUser[0]) {
+//               events[i].attendees.push(currentUser[0]);
 //               users[i].attEvents.push(events[i].eventID);
 //               localStorage.setItem("events", JSON.stringify(events));
 //               localStorage.setItem("users", JSON.stringify(users));
@@ -344,8 +360,8 @@ var redirectEventProfile = document.querySelectorAll(".linkEventPage");
 //     }
 //   else {
 //     for (i=0; i < users.length; i++) {
-//       if (users[i].id = currentUser.id) {
-//           events[i].attendees.pop(currentUser.id);
+//       if (users[i].id = currentUser[0]) {
+//           events[i].attendees.pop(currentUser[0]);
 //           users[i].attEvents.pop(events[i].eventID);
 //           localStorage.setItem("events", JSON.stringify(events));
 //           localStorage.setItem("users", JSON.stringify(users));
@@ -440,10 +456,10 @@ for(var i = 0; i < sports.length; i++) {
     var div = document.createElement('DIV');
     div.setAttribute('class', 'checkboxCat');
     div.setAttribute('id', sports[i]);
-    div.setAttribute('value', sports[i]);
     var para = document.createElement("INPUT");
     para.setAttribute("type", "checkbox",);
     para.setAttribute('id', sports[i]);
+    para.setAttribute('value', sports[i]);
     var lab = document.createElement('LABEL'); 
     lab.setAttribute('for', sports[i]);
     lab.innerHTML = sports[i];
