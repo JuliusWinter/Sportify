@@ -44,14 +44,14 @@ var userBirthdayEdit = document.getElementById("userBrithday");
 var userGenderEdit = document.getElementById("userGender");
 var userSloganEdit = document.getElementById("userSlogan");
 var userSaveButton1 = document.getElementById("userFormEdit1");
-var userSaveButton2 = document.getElementById("userFormEdit2");
+
 
 var userOldPassword = document.getElementById("oldPassword");//check currentUser password match
 var userNewPassword = document.getElementById("newPassword");//Entry must match with newConPassword
 var userNewConPassword = document.getElementById("newConPassword");//newConPassword
 var userNewEmail = document.getElementById("newEmail");//place old email
 var userNewConEmail = document.getElementById("newConEmail");//match this email with email above
-
+var userSaveButton2 = document.getElementById("userFormEdit2");
 
 // change to form name, will need a second button for password form
 // var userSaveButton2 = document.getElementById("userFormEdit2");
@@ -62,45 +62,45 @@ userFirstNameEdit.value = currentUser[0].firstName;
 userLastNameEdit.value = currentUser[0].lastName;
 userBirthdayEdit.value = currentUser[0].birthday;
 userGenderEdit.value = currentUser[0].gender;
-//Set up max character limit for slogan in HTML
+//If blank display placeholder
 if(currentUser[0].slogan){
   userSloganEdit.value = currentUser[0].slogan;
 }
 
 userNewEmail.value = currentUser[0].email;
 
-userSaveButton1.addEventListener("submit", function(event){  // Prevent the page to automatically push the input into the URL and prevent the page to reload
-  event.preventDefault();
-  // loop over users array and check for the current user
-  for(var i = 0; i < users.length; i++){
-      if(currentUser[0].ID === users[i].ID){
-        console.log(currentUser[0].ID);
-        console.log(users[i].ID);
-          // update the user values
-        // event.target.userName.value = users[i].userName;
-        // users[i].firstName = event.target.userFirstName.value;
-        // users[i].lastName = event.target.userLastName.value;
-        // users[i].birthday = event.target.userBrithday.value;
-        // users[i].gender = event.target.userGender.value;
-        // users[i].slogan = event.target.userSlogan.value;
-        //   // save updated user in local storage
-        //   localStorage.setItem("users", JSON.stringify(users));
-        //   console.log(users[i]);
-          // document.location.href = "userProfile.html";
-      }
+// userSaveButton1.addEventListener("submit", function(event){  // Prevent the page to automatically push the input into the URL and prevent the page to reload
+//   event.preventDefault();
+//   // loop over users array and check for the current user
+//   for(var i = 0; i < users.length; i++){
+//       if(currentUser[0] === users[i].ID){
+//         console.log(currentUser[0].ID);
+//         console.log(users[i].ID);
+//         // update the user values
+//         // users[i].userName = event.target.userName.value;
+//         // users[i].firstName = event.target.userFirstName.value;
+//         // users[i].lastName = event.target.userLastName.value;
+//         // users[i].birthday = event.target.userBrithday.value;
+//         // users[i].gender = event.target.userGender.value;
+//         // users[i].slogan = event.target.userSlogan.value;
+//         //   // save updated user in local storage
+//         // localStorage.setItem("users", JSON.stringify(users));
+//         // console.log(users[i]);
+//         // document.location.href = "userProfile.html";
+//       }
       
-  }
-  // redirect to user to their profile page 
+//   }
+//   // redirect to user to their profile page 
 
-  alert("not update");
-  // document.location.href = "userProfile.html";
-    // return false;
-})
-// /////////////////////////////////login event function///////////////////////////
+//   alert("not update");
+//   // document.location.href = "userProfile.html";
+//     // return false;
+// })
+/////////////////////////////////login event function///////////////////////////
 
 /////////////////////////////////login event function///////////////////////////
 
-
+///////////////////////////////// EDIT FORM DISPLAY FUNCTION START //////////////////////////
 var btnProfileEdit = document.getElementById("editProfileTabBtn");
 var btnPasswordEdit = document.getElementById("editPasswordTabBtn");
 //set variable for DIV ID's
@@ -121,9 +121,10 @@ btnProfileEdit.addEventListener("click", function(){
         formElements2.style.display = "block";
         document.getElementById("formTitle").innerHTML = "Change password & email";
   });
+///////////////////////////////// EDIT FORM DISPLAY FUNCTION END //////////////////////////
 
-  // /////////////////////////////////login event function///////////////////////////
 
+/////////////////////////////////// LOGIN EVENT FUNCTION //////////////////////////////////
   userSaveButton2.addEventListener("submit", function(event){
   // Prevent the page to automatically push the input into the URL and prevent the page to reload
   event.preventDefault();
@@ -144,5 +145,30 @@ btnProfileEdit.addEventListener("click", function(){
     return false;
 }
 });
-/////////////////////////////////login event function///////////////////////////
-//cGFzczEzNQ== , autogenerated password??? found in lcoal storage
+///////////////////////////////// LOGIN EVENT FUNCTION /////////////////////////////////////
+//cGFzczEzNQ== , hashed password,-_-_-_-, found in lcoal storage
+// function addToUserArray(username){
+//   var loggedIn = localStorage.getItem("")
+// }
+/////////////////////////////////PLACE NEW VALUES INTO USER OBJECT FUNCTION /////////////////////////////////////
+document.getElementById("userFormEdit1").addEventListener("submit", function(e){
+  // Prevent the page to automatically push the input into the URL and prevent the page to reload
+  event.preventDefault();
+  // loop over events array and check for the current event
+  for(var i = 0; i < users.length; i++){
+      if(currentUser[0] === users[i].ID){
+          // update the event values
+          users[i].userName = e.target.userNameEdit.value;
+          users[i].firstName = e.target.userFirstNameEdit.value;
+          users[i].lastName = e.target.userLastNameEdit.value;
+          users[i].birthday = e.target.userBirthdayEdit.value;
+          users[i].gender = e.target.userGenderEdit.value;
+          users[i].slogan = e.target.userSloganEdit.value;
+
+          // save updated event in local storage
+          localStorage.setItem("users", JSON.stringify(users));
+      }
+  }
+  // redirect to event page 
+  document.location.href = "userProfile.html";
+})
