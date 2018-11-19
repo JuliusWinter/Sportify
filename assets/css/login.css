@@ -395,6 +395,7 @@ div#container{
 /* ----------------------------------------EVENT CATALOGUE STYLING START ---------------------------------------- */
 
 
+
 .event {
     height: auto;
 }
@@ -409,7 +410,7 @@ div#container{
     float: right;
 }
 
-#catalogueItems .event div {
+#catalogue .event div {
     padding: 5px;
 }
 
@@ -446,7 +447,7 @@ margin-bottom: 12px; /* Add some space below the input */
     width: 30%;
 }
 
-#catalogueItems {
+#catalogue {
     float: right;
     left: 0%;
     right: 0%;
@@ -834,7 +835,6 @@ div.eventInfo{
     font-weight: 400;
 }
 #searchCreatedEvent {
-    background-image: ;
     background-position: 100px;
     background-repeat: no-repeat;
     margin: auto;
