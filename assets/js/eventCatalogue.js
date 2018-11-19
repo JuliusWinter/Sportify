@@ -55,7 +55,7 @@ function createHTML (event) {
                                         "<div class='time box'>"+event.time+"</div>"+
                                         "<div class='dot box'>·</div>"+
                                         // Adjust location --> display name
-                                        "<div class='location box loc'>"+event.location.formatted_address+"</div>"+
+                                        "<div class='location box loc'>"+ event.location.formatted_address+"</div>"+
                                         "<div class='sportEventType'>"+
                                                 "<div class='sportType box'>"+event.sportType+"</div>"+
                                                 "<div class='dot box'>·</div>"+
@@ -67,16 +67,16 @@ function createHTML (event) {
                 "<div class='lowerInfo'>"+
                         "<div class='buttonGroup'>"+
                                 "<div class='attendBtnDiv'>"+
-                                        "<button class='box attend attButton' name='"+event.eventID+"'>attend</button>"+
+                                        "<button class='box attend eventBtn' name='"+event.eventID+"'>attend</button>"+
                                 "</div>"+
                                 "<div class='unAttendBtnDiv'>"+
-                                        "<button class='box attend unAttButton' name='"+event.eventID+"'>unattend</button>"+
+                                        "<button class='box unattend eventBtn hideEventBtn' name='"+event.eventID+"'>unattend</button>"+
                                 "</div>"+
                                 "<div class='interestedBtnDiv'>"+
-                                        "<button class='box interested intButton' name='"+event.eventID+"'>interested</button>"+
+                                        "<button class='box interested eventBtn' name='"+event.eventID+"'>interested</button>"+
                                 "</div>"+
                                 "<div class='unInterestedBtnDiv'>"+
-                                        "<button class='box interested unIntButton' name='"+event.eventID+"'>no interest</button>"+
+                                        "<button class='box notinterested eventBtn hideEventBtn' name='"+event.eventID+"'>no interest</button>"+
                                 "</div>"+
                         "</div>"+
                         "<div class='eventDetails'>"+
@@ -249,137 +249,208 @@ if (events) {
 
 
 // get all type of buttons by ClassNames
-  var att = document.getElementsByClassName('attButton');
-  var unAtt = document. getElementsByClassName('unAttButton');
-  var int = document.getElementsByClassName('intButton');
-  var unInt = document.getElementsByClassName('unIntButton');
-  var cap = document.getElementsByClassName('capacity');
+var att = document.getElementsByClassName('attend');
+var unAtt = document. getElementsByClassName('unattend');
+var int = document.getElementsByClassName('interested');
+var notInt = document.getElementsByClassName('notinterested');
+var cap = document.getElementsByClassName('capacity');
+
+// set visibility of attend buttons when entering page and user attends or is interested
+// loop over events array
+for(var i = 0; i < events.length; i++){
+  for(var j = 0; j < events[i].attendees.length; j++){
+    for(var k = 0; k < events[i].interested.lenght; k++){
+      if(currentUser[0] !== events[i].attendees[j] && currentUser[0] !== events[i].interested[k]){
+        att[i].classList.remove("hideEventBtn");
+        unAtt[i].classList.add("hideEventBtn");
+        int[i].classList.remove("hideEventBtn");
+        notInt[i].classList.add("hideEventBtn");
+      }
+    }
+  }
+}
+
+for (var i=0; i< events.length; i++) {
+  // find events with attendees
+    if (events[i].attendees.length) {
+      // loop over attendees array
+      for (var j=0; j<events[i].attendees.length; j++) {
+        // check if currentUser is one of the attendees
+        if (currentUser[0] === events[i].attendees[j]){
+          att[i].classList.add("hideEventBtn");
+          unAtt[i].classList.remove("hideEventBtn");
+          int[i].classList.add("hideEventBtn");
+          notInt[i].classList.add("hideEventBtn");
+        }
+      }
+    }
+  }
+  // loop over the events array
+  for (var i=0; i<events.length; i++) {
+    // check if there are interested people
+    if (events[i].interested) {
+      // if yes, loop over interested array
+      for (var j=0; j<events[i].interested.length; j++) {
+        // check if our current user is one of the interested people
+        if (currentUser[0] === events[i].interested[j]){
+          att[i].classList.remove("hideEventBtn");
+          unAtt[i].classList.add("hideEventBtn");
+          int[i].classList.add("hideEventBtn");
+          notInt[i].classList.remove("hideEventBtn");
+        }
+      }
+    }
 
   
-  //attend button: add functionality (push userID to attendees array of event and push eventID to attendedEvents array of user + change the visibility of the buttons)  
+//attend button: add event listener functionality (push userID to attendees array of event and push eventID to attendedEvents array of user + change the visibility of the buttons)  
 //Alternative: load data-set into button as an atrribute (hence, insert the event object which applies to specific button into button and access needed properties that way) - Problem: could not parse the data-set
-for (i=0; i < att.length; i++) {
+for (var i=0; i < att.length; i++) {
   att[i].addEventListener('click', function(e) {
     let event = e.target.name;
-    console.log(event)
-    for (i=0; i<events.length; i++) {
+    for (var i=0; i<events.length; i++) {
+      // check if the button ID equals the event ID AND the event is not fully booked
       if (event === events[i].eventID && events[i].attendees.length >= events[i].maxPart) 
         {alert('Sorry, the event is booked out')}
+        // check if the button ID equals the event ID AND if the event is not fully booked
       else if (event === events[i].eventID && events[i].attendees.length < events[i].maxPart) {
-          for (i=0; i<users.length; i++) {
+          for (var i=0; i<users.length; i++) {
+            // loop over users array to find current user
             if (currentUser[0] === users[i].ID) {
+              // push the event ID in attEvents array of user
               users[i].attEvents.push(event);
+              // upload users array to local storage
               localStorage.setItem("users", JSON.stringify(users));
             }
           }
+          // loop over events array
           for (i=0; i<events.length; i++) {
+            // find the respective event
             if (event === events[i].eventID) {
+              // push the user ID of currentUser in attendees array
               events[i].attendees.push(currentUser[0]);
+              // upload to local storage
               localStorage.setItem('events', JSON.stringify(events));
             }
           }
-            att[event].style.display = 'none';
-            unAtt[event].style.display = 'inline';
-            int[event].style.display = 'none';
-            unInt[event].style.display = 'none';
+            // manipulate buttons accordingly
+            att[event].classList.add("hideEventBtn");
+            unAtt[event].classList.remove("hideEventBtn");
+            int[event].classList.add("hideEventBtn");
+            notInt[event].classList.add("hideEventBtn");
         } 
       }    
     })
   }
 
+// loop over all unattend buttons and add event listener that on click removes
+// event id from atteEvents array in user object
+// and removes user id from attendees array in event object
 for (i=0; i < unAtt.length; i++) {
 unAtt[i].addEventListener('click', function(e) {
   let event = e.target.name;
-  for (i=0; i<users.length; i++) {
+  // loop over users array
+  for (var i=0; i<users.length; i++) {
+    // find current user in users array
     if (currentUser[0] === users[i].id) {
+      // remove the event ID from attEvents array in users object
       users[i].attEvents.pop(event);
+      // upload to local storage
       localStorage.setItem("users", JSON.stringify(users));
     }
   }
-  for (i=0; i<events.length; i++) {
+  // loop over events array
+  for (var i=0; i<events.length; i++) {
+    // find our event in events array
     if (event === events[i].eventID) {
+      // delete the user ID from the attendees array in the event object
       events[i].attendees.pop(currentUser[0]);
+      // upload to local storage
       localStorage.setItem('events', JSON.stringify(events));
     }
   }
-    att[event].style.display = 'inline';
-    unAtt[event].style.display = 'none';
-    int[event].style.display = 'inline';
-    unInt[event].style.display = 'none';
+  // manipulate buttons to show only relevant buttons
+    att[event].classList.remove("hideEventBtn");
+    unAtt[event].classList.add("hideEventBtn");
+    int[event].classList.remove("hideEventBtn");
+    notInt[event].classList.add("hideEventBtn");
   
 })
 }
 
-for (i=0; i < int.length; i++) {
+// add an event listener to all interested buttons that on click
+// pushes the event ID to the intEvents array of our user object
+// AND pushes our user ID to the interested array of the events object
+// loop over all int buttons
+for (var i=0; i < int.length; i++) {
+  // add an event listener to all of them
 int[i].addEventListener('click', function(e) {
   let event = e.target.name;
-  for (i=0; i<users.length; i++) {
+  // loop over the users array
+  for (var i=0; i<users.length; i++) {
+    // find our current user
     if (currentUser[0] === users[i].id) {
+      // push the event ID to intEvents array of user object
       users[i].intEvents.push(event);
+      // upload to local storage
       localStorage.setItem("users", JSON.stringify(users));
     }
   }
+  // loop over events array
   for (i=0; i<events.length; i++) {
+    // find our event
     if (event === events[i].eventID) {
+      // push the user ID of current User to the interested array of the events object
       events[i].interested.push(currentUser[0]);
+      // upload events array to local storage
       localStorage.setItem('events', JSON.stringify(events));
     }
   }
-    att[event].style.display = 'none';
-    unAtt[event].style.display = 'none';
-    int[event].style.display = 'none';
-    unInt[event].style.display = 'inline';
+  // manipulate visability of respective buttons
+    att[event].classList.remove("hideEventBtn");
+    unAtt[event].classList.add("hideEventBtn");
+    int[event].classList.add("hideEventBtn");
+    notInt[event].classList.remove("hideEventBtn");
 })
 }
 
-for (i=0; i < unInt.length; i++) {
-unInt[i].addEventListener('click', function(e) {
+// loop over all notInterested buttons and add event listener that on click removes
+// event id from intEvents array in user object
+// and removes user id from interested array in event object
+// loop over unInterested buttons
+for (var i=0; i < notInt.length; i++) {
+  // add event click listener to each of them
+notInt[i].addEventListener('click', function(e) {
   let event = e.target.name;
+  // loop over users array
   for (i=0; i<users.length; i++) {
+    // find current user in users array
     if (currentUser[0] === users[i].ID) {
+      // remove the event ID from intEvents array of user object
       users[i].intEvents.pop(event);
+      // upload to local storage
       localStorage.setItem("users", JSON.stringify(users));
     }
   }
+  // loop over events array
   for (i=0; i<events.length; i++) {
+    // find our respective event
     if (event === events[i].eventID) {
+      // remove user ID from interested array of event object
       events[i].interested.pop(currentUser[0]);
+      // upload to local storage
       localStorage.setItem('events', JSON.stringify(events));
     }
   }
-    att[event].style.display = 'inline';
-    unAtt[event].style.display = 'none';
-    int[event].style.display = 'inline';
-    unInt[event].style.display = 'none';
+  // manipulate button visability accordingly
+    att[event].classList.remove("hideEventBtn");
+    unAtt[event].classList.add("hideEventBtn");
+    int[event].classList.remove("hideEventBtn");
+    notInt[event].classList.add("hideEventBtn");
   
 })
 }
 
-// set visibility of attend buttons when entering page and user attends or is interested
 
-for (var i=0; i< events.length; i++) {
-    if (events[i].attendees.length) {
-      for (var j=0; j<events[i].attendees.length; j++) {
-        if (currentUser[0] === events[i].attendees[j]){
-          att[i].style.display = 'none';
-          unAtt[i].style.display = 'inline';
-          int[i].style.display = 'none';
-          unInt[i].style.display = 'none';
-        }
-      }
-    }
-  }
-  for (var i=0; i<events.length; i++) {
-    if (events[i].interested) {
-      for (var j=0; j<events[i].interested.length; j++) {
-        if (currentUser[0] === events[i].interested[j]){
-          att[i].style.display = 'none';
-          unAtt[i].style.display = 'none';
-          int[i].style.display = 'none';
-          unInt[i].style.display = 'inline';
-        }
-      }
-    }
 
   
   // when the link (=click on name of event) to an event is clicked, the event id is pushed to the array currentEvent, stored in the local Storage and the user is redirected to the event Profile -> on the event Profile the Data gets filled out automatically based on the entry of the id in the currentEvent array
