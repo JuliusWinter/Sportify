@@ -35,7 +35,6 @@ else{
   logoutBtn.style.display = "none";
 }
 
-
 // select all the input and form elements in the html page
 var userNameEdit = document.getElementById("userName");
 var userFirstNameEdit = document.getElementById("userFirstName");
@@ -45,17 +44,17 @@ var userGenderEdit = document.getElementById("userGender");
 var userSloganEdit = document.getElementById("userSlogan");
 var userSaveButton1 = document.getElementById("userFormEdit1");
 var userSaveButton2 = document.getElementById("userFormEdit2");
-
 var userOldPassword = document.getElementById("oldPassword");//check currentUser password match
 var userNewPassword = document.getElementById("newPassword");//Entry must match with newConPassword
 var userNewConPassword = document.getElementById("newConPassword");//newConPassword
 var userNewEmail = document.getElementById("newEmail");//place old email
 var userNewConEmail = document.getElementById("newConEmail");//match this email with email above
 
-
 // change to form name, will need a second button for password form
 // var userSaveButton2 = document.getElementById("userFormEdit2");
 // set the value of each element to the respective value of our current event
+
+// CHANGE: FOR LOOP OVER USERS ARRAY --> MATCH WITH CURRENTUSER[0] === USERS[i].ID
 
 userNameEdit.value = currentUser[0].userName;
 userFirstNameEdit.value = currentUser[0].firstName;
@@ -63,6 +62,7 @@ userLastNameEdit.value = currentUser[0].lastName;
 userBirthdayEdit.value = currentUser[0].birthday;
 userGenderEdit.value = currentUser[0].gender;
 //Set up max character limit for slogan in HTML
+// CHANGE: FOR LOOP OVER USERS ARRAY --> MATCH WITH CURRENTUSER[0] === USERS[i].ID
 if(currentUser[0].slogan){
   userSloganEdit.value = currentUser[0].slogan;
 }
@@ -72,6 +72,7 @@ userNewEmail.value = currentUser[0].email;
 userSaveButton1.addEventListener("submit", function(event){  // Prevent the page to automatically push the input into the URL and prevent the page to reload
   event.preventDefault();
   // loop over users array and check for the current user
+  // CHANGE: FOR LOOP OVER USERS ARRAY --> MATCH WITH CURRENTUSER[0] === USERS[i].ID
   for(var i = 0; i < users.length; i++){
       if(currentUser[0].ID === users[i].ID){
         console.log(currentUser[0].ID);
@@ -128,6 +129,8 @@ btnProfileEdit.addEventListener("click", function(){
   // Prevent the page to automatically push the input into the URL and prevent the page to reload
   event.preventDefault();
   // loop over users array and check if credentials match a registered user
+  // WHY ARE YOU LOOPING OVER THE USERS ARRAY IF YOU DONT WORK WITH USERS[i]?????
+  // CHANGE: FOR LOOP OVER USERS ARRAY --> MATCH WITH CURRENTUSER[0] === USERS[i].ID
   for(var i = 0; i < users.length; i++){
     var pass1 = userNewPassword.value;
     var pass2 = userNewConPassword.value;
@@ -136,9 +139,9 @@ btnProfileEdit.addEventListener("click", function(){
     var oPassEntry = userOldPassword.value;
     var oPass = currentUser[0].password;
 
-      if(pass1 == pass2 && eml1 == eml2 && oPassEntry== oPass){
-        document.getElementById("result").innerHTML = "Thank you "+ userFirstNameEdit.value;
-        return false;
+    if(pass1 == pass2 && eml1 == eml2 && oPassEntry== oPass){
+      document.getElementById("result").innerHTML = "Thank you "+ userFirstNameEdit.value;
+      return false;
     }
     document.getElementById("result").innerHTML = "Please try again";
     return false;

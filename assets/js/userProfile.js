@@ -99,10 +99,9 @@ btnInterests.addEventListener("click", function(){
 });
 
 
-
+// CHANGE: FOR LOOP OVER USERS ARRAY --> MATCH WITH CURRENTUSER[0] === USERS[i].ID
 // Access first name of first User and last name of first User
 document.getElementById("localUserName").innerHTML = currentUser[0].userName + " is in the game";
-
 // Access location from reg form, not implemented yet :::  currentUser[0].location;
 document.getElementById("userLocation").innerHTML = currentUser[0].location;
 // this element will come from user typing in slogon
