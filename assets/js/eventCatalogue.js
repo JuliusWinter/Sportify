@@ -40,7 +40,7 @@ else{
 
 //events exists, event date in future, event public
 function createHTML (event) {
-  return "<li id='"+event.eventID+"'>" +
+  return "<li class='eventItem' id='"+event.eventID+"'>" +
           "<div class='eventContainer'>" +
                 "<div class='upperInfo'>" +
                         "<div class='flexDate'>"+
@@ -469,7 +469,7 @@ var redirectEventProfile = document.getElementsByClassName("linkEventPage");
 // ------------------ VALID START ------------------ 
 // create a function that includes everything related to filtering
 // function filtering(){
-  var category = document.getElementsByClassName('sportType');
+var category = document.getElementsByClassName('sportType');
 
 //define a function that searches for event categories and displays only applicable events//
 function catSearch (){
@@ -538,13 +538,54 @@ for(var i = 0; i < sports.length; i++) {
 }
 
 
-// var slider = document.getElementById("myRange");
-// var output = document.getElementById("demo");
-// output.innerHTML = slider.value; // Display the default slider value
-
-// // Update the current slider value (each time you drag the slider handle)
-// slider.oninput = function() {
-//     output.innerHTML = this.value;
-// }
-// }
+// function filterFunction() {
   
+  
+  
+  function evTypeFilter () {
+    var item = document.getElementsByClassName('eventItem');
+    var type = document.getElementsByClassName('eventType');
+    var evTypeCB = document.getElementsByClassName('eventTypeCB');
+    var trainingCB = document.getElementById('trainingEvent');
+    var courseCB = document.getElementById('courseEvent');
+
+    if (trainingCB.checked == true && courseCB.checked != true) {
+        for (var i=0; i<item.length; i++) {
+          for (var j=0; j<type.length; j++) {
+            if (type[j].innerHTML === trainingCB.value) {
+              item[j].style.display = ''}
+            else {item[j].style.display = 'none'}
+          }
+        } 
+      }
+    else if (trainingCB.checked != true && courseCB.checked == true) {
+      for (var i=0; i<item.length; i++) {
+        for (var j=0; j<type.length; j++) {
+          if (type[j].innerHTML === courseCB.value) {
+            item[j].style.display = ''}
+          else {item[j].style.display = 'none'}
+        }
+      } 
+    }
+    else if (evTypeCB.checked == true || evTypeCB.checked != true) {
+      for (var i=0; i<item.length; i++) {
+        item[i].style.display = ''}
+    }
+  }
+
+    
+        // else if (trainingCB.checked != true && courseCB.checked == true) {
+        //   for (i=0; i<events[i].length; i++) {
+        //     if (events[i].type == 'course') {
+        //       events[i].style.display = 'block'
+        //     } else {events[i].style.display = 'none'}
+        //   }     
+        // }
+        // else if (trainingCB.checked == true && courseCB.checked == true || trainingCB.checked != true && courseCB.checked != true) {
+        //   for (i=0; i<events[i].length; i++) {
+        //     events[i].style.display = 'block'}  
+        // }
+     
+
+  // function clearFunction() {
+  // }
