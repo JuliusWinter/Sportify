@@ -94,6 +94,7 @@ function createHTML (Event) {
 
 var content = "";
 for(var i =0; i<events.length; i++){
+
 content += createHTML(events[i]);
 }
 
