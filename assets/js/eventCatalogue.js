@@ -1,4 +1,4 @@
- //get the event array, that contains all event objects, from local storage and parse it//
+ //get the event array, that contains all event objects, from local storage and parse it
 var events = JSON.parse(localStorage.getItem("events"));
 // get current user from local storage
 var currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -38,13 +38,9 @@ else{
   document.location.href = "index.html";
 }
 
-// if (events.length != 0) {
-//   filtering()}
-// else {eC()}
+//only create event catalogue if events.length > 0
+if (events) {
 
-
-//create a function that includes everything related to display of events from local storage
-// function eC () {
 //display events of certain condition that are stored in local storage in event catalogue
 //loop over array that contains all events that are stored in local storage// 
 for(var i = 0; i < events.length; i++) {
@@ -80,12 +76,12 @@ for(var i = 0; i < events.length; i++) {
       naming.appendChild(newText);
       
       var loc = document.createElement('DIV');
-      loc.setAttribute('class', 'left');
-      var locContent = document.createTextNode('Location: ' + catItem.location.formatted_address);
+      loc.setAttribute('class', 'loc');
+      var locContent = document.createTextNode(catItem.location.formatted_address);
       loc.appendChild(locContent);
 
       var sportType = document.createElement('DIV');
-      sportType.setAttribute('class', 'left');
+      sportType.setAttribute('class', 'sportType');
       var sportTypeContent = document.createTextNode(catItem.sportType);
       sportType.appendChild(sportTypeContent);
 
@@ -130,11 +126,13 @@ for(var i = 0; i < events.length; i++) {
       attButtonContent = document.createTextNode("Attend Event");
       attButton.appendChild(attButtonContent);
 
+      //hide from default
       var unAttButton = document.createElement('button');
       unAttButton.setAttribute('class', 'unAttButton');
       unAttButton.setAttribute('name', catItem.eventID);
       unAttButtonContent = document.createTextNode("Unattend Event");
       unAttButton.appendChild(unAttButtonContent);
+      unAttButton.style.display = 'none';
 
       var intButton = document.createElement('button');
       intButton.setAttribute('class', 'intButton');
@@ -142,11 +140,13 @@ for(var i = 0; i < events.length; i++) {
       intButtonContent = document.createTextNode("Interested");
       intButton.appendChild(intButtonContent);
 
+      //hide from default
       var unIntButton = document.createElement('button');
       unIntButton.setAttribute('class', 'unIntButton');
       unIntButton.setAttribute('name', catItem.eventID);
       unIntButtonContent = document.createTextNode("Uninterest");
       unIntButton.appendChild(unIntButtonContent);
+      unIntButton.style.display = 'none';
 
       // CREATE CAPACITY DIV WITH COLOURED CIRCLE ACCORDING TO CAPACITY STATUS//
       // var capacity = document.createElement('div');
@@ -166,7 +166,6 @@ for(var i = 0; i < events.length; i++) {
     divContainer.appendChild(unAttButton);
     divContainer.appendChild(intButton);
     divContainer.appendChild(unIntButton);
-    
 
     //add all divContainers to the event catalogue (=div('catalogueItems') in HTML //
     var element = document.getElementById('catalogueItems');
@@ -174,151 +173,131 @@ for(var i = 0; i < events.length; i++) {
   }
 }
 
-
 // get all type of buttons by ClassNames
   var att = document.getElementsByClassName('attButton');
   var unAtt = document. getElementsByClassName('unAttButton');
   var int = document.getElementsByClassName('intButton');
   var unInt = document.getElementsByClassName('unIntButton');
 
-// set visibility of attend buttons when entering page
-for (i=0; i<events.length; i++) {
-  if (currentUser[0].id == events[i].attendees[i]) {
-    let ev = events[i].eventID;
-    for (i=0; i<att.length; i++) {
-      if (ev == att[i].name) {
-        att[i].style.display = 'none';
-        unAtt[i].style.display = 'inline';
-        int[i].style.display = 'none';
-        unInt[i].style.display = 'none';
-      }
-    }
-  }
-}
-  
-
-//attend button: add functionality (push userID to attendees array of event and push eventID to attendedEvents array of user + change the visibility of the buttons)  
+  //attend button: add functionality (push userID to attendees array of event and push eventID to attendedEvents array of user + change the visibility of the buttons)  
 //Alternative: load data-set into button as an atrribute (hence, insert the event object which applies to specific button into button and access needed properties that way) - Problem: could not parse the data-set
-  for (i=0; i < att.length; i++) {
-    att[i].addEventListener('click', function(e) {
-      let event = e.target.name;
-      for (i=0; i<users.length; i++) {
-        if (currentUser[0].id === users[i].id) {
-          users[i].attEvents.push(event);
-          localStorage.setItem("users", JSON.stringify(users));
-        }
-      }
-      for (i=0; i<events.length; i++) {
-        if (event === events[i].eventID) {
-          // console.log(e.target.name);
-          events[i].attendees.push(currentUser[0].ID);
-          localStorage.setItem('events', JSON.stringify(events));
-        }
-      }
-        att[event].style.display = 'none';
-        unAtt[event].style.display = 'inline';
-        int[event].style.display = 'none';
-        unInt[event].style.display = 'none';
-  })
-}
-
-for (i=0; i < unAtt.length; i++) {
-  unAtt[i].addEventListener('click', function(e) {
+for (i=0; i < att.length; i++) {
+  att[i].addEventListener('click', function(e) {
     let event = e.target.name;
     for (i=0; i<users.length; i++) {
       if (currentUser[0].id === users[i].id) {
-        users[i].attEvents.pop(event);
+        users[i].attEvents.push(event);
         localStorage.setItem("users", JSON.stringify(users));
       }
     }
     for (i=0; i<events.length; i++) {
       if (event === events[i].eventID) {
-        events[i].attendees.pop(currentUser[0].ID);
+        events[i].attendees.push(currentUser[0].ID);
         localStorage.setItem('events', JSON.stringify(events));
       }
     }
-      att[event].style.display = 'inline';
-      unAtt[event].style.display = 'none';
-      int[event].style.display = 'inline';
+      att[event].style.display = 'none';
+      unAtt[event].style.display = 'inline';
+      int[event].style.display = 'none';
       unInt[event].style.display = 'none';
-    
+})
+}
+
+for (i=0; i < unAtt.length; i++) {
+unAtt[i].addEventListener('click', function(e) {
+  let event = e.target.name;
+  for (i=0; i<users.length; i++) {
+    if (currentUser[0].id === users[i].id) {
+      users[i].attEvents.pop(event);
+      localStorage.setItem("users", JSON.stringify(users));
+    }
+  }
+  for (i=0; i<events.length; i++) {
+    if (event === events[i].eventID) {
+      events[i].attendees.pop(currentUser[0].ID);
+      localStorage.setItem('events', JSON.stringify(events));
+    }
+  }
+    att[event].style.display = 'inline';
+    unAtt[event].style.display = 'none';
+    int[event].style.display = 'inline';
+    unInt[event].style.display = 'none';
+  
 })
 }
 
 for (i=0; i < int.length; i++) {
-  int[i].addEventListener('click', function(e) {
-    let event = e.target.name;
-    for (i=0; i<users.length; i++) {
-      if (currentUser[0].id === users[i].id) {
-        users[i].intEvents.push(event);
-        localStorage.setItem("users", JSON.stringify(users));
-      }
+int[i].addEventListener('click', function(e) {
+  let event = e.target.name;
+  for (i=0; i<users.length; i++) {
+    if (currentUser[0].id === users[i].id) {
+      users[i].intEvents.push(event);
+      localStorage.setItem("users", JSON.stringify(users));
     }
-    for (i=0; i<events.length; i++) {
-      if (event === events[i].eventID) {
-        events[i].interested.push(currentUser[0].ID);
-        localStorage.setItem('events', JSON.stringify(events));
-      }
+  }
+  for (i=0; i<events.length; i++) {
+    if (event === events[i].eventID) {
+      events[i].interested.push(currentUser[0].ID);
+      localStorage.setItem('events', JSON.stringify(events));
     }
-      att[event].style.display = 'inline';
-      unAtt[event].style.display = 'none';
-      int[event].style.display = 'none';
-      unInt[event].style.display = 'inline';
+  }
+    att[event].style.display = 'none';
+    unAtt[event].style.display = 'none';
+    int[event].style.display = 'none';
+    unInt[event].style.display = 'inline';
 })
 }
 
 for (i=0; i < unInt.length; i++) {
-  unInt[i].addEventListener('click', function(e) {
-    let event = e.target.name;
-    for (i=0; i<users.length; i++) {
-      if (currentUser[0].id === users[i].id) {
-        users[i].intEvents.pop(event);
-        localStorage.setItem("users", JSON.stringify(users));
-      }
+unInt[i].addEventListener('click', function(e) {
+  let event = e.target.name;
+  for (i=0; i<users.length; i++) {
+    if (currentUser[0].id === users[i].id) {
+      users[i].intEvents.pop(event);
+      localStorage.setItem("users", JSON.stringify(users));
     }
-    for (i=0; i<events.length; i++) {
-      if (event === events[i].eventID) {
-        events[i].interested.pop(currentUser[0].ID);
-        localStorage.setItem('events', JSON.stringify(events));
-      }
+  }
+  for (i=0; i<events.length; i++) {
+    if (event === events[i].eventID) {
+      events[i].interested.pop(currentUser[0].ID);
+      localStorage.setItem('events', JSON.stringify(events));
     }
-      att[event].style.display = 'inline';
-      unAtt[event].style.display = 'none';
-      int[event].style.display = 'inline';
-      unInt[event].style.display = 'none';
-    
+  }
+    att[event].style.display = 'inline';
+    unAtt[event].style.display = 'none';
+    int[event].style.display = 'inline';
+    unInt[event].style.display = 'none';
+  
 })
 }
 
-  //     localStorage.setItem("currentEvent", JSON.stringify(currentEvent));
-  //     document.location.href = "eventProfile.html";
-  //   });
-  //   })
-  // }
-  // for (i=0; i < att.length; i++) {
-  //   att[i].addEventListener('click', function(e) {
+// set visibility of attend buttons when entering page and user attends or is interested
 
-  //     //let event = e.target.dataset
-  //     let tempEvent = JSON.parse(e.target.dataset)
-  //     console.log(tempEvent)
-      //console.log(tempEvent)
-
-      //console.log(event.name)
-  //   })
-  // }
-
-//   function attending () {
-//     catItem.attendees.push(currentUser.id);
-//     catItem.attEvents.push(catItem.eventID);
-//     localStorage.setItem("events", JSON.stringify(events));
-//     localStorage.setItem("users", JSON.stringify(users));
-//     att[i].style.visibility = 'hidden';
-//     unAtt[i].style.visibility = 'visibile';
-//     int[i].style.visibility = 'hidden';
-//     unInt[i].style.visibility = 'hidden';
-// }
-
-
+for (var i=0; i< events.length; i++) {
+    if (events[i].attendees.length) {
+      for (var j=0; j<events[i].attendees.length; j++) {
+        if (currentUser[0].ID === events[i].attendees[j]){
+          att[i].style.display = 'none';
+          unAtt[i].style.display = 'inline';
+          int[i].style.display = 'none';
+          unInt[i].style.display = 'none';
+        }
+      }
+    }
+  }
+  for (var i=0; i<events.length; i++) {
+    if (events[i].interested) {
+      for (var j=0; j<events[i].interested.length; j++) {
+        if (currentUser[0].ID === events[i].interested[j]){
+          att[i].style.display = 'none';
+          unAtt[i].style.display = 'none';
+          int[i].style.display = 'none';
+          unInt[i].style.display = 'inline';
+        }
+      }
+    }
+  }
+  
   // when the link (=click on name of event) to an event is clicked, the event id is pushed to the array currentEvent, stored in the local Storage and the user is redirected to the event Profile -> on the event Profile the Data gets filled out automatically based on the entry of the id in the currentEvent array
   // Give the a tag a class
   // select that a with document.getElementByClassName
@@ -336,7 +315,7 @@ var redirectEventProfile = document.querySelectorAll(".linkEventPage");
         document.location.href = "eventProfile.html";
     });
   }
-
+}
   
   // select the a with document.getElementByClassName
   // var redEP = document.getElementsByClassName("linkEventPage");
@@ -371,9 +350,9 @@ var redirectEventProfile = document.querySelectorAll(".linkEventPage");
 //           localStorage.setItem("events", JSON.stringify(events));
 //           localStorage.setItem("users", JSON.stringify(users));
 //       }
-//   }
-//   }
-// })
+//      }
+//    }
+//  })
 // }
 
 // ALTERNATIVE APPROACH of creating events and displaying them in the event catalogue
@@ -406,51 +385,41 @@ var redirectEventProfile = document.querySelectorAll(".linkEventPage");
 
 // create a function that includes everything related to filtering
 // function filtering(){
+  var category = document.getElementsByClassName('sportType');
 
 //define a function that searches for event categories and displays only applicable events//
-function categorySearchFunction (){
+function catSearch (){
   //declare variables - getting values from search box//
-  let searchInputCat = document.getElementById('userCategoryInput').value.toUpperCase();
+  var searchInputCat = document.getElementById('userCategoryInput').value.toUpperCase();
   //Declare variables - getting values from the div elements
-  let catItems = document.getElementById('catalogueItems');
-  let events = catItems.getElementsByClassName('event');
+  var category = document.getElementsByClassName('sportType').innerHTML;
+  // console.log(category)
+  // for (i=0; i < category.length; i++) {
+  //   if(category[].includes(searchInputCat)){
+  //     events[i].style.display ="";
+  //   }else{
+  //     events[i].style.display ="none";
+  //   }
+  // }
+} 
 
-  //loop through the divs to search for elements, and hide those that do not match the search query//
-  for (var i=0; i<events.length; i++){
-    var cat = events[i].getElementsByClassName('sportCategory');
-  
-    if(cat[0].innerHTML.toUpperCase().includes(searchInputCat)){
-      events[i].style.display ="";
-    }else{
-      events[i].style.display ="none";
-    }
-  }
-}
 
-//define a function that searches for event categories and displays only applicable events//
-function locationSearchFunction (){
-  //declare variables - getting values from search box//
-  let searchInputLoc = document.getElementById('userLocationInput').value.toUpperCase();
-  //Declare variables - getting values from the div elements
-  let catItems = document.getElementById('catalogueItems');
-  let events = catItems.getElementsByClassName('event');
-
-  //loop through the divs to search for elements, and hide those that do not match the search query//
-  for (var i=0; i<events.length; i++){
-    var loc = events[i].getElementsByClassName('city');
-    
-    if(loc[0].innerHTML.toUpperCase().includes(searchInputLoc)){
-      events[i].style.display ="";
-    }else{
-      events[i].style.display ="none";
-    }
-  }
-}
+// //define a function that searches for locations and displays only applicable events//
+// function locSearch (){
+//   //declare variables - getting values from search box//
+//   var searchInputLoc = document.getElementById('userLocationInput').value.toUpperCase();
+//   //Declare variables - getting values from the div elements
+//   var locat = document.getElementsByClassName('loc');
+//   console.log(locat)
+//     if(locat[i].toUpperCase().includes(searchInputLoc)){
+//       events[i].style.display ="";
+//     }else{
+//       events[i].style.display ="none";
+//     }
+//   }
 
 //dropdown sport category selection 
 var coll = document.getElementsByClassName("collapsible");
-var i;
-
 for (i = 0; i < coll.length; i++) {
   coll[i].addEventListener("click", function() {
     this.classList.toggle("active");
@@ -463,8 +432,7 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 
-//create an function that creates a div, including a checkbox and an individual label for each array value
-
+//create a function that creates a div, including a checkbox and an individual label for each array value
 var sports = ['American Football', 'Athletics','Badminton','Basketball','Boxing ','Canoeing','Cricket','Cross-Fit','Cycling ','Dancing','Darts','Disability Sports','Diving','Fitness-Training','Football','Golf','Handball','Hiking','Hockey','Ice Hockey','Longboarding','Mixed Martial Arts','Modern Pentathlon','Motor Sports','Netball','Parkour','Rowing','Rugby','Running','Sailing','Shooting','Skateboarding','Skiing','Snooker','Snowboarding','Squash','Surfing','Swimming','Table Tennis','Tai Chi','Tennis','Triathlon','Tricking','Ultimate Frisbee','Volleyball','Weightlifting','Winter Sports','Wrestling','Yoga'];
 
 for(var i = 0; i < sports.length; i++) {
@@ -485,22 +453,6 @@ for(var i = 0; i < sports.length; i++) {
     element.appendChild(lab);
 }
 
-//define a function that searches for event categories and displays only applicable events//
-function catSearch (){
-  //declare variables - getting values from search box//
-  let searchInputCat = document.getElementById('categorySearch').value.toUpperCase();
-  //Declare variables - getting values from the div elements
-  let catItems = document.getElementById('content');
-  let category = document.getElementsByClassName('checkboxCat');
-
-    if(cat[i].toUpperCase().includes(searchInputCat)){
-      category[i].style.display ="";
-    }else{
-      category[i].style.display ="none";
-    }
-  }
-
-
 // var slider = document.getElementById("myRange");
 // var output = document.getElementById("demo");
 // output.innerHTML = slider.value; // Display the default slider value
@@ -510,3 +462,4 @@ function catSearch (){
 //     output.innerHTML = this.value;
 // }
 // }
+  

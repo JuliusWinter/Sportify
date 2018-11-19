@@ -22,7 +22,7 @@
                             <button id="editProfileTabBtn">Edit Your Profile</button>
                             <button id="editPasswordTabBtn">Change password & email</button>
                     </div>
-                    <form id="userFormEdit1">
+                    <form id="userFormEdit1" name="userFormEdit1">
                         <!-- FIND OUT HOW TO SAVE A PICTURE TO A LOCAL FOLDER AND SAFE THE PATH TO IT IN THE OBJECT!!! -->
                         <!-- <input type="file" placeholder="Event Picture" id="eventPic" class="formelement"> -->
                         <label for="userUserName"></label>
@@ -48,17 +48,17 @@
                         <br>
                         <button class="formelement" id="submit1">Save Your Changes</button>
                     </form>  
-                    <form id="userFormEdit2">   
+                    <form id="userFormEdit2" name="userFormEdit2">   
                             <!-- FIND OUT HOW TO SAVE A PICTURE TO A LOCAL FOLDER AND SAFE THE PATH TO IT IN THE OBJECT!!! -->
                             <!-- Form element for old password insert, in js, check if equal to existing password, loop and === -->
                             <label for="oldPassword"></label>
-                            <input type="text" placeholder="Enter your old password here..." id="oldPassword" class="formelement">
+                            <input type="password" placeholder="Enter your old password here..." name="oldPass" id="oldPassword" class="formelement">
                             <!-- form element for new password  -->
                             <label for="newPassword"></label>
-                            <input type="password" name="regPassword" id="newPassword" class="formelement" placeholder="Enter your new password..." 
+                            <input type="password" name="newPass" id="newPassword" class="formelement" placeholder="Enter your new password..." 
                              required/>
                             <label for="newConPassword"></label>
-                            <input type="password" name="regConPassword" id="newConPassword" class="formelement" placeholder="Confirm your new password..." required/>
+                            <input type="password" name="newConPass" id="newConPassword" class="formelement" placeholder="Confirm your new password..." required/>
                         
                             <label for="editEmail"></label>
                             <input type="email" name="regEmail" id="newEmail" class="formelement" placeholder="Enter your new Email..." required/>
@@ -67,7 +67,7 @@
                         
                             <br>
                             <button class="formelement" id="submit2">Save Password Changes</button>
-                            <p id="result">" "</p>
+                            <p id="result"> </p>
                             
                     </form>
             </div> 
