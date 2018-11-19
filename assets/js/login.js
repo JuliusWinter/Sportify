@@ -35,11 +35,11 @@ document.getElementById("loginForm").addEventListener("submit", function(event){
     for(var i = 0; i < users.length; i++){
         if(event.target.userName.value === users[i].userName && event.target.password.value === window.atob(users[i].password)){
             // safe current user to a var
-            var current = users[i];
+            var currentUserID = users[i].ID;
             // if true change isLoggedIn attribute to true
             users[i].isLoggedIn = true;
             // push user to currentUser array
-            currentUser.push(current);
+            currentUser.push(currentUserID);
             // Safe stringified currentUser array to local storage
             localStorage.setItem("currentUser", JSON.stringify(currentUser));
             // redirect to user profile
