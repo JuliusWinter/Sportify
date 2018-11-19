@@ -54,6 +54,7 @@ function createHTML (event) {
                                 "<div class='timeLocation'>"+
                                         "<div class='time box'>"+event.time+"</div>"+
                                         "<div class='dot box'>·</div>"+
+                                        // Adjust location --> display name
                                         "<div class='location box loc'>"+event.location.formatted_address+"</div>"+
                                         "<div class='sportEventType'>"+
                                                 "<div class='sportType box'>"+event.sportType+"</div>"+
