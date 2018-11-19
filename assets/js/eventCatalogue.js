@@ -39,24 +39,26 @@ else{
 }
 
 //events exists, event date in future, event public
-function createHTML (Event) {
-  return "<li id='"+Event.eventID+"'>" +
-        "<div class='eventContainer event'>" +
+function createHTML (event) {
+  return "<li id='"+event.eventID+"'>" +
+          "<div class='eventContainer'>" +
                 "<div class='upperInfo'>" +
                         "<div class='flexDate'>"+
-                                "<div class='box date'>"+Event.date+"</div>"+
-                                "<div class='box day'>"+Event.date+"</div>"+
+                                // "<div class='box date'>"+event.date+"</div>"+
+                                // "<div class='box day'>"+event.date+"</div>"+
+                                "<div class='box date'>NOV 30</div>"+
+                                "<div class='box day'>THU</div>"+
                         "</div>"+
                         "<div class='middleEventInfo'>"+
-                                "<div class='box eventName'><a class='linkEventPage' id='"+Event.name+"'</div>"+
+                                "<div class='box eventName'><a class='linkEventPage' href='eventProfile.html' name='"+event.eventID+"'>"+event.name+"</a></div>"+
                                 "<div class='timeLocation'>"+
-                                        "<div class='time box'>"+Event.time+"</div>"+
+                                        "<div class='time box'>"+event.time+"</div>"+
                                         "<div class='dot box'>·</div>"+
-                                        "<div class='location box loc'>"+Event.location.formatted_address+"</div>"+
+                                        "<div class='location box loc'>"+event.location.formatted_address+"</div>"+
                                         "<div class='sportEventType'>"+
-                                                "<div class='sportType box'>"+Event.sportType+"</div>"+
+                                                "<div class='sportType box'>"+event.sportType+"</div>"+
                                                 "<div class='dot box'>·</div>"+
-                                                "<div class='eventType box'>"+Event.type+"</div>"+
+                                                "<div class='eventType box'>"+event.type+"</div>"+
                                         "</div>"+
                                 "</div>"+
                         "</div>"+
@@ -64,27 +66,27 @@ function createHTML (Event) {
                 "<div class='lowerInfo'>"+
                         "<div class='buttonGroup'>"+
                                 "<div class='attendBtnDiv'>"+
-                                        "<button class='box attend attButton' name='"+Event.eventID+"'>attend</button>"+
+                                        "<button class='box attend attButton' name='"+event.eventID+"'>attend</button>"+
                                 "</div>"+
                                 "<div class='AttendBtnDiv'>"+
-                                        "<button class='box attend unAttButton' name='"+Event.eventID+"'>unattend</button>"+
+                                        "<button class='box attend unAttButton' name='"+event.eventID+"'>unattend</button>"+
                                 "</div>"+
                                 "<div class='interestedBtnDiv'>"+
-                                        "<button class='box interested intButton' name='"+Event.eventID+"'>interested</button>"+
+                                        "<button class='box interested intButton' name='"+event.eventID+"'>interested</button>"+
                                 "</div>"+
                                 "<div class='interestedBtnDiv'>"+
-                                        "<button class='box interested unIntButton' name='"+Event.eventID+"'>no interest</button>"+
+                                        "<button class='box interested unIntButton' name='"+event.eventID+"'>no interest</button>"+
                                 "</div>"+
                         "</div>"+
                         "<div class='eventDetails'>"+
                                 "<div class='maxAttendees'>"+
-                                        "<div class='spotsLeft box capacity'>Places left: "+Event.maxPart - Event.attendees.length+"</div>"+
+                                        "<div class='spotsLeft box capacity'>Places left: "+ (event.maxPart - event.attendees.length)+"</div>"+
                                 "</div>"+
                                 "<div class='difficultyLvlDiv'>"+
-                                        "<div class='box difficulty'>"+Event.difficulty+"</div>"+
+                                        "<div class='box difficulty'>"+event.difficulty+"</div>"+
                                 "</div>"+
                                 "<div class='price'>"+
-                                        "<div class='box priceTag'>Price: "+Event.price+" kr.</div>"+
+                                        "<div class='box priceTag'>Price: "+event.price+" kr.</div>"+
                                 "</div>"+
                         "</div>"+
                 "</div>"+
