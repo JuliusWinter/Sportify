@@ -27,7 +27,6 @@
       <h1 id='eventCatalogueh1'>Event Catalogue</h1>
 <!--create a div that includes two search fields to search for city and sport category; only one search item at a time per search field-->
       <div id='searching'>
-            <input type="text" class="searchbarEC" id="userCategoryInput" onkeyup="catSearch()" placeholder="Search for a sport category here">
             <input type='text' class="searchbarEC" id="userLocationInput" onkeyup="locSearch()" placeholder='Search for a location here'> 
       </div>
 <!--create a div that includes all filter parameters except from two top search fields-->
@@ -49,20 +48,32 @@
                         <div>
                               <legend>Choose Sport Categories</legend>
                         </div>
+                        <button id='clearButton' onclick='uncheckSpCat()'>Clear Selection</button>
                         <button id="collapsible" onclick='collapse()'>List of Sport categories</button>
                         <div id="collContent" class="hideElement">
                         </div>
-                        <button id='clearButton' onclick='clearFunction()'>Clear Sport Type Selection</button>
+                        
                   </fieldset>
                   <fieldset>
                         <div>
-                              <legend>Choose max. Price</legend>
+                              <legend>Choose Price Range</legend>
                         </div>
-                        <div id='slidecontainer'>
-                              <input type="range" min='0' max='100' value='100' class='slider' id='myRange'>
-                              <p id='sliderValue'></p>
+
+                        <!-- <div id='slidecontainer'>
+                              <input type="range" min='0' max='150' value='50' class='slider' id='myRange'>
+                              <p><span id='sliderValue'></span> kr.</p>
                         </div>
-                        
+                        -->
+                        <div id='priceFilterDiv'>
+                              <label for='minPriceFilter'>Minimum: </label>
+                              <input type='number' class="priceFilter" id="minPriceFilter" value=0 min=0 placeholder='Insert price minimum'>
+                              <span> kr.</span></p>
+                              <label for='minPriceFilter'>Maximum: </label>
+                              <input type='number' class="priceFilter" id="maxPriceFilter" min=0 placeholder='Insert price maximum'>
+                              <span> kr.</span>
+                              </p>
+                        </div>
+
                   </fieldset>
                         <button id='filterButton' onclick='filterFunction()'>Apply Filter</button>
       </div>
