@@ -44,10 +44,10 @@ function createHTML (event) {
           "<div class='eventContainer'>" +
                 "<div class='upperInfo'>" +
                         "<div class='flexDate'>"+
-                                // "<div class='box date'>"+event.date+"</div>"+
-                                // "<div class='box day'>"+event.date+"</div>"+
-                                "<div class='box date'>NOV 30</div>"+
-                                "<div class='box day'>THU</div>"+
+                                "<div class='box date'>"+event.date.month + " " + event.date.date+"</div>"+
+                                "<div class='box day'>"+event.date.day+"</div>"+
+                                // "<div class='box date'>NOV 30</div>"+
+                                // "<div class='box day'>THU</div>"+
                         "</div>"+
                         "<div class='middleEventInfo'>"+
                                 "<div class='box eventName'><a class='linkEventPage' name='"+event.eventID+"'>"+event.name+"</a></div>"+
