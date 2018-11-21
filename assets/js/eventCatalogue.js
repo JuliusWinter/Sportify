@@ -70,13 +70,13 @@ function createHTML (event) {
                                         "<button class='box attend eventBtn' name='"+event.eventID+"'>attend</button>"+
                                 "</div>"+
                                 "<div class='unAttendBtnDiv'>"+
-                                        "<button class='box unattend eventBtn hideEventBtn' name='"+event.eventID+"'>unattend</button>"+
+                                        "<button class='box unattend eventBtn hideElement' name='"+event.eventID+"'>unattend</button>"+
                                 "</div>"+
                                 "<div class='interestedBtnDiv'>"+
                                         "<button class='box interested eventBtn' name='"+event.eventID+"'>interested</button>"+
                                 "</div>"+
                                 "<div class='unInterestedBtnDiv'>"+
-                                        "<button class='box notinterested eventBtn hideEventBtn' name='"+event.eventID+"'>no interest</button>"+
+                                        "<button class='box notinterested eventBtn hideElement' name='"+event.eventID+"'>no interest</button>"+
                                 "</div>"+
                         "</div>"+
                         "<div class='eventDetails'>"+
@@ -87,7 +87,7 @@ function createHTML (event) {
                                         "<div class='box difficulty'>"+event.difficulty+"</div>"+
                                 "</div>"+
                                 "<div class='price'>"+
-                                        "<div class='box priceTag'>Price: "+event.price+" kr.</div>"+
+                                        "<div class='box priceTag'>"+event.price+" kr.</div>"+
                                 "</div>"+
                         "</div>"+
                 "</div>"+
@@ -124,130 +124,6 @@ if (events) {
 }
 
 
-
-
-
-
-// -------------------------------------------
-    //create a container (=div) for each event; purpose: store all relevant information (name, location, etc. ) in that container//
-//     var divContainer = document.createElement('DIV');
-//     divContainer.setAttribute('class', 'event');
-//     divContainer.setAttribute('id', catItem.eventID + 1);
-
-//       //create a div for each property of the event object that is of relevance for the user (leave out event id, creator id, user id's in attendees array, privacy setting and other automatically generated properties of the event object) 
-      
-//       var naming = document.createElement("a");
-//       // naming.setAttribute("href", 'eventProfile.html');
-//       naming.setAttribute('class', 'linkEventPage');
-//       naming.setAttribute('id', catItem.eventID);
-//       newText = document.createTextNode(catItem.name);
-//       naming.appendChild(newText);
-      
-//       var loc = document.createElement('DIV');
-//       loc.setAttribute('class', 'loc');
-//       var locContent = document.createTextNode(catItem.location.formatted_address);
-//       loc.appendChild(locContent);
-
-//       var sportType = document.createElement('DIV');
-//       sportType.setAttribute('class', 'sportType');
-//       var sportTypeContent = document.createTextNode(catItem.sportType);
-//       sportType.appendChild(sportTypeContent);
-
-//       var type = document.createElement('DIV');
-//       type.setAttribute('class', 'left');
-//       var typeContent = document.createTextNode('Event Type: ' + catItem.type);
-//       type.appendChild(typeContent);
-
-//       var date = document.createElement('DIV');
-//       date.setAttribute('class', 'left');
-//       var dateContent = document.createTextNode('Date: ' + catItem.date);
-//       date.appendChild(dateContent);
-
-//       var time = document.createElement('DIV');
-//       time.setAttribute('class', 'left');
-//       var timeContent = document.createTextNode('Time: ' + catItem.time);
-//       time.appendChild(timeContent);
-
-//       var difficulty = document.createElement('DIV');
-//       difficulty.setAttribute('class', 'right');
-//       var difficultyContent = document.createTextNode('Difficulty Level: ' + catItem.difficulty);
-//       difficulty.appendChild(difficultyContent);
-
-//       var maxPart = document.createElement('DIV');
-//       maxPart.setAttribute('class', 'right');
-//       var maxPartContent = document.createTextNode('Max. participants: ' + catItem.maxPart);
-//       maxPart.appendChild(maxPartContent);
-
-//       var frequency = document.createElement('DIV');
-//       frequency.setAttribute('class', 'right');
-//       var frequencyContent = document.createTextNode('Frequency: ' + catItem.frequency);
-//       frequency.appendChild(frequencyContent);
-
-//       var price = document.createElement('DIV');
-//       price.setAttribute('class', 'right');
-//       var priceContent = document.createTextNode('Price: ' + catItem.price + ' kr.');
-//       price.appendChild(priceContent);
-
-//       var attButton = document.createElement('button');
-//       attButton.setAttribute('class', 'attButton');
-//       attButton.setAttribute('name', catItem.eventID);
-//       attButtonContent = document.createTextNode("Attend Event");
-//       attButton.appendChild(attButtonContent);
-
-//       //hide from default
-//       var unAttButton = document.createElement('button');
-//       unAttButton.setAttribute('class', 'unAttButton');
-//       unAttButton.setAttribute('name', catItem.eventID);
-//       unAttButtonContent = document.createTextNode("Unattend Event");
-//       unAttButton.appendChild(unAttButtonContent);
-//       unAttButton.style.display = 'none';
-
-//       var intButton = document.createElement('button');
-//       intButton.setAttribute('class', 'intButton');
-//       intButton.setAttribute('name', catItem.eventID);
-//       intButtonContent = document.createTextNode("Interested");
-//       intButton.appendChild(intButtonContent);
-
-//       //hide from default
-//       var unIntButton = document.createElement('button');
-//       unIntButton.setAttribute('class', 'unIntButton');
-//       unIntButton.setAttribute('name', catItem.eventID);
-//       unIntButtonContent = document.createTextNode("Uninterest");
-//       unIntButton.appendChild(unIntButtonContent);
-//       unIntButton.style.display = 'none';
-
-//       var capacity = document.createElement('div');
-//       capacity.setAttribute('class', 'capacity');
-//       capacity.setAttribute('name', catItem.eventID);
-//       capacityContent = document.createTextNode(events[i].maxPart - events[i].attendees.length);
-//       capacity.appendChild(capacityContent);
-
-//     //add all previously created divs, that contain the property values of each event, to the div container //
-//     divContainer.appendChild(naming);
-//     divContainer.appendChild(sportType);
-//     divContainer.appendChild(type);
-//     divContainer.appendChild(loc);
-//     divContainer.appendChild(difficulty);
-//     divContainer.appendChild(date);
-//     divContainer.appendChild(time);
-//     divContainer.appendChild(frequency);
-//     divContainer.appendChild(price);
-//     divContainer.appendChild(maxPart);
-//     divContainer.appendChild(attButton);
-//     divContainer.appendChild(unAttButton);
-//     divContainer.appendChild(intButton);
-//     divContainer.appendChild(unIntButton);
-//     divContainer.appendChild(capacity);
-
-//     //add all divContainers to the event catalogue (=div('catalogueItems') in HTML //
-//     var element = document.getElementById('catalogueItems');
-//     element.appendChild(divContainer);
-//   }
-// }
-
-// -------------------------------------------
-
-
 // get all type of buttons by ClassNames
 var att = document.getElementsByClassName('attend');
 var unAtt = document. getElementsByClassName('unattend');
@@ -261,10 +137,10 @@ for(var i = 0; i < events.length; i++){
   for(var j = 0; j < events[i].attendees.length; j++){
     for(var k = 0; k < events[i].interested.lenght; k++){
       if(currentUser[0] !== events[i].attendees[j] && currentUser[0] !== events[i].interested[k]){
-        att[i].classList.remove("hideEventBtn");
-        unAtt[i].classList.add("hideEventBtn");
-        int[i].classList.remove("hideEventBtn");
-        notInt[i].classList.add("hideEventBtn");
+        att[i].classList.remove("hideElement");
+        unAtt[i].classList.add("hideElement");
+        int[i].classList.remove("hideElement");
+        notInt[i].classList.add("hideElement");
       }
     }
   }
@@ -277,10 +153,10 @@ for (var i=0; i< events.length; i++) {
       for (var j=0; j<events[i].attendees.length; j++) {
         // check if currentUser is one of the attendees
         if (currentUser[0] === events[i].attendees[j]){
-          att[i].classList.add("hideEventBtn");
-          unAtt[i].classList.remove("hideEventBtn");
-          int[i].classList.add("hideEventBtn");
-          notInt[i].classList.add("hideEventBtn");
+          att[i].classList.add("hideElement");
+          unAtt[i].classList.remove("hideElement");
+          int[i].classList.add("hideElement");
+          notInt[i].classList.add("hideElement");
         }
       }
     }
@@ -293,14 +169,14 @@ for (var i=0; i< events.length; i++) {
       for (var j=0; j<events[i].interested.length; j++) {
         // check if our current user is one of the interested people
         if (currentUser[0] === events[i].interested[j]){
-          att[i].classList.remove("hideEventBtn");
-          unAtt[i].classList.add("hideEventBtn");
-          int[i].classList.add("hideEventBtn");
-          notInt[i].classList.remove("hideEventBtn");
+          att[i].classList.remove("hideElement");
+          unAtt[i].classList.add("hideElement");
+          int[i].classList.add("hideElement");
+          notInt[i].classList.remove("hideElement");
         }
       }
     }
-
+  }
   
 //attend button: add event listener functionality (push userID to attendees array of event and push eventID to attendedEvents array of user + change the visibility of the buttons)  
 //Alternative: load data-set into button as an atrribute (hence, insert the event object which applies to specific button into button and access needed properties that way) - Problem: could not parse the data-set
@@ -333,10 +209,10 @@ for (var i=0; i < att.length; i++) {
             }
           }
             // manipulate buttons accordingly
-            att[event].classList.add("hideEventBtn");
-            unAtt[event].classList.remove("hideEventBtn");
-            int[event].classList.add("hideEventBtn");
-            notInt[event].classList.add("hideEventBtn");
+            att[event].classList.add("hideElement");
+            unAtt[event].classList.remove("hideElement");
+            int[event].classList.add("hideElement");
+            notInt[event].classList.add("hideElement");
         } 
       }    
     })
@@ -369,10 +245,10 @@ unAtt[i].addEventListener('click', function(e) {
     }
   }
   // manipulate buttons to show only relevant buttons
-    att[event].classList.remove("hideEventBtn");
-    unAtt[event].classList.add("hideEventBtn");
-    int[event].classList.remove("hideEventBtn");
-    notInt[event].classList.add("hideEventBtn");
+    att[event].classList.remove("hideElement");
+    unAtt[event].classList.add("hideElement");
+    int[event].classList.remove("hideElement");
+    notInt[event].classList.add("hideElement");
   
 })
 }
@@ -406,10 +282,10 @@ int[i].addEventListener('click', function(e) {
     }
   }
   // manipulate visability of respective buttons
-    att[event].classList.remove("hideEventBtn");
-    unAtt[event].classList.add("hideEventBtn");
-    int[event].classList.add("hideEventBtn");
-    notInt[event].classList.remove("hideEventBtn");
+    att[event].classList.remove("hideElement");
+    unAtt[event].classList.add("hideElement");
+    int[event].classList.add("hideElement");
+    notInt[event].classList.remove("hideElement");
 })
 }
 
@@ -442,17 +318,14 @@ notInt[i].addEventListener('click', function(e) {
     }
   }
   // manipulate button visability accordingly
-    att[event].classList.remove("hideEventBtn");
-    unAtt[event].classList.add("hideEventBtn");
-    int[event].classList.remove("hideEventBtn");
-    notInt[event].classList.add("hideEventBtn");
+    att[event].classList.remove("hideElement");
+    unAtt[event].classList.add("hideElement");
+    int[event].classList.remove("hideElement");
+    notInt[event].classList.add("hideElement");
   
 })
 }
 
-
-
-  
   // when the link (=click on name of event) to an event is clicked, the event id is pushed to the array currentEvent, stored in the local Storage and the user is redirected to the event Profile -> on the event Profile the Data gets filled out automatically based on the entry of the id in the currentEvent array
   // Give the a tag a class
   // select that a with document.getElementByClassName
@@ -470,14 +343,14 @@ var redirectEventProfile = document.getElementsByClassName("linkEventPage");
         document.location.href = "eventProfile.html";
     });
   }
-}
+
 // ------------------ VALID END ------------------ 
 
   // select the a with document.getElementByClassName
   // var redEP = document.getElementsByClassName("linkEventPage");
   // on click push the id of the event to an array called currentEvent
   // upload that array to local storage
-  //neccessary to loop over redEP due to characteristic of class (=list)
+  // neccessary to loop over redEP due to characteristic of class (=list)
   // for (i = 0; i < redEP.length; i++) {
   //     redEP[i].addEventListener("click", function() {
   //     currentEvent.push(naming.id);
@@ -574,18 +447,21 @@ function catSearch (){
 //     }
 //   }
 
-//dropdown sport category selection 
-var coll = document.getElementsByClassName("collapsible");
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.display === "block") {
-      content.style.display = "none";
-    } else {
-      content.style.display = "block";
-    }
-  });
+//dropdown sport category selection
+function collapse() {
+var coll = document.getElementById("collapsible");
+var cont = document.getElementById('collContent')
+coll.classList.toggle("active");
+cont.classList.toggle("hideElement");
+}
+
+var slider = document.getElementById("myRange");
+var output = document.getElementById("sliderValue");
+output.innerHTML = slider.value + ' kr.'; // Display the default slider value
+
+// Update the current slider value (each time you drag the slider handle)
+slider.oninput = function() {
+    output.innerHTML = this.value + ' kr.';
 }
 
 //create a function that creates a div, including a checkbox and an individual label for each array value
@@ -603,16 +479,14 @@ for(var i = 0; i < sports.length; i++) {
     var lab = document.createElement('LABEL'); 
     lab.setAttribute('for', sports[i]);
     lab.innerHTML = sports[i];
-    var element = document.getElementById("content");
+    var element = document.getElementById("collContent");
     element.appendChild(div);
     element.appendChild(para);
     element.appendChild(lab);
 }
 
-
-// function filterFunction() {
-  
-  
+// function clearSpType() {
+  // }
   
   function evTypeFilter () {
     var item = document.getElementsByClassName('eventItem');
@@ -626,10 +500,10 @@ for(var i = 0; i < sports.length; i++) {
           for (var j=0; j<type.length; j++) {
             if (type[j].innerHTML === trainingCB.value) {
               item[j].style.display = ''}
-            else {item[j].style.display = 'none'}
-          }
-        } 
+          else {item[j].style.display = 'none'}
+        }
       }
+    }
     else if (trainingCB.checked != true && courseCB.checked == true) {
       for (var i=0; i<item.length; i++) {
         for (var j=0; j<type.length; j++) {
@@ -645,19 +519,24 @@ for(var i = 0; i < sports.length; i++) {
     }
   }
 
-    
-        // else if (trainingCB.checked != true && courseCB.checked == true) {
-        //   for (i=0; i<events[i].length; i++) {
-        //     if (events[i].type == 'course') {
-        //       events[i].style.display = 'block'
-        //     } else {events[i].style.display = 'none'}
-        //   }     
-        // }
-        // else if (trainingCB.checked == true && courseCB.checked == true || trainingCB.checked != true && courseCB.checked != true) {
-        //   for (i=0; i<events[i].length; i++) {
-        //     events[i].style.display = 'block'}  
-        // }
-     
+  function spTypeFilter () {
+    console.log('a');
+  }
 
-  // function clearFunction() {
-  // }
+  function priceFilter () {
+    var item = document.getElementsByClassName('eventItem');
+    var price = document.getElementsByClassName('priceTag');
+    var maxPrice = document.getElementById('sliderValue')
+    for (var i=0; i<item.length; i++) {
+      for (var j=0; j<price.length; j++) {
+        if (price[j].innerHTML > maxPrice.innerHTML) {
+          item[j].style.display = 'none'}
+      }
+    }
+  }
+    
+  function filterFunction() {
+    evTypeFilter();
+    spTypeFilter();
+    priceFilter(); 
+  }

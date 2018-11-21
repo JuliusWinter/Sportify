@@ -49,20 +49,22 @@
                         <div>
                               <legend>Choose Sport Categories</legend>
                         </div>
-                        <button class="collapsible">List of Sport categories</button>
-                        <div id="content">
+                        <button id="collapsible" onclick='collapse()'>List of Sport categories</button>
+                        <div id="collContent" class="hideElement">
                         </div>
                         <button id='clearButton' onclick='clearFunction()'>Clear Sport Type Selection</button>
                   </fieldset>
                   <fieldset>
                         <div>
-                              <legend>Choose Price Range</legend>
+                              <legend>Choose max. Price</legend>
+                        </div>
+                        <div id='slidecontainer'>
+                              <input type="range" min='0' max='100' value='100' class='slider' id='myRange'>
+                              <p id='sliderValue'></p>
                         </div>
                         
                   </fieldset>
-                  <fieldset>
-                        <button id='filterButton' onclick='evTypeFilter()'>Apply Filter</button>
-                  </fieldset>
+                        <button id='filterButton' onclick='filterFunction()'>Apply Filter</button>
       </div>
 </div>
 
