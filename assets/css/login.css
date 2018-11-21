@@ -351,6 +351,13 @@ div#container{
     height: 45px;
 }
 
+.delete{
+    background: #FF0000;
+    color: white;
+    width: 500px;
+    height: 45px;
+}
+
 #welcomeMessage{
     font-size: 16pt;
     font-weight: 400;
@@ -583,18 +590,18 @@ li{
   .upperInfo{
     display: flex;
     flex-direction: row;
-    height: 90px;
+    height: 87px;
   }
   
   .flexDate{
     display: flex;
-    width: 125px;
+    width: 115px;
     min-height:125px;
     flex-direction: column;
   }
   
   .date {
-    font-size: 25px;
+    font-size: 22px;
     font-weight: 400;
     padding-top: 20px;
     padding-left: 20px;
@@ -603,7 +610,7 @@ li{
     width: 125px;
   }
   .day {
-    font-size: 25px;
+    font-size: 22px;
     font-weight: 300;
     padding-top: 5px;
     padding-left: 20px;
@@ -614,7 +621,7 @@ li{
   .middleEventInfo{
     display: flex;
     flex-direction: column;
-    width: 525px;
+    width: 535px;
     height: 90px;
   }
   
@@ -622,7 +629,7 @@ li{
     width: 100%;
     height: 50px;
     padding-top: 20px;
-    font-size: 25px;
+    font-size: 20px;
     color: midnightblue;
   }
   
@@ -632,20 +639,19 @@ li{
     height: 40px;
   }
   .time {
-    padding-top: 13px;
-    font-size: 15px;
+    padding-top: 5px;
+    font-size: 12px;
     width:fit-content;
   }
   .dot{
     margin: 0 4px;
-    margin-top: 13px;
-    font-size: 15px;
+    margin-top: 5px;
+    font-size: 12px;
     width: fit-content;
   }
   .location {
-    padding-top: 13px;
-    padding-left: 4px;
-    font-size: 15px;
+    padding-top: 5px;
+    font-size: 12px;
     min-width: fit-content;
   }
   .sportEventType{
@@ -657,17 +663,16 @@ li{
   
   .sportType{
     width: fit-content;
-    margin-top: 13px;
-    font-size: 15px;
+    margin-top: 5px;
+    font-size: 12px;
     color: midnightblue;
   }
   
   .eventType{
     width: fit-content;
-    margin-top: 13px;
-    margin-left: 4px;
+    margin-top: 5px;
     margin-right: 20px;
-    font-size: 15px;
+    font-size: 12px;
     color: midnightblue;
   }
   
@@ -680,7 +685,7 @@ li{
   .buttonGroup{
     display: flex;
     flex-direction: row;
-    width: 200px;
+    width: 175px;
     justify-content: space-evenly;
     padding-left: 125px;
   }
@@ -710,23 +715,25 @@ li{
   .eventDetails{
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     margin: 0 20px;
   }
   
   .spotsLeft{
     padding-top:5px;
-    font-size: 15px;
+    font-size: 12px;
   }
   
   .difficulty{
     padding-top:5px;
-    font-size: 15px;
+    padding-left:4px;
+    font-size: 12px;
   }
   
   .priceTag{
     padding-top:5px;
-    font-size: 15px;
+    padding-left:4px;
+    font-size: 12px;
   }
 
   /* //////////////////////////////// EVENT MODAL end ////////////////////////////////////// */

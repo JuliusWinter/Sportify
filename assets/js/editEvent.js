@@ -59,6 +59,7 @@ var eventFrequency = document.getElementById("eventFrequency");
 var eventLocation = document.getElementById("eventLocation");
 var eventPrice = document.getElementById("eventPrice");
 var eventEditButton = document.getElementById("saveChanges");
+var eventDeleteButton = document.getElementById("deleteEvent");
 
 // set the value of each element to the respective value of our current event
 for(var i = 0; i < events.length; i++){
@@ -125,6 +126,45 @@ function initAutocomplete() {
     address.name = place.name;
   }
 
+function deleteEvent(){
+    var eventsIndex = events.findIndex(x => x.eventID == currentEvent[0])
+    if(eventsIndex > -1){
+        events.splice(eventsIndex, 1)
+    }
+    // delete event ID ownEvents array
+    for(var i = 0; i < users.length; i++){
+        if(users[i].ID === currentUser[0]){
+            var ownEventsIndex = users[i].ownEvents.indexOf(currentEvent[0]);
+            if(ownEventsIndex > -1){
+                users[i].ownEvents.splice(ownEventsIndex, 1);
+            }
+        }
+    }
+    // delete event ID from all users interested arrays
+    for(var i = 0; i < users.length; i++){
+        var intEventsIndex = users[i].intEvents.indexOf(currentEvent[0])
+        if(intEventsIndex > -1){
+            users[i].intEvents.splice(intEventsIndex, 1);
+        }
+    }
+    // delete event ID from all users attend arrays
+    for(var i = 0; i < users.length; i++){
+        var attEventsIndex = users[i].attEvents.indexOf(currentEvent[0])
+        if(attEventsIndex > -1){
+            users[i].attEvents.splice(attEventsIndex, 1);
+        }
+    }
+    localStorage.setItem("events", JSON.stringify(events));
+    localStorage.setItem("users", JSON.stringify(users));
+    document.location.href = "eventCatalogue.html";
+}
+
+//add event listener to delete button to trigger deleteEvent function
+eventDeleteButton.addEventListener("click", function(){
+    // on click
+    deleteEvent();
+
+})
 
 // // allow current user to change values
 // // create a button "save" that on click, finds the events in the events array

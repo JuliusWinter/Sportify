@@ -166,7 +166,7 @@ document.getElementById("eventForm").addEventListener("submit", function(event){
     event.preventDefault();
     // generate unique event ID
     var eventID = geid();
-    var creatorID = currentUser[0].ID;
+    var creatorID = currentUser[0];
     // check if all fields are filled out
         // if yes -> get all values of the fields and push them to the event object
         // push new event to events array
@@ -174,14 +174,12 @@ document.getElementById("eventForm").addEventListener("submit", function(event){
         // store stringified version of events array in localStorage
         localStorage.setItem("events", JSON.stringify(events));
         for(var i = 0; i < users.length; i++){
-            if(currentUser[0].ID === users[i].ID){
-                currentUser[0].ownEvents.push(eventID);
+            if(currentUser[0] === users[i].ID){
                 users[i].ownEvents.push(eventID);
                 localStorage.setItem("currentUser", JSON.stringify(currentUser));
                 localStorage.setItem("users", JSON.stringify(users));
             }
         }
-        
         document.location.href = "eventCatalogue.html";
 });
 

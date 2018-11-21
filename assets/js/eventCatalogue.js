@@ -50,12 +50,12 @@ function createHTML (event) {
                                 "<div class='box day'>THU</div>"+
                         "</div>"+
                         "<div class='middleEventInfo'>"+
-                                "<div class='box eventName'><a class='linkEventPage' href='eventProfile.html' name='"+event.eventID+"'>"+event.name+"</a></div>"+
+                                "<div class='box eventName'><a class='linkEventPage' name='"+event.eventID+"'>"+event.name+"</a></div>"+
                                 "<div class='timeLocation'>"+
                                         "<div class='time box'>"+event.time+"</div>"+
                                         "<div class='dot box'>·</div>"+
                                         // Adjust location --> display name
-                                        "<div class='location box loc'>"+ event.location.formatted_address+"</div>"+
+                                        "<div class='location box loc'>"+event.location.formatted_address+"</div>"+
                                         "<div class='sportEventType'>"+
                                                 "<div class='sportType box'>"+event.sportType+"</div>"+
                                                 "<div class='dot box'>·</div>"+
@@ -83,9 +83,11 @@ function createHTML (event) {
                                 "<div class='maxAttendees'>"+
                                         "<div class='spotsLeft box capacity'>Places left: "+ (event.maxPart - event.attendees.length)+"</div>"+
                                 "</div>"+
+                                "<div class='dot box'>·</div>"+
                                 "<div class='difficultyLvlDiv'>"+
-                                        "<div class='box difficulty'>"+event.difficulty+"</div>"+
+                                        "<div class='box difficulty'>Difficulty: "+event.difficulty+"</div>"+
                                 "</div>"+
+                                "<div class='dot box'>·</div>"+
                                 "<div class='price'>"+
                                         "<div class='box priceTag'><span class='priceSpan'>"+event.price+"</span> kr.</div>"+
                                 "</div>"+
@@ -221,15 +223,18 @@ for (var i=0; i < att.length; i++) {
 // loop over all unattend buttons and add event listener that on click removes
 // event id from atteEvents array in user object
 // and removes user id from attendees array in event object
-for (i=0; i < unAtt.length; i++) {
+for (var i=0; i < unAtt.length; i++) {
 unAtt[i].addEventListener('click', function(e) {
   let event = e.target.name;
   // loop over users array
   for (var i=0; i<users.length; i++) {
     // find current user in users array
-    if (currentUser[0] === users[i].id) {
+    if (currentUser[0] === users[i].ID) {
       // remove the event ID from attEvents array in users object
-      users[i].attEvents.pop(event);
+      var attEventsIndex = users[i].attEvents.indexOf(event);
+      if(attEventsIndex > -1){
+        users[i].attEvents.splice(attEventsIndex, 1);
+      }
       // upload to local storage
       localStorage.setItem("users", JSON.stringify(users));
     }
@@ -239,7 +244,10 @@ unAtt[i].addEventListener('click', function(e) {
     // find our event in events array
     if (event === events[i].eventID) {
       // delete the user ID from the attendees array in the event object
-      events[i].attendees.pop(currentUser[0]);
+      var attendeesIndex = events[i].attendees.indexOf(currentUser[0]);
+      if(attendeesIndex > -1){
+        events[i].attendees.splice(attendeesIndex, 1);
+      }
       // upload to local storage
       localStorage.setItem('events', JSON.stringify(events));
     }
@@ -262,9 +270,9 @@ for (var i=0; i < int.length; i++) {
 int[i].addEventListener('click', function(e) {
   let event = e.target.name;
   // loop over the users array
-  for (var i=0; i<users.length; i++) {
+  for (var i=0; i< users.length; i++) {
     // find our current user
-    if (currentUser[0] === users[i].id) {
+    if (currentUser[0] === users[i].ID) {
       // push the event ID to intEvents array of user object
       users[i].intEvents.push(event);
       // upload to local storage
@@ -272,7 +280,7 @@ int[i].addEventListener('click', function(e) {
     }
   }
   // loop over events array
-  for (i=0; i<events.length; i++) {
+  for (var i=0; i<events.length; i++) {
     // find our event
     if (event === events[i].eventID) {
       // push the user ID of current User to the interested array of the events object
@@ -302,7 +310,10 @@ notInt[i].addEventListener('click', function(e) {
     // find current user in users array
     if (currentUser[0] === users[i].ID) {
       // remove the event ID from intEvents array of user object
-      users[i].intEvents.pop(event);
+      var intEventsIndex = users[i].intEvents.indexOf(event);
+      if(intEventsIndex > -1){
+        users[i].intEvents.splice(intEventsIndex, 1);
+      }
       // upload to local storage
       localStorage.setItem("users", JSON.stringify(users));
     }
@@ -312,7 +323,10 @@ notInt[i].addEventListener('click', function(e) {
     // find our respective event
     if (event === events[i].eventID) {
       // remove user ID from interested array of event object
-      events[i].interested.pop(currentUser[0]);
+      var interestedIndex = events[i].interested.indexOf(currentUser[0]);
+      if(interestedIndex > -1){
+        events[i].interested.splice(interestedIndex, 1);
+      }
       // upload to local storage
       localStorage.setItem('events', JSON.stringify(events));
     }
@@ -337,7 +351,8 @@ notInt[i].addEventListener('click', function(e) {
 var redirectEventProfile = document.getElementsByClassName("linkEventPage");
  for (i = 0; i < redirectEventProfile.length; i++) {
     redirectEventProfile[i].addEventListener("click", function(e) {
-        let eventID = e.target.id;
+        console.log(e);
+        let eventID = e.target.name;
         currentEvent.push(eventID);
         localStorage.setItem("currentEvent", JSON.stringify(currentEvent));
         document.location.href = "eventProfile.html";
