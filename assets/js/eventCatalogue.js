@@ -40,7 +40,7 @@ else{
 
 //events exists, event date in future, event public
 function createHTML (event) {
-  return "<li class='eventItem' id='"+event.eventID+"'>" +
+  return "<li class='eventItem "+event.sportType+"' id='"+event.eventID+"'>" +
           "<div class='eventContainer'>" +
                 "<div class='upperInfo'>" +
                         "<div class='flexDate'>"+
@@ -89,7 +89,7 @@ function createHTML (event) {
                                 "</div>"+
                                 "<div class='dot box'>·</div>"+
                                 "<div class='price'>"+
-                                        "<div class='box priceTag'>Price: "+event.price+" kr.</div>"+
+                                        "<div class='box priceTag'><span class='priceSpan'>"+event.price+"</span> kr.</div>"+
                                 "</div>"+
                         "</div>"+
                 "</div>"+
@@ -427,68 +427,40 @@ var redirectEventProfile = document.getElementsByClassName("linkEventPage");
 // }
 
 // ------------------ VALID START ------------------ 
-// create a function that includes everything related to filtering
-// function filtering(){
-var category = document.getElementsByClassName('sportType');
 
-//define a function that searches for event categories and displays only applicable events//
-function catSearch (){
+//define a function that searches for locations and displays only applicable events//
+function locSearch (){
   //declare variables - getting values from search box//
-  var searchInputCat = document.getElementById('userCategoryInput').value.toUpperCase();
+  var searchInputLoc = document.getElementById('userLocationInput').value.toUpperCase();
   //Declare variables - getting values from the div elements
-  var category = document.getElementsByClassName('sportType').innerHTML;
-  // console.log(category)
-  // for (i=0; i < category.length; i++) {
-  //   if(category[].includes(searchInputCat)){
-  //     events[i].style.display ="";
-  //   }else{
-  //     events[i].style.display ="none";
-  //   }
-  // }
-} 
-
-
-// //define a function that searches for locations and displays only applicable events//
-// function locSearch (){
-//   //declare variables - getting values from search box//
-//   var searchInputLoc = document.getElementById('userLocationInput').value.toUpperCase();
-//   //Declare variables - getting values from the div elements
-//   var locat = document.getElementsByClassName('loc');
-//   console.log(locat)
-//     if(locat[i].toUpperCase().includes(searchInputLoc)){
-//       events[i].style.display ="";
-//     }else{
-//       events[i].style.display ="none";
-//     }
-//   }
+  var locat = document.getElementsByClassName('loc');
+  console.log(locat)
+    if(locat[i].toUpperCase().includes(searchInputLoc)){
+      events[i].style.display ="";
+    }else{
+      events[i].style.display ="none";
+    }
+  }
 
 //dropdown sport category selection
 function collapse() {
-var coll = document.getElementById("collapsible");
-var cont = document.getElementById('collContent')
-coll.classList.toggle("active");
-cont.classList.toggle("hideElement");
-}
-
-var slider = document.getElementById("myRange");
-var output = document.getElementById("sliderValue");
-output.innerHTML = slider.value + ' kr.'; // Display the default slider value
-
-// Update the current slider value (each time you drag the slider handle)
-slider.oninput = function() {
-    output.innerHTML = this.value + ' kr.';
+  var coll = document.getElementById("collapsible");
+  var cont = document.getElementById('collContent')
+  coll.classList.toggle("active");
+  cont.classList.toggle("hideElement");
 }
 
 //create a function that creates a div, including a checkbox and an individual label for each array value
 var sports = ['American Football', 'Athletics','Badminton','Basketball','Boxing ','Canoeing','Cricket','Cross-Fit','Cycling ','Dancing','Darts','Disability Sports','Diving','Fitness-Training','Football','Golf','Handball','Hiking','Hockey','Ice Hockey','Longboarding','Mixed Martial Arts','Modern Pentathlon','Motor Sports','Netball','Parkour','Rowing','Rugby','Running','Sailing','Shooting','Skateboarding','Skiing','Snooker','Snowboarding','Squash','Surfing','Swimming','Table Tennis','Tai Chi','Tennis','Triathlon','Tricking','Ultimate Frisbee','Volleyball','Weightlifting','Winter Sports','Wrestling','Yoga'];
 
-for(var i = 0; i < sports.length; i++) {
+for(var i=0; i < sports.length; i++) {
     var opt = sports[i];
     var div = document.createElement('DIV');
-    div.setAttribute('class', 'checkboxCat');
+    div.setAttribute('class', 'checkboxDiv');
     div.setAttribute('id', sports[i]);
     var para = document.createElement("INPUT");
     para.setAttribute("type", "checkbox",);
+    para.setAttribute('class', 'spTypeCheckbox')
     para.setAttribute('id', sports[i]);
     para.setAttribute('value', sports[i]);
     var lab = document.createElement('LABEL'); 
@@ -500,16 +472,19 @@ for(var i = 0; i < sports.length; i++) {
     element.appendChild(lab);
 }
 
-// function clearSpType() {
-  // }
-  
+  function uncheckSpCat() {
+    var sportCatCB = document.getElementsByClassName('spTypeCheckbox');
+    for(var i=0;i<sportCatCB.length;i++){
+      sportCatCB[i].checked = false;
+    }
+  }
+    
   function evTypeFilter () {
     var item = document.getElementsByClassName('eventItem');
     var type = document.getElementsByClassName('eventType');
     var evTypeCB = document.getElementsByClassName('eventTypeCB');
     var trainingCB = document.getElementById('trainingEvent');
     var courseCB = document.getElementById('courseEvent');
-
     if (trainingCB.checked == true && courseCB.checked != true) {
         for (var i=0; i<item.length; i++) {
           for (var j=0; j<type.length; j++) {
@@ -535,21 +510,59 @@ for(var i = 0; i < sports.length; i++) {
   }
 
   function spTypeFilter () {
-    console.log('a');
-  }
-
-  function priceFilter () {
+    var sportCatCB = document.getElementsByClassName('spTypeCheckbox');
+    var container = [];
     var item = document.getElementsByClassName('eventItem');
-    var price = document.getElementsByClassName('priceTag');
-    var maxPrice = document.getElementById('sliderValue')
-    for (var i=0; i<item.length; i++) {
-      for (var j=0; j<price.length; j++) {
-        if (price[j].innerHTML > maxPrice.innerHTML) {
-          item[j].style.display = 'none'}
+    var cont = document.getElementById('collContent')
+    
+    for (var x=0; x<item.length; x++) {
+      if (item[x].style.display != 'none') {
+      for (var i=0; i<sportCatCB.length; i++) {
+        if (sportCatCB[i].checked == true) {
+          container.push(sportCatCB[i].value)
+        }
       }
+        for (var a=0; a<item.length; a++) {
+          if (container.length > 0) {
+            for (var b=0; b<container.length; b++) {
+              if (item[a].classList.contains(container[b])) {
+                item[a].style.display = ''
+              } else {
+                item[a].style.display = 'none'
+              }
+          }
+        }
     }
   }
+  }
+  if (cont.classList.contains('hideElement') == false) {
+    cont.classList.add("hideElement");
+  }
+  }
+  
+  function priceFilter () {
+    var item = document.getElementsByClassName('eventItem');
+    var evPrice = document.getElementsByClassName('priceSpan');
+    var minPrice = document.getElementById('minPriceFilter');
+    var maxPrice = document.getElementById('maxPriceFilter');
+    var eventMaxPrice = []
+
+    for (var i=0; i<evPrice.length; i++) {
+      eventMaxPrice.push(evPrice[i].innerHTML)
+      var maxRange = Math.max(...eventMaxPrice)
+    }
     
+    if (maxPrice.value.length == 0) {
+      maxPrice.value = maxRange
+    }
+
+    for (var i=0; i<item.length; i++) {
+      for (var j=0; j<evPrice.length; j++) {
+        if (evPrice[j].innerHTML < minPrice.value || evPrice[j].innerHTML > maxPrice.value) {
+          item[j].style.display = 'none'}
+    }
+  }
+}
   function filterFunction() {
     evTypeFilter();
     spTypeFilter();
