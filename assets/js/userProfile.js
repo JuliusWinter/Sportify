@@ -109,6 +109,35 @@ function createHTML (event) {
         "</li>"
 }
 
+//only create event catalogue if events.length > 0
+if (events) {
+    var content = "";
+    function todayDate() {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; 
+        var yyyy = today.getFullYear();
+        if(dd<10) {dd = '0'+dd} 
+        if(mm<10) {mm = '0'+mm} 
+        today = yyyy + '-' + mm + '-' + dd;
+        return today
+    }
+    
+    for(var i=0; i < events.length; i++){
+        for(var j=0; j < events[i].attendees.length; j++){
+          for(var k=0; k < events[i].interested.lenght; k++){
+            if(currentUser[0] == events[i].attendees[j]){
+                console.log('works');
+                if (events[i].date >= todayDate()) {
+                    content += createHTML(events[i]);
+                    }
+                }
+            }
+        }
+    }
+    document.getElementById('ownEvents').innerHTML = content;
+}
+
 //set variables for button ID's
 var btnUpcoming = document.getElementById("upcomingEventsBtn");
 var btnPrevious = document.getElementById("previousEventsBtn");
@@ -120,19 +149,18 @@ var upEventsDIV = document.getElementById("upcomingEvents");
 var prevEventsDIV = document.getElementById("previousEvents");
 var ownEventsDIV = document.getElementById("ownEvents");
 var allEventsDIV = document.getElementById('allEvents');
-var allDiv = document.getElementsByClassName('eventsDiv') 
-console.log(allDiv)
+console.log(upcomingEvents.innerHTML);
 
 //function for first button in upcoming events
 btnUpcoming.addEventListener("click", function(){
 //DIV is set to display 'none' in userProfileStyle.css
     if (upEventsDIV.style.display == "none") {
-        upEventsDIV.style.display = "";
+        upEventsDIV.style.display = "inline";
         prevEventsDIV.style.display = "none";
         ownEventsDIV.style.display = "none";
         allEventsDIV.style.display = "none";
 
-    } else if (upEventsDIV.style.display = "") {
+    } else if (upEventsDIV.style.display = "inline") {
         upEventsDIV.style.display = "none";
         prevEventsDIV.style.display = "none";
         ownEventsDIV.style.display = "none";
@@ -144,11 +172,11 @@ btnUpcoming.addEventListener("click", function(){
 btnPrevious.addEventListener("click", function() {
     if (prevEventsDIV.style.display == "none") {
         upEventsDIV.style.display = "none";
-        prevEventsDIV.style.display = "";
+        prevEventsDIV.style.display = "inline";
         ownEventsDIV.style.display = "none";
         allEventsDIV.style.display = "none";
 
-    } else if (upEventsDIV.style.display == "") {
+    } else if (prevEventsDIV.style.display == "inline") {
         upEventsDIV.style.display = "none";
         prevEventsDIV.style.display = "none";
         ownEventsDIV.style.display = "none";
@@ -160,10 +188,10 @@ btnOwn.addEventListener("click", function(){
     if (ownEventsDIV.style.display == "none") {
         upEventsDIV.style.display = "none";
         prevEventsDIV.style.display = "none";
-        ownEventsDIV.style.display = "";
+        ownEventsDIV.style.display = "inline";
         allEventsDIV.style.display = "none";
 
-    } else if (ownEventsDIV.style.display == "") {
+    } else if (ownEventsDIV.style.display == "inline") {
         upEventsDIV.style.display = "none";
         prevEventsDIV.style.display = "none";
         ownEventsDIV.style.display = "none";
@@ -176,9 +204,9 @@ btnAll.addEventListener("click", function(){
         upEventsDIV.style.display = "none";
         prevEventsDIV.style.display = "none";
         ownEventsDIV.style.display = "none";
-        allEventsDIV.style.display = "";
+        allEventsDIV.style.display = "inline";
 
-    } else if (allEventsDIV.style.display == "") {
+    } else if (allEventsDIV.style.display == "inline") {
         upEventsDIV.style.display = "none";
         prevEventsDIV.style.display = "none";
         ownEventsDIV.style.display = "none";
