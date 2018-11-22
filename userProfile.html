@@ -1,313 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>User Profile</title>
-    <link rel="stylesheet" href="assets/css/login.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous">
-    </script>
+      <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>User Profile</title>
+      <link rel="stylesheet" href="assets/css/login.css">
+      <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+                  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                  crossorigin="anonymous">
+      </script>
       </head>
-<body>
-
-
-        <!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." style="width: 200px"/> -->
-
-             <div class = "wrapper" id = "userProfileWindow">
-                   <section class="navMargin"></section>
-                   <section class = "sec1">
-                         <div id = "containerUser">
-                               <div id="settingsContainer"></a>
-                                    <img src="icons/settings-icon.png" alt="Avatar" id="settingsImage">
-                                    <div id= "middle">
-                                          <a href = "userProfileMngr.html"><div id="settingsText">Settings</div></a>
+      <body>
+                  <div class = "wrapper" id = "userProfileWindow">
+                        <section class="navMargin"></section>
+                        <section class = "sec1">
+                              <div id = "containerUser">
+                                    <div id="settingsContainer"></a>
+                                          <img src="icons/settings-icon.png" alt="Avatar" id="settingsImage">
+                                          <div id= "middle">
+                                                <a href = "userProfileMngr.html"><div id="settingsText">Settings</div></a>
+                                          </div>
                                     </div>
-                              </div>
-                               <h1><img src="icons/ninja-512.png" alt="Avatar" class="profilePic"></h1>
-                               <h1><a id="localUserName"></a></h1>
-                               <h4><a id="currentUserStatus"></a></h4>
-                               <p id ="userLocation"></p>
-                               <h3><a id="currentUserSlogan"></a></h3>
-                               
-                         </div> 
-
-                        <!-- //////////////////////////////////////////////////////container float rigth for awards -->
-                          <div id = "containerAwards">
-                               <p id="userAwardsTitle">User Awards and Ackolades</p>
+                                    <h1><img src="icons/ninja-512.png" alt="Avatar" class="profilePic"></h1>
+                                    <h1><a id="localUserName"></a></h1>
+                                    <h4><a id="currentUserGender"></a></h4>
+                                    <p id ="userLocation"></p>
+                                    <h3><a id="currentUserSlogan"></a></h3>
                                     
-                               <p><img src="icons/award-icon-01.png" alt="Award1" class="award">
-                                    <br>User Award 1</p>
-                               <p><img src="icons/trophy-icon-01.png" alt="Award2" class="award">
-                                    <br>User Award 2</p>
-                               <p><img src="icons/star-icon-01.png" alt="Award3" class="award">
-                                    <br>User Award 3</p>
-                               <p><img src="icons/star-icon-01.png" alt="Award4" class="award">
-                                    <br>User Award 4</p>
-                                    
-                                   <h3 id="interestsContainer">interests go here</h3>
                               </div> 
-                              
-                        <!-- //////////////////////////////////////////////////////container float left for created events -->
-                        <div id = "containerCreatedEvents">
-                                    <p id="createdEventsTitle">Recently Created Events</p>
-                                    <input type="text" id="searchCreatedEvent" placeholder="Search for events.." title="Type in a name">
 
-                                    <ul id="createdEventsList">
-                                      <li><a href="#"><img src="icons/basketballIcon.png" alt="Award4" class="award">Pickup game</a></li>
-                                      <li><a href="#"><img src="icons/footballIcon.png" alt="Award4" class="award">Touch football</a></li>
-                                    
-                                      <li><a href="#"><img src="icons/basketballIcon.png" alt="Award4" class="award">Hoops</a></li>
-                                      <li><a href="#"><img src="icons/runIcon.png" alt="Award4" class="award">Jogging class</a></li>
-                                    
-                                      <li><a href="#"><img src="icons/swimIcon.png" alt="Award4" class="award">Swimming</a></li>
-                                      <li><a href="#"><img src="icons/swimIcon.png" alt="Award4" class="award">Morning Swim</a></li>
-                                      
-                                    </ul>
-                                         
-                                        <a href = "eventCatalogue.html"><div id="eventCatalogueLink">View More Events</div></a>
-                                   </div>
-                                    <!-- ////////////////////////////////////////////////////// divs containting events under profile -->
-                                    <div id = "containerBtnGroup">          
-                                                <div class="btn-group">  
-                                                      <!-- all buttons are refrenecing toggle script with names of ID's in single quotes segmenting the DIV's -->
-
-                                                      <button id="upcomingEventsBtn">Events to be attending</button>
-                                                      <button id="pastEventsBtn">Previously attended events</button>
-                                                      <button id="interestsBtn">Events of Interest</button>
-                                                </div>
-                                                <div class="userTabs">
-                                                                                          
-                                                            <div class="upcomingEvents" id="upcomingEvents">
-                                                                        <br>
-                                                                  <div class="event">
-                                                                        <div class='link'><a href="#eventPage">Free Swimming Session @Islands Brygge </a> </div> 
-                                                                        <div class="eventInfo"> 
-                                                                              <div class='sportCategory'>Swimming</div>
-                                                                              <div class='type'>Training</div>
-                                                                              <div class='date'>23.11.2018</div>
-                                                                              <div class='startTime'>14:00</div>
-                                                                        </div>     
-                                                                        <div class="eventInfo">
-                                                                              <div class='duration'>1h00m</div>
-                                                                              <div class='city'>Copenhagen</div>
-                                                                              <div class='district'>Islands Brygge</div>
-                                                                              <div class='street'>XYZ</div>
-                                                                        </div>    
-                                                                        <div class="eventInfo">
-                                                                              <div class='price'>0 kr.</div>
-                                                                              <button class="eventLink">Event Page</button>
-                                                                        </div>
-                                                                  </div>
-                                                                  <div class="event">
-                                                                        <div class='link'><a href="#eventPage">Free Swimming Session @Islands Brygge </a> </div> 
-                                                                        <div class="eventInfo"> 
-                                                                              <div class='sportCategory'>Basketball</div>
-                                                                              <div class='type'>Training</div>
-                                                                              <div class='date'>23.20.2018</div>
-                                                                              <div class='startTime'>14:00</div>
-                                                                        </div>     
-                                                                        <div class="eventInfo">
-                                                                              <div class='duration'>1h00m</div>
-                                                                              <div class='city'>Roskilde</div>
-                                                                              <div class='district'>Islands Brygge</div>
-                                                                              <div class='street'>XYZ</div>
-                                                                        </div>    
-                                                                        <div class="eventInfo">
-                                                                              <div class='price'>0 kr.</div>
-                                                                              <button class="eventLink">Event Page</button>
-                                                                        </div>
-                                                                  </div>
-                                                                  <div class="event">
-                                                                        <div class='link'><a href="#eventPage">Free Swimming Session @Islands Brygge </a> </div> 
-                                                                        <div class="eventInfo"> 
-                                                                              <div class='sportCategory'>Swimming</div>
-                                                                              <div class='type'>Training</div>
-                                                                              <div class='date'>23.11.2018</div>
-                                                                              <div class='startTime'>14:00</div>
-                                                                        </div>     
-                                                                        <div class="eventInfo">
-                                                                              <div class='duration'>1h00m</div>
-                                                                              <div class='city'>Copenhagen</div>
-                                                                              <div class='district'>Islands Brygge</div>
-                                                                              <div class='street'>XYZ</div>
-                                                                        </div>    
-                                                                        <div class="eventInfo">
-                                                                              <div class='price'>0 kr.</div>
-                                                                              <button class="eventLink">Event Page</button>
-                                                                        </div>
-                                                                  </div>
-                                                            </div>
+                              <!-- //////////////////////////////////////////////////////container float rigth for awards -->
+                              <!-- <div id = "containerAwards">
+                                    <p id="userAwardsTitle">User Awards and Ackolades</p>
                                           
-                                                            <div class="pastEvents" id="pastEvents">
-                                                                  <br>
-                                                                        <div class="event">
-                                                                              <div class='link'><a href="#eventPage">Free Swimming Session @Islands Brygge </a> </div> 
-                                                                              <div class="eventInfo"> 
-                                                                                    <div class='sportCategory'>Swimming</div>
-                                                                                    <div class='type'>Training</div>
-                                                                                    <div class='date'>23.11.2018</div>
-                                                                                    <div class='startTime'>14:00</div>
-                                                                              </div>     
-                                                                              <div class="eventInfo">
-                                                                                    <div class='duration'>1h00m</div>
-                                                                                    <div class='city'>Copenhagen</div>
-                                                                                    <div class='district'>Islands Brygge</div>
-                                                                                    <div class='street'>XYZ</div>
-                                                                              </div>    
-                                                                              <div class="eventInfo">
-                                                                                    <div class='price'>0 kr.</div>
-                                                                                    <button class="eventLink">Event Page</button>
-                                                                              </div>
-                                                                        </div>
-                                                                        <div class="event">
-                                                                              <div class='link'><a href="#eventPage">Free Swimming Session @Islands Brygge </a> </div> 
-                                                                              <div class="eventInfo"> 
-                                                                                    <div class='sportCategory'>Football</div>
-                                                                                    <div class='type'>Training</div>
-                                                                                    <div class='date'>23.11.2018</div>
-                                                                                    <div class='startTime'>14:00</div>
-                                                                              </div>     
-                                                                              <div class="eventInfo">
-                                                                                    <div class='duration'>1h00m</div>
-                                                                                    <div class='city'>Aarhus</div>
-                                                                                    <div class='district'>-</div>
-                                                                                    <div class='street'>Ingerslevsgade</div>
-                                                                              </div>    
-                                                                              <div class="eventInfo">
-                                                                                    <div class='price'>0 kr.</div>
-                                                                                    <button class="eventLink">Event Page</button>
-                                                                              </div>
-                                                                        </div>
-                                                                        <div class="event">
-                                                                              <div class='link'><a href="#eventPage">Free Swimming Session @Islands Brygge </a> </div> 
-                                                                              <div class="eventInfo"> 
-                                                                                    <div class='sportCategory'>Swimming</div>
-                                                                                    <div class='type'>Training</div>
-                                                                                    <div class='date'>23.11.2018</div>
-                                                                                    <div class='startTime'>14:00</div>
-                                                                              </div>     
-                                                                              <div class="eventInfo">
-                                                                                    <div class='duration'>1h00m</div>
-                                                                                    <div class='city'>Copenhagen</div>
-                                                                                    <div class='district'>Islands Brygge</div>
-                                                                                    <div class='street'>XYZ</div>
-                                                                              </div>    
-                                                                              <div class="eventInfo">
-                                                                                    <div class='price'>0 kr.</div>
-                                                                                    <button class="eventLink">Event Page</button>
-                                                                              </div>
-                                                                        </div>
+                                    <p><img src="icons/award-icon-01.png" alt="Award1" class="award">
+                                          <br>User Award 1</p>
+                                    <p><img src="icons/trophy-icon-01.png" alt="Award2" class="award">
+                                          <br>User Award 2</p>
+                                    <p><img src="icons/star-icon-01.png" alt="Award3" class="award">
+                                          <br>User Award 3</p>
+                                    <p><img src="icons/star-icon-01.png" alt="Award4" class="award">
+                                          <br>User Award 4</p>
+                                          
+                                    <h3 id="interestsContainer">interests go here</h3>
+                                    </div>  -->
+                                    
+                              <!-- //////////////////////////////////////////////////////container float left for created events -->
+                              <!-- <div id = "containerCreatedEvents">
+                                          <p id="createdEventsTitle">Recently Created Events</p>
+                                          <input type="text" id="searchCreatedEvent" placeholder="Search for events.." title="Type in a name">
 
+                                          <ul id="createdEventsList">
+                                          <li><a href="#"><img src="icons/basketballIcon.png" alt="Award4" class="award">Pickup game</a></li>
+                                          <li><a href="#"><img src="icons/footballIcon.png" alt="Award4" class="award">Touch football</a></li>
+                                          
+                                          <li><a href="#"><img src="icons/basketballIcon.png" alt="Award4" class="award">Hoops</a></li>
+                                          <li><a href="#"><img src="icons/runIcon.png" alt="Award4" class="award">Jogging class</a></li>
+                                          
+                                          <li><a href="#"><img src="icons/swimIcon.png" alt="Award4" class="award">Swimming</a></li>
+                                          <li><a href="#"><img src="icons/swimIcon.png" alt="Award4" class="award">Morning Swim</a></li>
+                                          
+                                          </ul>
+                                          
+                                          <a href = "eventCatalogue.html"><div id="eventCatalogueLink">View More Events</div></a>
+                                    </div> -->
+                                          <!-- ////////////////////////////////////////////////////// divs containting events under profile -->
+                                          <div id = "containerBtnGroup">          
+                                                      <div class="btn-group">  
+                                                            <!-- all buttons are refrenecing toggle script with names of ID's in single quotes segmenting the DIV's -->
+                                                            <button id="allEventsBtn">All Events</button>
+                                                            <button id="upcomingEventsBtn">Upcoming Events</button>
+                                                            <button id="ownEventsBtn">Own Events</button>
+                                                            <button id="previousEventsBtn">Previous Event</button>
+                                                      </div>
+                                                      <div class="userTabs">
+                                                            <div class="eventsDiv hideElement" id="allEvents">
                                                             </div>
-
-                                                            <div class="interests" id="interests">
-                                                            <br>
-                                                                  <div class="event">
-                                                                              <div class='link'><a href="#eventPage">Free Swimming Session @Islands Brygge </a> </div> 
-                                                                              <div class="eventInfo"> 
-                                                                                    <div class='sportCategory'>Swimming</div>
-                                                                                    <div class='type'>Training</div>
-                                                                                    <div class='date'>23.11.2018</div>
-                                                                                    <div class='startTime'>14:00</div>
-                                                                              </div>     
-                                                                              <div class="eventInfo">
-                                                                                    <div class='duration'>1h00m</div>
-                                                                                    <div class='city'>Copenhagen</div>
-                                                                                    <div class='district'>Amager</div>
-                                                                                    <div class='street'>XYZ</div>
-                                                                              </div>    
-                                                                              <div class="eventInfo">
-                                                                                    <div class='price'>0 kr.</div>
-                                                                                    <button class="eventLink">Event Page</button>
-                                                                              </div>
-                                                                        </div>
-                                                                  <div class="event">
-                                                                              <div class='link'><a href="#eventPage">Free Swimming Session @Islands Brygge </a> </div> 
-                                                                              <div class="eventInfo"> 
-                                                                                    <div class='sportCategory'>Swimming</div>
-                                                                                    <div class='type'>Training</div>
-                                                                                    <div class='date'>23.11.2018</div>
-                                                                                    <div class='startTime'>14:00</div>
-                                                                              </div>     
-                                                                              <div class="eventInfo">
-                                                                                    <div class='duration'>1h00m</div>
-                                                                                    <div class='city'>Copenhagen</div>
-                                                                                    <div class='district'>Islands Brygge</div>
-                                                                                    <div class='street'>XYZ</div>
-                                                                              </div>    
-                                                                              <div class="eventInfo">
-                                                                                    <div class='price'>0 kr.</div>
-                                                                                    <button class="eventLink">Event Page</button>
-                                                                              </div>
-                                                                        </div>
-                                                                  <div class="event">
-                                                                              <div class='link'><a href="#eventPage">Free Swimming Session @Islands Brygge </a> </div> 
-                                                                              <div class="eventInfo"> 
-                                                                                    <div class='sportCategory'>Swimming</div>
-                                                                                    <div class='type'>Training</div>
-                                                                                    <div class='date'>23.11.2018</div>
-                                                                                    <div class='startTime'>14:00</div>
-                                                                              </div>     
-                                                                              <div class="eventInfo">
-                                                                                    <div class='duration'>1h00m</div>
-                                                                                    <div class='city'>Copenhagen</div>
-                                                                                    <div class='district'>Islands Brygge</div>
-                                                                                    <div class='street'>XYZ</div>
-                                                                              </div>    
-                                                                              <div class="eventInfo">
-                                                                                    <div class='price'>0 kr.</div>
-                                                                                    <button class="eventLink">Event Page</button>
-                                                                              </div>
-                                                                        </div>
-
+                                                            <div class="eventsDiv hideElement" id="upcomingEvents">        
                                                             </div>
-                                                </div>
-
-                                    </div>
-
-            
-
-  <!-- <div class="userEvents">
-  <div id="eventsTableTitle">View and search your created events </div>
-  <input type="text" id="tableInput" onkeyup="searchCatalogueTable()" placeholder="filter events" class="Bio"/>
-  <table id="userEventsTable">
-                <tr title="Catalogue Snapshot">
-                        <th >Events</th>
-                        <th >Type</th> 
-                        <th >Date</th>
-                  </tr>
-                  <tr >
-                        <td>Game</td>
-                        <td>Description</td> 
-                        <td>01.11.2018</td>
-                  </tr>
-                  <tr>
-                        <td>Basketball</td>
-                        <td>Description</td> 
-                        <td>01.11.2018</td>
-                  </tr>
-                  <tr >
-                        <td>Football</td>
-                        <td>Description</td> 
-                        <td>01.11.2018</td>
-                  </tr>
-                  <tr>
-                        <td>Frisbee</td>
-                        <td>Description</td> 
-                        <td>01.11.2018</td>
-                  </tr>     
-                </table>
-
-</div> -->
-      <!-- Buttons for toggle user windows has been grouped below with CSS included-->
-
-      </section>
-</div>
-</body>
+                                                            <div class="eventsDiv hideElement" id="ownEvents">
+                                                            </div>
+                                                            <div class="eventsDiv hideElement" id="previousEvents">
+                                                            </div>
+                                                      </div>
+                                          </div>
+            </section>
+      </div>
+      </body>
 
       <script type="text/javascript" src="assets/js/insertNavbar.js"></script>
       <script type="text/javascript" src="assets/js/navbarScroll.js"></script>

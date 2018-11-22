@@ -442,9 +442,9 @@ div#container{
 background-image: url('/css/searchicon.png'); /* Add a search icon to input */
 background-position: 10px 12px; /* Position the search icon */
 background-repeat: no-repeat; /* Do not repeat the icon image */
-width: 400px; /* Full-width */
-font-size: 16px; /* Increase font-size */
-padding: 12px 20px 12px 40px; /* Add some padding */
+width: auto; /* Full-width */
+font-size: 14px; /* Increase font-size */
+padding: 12px; /* Add some padding */
 border: 1px solid #ddd; /* Add a grey border */
 margin-bottom: 12px; /* Add some space below the input */
 }
@@ -519,11 +519,6 @@ margin-bottom: 12px; /* Add some space below the input */
 
 .checkboxCat {
   display: block;
-}
-
-#searchbarEC {
-    padding: 3px;
-    width: 50px;
 }
 
 .event p {
@@ -782,7 +777,7 @@ git push origin master */
 
 /* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ USER PROFILE STYLING STARTS //////////////////////////////////////// */
 #containerUser{
-width: 600px;
+width: 50%;
 margin: auto;
 background: white;
 border-top-left-radius: 16px;
@@ -886,7 +881,7 @@ display: block;
 }
 /* ////////////////////////////  USER PRFILE CARD ENDS, PROFILE PAGE CONT. \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
 #containerBtnGroup{
-    width: 665px;
+    width: 55.5%;
     margin: 0 auto;
     background: #24C6DC;  /* fallback for old browsers */
     border-bottom-left-radius:16px ;
@@ -894,7 +889,6 @@ display: block;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
     text-align: center;
     display: block;
-    margin-top: 1px;
     border: none;
     height: 40px;
 
@@ -912,7 +906,6 @@ display: block;
     border: none;
     margin:auto;
     
-
 }
 #upcomingEventsBtn{
     border-bottom-left-radius: 14px;
@@ -943,27 +936,30 @@ display: block;
     margin-top: 5%;
 }
 /* Display area for the current, past, and potential events for the user */
-div.upcomingEvents {
+#allevents {
     width: 100%;
     text-align: center;
-    background-color: lightblue;
     margin-top: 0px;
     display:none;
 }
-div.pastEvents {
+#upcomingEvents {
     width: 100%;
     text-align: center;
-    background-color: lightgreen;
    	margin-top: 5px;
     display:none;
 }
-div.interests {
+#ownEvents {
     width: 100%;
     text-align: center;
-    background-color: lightpink;
    	margin-top: 5px;
     display:none;
 } 
+#previousEvents{
+    width: 100%;
+    text-align: center;
+   	margin-top: 5px;
+    display:none;
+}
 
 .userEvents{
     float:right;

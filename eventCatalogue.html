@@ -1,100 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Event Catalogue | SPORTIFY</title>
-    <!--link to own stylesheet-->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/login.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous">
-    </script>
-</head>
-<body>
-<div class="wrapper">
-      <section class="navMargin"></section>
-      <section class="sec1">
-            <!--create navbar that displays a subnavbar when hovering over field; Navbar includes Home Button (Logo) that redirects to user profile, Profile Button that lets appear subnavbar with Profile Page and Management, Events button that lets appear subnavbar with Event Catalogue and Create Event, and logout button that redirects to index page and quits access to system-->
+      <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <title>Event Catalogue | SPORTIFY</title>
+            <!--link to own stylesheet-->
+            <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+            <link rel="stylesheet" href="assets/css/login.css">
+            <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+                  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                  crossorigin="anonymous">
+            </script>
+      </head>
+      <body>
+            <div class="wrapper">
+                  <section class="navMargin"></section>
+                  <section class="sec1">    
+                  <!--create a div that contains all page elements except from Navbar-->
+                        <div class='container1'>
+                        <!--create a div that includes the entire Search/Filtering functions and form elements / should be displayed on the left side of page and take 30% of page width-->
+                              <div id="floatLeftEC">
+                                    <!-- <nav id='navbar'><div id='sportifyLogo'>SPORTIFY</div><ul><li><a id='userProfile' href='userProfile.html'>USER PROFILE</a></li><li><a id='createEvent' href='createCourse.html'>CREATE EVENT</a></li><li><a id='eventCatalogue' href='eventCatalogue.html'>EVENT CATALOGUE</a></li><li><a id='logoutBtn' href='index.html'>LOG OUT</a></li></ul></nav> -->
+                                    <h1 id='eventCatalogueh1'>Event Catalogue</h1>
+                                    <!--create a div that includes two search fields to search for city and sport category; only one search item at a time per search field-->
+                                    <div id='searching'>
+                                          <input type='text' id="searchbarEC" onkeyup="locSearch()" placeholder='Search for your city here'> 
+                                    </div>
+                                    <!--create a div that includes all filter parameters except from two top search fields-->
+                                    <div id='filtering'>
+                                          <fieldset>
+                                                <div>
+                                                      <legend>Choose Event Type</legend>
+                                                      <div>
+                                                            <input type="checkbox" class='eventTypeCB' id='trainingEvent' value='training'>
+                                                            <label for='trainingEvent'>Training</label>
+                                                      </div>      
+                                                      <div>
+                                                            <input type="checkbox" class='eventTypeCB' id='courseEvent' value='course'>
+                                                            <label for='courseEvent'>Course</label>
+                                                      </div>
+                                                </div>
+                                          </fieldset>
+                                          <fieldset>
+                                                <div>
+                                                      <legend>Choose Sport Categories</legend>
+                                                </div>
+                                                <button id='clearButton' onclick='uncheckSpCat()'>Clear Selection</button>
+                                                <button id="collapsible" onclick='collapse()'>List of Sport categories</button>
+                                                <div id="collContent" class="hideElement">
+                                                </div>
+                              
+                                          </fieldset>
+                                          <fieldset>
+                                                <div>
+                                                      <legend>Choose Price Range</legend>
+                                                </div>
+                                                <div id='priceFilterDiv'>
+                                                      <p>
+                                                            <label for='minPriceFilter'>Minimum: </label>
+                                                            <input type='number' class="priceFilter" id="minPriceFilter" value=0 min=0 placeholder='Insert price minimum'><span> kr.</span>
+                                                      </p>
+                                                      <p>
+                                                            <label for='minPriceFilter'>Maximum: </label>
+                                                            <input type='number' class="priceFilter" id="maxPriceFilter" min=0 placeholder='Insert price maximum'><span> kr.</span>
+                                                      </p>
+                                                </div>
 
-<!--create a div that contains all page elements except from Navbar-->
-<div class='container1'>
-<!--create a div that includes the entire Search/Filtering functions and form elements / should be displayed on the left side of page and take 30% of page width-->
-<div id="floatLeftEC">
-            <!-- <nav id='navbar'><div id='sportifyLogo'>SPORTIFY</div><ul><li><a id='userProfile' href='userProfile.html'>USER PROFILE</a></li><li><a id='createEvent' href='createCourse.html'>CREATE EVENT</a></li><li><a id='eventCatalogue' href='eventCatalogue.html'>EVENT CATALOGUE</a></li><li><a id='logoutBtn' href='index.html'>LOG OUT</a></li></ul></nav> -->
-      <h1 id='eventCatalogueh1'>Event Catalogue</h1>
-<!--create a div that includes two search fields to search for city and sport category; only one search item at a time per search field-->
-      <div id='searching'>
-            <input type='text' id="searchbarEC" onkeyup="locSearch()" placeholder='Search for your city here'> 
-      </div>
-<!--create a div that includes all filter parameters except from two top search fields-->
-      <div id='filtering'>
-                  <fieldset>
-                        <div>
-                        <legend>Choose Event Type</legend>
-                              <div>
-                                    <input type="checkbox" class='eventTypeCB' id='trainingEvent' value='training'>
-                                    <label for='trainingEvent'>Training</label>
+                                          </fieldset>
+                                          <button id='filterButton' onclick='filterFunction()'>Apply Filter</button>
+                                    </div>
                               </div>
-                              <div>
-                                    <input type="checkbox" class='eventTypeCB' id='courseEvent' value='course'>
-                                    <label for='courseEvent'>Course</label>
+                              <!--create a div that includes all events (right side)-->
+                              <div id='catalogue'>
+                              <ul id='catalogueItems'>
+                              </ul>
                               </div>
-                        </div>
-                  </fieldset>
-                  <fieldset>
-                        <div>
-                              <legend>Choose Sport Categories</legend>
-                        </div>
-                        <button id='clearButton' onclick='uncheckSpCat()'>Clear Selection</button>
-                        <button id="collapsible" onclick='collapse()'>List of Sport categories</button>
-                        <div id="collContent" class="hideElement">
-                        </div>
-                        
-                  </fieldset>
-                  <fieldset>
-                        <div>
-                              <legend>Choose Price Range</legend>
-                        </div>
-
-                        <!-- <div id='slidecontainer'>
-                              <input type="range" min='0' max='150' value='50' class='slider' id='myRange'>
-                              <p><span id='sliderValue'></span> kr.</p>
-                        </div>
-                        -->
-                        <div id='priceFilterDiv'>
-                              <label for='minPriceFilter'>Minimum: </label>
-                              <input type='number' class="priceFilter" id="minPriceFilter" value=0 min=0 placeholder='Insert price minimum'>
-                              <span> kr.</span></p>
-                              <label for='minPriceFilter'>Maximum: </label>
-                              <input type='number' class="priceFilter" id="maxPriceFilter" min=0 placeholder='Insert price maximum'>
-                              <span> kr.</span>
-                              </p>
-                        </div>
-
-                  </fieldset>
-                        <button id='filterButton' onclick='filterFunction()'>Apply Filter</button>
-      </div>
-</div>
-
-<!--create a div that includes all events (right side)-->
-<div id='catalogue'>
-      <ul id='catalogueItems'>
-      </ul>
-</div>
-      <!--create a div, that displays the basic structure of how an event is displayed in the catalogue; by clicking on the title of the event or the event button, the user should be redirected to event page-->
-
-
-      <!--create a div, that displays the basic structure of how an event is displayed in the catalogue; by clicking on the title of the event the user should be redirected to event page-->
-
-
-
-</section>
-</div>
-<script type="text/javascript" src="assets/js/insertNavbar.js"></script>
-<script type="text/javascript" src="assets/js/navbarScroll.js"></script>
-<script src="assets/js/eventCatalogue.js"></script>                 
-</body>
+                  </section>
+            </div>
+            <script type="text/javascript" src="assets/js/insertNavbar.js"></script>
+            <script type="text/javascript" src="assets/js/navbarScroll.js"></script>
+            <script src="assets/js/eventCatalogue.js"></script>                 
+      </body>
 </html>
