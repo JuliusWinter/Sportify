@@ -123,9 +123,9 @@ if (events) {
         return today
     }
     
-    for(var i=0; i < events.length; i++){
-        for(var j=0; j < events[i].attendees.length; j++){
-          for(var k=0; k < events[i].interested.lenght; k++){
+    for(var i=0; i<events.length; i++){
+        for(var j=0; j<events[i].attendees.length; j++){
+          for(var k=0; k<events[i].interested.lenght; k++){
             if(currentUser[0] == events[i].attendees[j]){
                 console.log('works');
                 if (events[i].date >= todayDate()) {
@@ -135,7 +135,7 @@ if (events) {
             }
         }
     }
-    document.getElementById('ownEvents').innerHTML = content;
+    document.getElementById('upcomingEventItems').innerHTML = content;
 }
 
 //set variables for button ID's
@@ -149,7 +149,6 @@ var upEventsDIV = document.getElementById("upcomingEvents");
 var prevEventsDIV = document.getElementById("previousEvents");
 var ownEventsDIV = document.getElementById("ownEvents");
 var allEventsDIV = document.getElementById('allEvents');
-console.log(upcomingEvents.innerHTML);
 
 //function for first button in upcoming events
 btnUpcoming.addEventListener("click", function(){
