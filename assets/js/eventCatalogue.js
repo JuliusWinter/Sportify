@@ -222,8 +222,8 @@ for (var i=0; i < att.length; i++) {
                 for (i=0; i<cap.length; i++) {
                   if (cap[i].id == events[j].eventID) {
                     cap[i].innerHTML = events[j].maxPart - events[j].attendees.length
-              }
-            }
+                  }
+                }
               }
             }
         } 
@@ -473,7 +473,7 @@ function collapse() {
 }
 
 //create a function that creates a div, including a checkbox and an individual label for each array value
-var sports = ['American Football', 'Athletics','Badminton','Basketball','Boxing ','Canoeing','Cricket','Cross-Fit','Cycling ','Dancing','Darts','Disability Sports','Diving','Fitness-Training','Football','Golf','Handball','Hiking','Hockey','Ice Hockey','Longboarding','Mixed Martial Arts','Modern Pentathlon','Motor Sports','Netball','Parkour','Rowing','Rugby','Running','Sailing','Shooting','Skateboarding','Skiing','Snooker','Snowboarding','Squash','Surfing','Swimming','Table Tennis','Tai Chi','Tennis','Triathlon','Tricking','Ultimate Frisbee','Volleyball','Weightlifting','Winter Sports','Wrestling','Yoga'];
+var sports = ['American Football', 'Athletics','Badminton','Basketball','Boxing','Canoeing','Cricket','Cross-Fit','Cycling','Dancing','Darts','Disability Sports','Diving','Fitness-Training','Football','Golf','Handball','Hiking','Hockey','Ice Hockey','Longboarding','Mixed Martial Arts','Modern Pentathlon','Motor Sports','Netball','Parkour','Rowing','Rugby','Running','Sailing','Shooting','Skateboarding','Skiing','Snooker','Snowboarding','Squash','Surfing','Swimming','Table Tennis','Tai Chi','Tennis','Triathlon','Tricking','Ultimate Frisbee','Volleyball','Weightlifting','Winter Sports','Wrestling','Yoga'];
 
 for(var i=0; i < sports.length; i++) {
     var opt = sports[i];
@@ -500,6 +500,13 @@ for(var i=0; i < sports.length; i++) {
       sportCatCB[i].checked = false;
     }
   }
+
+  function display () {
+    var item = document.getElementsByClassName('eventItem');
+    for (var i=0; i<item.length; i++) {
+      item[i].style.display = '';
+    }
+  }
     
   function evTypeFilter () {
     var item = document.getElementsByClassName('eventItem');
@@ -510,18 +517,16 @@ for(var i=0; i < sports.length; i++) {
     if (trainingCB.checked == true && courseCB.checked != true) {
         for (var i=0; i<item.length; i++) {
           for (var j=0; j<type.length; j++) {
-            if (type[j].innerHTML === trainingCB.value) {
-              item[j].style.display = ''}
-          else {item[j].style.display = 'none'}
+            if (type[j].innerHTML != trainingCB.value) {
+              item[j].style.display = 'none'}
         }
       }
     }
     else if (trainingCB.checked != true && courseCB.checked == true) {
       for (var i=0; i<item.length; i++) {
         for (var j=0; j<type.length; j++) {
-          if (type[j].innerHTML === courseCB.value) {
-            item[j].style.display = ''}
-          else {item[j].style.display = 'none'}
+          if (type[j].innerHTML != courseCB.value) {
+            item[j].style.display = 'none'}
         }
       } 
     }
@@ -534,33 +539,43 @@ for(var i=0; i < sports.length; i++) {
   function spTypeFilter () {
     var sportCatCB = document.getElementsByClassName('spTypeCheckbox');
     var container = [];
+    var contItemsID  = [];
     var item = document.getElementsByClassName('eventItem');
     var cont = document.getElementById('collContent')
     
-    for (var x=0; x<item.length; x++) {
-      if (item[x].style.display != 'none') {
-      for (var i=0; i<sportCatCB.length; i++) {
-        if (sportCatCB[i].checked == true) {
-          container.push(sportCatCB[i].value)
-        }
+    //Checkboxen in filter
+    for (var i=0; i<sportCatCB.length; i++) {
+      if (sportCatCB[i].checked == true) {
+        container.push(sportCatCB[i].value)
+      } 
+    }
+
+    //get all ids
+    for (var a=0; a<item.length; a++) {
+      if (container.length > 0 && item[a].style.display != 'none' && container.includes(item[a].classList[1])) {
+        contItemsID.push(item[a].getAttribute('id'));
+        console.log(contItemsID);
       }
-        for (var a=0; a<item.length; a++) {
-          if (container.length > 0) {
-            for (var b=0; b<container.length; b++) {
-              if (item[a].classList.contains(container[b])) {
-                item[a].style.display = ''
-              } else {
-                item[a].style.display = 'none'
-              }
-          }
-        }
+    }
+
+    for(var a=0; a<item.length; a++){
+      if(container.length > 0 && contItemsID.includes(item[a].getAttribute('id')) == false){
+        item[a].style.display = 'none';
+      }
+    }
+  
+    if (cont.classList.contains('hideElement') == false) {
+      cont.classList.add("hideElement");
     }
   }
-  }
-  if (cont.classList.contains('hideElement') == false) {
-    cont.classList.add("hideElement");
-  }
-  }
+
+          /*for (var b=0; b<container.length; b++) {
+          if (item[a].classList.contains(container[b])) {
+            item[a].style.display = ''
+          } else {
+            item[a].style.display = 'none'
+          }
+        }*/
   
   function priceFilter () {
     var item = document.getElementsByClassName('eventItem');
@@ -586,6 +601,7 @@ for(var i=0; i < sports.length; i++) {
   }
 }
   function filterFunction() {
+    display();
     evTypeFilter();
     spTypeFilter();
     priceFilter(); 
