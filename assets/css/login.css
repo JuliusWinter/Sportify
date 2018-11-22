@@ -649,8 +649,16 @@ li{
     display: flex;
     flex-direction: row;
     width: 175px;
-    justify-content: space-evenly;
+    justify-content: center;
     padding-left: 125px;
+  }
+
+  #buttonGroup{
+    display: flex;
+    flex-direction: row;
+    width: 175px;
+    justify-content: space-evenly;
+    margin: 0 auto;
   }
 
   .hideElement{

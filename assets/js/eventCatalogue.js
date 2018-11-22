@@ -1,10 +1,17 @@
 //get the event array, that contains all event objects, from local storage and parse it
 var events = JSON.parse(localStorage.getItem("events"));
 
+// sort events from newest to oldest
+events = events.sort(function(a, b) {
+  var dateA = new Date(a.date.datePickerDate), dateB = new Date(b.date.datePickerDate);
+  return dateB - dateA;
+});
+
 // get current user from local storage
 var currentUser = JSON.parse(localStorage.getItem("currentUser"));
 // get users from local storage
 var users = JSON.parse(localStorage.getItem("users"));
+
 if(!JSON.parse(localStorage.getItem("currentEvent"))){
   var currentEvent=[];
 }
@@ -148,19 +155,19 @@ for(var i=0; i < events.length; i++){
 
 for (var i=0; i<events.length; i++) {
   // find events with attendees
-    if (events[i].attendees.length) {
-      // loop over attendees array
-      for (var j=0; j<events[i].attendees.length; j++) {
-        // check if currentUser is one of the attendees
-        if (currentUser[0] === events[i].attendees[j]){
-          att[i].classList.add("hideElement");
-          unAtt[i].classList.remove("hideElement");
-          int[i].classList.add("hideElement");
-          notInt[i].classList.add("hideElement");
-        }
+  if (events[i].attendees.length) {
+    // loop over attendees array
+    for (var j=0; j<events[i].attendees.length; j++) {
+      // check if currentUser is one of the attendees
+      if (currentUser[0] === events[i].attendees[j]){
+        att[i].classList.add("hideElement");
+        unAtt[i].classList.remove("hideElement");
+        int[i].classList.add("hideElement");
+        notInt[i].classList.add("hideElement");
       }
     }
   }
+}
 // loop over the events array
 for (var i=0; i<events.length; i++) {
   // check if there are interested people
@@ -208,6 +215,37 @@ for (var i=0; i < att.length; i++) {
             // upload to local storage
             localStorage.setItem('events', JSON.stringify(events));
           }
+            // loop over users array
+          for (i=0; i<users.length; i++) {
+            // find current user in users array
+            if (currentUser[0] === users[i].ID) {
+              // remove the event ID from intEvents array of user object
+              var intEventsIndex = users[i].intEvents.indexOf(event);
+              if(intEventsIndex > -1){
+                users[i].intEvents.splice(intEventsIndex, 1);
+              }
+              // upload to local storage
+              localStorage.setItem("users", JSON.stringify(users));
+            }
+          }
+          // loop over events array
+          for (i=0; i<events.length; i++) {
+            // find our respective event
+            if (event === events[i].eventID) {
+              // remove user ID from interested array of event object
+              var interestedIndex = events[i].interested.indexOf(currentUser[0]);
+              if(interestedIndex > -1){
+                events[i].interested.splice(interestedIndex, 1);
+              }
+              // upload to local storage
+              localStorage.setItem('events', JSON.stringify(events));
+            }
+          }
+            // manipulate buttons accordingly
+            att[event].classList.add("hideElement");
+            unAtt[event].classList.remove("hideElement");
+            int[event].classList.add("hideElement");
+            notInt[event].classList.add("hideElement");
         }
         // manipulate buttons accordingly
         att[event].classList.add("hideElement");
