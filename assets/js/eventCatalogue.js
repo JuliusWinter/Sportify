@@ -40,7 +40,7 @@ else{
 
 //events exists, event date in future, event public
 function createHTML (event) {
-  return "<li class='eventItem "+event.sportType+"' id='"+event.eventID+"'>" +
+  return "<li class='eventItem "+event.sportType+"' id='"+event.eventID+"'name='"+event.location.formatted_address+"'>" +
           "<div class='eventContainer'>" +
                 "<div class='upperInfo'>" +
                         "<div class='flexDate'>"+
@@ -276,7 +276,7 @@ unAtt[i].addEventListener('click', function(e) {
                 for (i=0; i<cap.length; i++) {
                   if (cap[i].id == events[j].eventID) {
                     cap[i].innerHTML = events[j].maxPart - events[j].attendees.length
-                  }
+                  }2
                 }
               }
             }
@@ -450,19 +450,24 @@ var redirectEventProfile = document.getElementsByClassName("linkEventPage");
 
 // ------------------ VALID START ------------------ 
 
-//define a function that searches for locations and displays only applicable events//
-// function locSearch (){
-//   //declare variables - getting values from search box//
-//   var searchInputLoc = document.getElementById('userLocationInput').value.toUpperCase();
-//   //Declare variables - getting values from the div elements
-//   var locat = document.getElementsByClassName('loc');
-//   console.log(locat)
-//     if(locat[i].toUpperCase().includes(searchInputLoc)){
-//       events[i].style.display ="";
-//     }else{
-//       events[i].style.display ="none";
-//     }
-//   }
+// define a function that searches for locations and displays only applicable events//
+function locSearch (){
+  //declare variables - getting values from search box//
+  var inputLoc = document.getElementById('searchbarEC').value.toUpperCase();
+  //Declare variables - getting values from the div elements
+  var item = document.getElementsByClassName('eventItem');
+  
+  if (inputLoc.length > 0) {
+    for (var i=0; i<item.length; i++) {
+      if(item[i].getAttribute('name').toUpperCase().includes(inputLoc)){
+        item[i].style.display ="";
+      } else{
+        item[i].style.display ="none";
+      } 
+    }
+  }
+}
+
 
 //dropdown sport category selection
 function collapse() {
@@ -569,14 +574,6 @@ for(var i=0; i < sports.length; i++) {
     }
   }
 
-          /*for (var b=0; b<container.length; b++) {
-          if (item[a].classList.contains(container[b])) {
-            item[a].style.display = ''
-          } else {
-            item[a].style.display = 'none'
-          }
-        }*/
-  
   function priceFilter () {
     var item = document.getElementsByClassName('eventItem');
     var evPrice = document.getElementsByClassName('priceSpan');
@@ -600,6 +597,7 @@ for(var i=0; i < sports.length; i++) {
     }
   }
 }
+
   function filterFunction() {
     display();
     evTypeFilter();
