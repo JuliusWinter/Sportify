@@ -2,6 +2,9 @@
 var users = JSON.parse(localStorage.getItem("users"));
 // get current user from local storage
 var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+// get current user from local storage
+var events = JSON.parse(localStorage.getItem("events"));
+
 // select anchor tags that should be manipulated
 var userProfile = document.querySelector("#userProfile");
 var createEvent = document.querySelector("#createEvent");
@@ -39,93 +42,166 @@ userName.innerHTML = users[i].userName + " is in the game";
 userGender.innerHTML = "Gender: " + users[i].gender;
 // this element will come from user typing in slogan
 var slogan = users[i].slogan;
-if ( slogan === "") {
+if ( slogan == "") {
     txt = "Create a slogan in the profile edit page!";
 } else {
     txt = slogan;
 }
 userSlogan.innerHTML = txt;
-
 }
+}
+
+function createHTML (event) {
+    return "<li class='eventItem "+event.sportType+"' id='"+event.eventID+"'name='"+event.location.formatted_address+"'>" +
+            "<div class='eventContainer'>" +
+                  "<div class='upperInfo'>" +
+                          "<div class='flexDate'>"+
+                                  "<div class='box date'>"+event.date.month.short + " " + event.date.date+"</div>"+
+                                  "<div class='box day'>"+event.date.day.short+"</div>"+
+                                  // "<div class='box date'>NOV 30</div>"+
+                                  // "<div class='box day'>THU</div>"+
+                          "</div>"+
+                          "<div class='middleEventInfo'>"+
+                                  "<div class='box eventName'><a class='linkEventPage' name='"+event.eventID+"'>"+event.name+"</a></div>"+
+                                  "<div class='timeLocation'>"+
+                                          "<div class='time box'>"+event.time+"</div>"+
+                                          "<div class='dot box'>·</div>"+
+                                          // Adjust location --> display name
+                                          "<div class='location box loc'>"+event.location.formatted_address+"</div>"+
+                                          "<div class='sportEventType'>"+
+                                                  "<div class='sportType box'>"+event.sportType+"</div>"+
+                                                  "<div class='dot box'>·</div>"+
+                                                  "<div class='eventType box'>"+event.type+"</div>"+
+                                          "</div>"+
+                                  "</div>"+
+                          "</div>"+
+                  "</div>"+
+                  "<div class='lowerInfo'>"+
+                          "<div class='buttonGroup'>"+
+                                  "<div class='attendBtnDiv'>"+
+                                          "<button class='box attend eventBtn' name='"+event.eventID+"'>attend</button>"+
+                                  "</div>"+
+                                  "<div class='unAttendBtnDiv'>"+
+                                          "<button class='box unattend eventBtn hideElement' name='"+event.eventID+"'>unattend</button>"+
+                                  "</div>"+
+                                  "<div class='interestedBtnDiv'>"+
+                                          "<button class='box interested eventBtn' name='"+event.eventID+"'>interested</button>"+
+                                  "</div>"+
+                                  "<div class='unInterestedBtnDiv'>"+
+                                          "<button class='box notinterested eventBtn hideElement' name='"+event.eventID+"'>no interest</button>"+
+                                  "</div>"+
+                          "</div>"+
+                          "<div class='eventDetails'>"+
+                                  "<div class='maxAttendees'>"+
+                                          "<div class='spotsLeft box'>Places left: <span class='capacity' id='"+event.eventID+"'> "+ (event.maxPart - event.attendees.length)+"</span></div>"+
+                                  "</div>"+
+                                  "<div class='dot box'>·</div>"+
+                                  "<div class='difficultyLvlDiv'>"+
+                                          "<div class='box difficulty'>Difficulty: "+event.difficulty+"</div>"+
+                                  "</div>"+
+                                  "<div class='dot box'>·</div>"+
+                                  "<div class='price'>"+
+                                          "<div class='box priceTag'><span class='priceSpan'>"+event.price+"</span> kr.</div>"+
+                                  "</div>"+
+                          "</div>"+
+                  "</div>"+
+          "</div>"+
+        "</li>"
 }
 
 //set variables for button ID's
 var btnUpcoming = document.getElementById("upcomingEventsBtn");
-var btnPast = document.getElementById("pastEventsBtn");
-var btnInterests = document.getElementById("interestsBtn");
+var btnPrevious = document.getElementById("previousEventsBtn");
+var btnOwn = document.getElementById("ownEventsBtn");
+var btnAll = document.getElementById('allEventsBtn')
+                                                        
 //set variable for DIV ID's
-var upcomingEventsDIV = document.getElementById("upcomingEvents");
-var pastEventsDIV= document.getElementById("pastEvents");
-var interestsDIV = document.getElementById("interests");  
-
-// var btnUpcoming, btnPast, btnInterests, upcomingEventsDIV, pastEventsDIV, interestsDIV;
-// btnUpcoming = document.getElementById("upcomingEventsBtn");
-// btnPast = document.getElementById("pastEventsBtn");
-// btnInterests = document.getElementById("interestsBtn");
-// upcomingEventsDIV = document.getElementById("upcomingEvents");
-// pastEventsDIV = document.getElementById("pastEvents");
-// interestsDIV = document.getElementById("interests");
+var upEventsDIV = document.getElementById("upcomingEvents");
+var prevEventsDIV = document.getElementById("previousEvents");
+var ownEventsDIV = document.getElementById("ownEvents");
+var allEventsDIV = document.getElementById('allEvents');
+var allDiv = document.getElementsByClassName('eventsDiv') 
+console.log(allDiv)
 
 //function for first button in upcoming events
 btnUpcoming.addEventListener("click", function(){
 //DIV is set to display 'none' in userProfileStyle.css
-    if (upcomingEventsDIV.style.display === "block") {
-      //if clicked display 'block'
-      upcomingEventsDIV.style.display = "none";
-      //otherwise, diplay 'none'
-    } else {
-      // else if upcoming events DIV is set to 'block', remaining DIV's are display 'none'
-      upcomingEventsDIV.style.display = "block";
-      pastEventsDIV.style.display = "none";
-      interestsDIV.style.display = "none";
+    if (upEventsDIV.style.display == "none") {
+        upEventsDIV.style.display = "";
+        prevEventsDIV.style.display = "none";
+        ownEventsDIV.style.display = "none";
+        allEventsDIV.style.display = "none";
+
+    } else if (upEventsDIV.style.display = "") {
+        upEventsDIV.style.display = "none";
+        prevEventsDIV.style.display = "none";
+        ownEventsDIV.style.display = "none";
+        allEventsDIV.style.display = "none";
     }
-});
+})
+
 //identical function runs for past events DIV
-btnPast.addEventListener("click", function() {
-    if (pastEventsDIV.style.display === "block") {
-      pastEventsDIV.style.display = "none";
-    } else {
-      pastEventsDIV.style.display = "block";
-      interestsDIV.style.display = "none";
-        upcomingEventsDIV.style.display = "none";
+btnPrevious.addEventListener("click", function() {
+    if (prevEventsDIV.style.display == "none") {
+        upEventsDIV.style.display = "none";
+        prevEventsDIV.style.display = "";
+        ownEventsDIV.style.display = "none";
+        allEventsDIV.style.display = "none";
+
+    } else if (upEventsDIV.style.display == "") {
+        upEventsDIV.style.display = "none";
+        prevEventsDIV.style.display = "none";
+        ownEventsDIV.style.display = "none";
+        allEventsDIV.style.display = "none";
     }
-});
-//identical function runs for interests
-btnInterests.addEventListener("click", function(){
-    if (interestsDIV.style.display === "block") {
-      interestsDIV.style.display = "none";
-    } else {
-      interestsDIV.style.display = "block";
-        upcomingEventsDIV.style.display = "none";
-        pastEventsDIV.style.display = "none";
+})
+
+btnOwn.addEventListener("click", function(){
+    if (ownEventsDIV.style.display == "none") {
+        upEventsDIV.style.display = "none";
+        prevEventsDIV.style.display = "none";
+        ownEventsDIV.style.display = "";
+        allEventsDIV.style.display = "none";
+
+    } else if (ownEventsDIV.style.display == "") {
+        upEventsDIV.style.display = "none";
+        prevEventsDIV.style.display = "none";
+        ownEventsDIV.style.display = "none";
+        allEventsDIV.style.display = "none";
     }
-});
+})
+
+btnAll.addEventListener("click", function(){
+    if (allEventsDIV.style.display == "none") {
+        upEventsDIV.style.display = "none";
+        prevEventsDIV.style.display = "none";
+        ownEventsDIV.style.display = "none";
+        allEventsDIV.style.display = "";
+
+    } else if (allEventsDIV.style.display == "") {
+        upEventsDIV.style.display = "none";
+        prevEventsDIV.style.display = "none";
+        ownEventsDIV.style.display = "none";
+        allEventsDIV.style.display = "none";
+    }
+})
 
 
-// var i = 0;
-// var original = document.getElementById('event');
-
-// function duplicate() {
-//     var clone = original.cloneNode(true); // "deep" clone
-//     clone.id = "event" + ++i;
-//     // or clone.id = ""; if the divs don't need an ID
-//     original.parentNode.appendChild(clone);
-// }
 /////////////////////////////// LIST SEARCH FUNCTION BELOW \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-var searchEvents = document.getElementById("searchCreatedEvent");
+// var searchEvents = document.getElementById("searchCreatedEvent");
 
-searchEvents.addEventListener("keyup", function(){
-  var input, filter, ul, li, a, i;
-  input = document.getElementById("searchCreatedEvent");
-  filter = input.value.toUpperCase();
-  ul = document.getElementById("createdEventsList");
-  li = ul.getElementsByTagName("li");
-  for (i = 0; i < li.length; i++) {
-      a = li[i].getElementsByTagName("a")[0];
-      if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-          li[i].style.display = "";
-      } else {
-          li[i].style.display = "none";
-      }
-  }
-});
+// searchEvents.addEventListener("keyup", function(){
+//   var input, filter, ul, li, a, i;
+//   input = document.getElementById("searchCreatedEvent");
+//   filter = input.value.toUpperCase();
+//   ul = document.getElementById("createdEventsList");
+//   li = ul.getElementsByTagName("li");
+//   for (i = 0; i < li.length; i++) {
+//       a = li[i].getElementsByTagName("a")[0];
+//       if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+//           li[i].style.display = "";
+//       } else {
+//           li[i].style.display = "none";
+//       }
+//   }
+// });

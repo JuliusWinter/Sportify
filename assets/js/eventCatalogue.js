@@ -133,9 +133,9 @@ var cap = document.getElementsByClassName('capacity');
 
 // set visibility of attend buttons when entering page and user attends or is interested
 // loop over events array
-for(var i = 0; i < events.length; i++){
-  for(var j = 0; j < events[i].attendees.length; j++){
-    for(var k = 0; k < events[i].interested.lenght; k++){
+for(var i=0; i < events.length; i++){
+  for(var j=0; j < events[i].attendees.length; j++){
+    for(var k=0; k < events[i].interested.lenght; k++){
       if(currentUser[0] !== events[i].attendees[j] && currentUser[0] !== events[i].interested[k]){
         att[i].classList.remove("hideElement");
         unAtt[i].classList.add("hideElement");

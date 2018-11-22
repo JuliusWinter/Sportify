@@ -898,7 +898,6 @@ display: block;
     border: none;
     margin:auto;
     
-
 }
 #upcomingEventsBtn{
     border-bottom-left-radius: 14px;
@@ -929,27 +928,30 @@ display: block;
     margin-top: 5%;
 }
 /* Display area for the current, past, and potential events for the user */
-div.upcomingEvents {
+#allevents {
     width: 100%;
     text-align: center;
-    background-color: lightblue;
     margin-top: 0px;
     display:none;
 }
-div.pastEvents {
+#upcomingEvents {
     width: 100%;
     text-align: center;
-    background-color: lightgreen;
    	margin-top: 5px;
     display:none;
 }
-div.interests {
+#ownEvents {
     width: 100%;
     text-align: center;
-    background-color: lightpink;
    	margin-top: 5px;
     display:none;
 } 
+#previousEvents{
+    width: 100%;
+    text-align: center;
+   	margin-top: 5px;
+    display:none;
+}
 
 .userEvents{
     float:right;
