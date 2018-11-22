@@ -351,6 +351,18 @@ div#container{
     height: 45px;
 }
 
+.deleteEvent{
+    background: #FF0000;
+    color: white;
+    width: 480px;
+    height: 25px;
+    text-align: center;
+    /* padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 30px;
+    border: none; */
+}
+
 #welcomeMessage{
     font-size: 16pt;
     font-weight: 400;
@@ -394,8 +406,6 @@ div#container{
 
 /* ----------------------------------------EVENT CATALOGUE STYLING START ---------------------------------------- */
 
-
-
 .event {
     height: auto;
 }
@@ -428,13 +438,13 @@ div#container{
 }
 
 
-.searchBarEC {
+#searchbarEC {
 background-image: url('/css/searchicon.png'); /* Add a search icon to input */
 background-position: 10px 12px; /* Position the search icon */
 background-repeat: no-repeat; /* Do not repeat the icon image */
-width: 100%; /* Full-width */
-font-size: 16px; /* Increase font-size */
-padding: 12px 20px 12px 40px; /* Add some padding */
+width: auto; /* Full-width */
+font-size: 14px; /* Increase font-size */
+padding: 12px; /* Add some padding */
 border: 1px solid #ddd; /* Add a grey border */
 margin-bottom: 12px; /* Add some space below the input */
 }
@@ -482,45 +492,33 @@ margin-bottom: 12px; /* Add some space below the input */
   }
 
 /* Style the button that is used to open and close the collapsible content */
-.collapsible {
+#collapsible {
   background-color: #eee;
   color: #444;
   cursor: pointer;
   padding: 18px;
   width: 100%;
-  border: none;
+  border-radius: 10px;
   text-align: left;
   outline: none;
   font-size: 15px;
 }
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.active, .collapsible:hover {
+.active, #collapsible:hover {
   background-color: yellow;
 }
 
 /* Style the collapsible content. Note: hidden by default */
-#content {
+#collContent {
   padding: 0;
-  display: none;
   overflow: hidden;
+  border-radius: 10px;
   background-color: whitesmoke;
 }
 
 .checkboxCat {
   display: block;
-}
-
-/*slider*/
-
-.slider {
-  width: 75%;
-  height: 15px;
-  border-radius: 5px;   
-  background: #d3d3d3;
-  outline: none;
-  opacity: 0.7;
-  transition: opacity .2s;
 }
 
 .event p {
@@ -555,18 +553,18 @@ li{
   .upperInfo{
     display: flex;
     flex-direction: row;
-    height: 90px;
+    height: 87px;
   }
   
   .flexDate{
     display: flex;
-    width: 125px;
+    width: 115px;
     min-height:125px;
     flex-direction: column;
   }
   
   .date {
-    font-size: 25px;
+    font-size: 22px;
     font-weight: 400;
     padding-top: 20px;
     padding-left: 20px;
@@ -575,7 +573,7 @@ li{
     width: 125px;
   }
   .day {
-    font-size: 25px;
+    font-size: 22px;
     font-weight: 300;
     padding-top: 5px;
     padding-left: 20px;
@@ -586,7 +584,7 @@ li{
   .middleEventInfo{
     display: flex;
     flex-direction: column;
-    width: 525px;
+    width: 535px;
     height: 90px;
   }
   
@@ -594,7 +592,7 @@ li{
     width: 100%;
     height: 50px;
     padding-top: 20px;
-    font-size: 25px;
+    font-size: 20px;
     color: midnightblue;
   }
   
@@ -604,20 +602,19 @@ li{
     height: 40px;
   }
   .time {
-    padding-top: 13px;
-    font-size: 15px;
+    padding-top: 5px;
+    font-size: 12px;
     width:fit-content;
   }
   .dot{
     margin: 0 4px;
-    margin-top: 13px;
-    font-size: 15px;
+    margin-top: 5px;
+    font-size: 12px;
     width: fit-content;
   }
   .location {
-    padding-top: 13px;
-    padding-left: 4px;
-    font-size: 15px;
+    padding-top: 5px;
+    font-size: 12px;
     min-width: fit-content;
   }
   .sportEventType{
@@ -629,17 +626,16 @@ li{
   
   .sportType{
     width: fit-content;
-    margin-top: 13px;
-    font-size: 15px;
+    margin-top: 5px;
+    font-size: 12px;
     color: midnightblue;
   }
   
   .eventType{
     width: fit-content;
-    margin-top: 13px;
-    margin-left: 4px;
+    margin-top: 5px;
     margin-right: 20px;
-    font-size: 15px;
+    font-size: 12px;
     color: midnightblue;
   }
   
@@ -652,19 +648,24 @@ li{
   .buttonGroup{
     display: flex;
     flex-direction: row;
-    width: 200px;
+    width: 175px;
     justify-content: space-evenly;
     padding-left: 125px;
   }
+
+  .hideElement{
+      display: none;
+  }
   
-  .attend {
+  .eventBtn {
     height:25px;
     width: 95px;
     border-radius:3px;
+    margin-left: 4px;
     text-align: center;
     background-color: rgba(0, 0, 0, 0.1);
   }
-  
+
   .interested {
     height:25px;
     width: 95px;
@@ -677,23 +678,25 @@ li{
   .eventDetails{
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     margin: 0 20px;
   }
   
   .spotsLeft{
     padding-top:5px;
-    font-size: 15px;
+    font-size: 12px;
   }
   
   .difficulty{
     padding-top:5px;
-    font-size: 15px;
+    padding-left:4px;
+    font-size: 12px;
   }
   
   .priceTag{
     padding-top:5px;
-    font-size: 15px;
+    padding-left:4px;
+    font-size: 12px;
   }
 
   /* //////////////////////////////// EVENT MODAL end ////////////////////////////////////// */

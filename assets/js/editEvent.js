@@ -59,6 +59,7 @@ var eventFrequency = document.getElementById("eventFrequency");
 var eventLocation = document.getElementById("eventLocation");
 var eventPrice = document.getElementById("eventPrice");
 var eventEditButton = document.getElementById("saveChanges");
+var eventDeleteButton = document.getElementById("deleteEvent");
 
 // set the value of each element to the respective value of our current event
 for(var i = 0; i < events.length; i++){
@@ -66,7 +67,7 @@ for(var i = 0; i < events.length; i++){
         eventType.value = events[i].type;
         eventPrivacy.value = events[i].privacy;
         eventName.value = events[i].name;
-        eventDate.value = events[i].date;
+        eventDate.value = events[i].date.datePickerDate;
         eventTime.value = events[i].time;
         eventSportType.value = events[i].sportType;
         eventDescription.value = events[i].description;
@@ -75,6 +76,30 @@ for(var i = 0; i < events.length; i++){
         eventFrequency.value = events[i].frequency;
         eventLocation.value = events[i].location.formatted_address;
         eventPrice.value = events[i].price;
+    }
+}
+
+class myDate {
+    constructor (fullDate){
+        this.datePickerDate = fullDate;
+        this.fullDate = new Date(fullDate);
+        this.year = this.fullDate.getFullYear();
+        this.months = {
+                        long:["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+                        short: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+                    };
+        this.month = {
+                        short: this.months.short[this.fullDate.getMonth()],
+                        long: this.months.long[this.fullDate.getMonth()]
+                    }
+        this.days = {
+                        long : ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                        short : ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']};
+        this.day = { 
+                        short: this.days.short[this.fullDate.getDay()],
+                        long: this.days.long[this.fullDate.getDay()]
+                    }   
+        this.date = this.fullDate.getDate();
     }
 }
 
@@ -125,6 +150,45 @@ function initAutocomplete() {
     address.name = place.name;
   }
 
+function deleteEvent(){
+    var eventsIndex = events.findIndex(x => x.eventID == currentEvent[0])
+    if(eventsIndex > -1){
+        events.splice(eventsIndex, 1)
+    }
+    // delete event ID ownEvents array
+    for(var i = 0; i < users.length; i++){
+        if(users[i].ID === currentUser[0]){
+            var ownEventsIndex = users[i].ownEvents.indexOf(currentEvent[0]);
+            if(ownEventsIndex > -1){
+                users[i].ownEvents.splice(ownEventsIndex, 1);
+            }
+        }
+    }
+    // delete event ID from all users interested arrays
+    for(var i = 0; i < users.length; i++){
+        var intEventsIndex = users[i].intEvents.indexOf(currentEvent[0])
+        if(intEventsIndex > -1){
+            users[i].intEvents.splice(intEventsIndex, 1);
+        }
+    }
+    // delete event ID from all users attend arrays
+    for(var i = 0; i < users.length; i++){
+        var attEventsIndex = users[i].attEvents.indexOf(currentEvent[0])
+        if(attEventsIndex > -1){
+            users[i].attEvents.splice(attEventsIndex, 1);
+        }
+    }
+    localStorage.setItem("events", JSON.stringify(events));
+    localStorage.setItem("users", JSON.stringify(users));
+    document.location.href = "eventCatalogue.html";
+}
+
+//add event listener to delete button to trigger deleteEvent function
+eventDeleteButton.addEventListener("click", function(){
+    // on click
+    deleteEvent();
+
+})
 
 // // allow current user to change values
 // // create a button "save" that on click, finds the events in the events array
@@ -139,7 +203,7 @@ document.getElementById("editEventForm").addEventListener("submit", function(e){
             events[i].type = e.target.eventType.value;
             events[i].privacy = e.target.privacyDropdown.value;
             events[i].name = e.target.eventName.value;
-            events[i].date = e.target.eventDate.value;
+            events[i].date = new myDate(e.target.eventDate.value);
             events[i].time = e.target.eventTime.value;
             events[i].sportType = e.target.eventSportType.value;
             events[i].description = e.target.eventDescription.value;

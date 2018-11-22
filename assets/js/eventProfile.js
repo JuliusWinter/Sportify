@@ -74,16 +74,20 @@ var price = document.getElementById("price");
 
 // if current users own events is equal to event id
 // show edit button
-for(var i = 0; i < currentUser[0].ownEvents.length; i++){
-    if(currentUser[0].ownEvents[i] === currentEvent[0]){  
-        // when this statement matches display btn inline
-        editBtn.style.display = "inline";
-        // after that exit the loop with the break statement
-        break;
-    }
-    else{
-        editBtn.style.display = "none";
-    }
+for(var i = 0; i < users.length; i++){
+    if(users[i].ID === currentUser[0]){
+        for(var j = 0; j < users[i].ownEvents.length; j++){
+            if(users[i].ownEvents[j] === currentEvent[0]){  
+                // when this statement matches display btn inline
+                editBtn.style.display = "inline";
+                // after that exit the loop with the break statement
+                break;
+            }
+            else{
+                editBtn.style.display = "none";
+            }
+        }
+    }   
 }
 
 // get event id of the selected event and compare it to events array
@@ -91,7 +95,7 @@ for(var i = 0; i < currentUser[0].ownEvents.length; i++){
 for(var i = 0; i < events.length; i++){
     if(currentEvent[0] === events[i].eventID){
         eventName.innerHTML = events[i].name;
-        date.innerHTML = events[i].date;
+        date.innerHTML = events[i].date.day.long + ", "+ events[i].date.month.long + " " + events[i].date.date + ", " + events[i].date.year ;
         time.innerHTML = events[i].time;
         privacy.innerHTML = events[i].privacy;
         sportType.innerHTML = events[i].sportType;

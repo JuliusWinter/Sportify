@@ -13,21 +13,49 @@ if(!JSON.parse(localStorage.getItem("events"))){
     var events = JSON.parse(localStorage.getItem("events"));
 }
 
+// setting the minimum choosable date to today
+let today = new Date().toISOString().substr(0, 10);
+document.querySelector("#eventDate").min = today;
+
 var placeSearch, autocomplete;
 class Address {
     constructor (streetNr, route, locality, adminAreaLvl1, country, postalCode){
         this.ID;
         this.name;
         this.formatted_address;
-        this.street_number = 'short_name',
-        this.route = 'long_name',
-        this.locality = 'long_name',
-        this.sublocality_level_1 = 'long_name',
-        this.administrative_area_level_1 = 'short_name',
-        this.country = 'long_name',
+        this.street_number = 'short_name';
+        this.route = 'long_name';
+        this.locality = 'long_name';
+        this.sublocality_level_1 = 'long_name';
+        this.administrative_area_level_1 = 'short_name';
+        this.country = 'long_name';
         this.postal_code = 'short_name'
     }
 };
+
+class myDate {
+    constructor (fullDate){
+        this.datePickerDate = fullDate;
+        this.fullDate = new Date(fullDate);
+        this.year = this.fullDate.getFullYear();
+        this.months = {
+                        long:["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+                        short: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+                    };
+        this.month = {
+                        short: this.months.short[this.fullDate.getMonth()],
+                        long: this.months.long[this.fullDate.getMonth()]
+                    }
+        this.days = {
+                        long : ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                        short : ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']};
+        this.day = { 
+                        short: this.days.short[this.fullDate.getDay()],
+                        long: this.days.long[this.fullDate.getDay()]
+                    }   
+        this.date = this.fullDate.getDate();
+    }
+}
 
 function initAutocomplete() {
   // Create the autocomplete object, restricting the search to geographical
@@ -143,22 +171,6 @@ function geid() {
     return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
   }
 
-//create the current date and set it in the format that matches the format of event dates (yyyy-mm-dd)// 
-function todayDate() {
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth()+1; 
-    var yyyy = today.getFullYear();
-    if(dd<10) {dd = '0'+dd} 
-    if(mm<10) {mm = '0'+mm} 
-    today = yyyy + '-' + mm + '-' + dd;
-    return today.toString()
-}
-
-function setMinDate (){
-    eventTime.setAttribute("min", todayDate());
-}
-
 // add click event listener
 // on click trigger function
 document.getElementById("eventForm").addEventListener("submit", function(event){
@@ -166,22 +178,20 @@ document.getElementById("eventForm").addEventListener("submit", function(event){
     event.preventDefault();
     // generate unique event ID
     var eventID = geid();
-    var creatorID = currentUser[0].ID;
+    var creatorID = currentUser[0];
     // check if all fields are filled out
         // if yes -> get all values of the fields and push them to the event object
         // push new event to events array
-        events.push(new Event(eventID, creatorID, event.target.eventType.value, event.target.privacyDropdown.value, event.target.eventName.value, event.target.eventDate.value, event.target.eventTime.value, event.target.eventSportType.value, event.target.eventDescription.value, event.target.eventDifficulty.value, event.target.eventMaxPart.value, event.target.eventFrequency.value, address, event.target.eventPrice.value));
+        events.push(new Event(eventID, creatorID, event.target.eventType.value, event.target.privacyDropdown.value, event.target.eventName.value, new myDate(event.target.eventDate.value), event.target.eventTime.value, event.target.eventSportType.value, event.target.eventDescription.value, event.target.eventDifficulty.value, event.target.eventMaxPart.value, event.target.eventFrequency.value, address, event.target.eventPrice.value));
         // store stringified version of events array in localStorage
         localStorage.setItem("events", JSON.stringify(events));
         for(var i = 0; i < users.length; i++){
-            if(currentUser[0].ID === users[i].ID){
-                currentUser[0].ownEvents.push(eventID);
+            if(currentUser[0] === users[i].ID){
                 users[i].ownEvents.push(eventID);
                 localStorage.setItem("currentUser", JSON.stringify(currentUser));
                 localStorage.setItem("users", JSON.stringify(users));
             }
         }
-        
         document.location.href = "eventCatalogue.html";
 });
 
