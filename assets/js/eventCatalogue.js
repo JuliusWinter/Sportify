@@ -280,7 +280,7 @@ unAtt[i].addEventListener('click', function(e) {
                 }
               }
             }
-})
+  })
 }
 
 // add an event listener to all interested buttons that on click
@@ -457,7 +457,12 @@ function locSearch (){
   //Declare variables - getting values from the div elements
   var item = document.getElementsByClassName('eventItem');
   
-  if (inputLoc.length > 0) {
+  if (inputLoc.length == 0) {
+    for (var i=0; i<item.length; i++) {
+      item[i].style.display ="";
+    }
+  }
+  else if (inputLoc.length > 0) {
     for (var i=0; i<item.length; i++) {
       if(item[i].getAttribute('name').toUpperCase().includes(inputLoc)){
         item[i].style.display ="";
@@ -519,27 +524,35 @@ for(var i=0; i < sports.length; i++) {
     var evTypeCB = document.getElementsByClassName('eventTypeCB');
     var trainingCB = document.getElementById('trainingEvent');
     var courseCB = document.getElementById('courseEvent');
-    if (trainingCB.checked == true && courseCB.checked != true) {
-        for (var i=0; i<item.length; i++) {
-          for (var j=0; j<type.length; j++) {
-            if (type[j].innerHTML != trainingCB.value) {
-              item[j].style.display = 'none'}
+     
+    
+    for (i=0; i<item.length; i++) {
+      if (item[i].style.display != 'none') {
+      
+      if (trainingCB.checked == true && courseCB.checked != true) {
+          for (var i=0; i<item.length; i++) {
+            for (var j=0; j<type.length; j++) {
+              if (type[j].innerHTML != trainingCB.value) {
+                item[j].style.display = 'none'}
+          }
         }
       }
-    }
-    else if (trainingCB.checked != true && courseCB.checked == true) {
-      for (var i=0; i<item.length; i++) {
-        for (var j=0; j<type.length; j++) {
-          if (type[j].innerHTML != courseCB.value) {
-            item[j].style.display = 'none'}
-        }
-      } 
-    }
-    else if (evTypeCB.checked == true || evTypeCB.checked != true) {
-      for (var i=0; i<item.length; i++) {
-        item[i].style.display = ''}
+      else if (trainingCB.checked != true && courseCB.checked == true) {
+        for (var i=0; i<item.length; i++) {
+          for (var j=0; j<type.length; j++) {
+            if (type[j].innerHTML != courseCB.value) {
+              item[j].style.display = 'none'}
+          }
+        } 
+      }
+      else if (evTypeCB.checked == true || evTypeCB.checked != true) {
+        for (var i=0; i<item.length; i++) {
+          item[i].style.display = ''}
     }
   }
+}
+  }
+  
 
   function spTypeFilter () {
     var sportCatCB = document.getElementsByClassName('spTypeCheckbox');
@@ -554,12 +567,11 @@ for(var i=0; i < sports.length; i++) {
         container.push(sportCatCB[i].value)
       } 
     }
-
+  
     //get all ids
     for (var a=0; a<item.length; a++) {
       if (container.length > 0 && item[a].style.display != 'none' && container.includes(item[a].classList[1])) {
         contItemsID.push(item[a].getAttribute('id'));
-        console.log(contItemsID);
       }
     }
 
@@ -592,14 +604,17 @@ for(var i=0; i < sports.length; i++) {
 
     for (var i=0; i<item.length; i++) {
       for (var j=0; j<evPrice.length; j++) {
+        if (item[i].style.display != 'none') {
         if (evPrice[j].innerHTML < minPrice.value || evPrice[j].innerHTML > maxPrice.value) {
           item[j].style.display = 'none'}
+        }
     }
   }
 }
 
   function filterFunction() {
     display();
+    locSearch();
     evTypeFilter();
     spTypeFilter();
     priceFilter(); 
