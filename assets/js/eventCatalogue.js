@@ -81,7 +81,7 @@ function createHTML (event) {
                         "</div>"+
                         "<div class='eventDetails'>"+
                                 "<div class='maxAttendees'>"+
-                                        "<div class='spotsLeft box capacity'>Places left: "+ (event.maxPart - event.attendees.length)+"</div>"+
+                                        "<div class='spotsLeft box'>Places left: <span class='capacity' id='"+event.eventID+"'> "+ (event.maxPart - event.attendees.length)+"</span></div>"+
                                 "</div>"+
                                 "<div class='dot box'>·</div>"+
                                 "<div class='difficultyLvlDiv'>"+
@@ -125,7 +125,6 @@ if (events) {
   document.getElementById('catalogueItems').innerHTML = content;
 }
 
-
 // get all type of buttons by ClassNames
 var att = document.getElementsByClassName('attend');
 var unAtt = document. getElementsByClassName('unattend');
@@ -148,7 +147,7 @@ for(var i = 0; i < events.length; i++){
   }
 }
 
-for (var i=0; i< events.length; i++) {
+for (var i=0; i<events.length; i++) {
   // find events with attendees
     if (events[i].attendees.length) {
       // loop over attendees array
@@ -215,6 +214,18 @@ for (var i=0; i < att.length; i++) {
             unAtt[event].classList.remove("hideElement");
             int[event].classList.add("hideElement");
             notInt[event].classList.add("hideElement");
+
+            //change places left
+            var cap = document.getElementsByClassName('capacity')
+            for (j=0; j<events.length; j++) {
+              if (events[j].eventID == event) {
+                for (i=0; i<cap.length; i++) {
+                  if (cap[i].id == events[j].eventID) {
+                    cap[i].innerHTML = events[j].maxPart - events[j].attendees.length
+              }
+            }
+              }
+            }
         } 
       }    
     })
@@ -257,7 +268,18 @@ unAtt[i].addEventListener('click', function(e) {
     unAtt[event].classList.add("hideElement");
     int[event].classList.remove("hideElement");
     notInt[event].classList.add("hideElement");
-  
+
+    //change places left
+    var cap = document.getElementsByClassName('capacity')
+            for (j=0; j<events.length; j++) {
+              if (events[j].eventID == event) {
+                for (i=0; i<cap.length; i++) {
+                  if (cap[i].id == events[j].eventID) {
+                    cap[i].innerHTML = events[j].maxPart - events[j].attendees.length
+                  }
+                }
+              }
+            }
 })
 }
 
@@ -429,18 +451,18 @@ var redirectEventProfile = document.getElementsByClassName("linkEventPage");
 // ------------------ VALID START ------------------ 
 
 //define a function that searches for locations and displays only applicable events//
-function locSearch (){
-  //declare variables - getting values from search box//
-  var searchInputLoc = document.getElementById('userLocationInput').value.toUpperCase();
-  //Declare variables - getting values from the div elements
-  var locat = document.getElementsByClassName('loc');
-  console.log(locat)
-    if(locat[i].toUpperCase().includes(searchInputLoc)){
-      events[i].style.display ="";
-    }else{
-      events[i].style.display ="none";
-    }
-  }
+// function locSearch (){
+//   //declare variables - getting values from search box//
+//   var searchInputLoc = document.getElementById('userLocationInput').value.toUpperCase();
+//   //Declare variables - getting values from the div elements
+//   var locat = document.getElementsByClassName('loc');
+//   console.log(locat)
+//     if(locat[i].toUpperCase().includes(searchInputLoc)){
+//       events[i].style.display ="";
+//     }else{
+//       events[i].style.display ="none";
+//     }
+//   }
 
 //dropdown sport category selection
 function collapse() {
