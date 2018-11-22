@@ -1,11 +1,10 @@
- //get the event array, that contains all event objects, from local storage and parse it
+//get the event array, that contains all event objects, from local storage and parse it
 var events = JSON.parse(localStorage.getItem("events"));
+
 // get current user from local storage
 var currentUser = JSON.parse(localStorage.getItem("currentUser"));
 // get users from local storage
 var users = JSON.parse(localStorage.getItem("users"));
-
-
 if(!JSON.parse(localStorage.getItem("currentEvent"))){
   var currentEvent=[];
 }
@@ -116,9 +115,9 @@ if (events) {
       today = yyyy + '-' + mm + '-' + dd;
       return today
     }
-    //only display public events, do not display any private events
-    //if the event date is in the past, do not create elements in the event catalogue; hence, do not display event in catalogue//
-    if (catItem.date >= todayDate() && catItem.privacy == 'public') {
+  //only display public events, do not display any private events
+  //if the event date is in the past, do not create elements in the event catalogue; hence, do not display event in catalogue//
+  if (catItem.date >= todayDate() && catItem.privacy == 'public') {
     content += createHTML(events[i]);
     }
   }
@@ -162,22 +161,22 @@ for (var i=0; i<events.length; i++) {
       }
     }
   }
-  // loop over the events array
-  for (var i=0; i<events.length; i++) {
-    // check if there are interested people
-    if (events[i].interested) {
-      // if yes, loop over interested array
-      for (var j=0; j<events[i].interested.length; j++) {
-        // check if our current user is one of the interested people
-        if (currentUser[0] === events[i].interested[j]){
-          att[i].classList.remove("hideElement");
-          unAtt[i].classList.add("hideElement");
-          int[i].classList.add("hideElement");
-          notInt[i].classList.remove("hideElement");
-        }
+// loop over the events array
+for (var i=0; i<events.length; i++) {
+  // check if there are interested people
+  if (events[i].interested) {
+    // if yes, loop over interested array
+    for (var j=0; j<events[i].interested.length; j++) {
+      // check if our current user is one of the interested people
+      if (currentUser[0] === events[i].interested[j]){
+        att[i].classList.remove("hideElement");
+        unAtt[i].classList.add("hideElement");
+        int[i].classList.add("hideElement");
+        notInt[i].classList.remove("hideElement");
       }
     }
   }
+}
   
 //attend button: add event listener functionality (push userID to attendees array of event and push eventID to attendedEvents array of user + change the visibility of the buttons)  
 //Alternative: load data-set into button as an atrribute (hence, insert the event object which applies to specific button into button and access needed properties that way) - Problem: could not parse the data-set
@@ -186,84 +185,85 @@ for (var i=0; i < att.length; i++) {
     let event = e.target.name;
     for (var i=0; i<events.length; i++) {
       // check if the button ID equals the event ID AND the event is not fully booked
-      if (event === events[i].eventID && events[i].attendees.length >= events[i].maxPart) 
-        {alert('Sorry, the event is booked out')}
-        // check if the button ID equals the event ID AND if the event is not fully booked
+      if (event === events[i].eventID && events[i].attendees.length >= events[i].maxPart) {
+        alert('Sorry, the event is booked out')
+      }
+      // check if the button ID equals the event ID AND if the event is not fully booked
       else if (event === events[i].eventID && events[i].attendees.length < events[i].maxPart) {
-          for (var i=0; i<users.length; i++) {
-            // loop over users array to find current user
-            if (currentUser[0] === users[i].ID) {
-              // push the event ID in attEvents array of user
-              users[i].attEvents.push(event);
-              // upload users array to local storage
-              localStorage.setItem("users", JSON.stringify(users));
-            }
+        for (var i=0; i<users.length; i++) {
+          // loop over users array to find current user
+          if (currentUser[0] === users[i].ID) {
+            // push the event ID in attEvents array of user
+            users[i].attEvents.push(event);
+            // upload users array to local storage
+            localStorage.setItem("users", JSON.stringify(users));
           }
-          // loop over events array
-          for (i=0; i<events.length; i++) {
-            // find the respective event
-            if (event === events[i].eventID) {
-              // push the user ID of currentUser in attendees array
-              events[i].attendees.push(currentUser[0]);
-              // upload to local storage
-              localStorage.setItem('events', JSON.stringify(events));
-            }
+        }
+        // loop over events array
+        for (i=0; i<events.length; i++) {
+          // find the respective event
+          if (event === events[i].eventID) {
+            // push the user ID of currentUser in attendees array
+            events[i].attendees.push(currentUser[0]);
+            // upload to local storage
+            localStorage.setItem('events', JSON.stringify(events));
           }
-            // manipulate buttons accordingly
-            att[event].classList.add("hideElement");
-            unAtt[event].classList.remove("hideElement");
-            int[event].classList.add("hideElement");
-            notInt[event].classList.add("hideElement");
+        }
+        // manipulate buttons accordingly
+        att[event].classList.add("hideElement");
+        unAtt[event].classList.remove("hideElement");
+        int[event].classList.add("hideElement");
+        notInt[event].classList.add("hideElement");
 
-            //change places left
-            var cap = document.getElementsByClassName('capacity')
-            for (j=0; j<events.length; j++) {
-              if (events[j].eventID == event) {
-                for (i=0; i<cap.length; i++) {
-                  if (cap[i].id == events[j].eventID) {
-                    cap[i].innerHTML = events[j].maxPart - events[j].attendees.length
-                  }
-                }
+        //change places left
+        var cap = document.getElementsByClassName('capacity')
+        for (j=0; j<events.length; j++) {
+          if (events[j].eventID == event) {
+            for (i=0; i<cap.length; i++) {
+              if (cap[i].id == events[j].eventID) {
+                cap[i].innerHTML = events[j].maxPart - events[j].attendees.length
               }
             }
-        } 
-      }    
-    })
-  }
+          }
+        }
+      } 
+    }    
+  })
+}
 
 // loop over all unattend buttons and add event listener that on click removes
 // event id from atteEvents array in user object
 // and removes user id from attendees array in event object
 for (var i=0; i < unAtt.length; i++) {
-unAtt[i].addEventListener('click', function(e) {
-  let event = e.target.name;
-  // loop over users array
-  for (var i=0; i<users.length; i++) {
-    // find current user in users array
-    if (currentUser[0] === users[i].ID) {
-      // remove the event ID from attEvents array in users object
-      var attEventsIndex = users[i].attEvents.indexOf(event);
-      if(attEventsIndex > -1){
-        users[i].attEvents.splice(attEventsIndex, 1);
+  unAtt[i].addEventListener('click', function(e) {
+    let event = e.target.name;
+    // loop over users array
+    for (var i=0; i<users.length; i++) {
+      // find current user in users array
+      if (currentUser[0] === users[i].ID) {
+        // remove the event ID from attEvents array in users object
+        var attEventsIndex = users[i].attEvents.indexOf(event);
+        if(attEventsIndex > -1){
+          users[i].attEvents.splice(attEventsIndex, 1);
+        }
+        // upload to local storage
+        localStorage.setItem("users", JSON.stringify(users));
       }
-      // upload to local storage
-      localStorage.setItem("users", JSON.stringify(users));
     }
-  }
-  // loop over events array
-  for (var i=0; i<events.length; i++) {
-    // find our event in events array
-    if (event === events[i].eventID) {
-      // delete the user ID from the attendees array in the event object
-      var attendeesIndex = events[i].attendees.indexOf(currentUser[0]);
-      if(attendeesIndex > -1){
-        events[i].attendees.splice(attendeesIndex, 1);
+    // loop over events array
+    for (var i=0; i<events.length; i++) {
+      // find our event in events array
+      if (event === events[i].eventID) {
+        // delete the user ID from the attendees array in the event object
+        var attendeesIndex = events[i].attendees.indexOf(currentUser[0]);
+        if(attendeesIndex > -1){
+          events[i].attendees.splice(attendeesIndex, 1);
+        }
+        // upload to local storage
+        localStorage.setItem('events', JSON.stringify(events));
       }
-      // upload to local storage
-      localStorage.setItem('events', JSON.stringify(events));
     }
-  }
-  // manipulate buttons to show only relevant buttons
+    // manipulate buttons to show only relevant buttons
     att[event].classList.remove("hideElement");
     unAtt[event].classList.add("hideElement");
     int[event].classList.remove("hideElement");
@@ -271,15 +271,15 @@ unAtt[i].addEventListener('click', function(e) {
 
     //change places left
     var cap = document.getElementsByClassName('capacity')
-            for (j=0; j<events.length; j++) {
-              if (events[j].eventID == event) {
-                for (i=0; i<cap.length; i++) {
-                  if (cap[i].id == events[j].eventID) {
-                    cap[i].innerHTML = events[j].maxPart - events[j].attendees.length
-                  }2
-                }
-              }
+      for (j=0; j<events.length; j++) {
+        if (events[j].eventID == event) {
+          for (i=0; i<cap.length; i++) {
+            if (cap[i].id == events[j].eventID) {
+              cap[i].innerHTML = events[j].maxPart - events[j].attendees.length
             }
+          }
+        }
+      }
   })
 }
 
@@ -289,34 +289,34 @@ unAtt[i].addEventListener('click', function(e) {
 // loop over all int buttons
 for (var i=0; i < int.length; i++) {
   // add an event listener to all of them
-int[i].addEventListener('click', function(e) {
-  let event = e.target.name;
-  // loop over the users array
-  for (var i=0; i< users.length; i++) {
-    // find our current user
-    if (currentUser[0] === users[i].ID) {
-      // push the event ID to intEvents array of user object
-      users[i].intEvents.push(event);
-      // upload to local storage
-      localStorage.setItem("users", JSON.stringify(users));
+  int[i].addEventListener('click', function(e) {
+    let event = e.target.name;
+    // loop over the users array
+    for (var i=0; i< users.length; i++) {
+      // find our current user
+      if (currentUser[0] === users[i].ID) {
+        // push the event ID to intEvents array of user object
+        users[i].intEvents.push(event);
+        // upload to local storage
+        localStorage.setItem("users", JSON.stringify(users));
+      }
     }
-  }
-  // loop over events array
-  for (var i=0; i<events.length; i++) {
-    // find our event
-    if (event === events[i].eventID) {
-      // push the user ID of current User to the interested array of the events object
-      events[i].interested.push(currentUser[0]);
-      // upload events array to local storage
-      localStorage.setItem('events', JSON.stringify(events));
+    // loop over events array
+    for (var i=0; i<events.length; i++) {
+      // find our event
+      if (event === events[i].eventID) {
+        // push the user ID of current User to the interested array of the events object
+        events[i].interested.push(currentUser[0]);
+        // upload events array to local storage
+        localStorage.setItem('events', JSON.stringify(events));
+      }
     }
-  }
-  // manipulate visability of respective buttons
+    // manipulate visability of respective buttons
     att[event].classList.remove("hideElement");
     unAtt[event].classList.add("hideElement");
     int[event].classList.add("hideElement");
     notInt[event].classList.remove("hideElement");
-})
+  })
 }
 
 // loop over all notInterested buttons and add event listener that on click removes
@@ -325,161 +325,57 @@ int[i].addEventListener('click', function(e) {
 // loop over unInterested buttons
 for (var i=0; i < notInt.length; i++) {
   // add event click listener to each of them
-notInt[i].addEventListener('click', function(e) {
-  let event = e.target.name;
-  // loop over users array
-  for (i=0; i<users.length; i++) {
-    // find current user in users array
-    if (currentUser[0] === users[i].ID) {
-      // remove the event ID from intEvents array of user object
-      var intEventsIndex = users[i].intEvents.indexOf(event);
-      if(intEventsIndex > -1){
-        users[i].intEvents.splice(intEventsIndex, 1);
-      }
+  notInt[i].addEventListener('click', function(e) {
+    let event = e.target.name;
+    // loop over users array
+    for (i=0; i<users.length; i++) {
+      // find current user in users array
+      if (currentUser[0] === users[i].ID) {
+        // remove the event ID from intEvents array of user object
+        var intEventsIndex = users[i].intEvents.indexOf(event);
+        if(intEventsIndex > -1){
+          users[i].intEvents.splice(intEventsIndex, 1);
+        }
       // upload to local storage
       localStorage.setItem("users", JSON.stringify(users));
-    }
-  }
-  // loop over events array
-  for (i=0; i<events.length; i++) {
-    // find our respective event
-    if (event === events[i].eventID) {
-      // remove user ID from interested array of event object
-      var interestedIndex = events[i].interested.indexOf(currentUser[0]);
-      if(interestedIndex > -1){
-        events[i].interested.splice(interestedIndex, 1);
       }
-      // upload to local storage
-      localStorage.setItem('events', JSON.stringify(events));
     }
-  }
-  // manipulate button visability accordingly
+    // loop over events array
+    for (i=0; i<events.length; i++) {
+      // find our respective event
+      if (event === events[i].eventID) {
+        // remove user ID from interested array of event object
+        var interestedIndex = events[i].interested.indexOf(currentUser[0]);
+        if(interestedIndex > -1){
+          events[i].interested.splice(interestedIndex, 1);
+        }
+        // upload to local storage
+        localStorage.setItem('events', JSON.stringify(events));
+      }
+    }
+    // manipulate button visability accordingly
     att[event].classList.remove("hideElement");
     unAtt[event].classList.add("hideElement");
     int[event].classList.remove("hideElement");
     notInt[event].classList.add("hideElement");
-  
-})
+  })
 }
 
-  // when the link (=click on name of event) to an event is clicked, the event id is pushed to the array currentEvent, stored in the local Storage and the user is redirected to the event Profile -> on the event Profile the Data gets filled out automatically based on the entry of the id in the currentEvent array
-  // Give the a tag a class
-  // select that a with document.getElementByClassName
-  // add an event listener to the a
-  // on click push the id of the event to an array called currentEvent
-  // upload that array to local storage
-  // redirect to eventProfile.html
-  
+// when the link (=click on name of event) to an event is clicked, the event id is pushed to the array currentEvent, stored in the local Storage and the user is redirected to the event Profile -> on the event Profile the Data gets filled out automatically based on the entry of the id in the currentEvent array
+// Give the a tag a class
+// select that a with document.getElementByClassName
+// add an event listener to the a
+// on click push the id of the event to an array called currentEvent
+// upload that array to local storage
+// redirect to eventProfile.html  
 var redirectEventProfile = document.getElementsByClassName("linkEventPage");
- for (i = 0; i < redirectEventProfile.length; i++) {
-    redirectEventProfile[i].addEventListener("click", function(e) {
-        console.log(e);
-        let eventID = e.target.name;
-        currentEvent.push(eventID);
-        localStorage.setItem("currentEvent", JSON.stringify(currentEvent));
-        document.location.href = "eventProfile.html";
-    });
-  }
-
-// ------------------ VALID END ------------------ 
-
-  // select the a with document.getElementByClassName
-  // var redEP = document.getElementsByClassName("linkEventPage");
-  // on click push the id of the event to an array called currentEvent
-  // upload that array to local storage
-  // neccessary to loop over redEP due to characteristic of class (=list)
-  // for (i = 0; i < redEP.length; i++) {
-  //     redEP[i].addEventListener("click", function() {
-  //     currentEvent.push(naming.id);
-  //     localStorage.setItem("currentEvent", JSON.stringify(currentEvent));
-  //   })
-  // }
-  
-//   var attend = document.getElementsByClassName('attButton')
-//   for (i = 0; i < attend.length; i++) {
-//     attend[i].addEventListener("click", function() {
-//     if (attButtonContent = 'attend') {
-//         for (i=0; i < users.length; i++) {
-//           if (users[i].id = currentUser[0]) {
-//               events[i].attendees.push(currentUser[0]);
-//               users[i].attEvents.push(events[i].eventID);
-//               localStorage.setItem("events", JSON.stringify(events));
-//               localStorage.setItem("users", JSON.stringify(users));
-//           }
-//         }
-//     }
-//   else {
-//     for (i=0; i < users.length; i++) {
-//       if (users[i].id = currentUser[0]) {
-//           events[i].attendees.pop(currentUser[0]);
-//           users[i].attEvents.pop(events[i].eventID);
-//           localStorage.setItem("events", JSON.stringify(events));
-//           localStorage.setItem("users", JSON.stringify(users));
-//       }
-//      }
-//    }
-//  })
-// }
-
-// ALTERNATIVE APPROACH of creating events and displaying them in the event catalogue
-// Decision for not pursuing this approach: 
-// (i) unable to display the values of the properties (either only key name or undefined appears) 
-// (ii) if statements were not effective; this means they did not filter out the properties that should not be displayed like eventID           or isTrusted; source of the error was being unable to compare the key names with 
-// Advantage of alternative approach: less code
-
-// for(var i = 0; i < events.length; i++) {
-//   var catItem = events[i];
-//   var divContainer = document.createElement('DIV');
-//   divContainer.setAttribute('class', 'event');
-//   divContainer.setAttribute('id', catItem.eventID);
-//
-//   Difference: instead of creating a div for each property of the event objects/class manually
-//    (i) loop over the properties (ii) create a paragraph for each property (iii)
-//   for(var prop in catItem) {
-//     var x = document.createElement('p');
-//     x.setAttribute('class', prop);
-//     var xContent = document.createTextNode(catItem.prop.value);
-//     // if (x.className !== catItem.eventID) {
-//     x.appendChild(xContent);
-//     divContainer.appendChild(x);
-//     }
-//   var ec = document.getElementById('catalogueItems');
-//   ec.appendChild(divContainer);
-// }
-// }
-
-// ------------------ VALID START ------------------ 
-
-// define a function that searches for locations and displays only applicable events//
-function locSearch (){
-  //declare variables - getting values from search box//
-  var inputLoc = document.getElementById('searchbarEC').value.toUpperCase();
-  //Declare variables - getting values from the div elements
-  var item = document.getElementsByClassName('eventItem');
-  
-  if (inputLoc.length == 0) {
-    for (var i=0; i<item.length; i++) {
-      item[i].style.display ="";
-    }
-  }
-  else if (inputLoc.length > 0) {
-    for (var i=0; i<item.length; i++) {
-      if(item[i].getAttribute('name').toUpperCase().includes(inputLoc)){
-        item[i].style.display ="";
-      } else{
-        item[i].style.display ="none";
-      } 
-    }
-  }
-}
-
-
-//dropdown sport category selection
-function collapse() {
-  var coll = document.getElementById("collapsible");
-  var cont = document.getElementById('collContent')
-  coll.classList.toggle("active");
-  cont.classList.toggle("hideElement");
+for (i = 0; i < redirectEventProfile.length; i++) {
+  redirectEventProfile[i].addEventListener("click", function(e) {
+    let eventID = e.target.name;
+    currentEvent.push(eventID);
+    localStorage.setItem("currentEvent", JSON.stringify(currentEvent));
+    document.location.href = "eventProfile.html";
+  })
 }
 
 //create a function that creates a div, including a checkbox and an individual label for each array value
@@ -504,36 +400,65 @@ for(var i=0; i < sports.length; i++) {
     element.appendChild(lab);
 }
 
-  function uncheckSpCat() {
-    var sportCatCB = document.getElementsByClassName('spTypeCheckbox');
-    for(var i=0;i<sportCatCB.length;i++){
-      sportCatCB[i].checked = false;
-    }
-  }
+//dropdown sport category selection
+function collapse() {
+  var coll = document.getElementById("collapsible");
+  var cont = document.getElementById('collContent')
+  coll.classList.toggle("active");
+  cont.classList.toggle("hideElement");
+}
 
-  function display () {
-    var item = document.getElementsByClassName('eventItem');
+function uncheckSpCat() {
+  var sportCatCB = document.getElementsByClassName('spTypeCheckbox');
+  for(var i=0;i<sportCatCB.length;i++){
+    sportCatCB[i].checked = false;
+  }
+}
+
+function display () {
+  var item = document.getElementsByClassName('eventItem');
+  for (var i=0; i<item.length; i++) {
+    item[i].style.display = '';
+  }
+}
+
+// define a function that searches for locations and displays only applicable events//
+function locSearch (){
+  //declare variables - getting values from search box//
+  var inputLoc = document.getElementById('searchbarEC').value.toUpperCase();
+  //Declare variables - getting values from the div elements
+  var item = document.getElementsByClassName('eventItem');
+  if (inputLoc.length == 0) {
     for (var i=0; i<item.length; i++) {
-      item[i].style.display = '';
+      item[i].style.display ="";
     }
   }
+  else if (inputLoc.length > 0) {
+    for (var i=0; i<item.length; i++) {
+      if(item[i].getAttribute('name').toUpperCase().includes(inputLoc)){
+        item[i].style.display ="";
+      }else{
+        item[i].style.display ="none";
+      } 
+    }
+  }
+}
     
-  function evTypeFilter () {
-    var item = document.getElementsByClassName('eventItem');
-    var type = document.getElementsByClassName('eventType');
-    var evTypeCB = document.getElementsByClassName('eventTypeCB');
-    var trainingCB = document.getElementById('trainingEvent');
-    var courseCB = document.getElementById('courseEvent');
-     
-    
-    for (i=0; i<item.length; i++) {
-      if (item[i].style.display != 'none') {
-      
+function evTypeFilter () {
+  var item = document.getElementsByClassName('eventItem');
+  var type = document.getElementsByClassName('eventType');
+  var evTypeCB = document.getElementsByClassName('eventTypeCB');
+  var trainingCB = document.getElementById('trainingEvent');
+  var courseCB = document.getElementById('courseEvent');
+       
+  for (i=0; i<item.length; i++) {
+    if (item[i].style.display != 'none') {  
       if (trainingCB.checked == true && courseCB.checked != true) {
-          for (var i=0; i<item.length; i++) {
-            for (var j=0; j<type.length; j++) {
-              if (type[j].innerHTML != trainingCB.value) {
-                item[j].style.display = 'none'}
+        for (var i=0; i<item.length; i++) {
+          for (var j=0; j<type.length; j++) {
+            if (type[j].innerHTML != trainingCB.value) {
+              item[j].style.display = 'none'
+            }
           }
         }
       }
@@ -541,81 +466,76 @@ for(var i=0; i < sports.length; i++) {
         for (var i=0; i<item.length; i++) {
           for (var j=0; j<type.length; j++) {
             if (type[j].innerHTML != courseCB.value) {
-              item[j].style.display = 'none'}
+              item[j].style.display = 'none'
+            }
           }
         } 
       }
       else if (evTypeCB.checked == true || evTypeCB.checked != true) {
         for (var i=0; i<item.length; i++) {
-          item[i].style.display = ''}
-    }
-  }
-}
-  }
-  
-
-  function spTypeFilter () {
-    var sportCatCB = document.getElementsByClassName('spTypeCheckbox');
-    var container = [];
-    var contItemsID  = [];
-    var item = document.getElementsByClassName('eventItem');
-    var cont = document.getElementById('collContent')
-    
-    //Checkboxen in filter
-    for (var i=0; i<sportCatCB.length; i++) {
-      if (sportCatCB[i].checked == true) {
-        container.push(sportCatCB[i].value)
+          item[i].style.display = ''
+        }
       } 
     }
+  }
+}
   
-    //get all ids
-    for (var a=0; a<item.length; a++) {
-      if (container.length > 0 && item[a].style.display != 'none' && container.includes(item[a].classList[1])) {
-        contItemsID.push(item[a].getAttribute('id'));
-      }
-    }
-
-    for(var a=0; a<item.length; a++){
-      if(container.length > 0 && contItemsID.includes(item[a].getAttribute('id')) == false){
-        item[a].style.display = 'none';
-      }
-    }
+function spTypeFilter () {
+  var sportCatCB = document.getElementsByClassName('spTypeCheckbox');
+  var container = [];
+  var contItemsID  = [];
+  var item = document.getElementsByClassName('eventItem');
+  var cont = document.getElementById('collContent');
+  for (var i=0; i<sportCatCB.length; i++) {
+    if (sportCatCB[i].checked == true) {
+      container.push(sportCatCB[i].value)
+    } 
+  }
   
-    if (cont.classList.contains('hideElement') == false) {
-      cont.classList.add("hideElement");
+  //get all ids
+  for (var a=0; a<item.length; a++) {
+    if (container.length > 0 && item[a].style.display != 'none' && container.includes(item[a].classList[1])) {
+      contItemsID.push(item[a].getAttribute('id'));
     }
   }
-
-  function priceFilter () {
-    var item = document.getElementsByClassName('eventItem');
-    var evPrice = document.getElementsByClassName('priceSpan');
-    var minPrice = document.getElementById('minPriceFilter');
-    var maxPrice = document.getElementById('maxPriceFilter');
-    var eventMaxPrice = []
-
-    for (var i=0; i<evPrice.length; i++) {
-      eventMaxPrice.push(evPrice[i].innerHTML)
-      var maxRange = Math.max(...eventMaxPrice)
+  for(var a=0; a<item.length; a++){
+    if(container.length > 0 && contItemsID.includes(item[a].getAttribute('id')) == false){
+      item[a].style.display = 'none';
     }
-    
-    if (maxPrice.value.length == 0) {
-      maxPrice.value = maxRange
-    }
+  }
+  if (cont.classList.contains('hideElement') == false) {
+    cont.classList.add("hideElement");
+  }
+}
 
-    for (var i=0; i<item.length; i++) {
-      for (var j=0; j<evPrice.length; j++) {
-        if (item[i].style.display != 'none') {
+function priceFilter () {
+  var item = document.getElementsByClassName('eventItem');
+  var evPrice = document.getElementsByClassName('priceSpan');
+  var minPrice = document.getElementById('minPriceFilter');
+  var maxPrice = document.getElementById('maxPriceFilter');
+  var eventMaxPrice = []
+  for (var i=0; i<evPrice.length; i++) {
+    eventMaxPrice.push(evPrice[i].innerHTML)
+    var maxRange = Math.max(...eventMaxPrice)
+  }  
+  if (maxPrice.value.length == 0) {
+    maxPrice.value = maxRange
+  }
+  for (var i=0; i<item.length; i++) {
+    for (var j=0; j<evPrice.length; j++) {
+      if (item[i].style.display != 'none') {
         if (evPrice[j].innerHTML < minPrice.value || evPrice[j].innerHTML > maxPrice.value) {
-          item[j].style.display = 'none'}
+          item[j].style.display = 'none'
         }
+      }
     }
   }
 }
 
-  function filterFunction() {
-    display();
-    locSearch();
-    evTypeFilter();
-    spTypeFilter();
-    priceFilter(); 
-  }
+function filterFunction() {
+  display();
+  locSearch();
+  evTypeFilter();
+  spTypeFilter();
+  priceFilter(); 
+}
