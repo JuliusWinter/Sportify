@@ -95,7 +95,7 @@ for(var i = 0; i < users.length; i++){
 for(var i = 0; i < events.length; i++){
     if(currentEvent[0] === events[i].eventID){
         eventName.innerHTML = events[i].name;
-        date.innerHTML = events[i].date;
+        date.innerHTML = events[i].date.day.long + ", "+ events[i].date.month.long + " " + events[i].date.date + ", " + events[i].date.year ;
         time.innerHTML = events[i].time;
         privacy.innerHTML = events[i].privacy;
         sportType.innerHTML = events[i].sportType;

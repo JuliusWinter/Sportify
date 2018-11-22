@@ -67,7 +67,7 @@ for(var i = 0; i < events.length; i++){
         eventType.value = events[i].type;
         eventPrivacy.value = events[i].privacy;
         eventName.value = events[i].name;
-        eventDate.value = events[i].date;
+        eventDate.value = events[i].date.datePickerDate;
         eventTime.value = events[i].time;
         eventSportType.value = events[i].sportType;
         eventDescription.value = events[i].description;
@@ -76,6 +76,30 @@ for(var i = 0; i < events.length; i++){
         eventFrequency.value = events[i].frequency;
         eventLocation.value = events[i].location.formatted_address;
         eventPrice.value = events[i].price;
+    }
+}
+
+class myDate {
+    constructor (fullDate){
+        this.datePickerDate = fullDate;
+        this.fullDate = new Date(fullDate);
+        this.year = this.fullDate.getFullYear();
+        this.months = {
+                        long:["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+                        short: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+                    };
+        this.month = {
+                        short: this.months.short[this.fullDate.getMonth()],
+                        long: this.months.long[this.fullDate.getMonth()]
+                    }
+        this.days = {
+                        long : ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                        short : ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']};
+        this.day = { 
+                        short: this.days.short[this.fullDate.getDay()],
+                        long: this.days.long[this.fullDate.getDay()]
+                    }   
+        this.date = this.fullDate.getDate();
     }
 }
 
@@ -179,7 +203,7 @@ document.getElementById("editEventForm").addEventListener("submit", function(e){
             events[i].type = e.target.eventType.value;
             events[i].privacy = e.target.privacyDropdown.value;
             events[i].name = e.target.eventName.value;
-            events[i].date = e.target.eventDate.value;
+            events[i].date = new myDate(e.target.eventDate.value);
             events[i].time = e.target.eventTime.value;
             events[i].sportType = e.target.eventSportType.value;
             events[i].description = e.target.eventDescription.value;

@@ -28,6 +28,31 @@ class user {
         this.awards = [];
     }
 }
+
+class myDate {
+    constructor (fullDate){
+        this.datePickerDate = fullDate;
+        this.fullDate = new Date(fullDate);
+        this.year = this.fullDate.getFullYear();
+        this.months = {
+                        long:["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+                        short: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+                    };
+        this.month = {
+                        short: this.months.short[this.fullDate.getMonth()],
+                        long: this.months.long[this.fullDate.getMonth()]
+                    }
+        this.days = {
+                        long : ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                        short : ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']};
+        this.day = { 
+                        short: this.days.short[this.fullDate.getDay()],
+                        long: this.days.long[this.fullDate.getDay()]
+                    }   
+        this.date = this.fullDate.getDate();
+    }
+}
+
 // select anchor tags that should be manipulated
 var userProfile = document.querySelector("#userProfile");
 var createEvent = document.querySelector("#createEvent");
@@ -89,7 +114,7 @@ document.getElementById("registrationForm").addEventListener("submit", function(
                 // hash password
                 password = window.btoa(event.target.regPassword.value);
                 // push new user to users array
-                users.push(new user (ID, event.target.regUserName.value, event.target.regFirstName.value, event.target.regLastName.value, event.target.gender.value, event.target.regBirthday.value, event.target.regEmail.value, password));
+                users.push(new user (ID, event.target.regUserName.value, event.target.regFirstName.value, event.target.regLastName.value, event.target.gender.value, new myDate(event.target.regBirthday.value), event.target.regEmail.value, password));
                 // store stringified version of users array in localStorage
                 localStorage.setItem("users", JSON.stringify(users));
                 // push the same user to current User array
