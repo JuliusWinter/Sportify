@@ -769,7 +769,7 @@ git push origin master */
 
 /* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ USER PROFILE STYLING STARTS //////////////////////////////////////// */
 #containerUser{
-width: 600px;
+width: 50%;
 margin: auto;
 background: white;
 border-top-left-radius: 16px;
@@ -873,7 +873,7 @@ display: block;
 }
 /* ////////////////////////////  USER PRFILE CARD ENDS, PROFILE PAGE CONT. \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
 #containerBtnGroup{
-    width: 665px;
+    width: 55.5%;
     margin: 0 auto;
     background: #24C6DC;  /* fallback for old browsers */
     border-bottom-left-radius:16px ;
@@ -881,7 +881,6 @@ display: block;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
     text-align: center;
     display: block;
-    margin-top: 1px;
     border: none;
     height: 40px;
 
