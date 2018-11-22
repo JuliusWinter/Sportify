@@ -26,26 +26,29 @@ else{
     document.location.href = "login.html";
 }
 
-//Search function applied to table in profile page, filtering all created events by current user
-function searchCatalogueTable() {
-    // Declare variables in table
-    var input, filter, table, tr, td, i;
-    input = document.getElementById("tableInput");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("userEventsTable");
-    tr = table.getElementsByTagName("tr");
-    // Loop through all table rows, and hide those who don't match the search query
-    for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[0];
-      if (td) {
-        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-          tr[i].style.display = "";
-        } else {
-          tr[i].style.display = "none";
-        }
-      } 
-    }
-  }
+var userName = document.getElementById("localUserName");
+var userGender = document.getElementById("currentUserGender");
+var userSlogan = document.getElementById("currentUserSlogan");
+
+    for(var i = 0; i < users.length; i++){
+      if(currentUser[0] === users[i].ID){
+// CHANGE: FOR LOOP OVER USERS ARRAY --> MATCH WITH CURRENTUSER[0] === USERS[i].ID
+// Access first name of first User and last name of first User
+userName.innerHTML = users[i].userName + " is in the game";
+// this element will come from the user's gender
+userGender.innerHTML = "Gender: " + users[i].gender;
+// this element will come from user typing in slogan
+var slogan = users[i].slogan;
+if ( slogan === "") {
+    txt = "Create a slogan in the profile edit page!";
+} else {
+    txt = slogan;
+}
+userSlogan.innerHTML = txt;
+
+}
+}
+
 //set variables for button ID's
 var btnUpcoming = document.getElementById("upcomingEventsBtn");
 var btnPast = document.getElementById("pastEventsBtn");
@@ -97,19 +100,6 @@ btnInterests.addEventListener("click", function(){
         pastEventsDIV.style.display = "none";
     }
 });
-
-
-// CHANGE: FOR LOOP OVER USERS ARRAY --> MATCH WITH CURRENTUSER[0] === USERS[i].ID
-// Access first name of first User and last name of first User
-document.getElementById("localUserName").innerHTML = currentUser[0].userName + " is in the game";
-// Access location from reg form, not implemented yet :::  currentUser[0].location;
-document.getElementById("userLocation").innerHTML = currentUser[0].location;
-// this element will come from user typing in slogon
-document.getElementById("currentUserSlogan").innerHTML = currentUser[0].slogan;
-// this element will come from the user's status after pariciptating in games and friending others
-document.getElementById("currentUserStatus").innerHTML = "Status: " + "Baller";
-// Access email of first User
-//      document.getElementById("null").innerHTML = currentUser[0].email;
 
 
 // var i = 0;
