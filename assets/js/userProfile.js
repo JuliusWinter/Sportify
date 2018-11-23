@@ -124,15 +124,20 @@ if (events) {
     }
     
     for(var i=0; i<events.length; i++){
+        var eligble = false;
         for(var j=0; j<events[i].attendees.length; j++){
-          for(var k=0; k<events[i].interested.lenght; k++){
-            if(currentUser[0] == events[i].attendees[j]){
-                console.log('works');
-                if (events[i].date >= todayDate()) {
-                    content += createHTML(events[i]);
-                    }
-                }
+            if(currentUser[0] == events[i].attendees[j]) { 
+                eligble = true;    
             }
+        }
+        for(var k=0; k<events[i].interested.length; k++){
+            if(currentUser[0] == events[i].interested[k]) { 
+                eligble = true;    
+            }
+        }
+        if (eligble) {
+            events[i].date >= todayDate()
+            content += createHTML(events[i]);
         }
     }
     document.getElementById('upcomingEventItems').innerHTML = content;
