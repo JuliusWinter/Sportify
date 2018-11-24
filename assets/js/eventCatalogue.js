@@ -188,6 +188,7 @@ for (var i=0; i<events.length; i++) {
 //attend button: add event listener functionality (push userID to attendees array of event and push eventID to attendedEvents array of user + change the visibility of the buttons)  
 //Alternative: load data-set into button as an atrribute (hence, insert the event object which applies to specific button into button and access needed properties that way) - Problem: could not parse the data-set
 for (var i=0; i < att.length; i++) {
+  // console.log(att.length)
   att[i].addEventListener('click', function(e) {
     let event = e.target.name;
     for (var i=0; i<events.length; i++) {
@@ -207,25 +208,29 @@ for (var i=0; i < att.length; i++) {
           }
         }
         // loop over events array
-        for (i=0; i<events.length; i++) {
+        for (var i=0; i<events.length; i++) {
           // find the respective event
           if (event === events[i].eventID) {
+            console.log(event)
+            console.log(events[i].eventID)
+
             // push the user ID of currentUser in attendees array
             events[i].attendees.push(currentUser[0]);
             // upload to local storage
             localStorage.setItem('events', JSON.stringify(events));
           }
+        }
             // loop over users array
-          for (i=0; i<users.length; i++) {
-            // find current user in users array
-            if (currentUser[0] === users[i].ID) {
-              // remove the event ID from intEvents array of user object
-              var intEventsIndex = users[i].intEvents.indexOf(event);
-              if(intEventsIndex > -1){
-                users[i].intEvents.splice(intEventsIndex, 1);
-              }
-              // upload to local storage
-              localStorage.setItem("users", JSON.stringify(users));
+        for (i=0; i<users.length; i++) {
+          // find current user in users array
+          if (currentUser[0] === users[i].ID) {
+            // remove the event ID from intEvents array of user object
+            var intEventsIndex = users[i].intEvents.indexOf(event);
+            if(intEventsIndex > -1){
+              users[i].intEvents.splice(intEventsIndex, 1);
+            }
+            // upload to local storage
+            localStorage.setItem("users", JSON.stringify(users));
             }
           }
           // loop over events array
@@ -241,12 +246,6 @@ for (var i=0; i < att.length; i++) {
               localStorage.setItem('events', JSON.stringify(events));
             }
           }
-            // manipulate buttons accordingly
-            att[event].classList.add("hideElement");
-            unAtt[event].classList.remove("hideElement");
-            int[event].classList.add("hideElement");
-            notInt[event].classList.add("hideElement");
-        }
         // manipulate buttons accordingly
         att[event].classList.add("hideElement");
         unAtt[event].classList.remove("hideElement");
