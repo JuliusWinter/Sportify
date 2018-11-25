@@ -112,6 +112,7 @@ if (events) {
     //introduce variable for each individual event //
     var catItem = events[i];
     //create the current date and set it in the format that matches the format of event dates (yyyy-mm-dd)// 
+    
     function todayDate() {
       var today = new Date();
       var dd = today.getDate();
@@ -122,9 +123,10 @@ if (events) {
       today = yyyy + '-' + mm + '-' + dd;
       return today
     }
+  
   //only display public events, do not display any private events
   //if the event date is in the past, do not create elements in the event catalogue; hence, do not display event in catalogue//
-  if (catItem.date >= todayDate() && catItem.privacy == 'public') {
+  if (catItem.date.datePickerDate >= todayDate() && catItem.privacy == 'public') {
     content += createHTML(events[i]);
     }
   }
