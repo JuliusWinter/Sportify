@@ -128,64 +128,6 @@ function todayDate() {
     return today
 }
 
-// upcoming events
-// //only create event catalogue if events.length > 0
-function createUpEvents() {
-  if (events) {
-    var content = "";
-    for(var i=0; i<events.length; i++){
-        var eligble = false;
-        for(var j=0; j<events[i].attendees.length; j++){
-            if(currentUser[0] == events[i].attendees[j]) { 
-                eligble = true;    
-            }
-        }
-        for(var k=0; k<events[i].interested.length; k++){
-            if(currentUser[0] == events[i].interested[k]) { 
-                eligble = true;    
-            }
-        }
-        if (eligble && events[i].date.datePickerDate >= todayDate()) {
-          content += createHTML(events[i]);
-        }
-    }
-    if (content != "") {
-    document.getElementById('upcomingEventItems').innerHTML = content;
-    } else {
-    document.getElementById('upcomingEventItems').innerHTML = 'No events matching'
-    }
-  }
-}
-
-// previous events
-function createPrevEvents() {
-  if (events) {
-    var content = "";
-      
-    for(var i=0; i<events.length; i++){
-      var eligble = false;
-      for(var j=0; j<events[i].attendees.length; j++){
-        if(currentUser[0] == events[i].attendees[j]) { 
-          eligble = true;    
-        }
-      }
-      for(var k=0; k<events[i].interested.length; k++){
-        if(currentUser[0] == events[i].interested[k]) { 
-          eligble = true;    
-        }
-      }
-      if (eligble && events[i].date.datePickerDate < todayDate()) {
-        content += createHTML(events[i]);
-      }
-    }
-    if (content != "") {
-      document.getElementById('previousEventItems').innerHTML = content;
-    } else {
-      document.getElementById('previousEventItems').innerHTML = 'No events matching';
-    }
-  }
-}
-
 // own events
 function createOwnEvents() {
   if (events) {
@@ -222,7 +164,7 @@ function createAllEvents() {
                 eligble = true;    
             }
         }
-        if (eligble) {
+        if (eligble && events[i].date.datePickerDate >= todayDate()) {
             content += createHTML(events[i]);
         }
     }
@@ -240,7 +182,6 @@ function buttonLogic() {
   var unAtt = document. getElementsByClassName('unattend');
   var int = document.getElementsByClassName('interested');
   var notInt = document.getElementsByClassName('notinterested');
-  var cap = document.getElementsByClassName('capacity');
 
   // set visibility of attend buttons when entering page and user attends or is interested
   // loop over events array
@@ -501,14 +442,10 @@ function buttonLogic() {
 }
 
 //set variables for button ID's
-var btnUpcoming = document.getElementById("upcomingEventsBtn");
-var btnPrevious = document.getElementById("previousEventsBtn");
 var btnOwn = document.getElementById("ownEventsBtn");
 var btnAll = document.getElementById('allEventsBtn')
                                                         
 //set variable for DIV ID's
-var upEventsDIV = document.getElementById("upcomingEvents");
-var prevEventsDIV = document.getElementById("previousEvents");
 var ownEventsDIV = document.getElementById("ownEvents");
 var allEventsDIV = document.getElementById('allEvents');
 
@@ -519,52 +456,12 @@ function getLocalStorageData() {
   var events = JSON.parse(localStorage.getItem("events"));
 }
 
-//function for first button in upcoming events
-btnUpcoming.addEventListener("click", function(){
-  getLocalStorageData();
-  if (upEventsDIV.style.display == "none") {
-    upEventsDIV.style.display = "inline";
-    prevEventsDIV.style.display = "none";
-    ownEventsDIV.style.display = "none";
-    allEventsDIV.style.display = "none";
-} else if (upEventsDIV.style.display == "inline") {
-    upEventsDIV.style.display = "none";
-    prevEventsDIV.style.display = "none";
-    ownEventsDIV.style.display = "none";
-    allEventsDIV.style.display = "none";
-}
-  createUpEvents();
-  buttonLogic();
-})
-
-//identical function runs for past events DIV
-btnPrevious.addEventListener("click", function() {
-  getLocalStorageData();
-    if (prevEventsDIV.style.display == "none") {
-        upEventsDIV.style.display = "none";
-        prevEventsDIV.style.display = "inline";
-        ownEventsDIV.style.display = "none";
-        allEventsDIV.style.display = "none";
-    } else if (prevEventsDIV.style.display == "inline") {
-        upEventsDIV.style.display = "none";
-        prevEventsDIV.style.display = "none";
-        ownEventsDIV.style.display = "none";
-        allEventsDIV.style.display = "none";
-    }
-  createPrevEvents();
-  buttonLogic();
-})
-
 btnOwn.addEventListener("click", function(){
   getLocalStorageData();
     if (ownEventsDIV.style.display == "none") {
-        upEventsDIV.style.display = "none";
-        prevEventsDIV.style.display = "none";
         ownEventsDIV.style.display = "inline";
         allEventsDIV.style.display = "none";
     } else if (ownEventsDIV.style.display == "inline") {
-        upEventsDIV.style.display = "none";
-        prevEventsDIV.style.display = "none";
         ownEventsDIV.style.display = "none";
         allEventsDIV.style.display = "none";
     }
@@ -575,13 +472,9 @@ btnOwn.addEventListener("click", function(){
 btnAll.addEventListener("click", function(){
   getLocalStorageData();
     if (allEventsDIV.style.display == "none") {
-        upEventsDIV.style.display = "none";
-        prevEventsDIV.style.display = "none";
         ownEventsDIV.style.display = "none";
         allEventsDIV.style.display = "inline";
     } else if (allEventsDIV.style.display == "inline") {
-        upEventsDIV.style.display = "none";
-        prevEventsDIV.style.display = "none";
         ownEventsDIV.style.display = "none";
         allEventsDIV.style.display = "none";
     }
