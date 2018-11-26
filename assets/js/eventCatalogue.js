@@ -213,8 +213,6 @@ for (var i=0; i < att.length; i++) {
         for (var i=0; i<events.length; i++) {
           // find the respective event
           if (event === events[i].eventID) {
-            console.log(event)
-            console.log(events[i].eventID)
 
             // push the user ID of currentUser in attendees array
             events[i].attendees.push(currentUser[0]);
@@ -532,14 +530,14 @@ function spTypeFilter () {
   }
   
   //get all ids
-  for (var a=0; a<item.length; a++) {
-    if (container.length > 0 && item[a].style.display != 'none' && container.includes(item[a].classList[1])) {
-      contItemsID.push(item[a].getAttribute('id'));
+  for (var i=0; i<item.length; i++) {
+    if (container.length > 0 && item[i].style.display != 'none' && container.includes(item[i].classList[1])) {
+      contItemsID.push(item[i].getAttribute('id'));
     }
   }
-  for(var a=0; a<item.length; a++){
-    if(container.length > 0 && contItemsID.includes(item[a].getAttribute('id')) == false){
-      item[a].style.display = 'none';
+  for(var i=0; i<item.length; i++){
+    if(container.length > 0 && contItemsID.includes(item[i].getAttribute('id')) == false){
+      item[i].style.display = 'none';
     }
   }
   if (cont.classList.contains('hideElement') == false) {
