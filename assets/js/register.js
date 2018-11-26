@@ -24,7 +24,7 @@ class user {
         this.intEvents = [];
         this.attEvents = [];
         this.sports = [];
-        this.slogan;
+        this.slogan = "";
         this.awards = [];
     }
 }

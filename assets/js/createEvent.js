@@ -45,14 +45,15 @@ class myDate {
         this.month = {
                         short: this.months.short[this.fullDate.getMonth()],
                         long: this.months.long[this.fullDate.getMonth()]
-                    }
+                    };
         this.days = {
                         long : ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-                        short : ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']};
+                        short : ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
+                    };
         this.day = { 
                         short: this.days.short[this.fullDate.getDay()],
                         long: this.days.long[this.fullDate.getDay()]
-                    }   
+                    };   
         this.date = this.fullDate.getDate();
     }
 }

@@ -649,8 +649,16 @@ li{
     display: flex;
     flex-direction: row;
     width: 175px;
-    justify-content: space-evenly;
+    justify-content: center;
     padding-left: 125px;
+  }
+
+  #buttonGroup{
+    display: flex;
+    flex-direction: row;
+    width: 175px;
+    justify-content: space-evenly;
+    margin: 0 auto;
   }
 
   .hideElement{
@@ -769,7 +777,7 @@ git push origin master */
 
 /* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ USER PROFILE STYLING STARTS //////////////////////////////////////// */
 #containerUser{
-width: 50%;
+width: 650px;
 margin: auto;
 background: white;
 border-top-left-radius: 16px;
@@ -873,18 +881,25 @@ display: block;
 }
 /* ////////////////////////////  USER PRFILE CARD ENDS, PROFILE PAGE CONT. \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
 #containerBtnGroup{
-    width: 55.5%;
+    width: 650px;
     margin: 0 auto;
     background: #24C6DC;  /* fallback for old browsers */
     border-bottom-left-radius:16px ;
     border-bottom-right-radius: 16px;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
     text-align: center;
-    display: block;
     border: none;
     height: 40px;
 
 }
+
+.btn-group{
+    width: 650px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 .btn-group button{
     background: #012e70; /* Green background */
    
@@ -898,6 +913,7 @@ display: block;
     border: none;
     margin:auto;
     
+<<<<<<< HEAD
 
 }
 #createdEventsBtn{
@@ -905,6 +921,8 @@ display: block;
 }
 #interestedEventsBtn{
     border-bottom-right-radius: 14px;
+=======
+>>>>>>> 467c38ec515664a285ea6adfa70dac466bea3908
 }
 
 #userDisplayArea{
@@ -929,6 +947,7 @@ display: block;
     margin-top: 5%;
 }
 /* Display area for the current, past, and potential events for the user */
+<<<<<<< HEAD
 #userCreated {
     width: 100%;
     text-align: center;
@@ -949,7 +968,28 @@ display: block;
     background-color: rgba(12, 12, 12, 0.445);
     margin-top: -24px;
     display:none;
+=======
+#allevents {
+    width: 100%;
+    text-align: center;
+    margin-top: 5px;
+}
+#upcomingEvents {
+    width: 100%;
+    text-align: center;
+   	margin-top: 5px;
+}
+#ownEvents {
+    width: 100%;
+    text-align: center;
+   	margin-top: 5px;
+>>>>>>> 467c38ec515664a285ea6adfa70dac466bea3908
 } 
+#previousEvents{
+    width: 100%;
+    text-align: center;
+   	margin-top: 5px;
+}
 
 .userEvents{
     float:right;
