@@ -76,7 +76,7 @@ function createHTML (event) {
                                         "<button class='box interested eventBtn' name='"+event.eventID+"'>interested</button>"+
                                 "</div>"+
                                 "<div class='unInterestedBtnDiv'>"+
-                                        "<button class='box notinterested eventBtn hideElement' name='"+event.eventID+"'>no interest</button>"+
+                                        "<button class='box notinterested eventBtn hideElement' name='"+event.eventID+"'>not interest</button>"+
                                 "</div>"+
                         "</div>"+
                         "<div class='eventDetails'>"+
@@ -154,10 +154,12 @@ for (var i=0; i<events.length; i++) {
       for (var j=0; j<events[i].attendees.length; j++) {
         // check if currentUser is one of the attendees
         if (currentUser[0] === events[i].attendees[j]){
-          att[i].classList.add("hideElement");
-          unAtt[i].classList.remove("hideElement");
-          int[i].classList.add("hideElement");
-          notInt[i].classList.add("hideElement");
+
+          //////////////////////////////////////////////////////Check later///////////////////////
+          // att[i].classList.add("hideElement");
+          // unAtt[i].classList.remove("hideElement");
+          // int[i].classList.add("hideElement");
+          // notInt[i].classList.add("hideElement");
         }
       }
     }
@@ -187,7 +189,7 @@ for (var i=0; i < att.length; i++) {
     for (var i=0; i<events.length; i++) {
       // check if the button ID equals the event ID AND the event is not fully booked
       if (event === events[i].eventID && events[i].attendees.length >= events[i].maxPart) 
-        {alert('Sorry, the event is booked out')}
+        {alert('Sorry, the event is fully booked')}
         // check if the button ID equals the event ID AND if the event is not fully booked
       else if (event === events[i].eventID && events[i].attendees.length < events[i].maxPart) {
           for (var i=0; i<users.length; i++) {
