@@ -900,10 +900,10 @@ display: block;
     
 
 }
-#upcomingEventsBtn{
+#createdEventsBtn{
     border-bottom-left-radius: 14px;
 }
-#interestsBtn{
+#interestedEventsBtn{
     border-bottom-right-radius: 14px;
 }
 
@@ -929,25 +929,25 @@ display: block;
     margin-top: 5%;
 }
 /* Display area for the current, past, and potential events for the user */
-div.upcomingEvents {
+#userCreated {
     width: 100%;
     text-align: center;
-    background-color: lightblue;
-    margin-top: 0px;
+    background-color: rgba(12, 12, 12, 0.445);
+    margin-top: -24px;
     display:none;
 }
-div.pastEvents {
+#userAttending {
     width: 100%;
     text-align: center;
-    background-color: lightgreen;
-   	margin-top: 5px;
+    background-color: rgba(85, 85, 85, 0.445);
+    margin-top: -24px;
     display:none;
 }
-div.interests {
+#userInterest {
     width: 100%;
     text-align: center;
-    background-color: lightpink;
-   	margin-top: 5px;
+    background-color: rgba(12, 12, 12, 0.445);
+    margin-top: -24px;
     display:none;
 } 
 
@@ -1155,6 +1155,34 @@ div.dropdownProfileMngr{
     display: block;
     margin: 0 auto;
     margin-bottom: 10px;
+}
+
+#counterLabel{
+    margin-top: 1px;
+    float: left;
+    margin-left: 10%;
+}
+#countPlaceholder{ 
+    border-style:none; 
+    color:rgb(141, 141, 141); 
+    font-size: 70%;
+    align-items: center;
+    width: 33px;
+}
+#charCounterPrfMng{ 
+    border-style:none; 
+    color:rgb(141, 141, 141);
+    font-size: 70%;
+    align-items: center;
+    width: 18px;
+} 
+#countPlaceholderPrfMng{ 
+    border-style:none; 
+    color:rgb(141, 141, 141); 
+    font-size: 70%;
+    align-items: center;
+    width: 25px;
+    margin-left: -5px;
 }
 /* //////////////////////////////////////// USER PROFILE MNGR STYLING ENDS //////////////////////////////////////// */
 

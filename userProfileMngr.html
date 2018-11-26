@@ -44,7 +44,16 @@
                             </select>
                         <!-- number input for max nr participants -->
                         <label for="userSlogan"></label>
-                        <input type="text" placeholder="Enter a short slogan for others to see..." id="userSlogan" class="formelement" max="150">
+                        <input type="text" placeholder="Enter a short slogan for others to see..." id="userSlogan" class="formelement"
+                        onKeyUp = "countText(document.getElementById('userSlogan'),document.getElementById('charCounterPrfMng'),75)"
+                        >
+                        <br>
+                        <div id=counterLabel>
+                        <a id=countPlaceholder>You have typed</a>
+                        <input type="text" id="charCounterPrfMng" readonly> 
+                        <a id=countPlaceholderPrfMng>out of 75 available characters</a>
+                        </div>  
+                        <br>
                         <br>
                         <button type="submit" class="formelement submit" id="submit">Save Your Changes</button>
                     </form>  

@@ -55,7 +55,7 @@ var userSave2 = document.getElementById("userFormEdit2");
 
 // change to form name, will need a second button for password form
 // var userSaveButton2 = document.getElementById("userFormEdit2");
-// set the value of each element to the respective value of our current event
+// set the value of each element to the respective value of our current user
 
 for(var i = 0; i < users.length; i++){
   if(currentUser[0] === users[i].ID){
@@ -70,6 +70,15 @@ for(var i = 0; i < users.length; i++){
   }
 }
 
+
+function countText(userSlogan, charCounterPrfMng, max) {
+  // if text too long, cut it to max length
+  if (userSlogan.value.length > max)
+    userSlogan.value = userSlogan.value.substring(0, max);
+  // update counter
+  else
+    charCounterPrfMng.value = max - userSlogan.value.length;
+}
 //If blank display placeholder ///////////////////
 // CHANGE FOR USERS[i].sloagan ///////////////////
         // if(users[i].slogan=""){
