@@ -157,20 +157,6 @@ for(var i=0; i < events.length; i++){
 
 for (var i=0; i<events.length; i++) {
   // find events with attendees
-<<<<<<< HEAD
-    if (events[i].attendees.length) {
-      // loop over attendees array
-      for (var j=0; j<events[i].attendees.length; j++) {
-        // check if currentUser is one of the attendees
-        if (currentUser[0] === events[i].attendees[j]){
-
-          //////////////////////////////////////////////////////Check later///////////////////////
-          // att[i].classList.add("hideElement");
-          // unAtt[i].classList.remove("hideElement");
-          // int[i].classList.add("hideElement");
-          // notInt[i].classList.add("hideElement");
-        }
-=======
   if (events[i].attendees.length) {
     // loop over attendees array
     for (var j=0; j<events[i].attendees.length; j++) {
@@ -180,7 +166,6 @@ for (var i=0; i<events.length; i++) {
         unAtt[i].classList.remove("hideElement");
         int[i].classList.add("hideElement");
         notInt[i].classList.add("hideElement");
->>>>>>> 467c38ec515664a285ea6adfa70dac466bea3908
       }
     }
   }
@@ -210,16 +195,10 @@ for (var i=0; i < att.length; i++) {
     let event = e.target.name;
     for (var i=0; i<events.length; i++) {
       // check if the button ID equals the event ID AND the event is not fully booked
-<<<<<<< HEAD
-      if (event === events[i].eventID && events[i].attendees.length >= events[i].maxPart) 
-        {alert('Sorry, the event is fully booked')}
-        // check if the button ID equals the event ID AND if the event is not fully booked
-=======
       if (event === events[i].eventID && events[i].attendees.length >= events[i].maxPart) {
         alert('Sorry, the event is booked out')
       }
       // check if the button ID equals the event ID AND if the event is not fully booked
->>>>>>> 467c38ec515664a285ea6adfa70dac466bea3908
       else if (event === events[i].eventID && events[i].attendees.length < events[i].maxPart) {
         for (var i=0; i<users.length; i++) {
           // loop over users array to find current user
