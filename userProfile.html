@@ -13,177 +13,42 @@
       </script>
       </head>
       <body>
-                  <div class = "wrapper" id = "userProfileWindow">
-                        <section class="navMargin"></section>
-                        <section class = "sec1">
-                              <div id = "containerUser">
-                                    <div id="settingsContainer"></a>
-                                          <img src="icons/settings-icon.png" alt="Avatar" id="settingsImage">
-                                          <div id= "middle">
-                                                <a href = "userProfileMngr.html"><div id="settingsText">Settings</div></a>
-                                          </div>
+            <div class = "wrapper" id = "userProfileWindow">
+                  <section class="navMargin"></section>
+                  <section class = "sec1">
+                        <div id = "containerUser">
+                              <div id="settingsContainer"></a>
+                                    <img src="icons/settings-icon.png" alt="Avatar" id="settingsImage">
+                                    <div id= "middle">
+                                          <a href = "userProfileMngr.html"><div id="settingsText">Settings</div></a>
                                     </div>
-<<<<<<< HEAD
                               </div>
-                               <h1><img src="icons/ninja-512.png" alt="Avatar" class="profilePic"></h1>
-                               <h2><a id="localUserName"></a></h2>
-                               <h4><a id="currentUserGender"></a></h4>
-                               
-                               <h4><a id="currentUserSlogan"></a></h4>
-                              <h5 id ="userAward"></h5> 
-                         </div> 
-
-                        <!-- //////////////////////////////////////////////////////container float rigth for awards -->
-                          <!-- <div id = "containerAwards">
-                               <p id="userAwardsTitle">User Awards and Ackolades</p>
-                                    
-                               <p><img src="icons/award-icon-01.png" alt="Award1" class="award">
-                                    <br>User Award 1</p>
-                               <p><img src="icons/trophy-icon-01.png" alt="Award2" class="award">
-                                    <br>User Award 2</p>
-                               <p><img src="icons/star-icon-01.png" alt="Award3" class="award">
-                                    <br>User Award 3</p>
-                               <p><img src="icons/star-icon-01.png" alt="Award4" class="award">
-                                    <br>User Award 4</p>
-=======
-                                    <h1><img src="icons/ninja-512.png" alt="Avatar" class="profilePic"></h1>
-                                    <h1><a id="localUserName"></a></h1>
-                                    <h4><a id="currentUserGender"></a></h4>
-                                    <p id ="userLocation"></p>
-                                    <h3><a id="currentUserSlogan"></a></h3>
->>>>>>> 467c38ec515664a285ea6adfa70dac466bea3908
-                                    
-                              </div> 
-
-                              <!-- //////////////////////////////////////////////////////container float rigth for awards -->
-                              <!-- <div id = "containerAwards">
-                                    <p id="userAwardsTitle">User Awards and Ackolades</p>
-                                          
-                                    <p><img src="icons/award-icon-01.png" alt="Award1" class="award">
-                                          <br>User Award 1</p>
-                                    <p><img src="icons/trophy-icon-01.png" alt="Award2" class="award">
-                                          <br>User Award 2</p>
-                                    <p><img src="icons/star-icon-01.png" alt="Award3" class="award">
-                                          <br>User Award 3</p>
-                                    <p><img src="icons/star-icon-01.png" alt="Award4" class="award">
-                                          <br>User Award 4</p>
-                                          
-                                    <h3 id="interestsContainer">interests go here</h3>
-                                    </div>  -->
-                                    
-                              <!-- //////////////////////////////////////////////////////container float left for created events -->
-                              <!-- <div id = "containerCreatedEvents">
-                                          <p id="createdEventsTitle">Recently Created Events</p>
-                                          <input type="text" id="searchCreatedEvent" placeholder="Search for events.." title="Type in a name">
-
-<<<<<<< HEAD
-                                                      <button id="createdEventsBtn">Events you created</button>
-                                                      <button id="attendingEventsBtn">Attending Events</button>
-                                                      <button id="interestedEventsBtn">Events of Interest, under construction</button>
-                                                </div>
-                                                <div class="userTabs">
-                                                                                          
-                                                            <div id="userCreated">
-                                                                  <br>
-                                                                  <ul id='createdEvents'>
-                                                                  </ul>   
-                                                            </div> 
-                                                            <div id="userAttending" >
-                                                                        <br>
-                                                                  <ul id='attendingEvents'>
-                                                                  </ul>
-                                                            </div> 
-
-                                                            <div id="userInterest" >
-                                                                        <br>
-                                                                  <ul id='userInterestedEvents'>
-                                                                  </ul>
-                                                            </div>
-
-                                                      
-                                                </div>
-
+                              <h1><img src="icons/ninja-512.png" alt="Avatar" class="profilePic"></h1>
+                              <h1><a id="localUserName"></a></h1>
+                              <h4><a id="currentUserGender"></a></h4>
+                              <p id ="userLocation"></p>
+                              <h3><a id="currentUserSlogan"></a></h3>      
+                        </div> 
+                        <div id = "containerBtnGroup">          
+                              <div class="btn-group">  
+                                    <button id="allEventsBtn">All upcoming Events</button>
+                                    <button id="ownEventsBtn">Self-created Events</button>
+                              </div>
+                              <div class="userTabs">
+                                    <div class="eventsDiv" style='display: none' id="allEvents">
+                                          <ul id='allEventItems'>
+                                          </ul>    
                                     </div>
-
-            
-
-  <!-- <div class="userEvents">
-  <div id="eventsTableTitle">View and search your created events </div>
-  <input type="text" id="tableInput" onkeyup="searchCatalogueTable()" placeholder="filter events" class="Bio"/>
-  <table id="userEventsTable">
-                <tr title="Catalogue Snapshot">
-                        <th >Events</th>
-                        <th >Type</th> 
-                        <th >Date</th>
-                  </tr>
-                  <tr >
-                        <td>Game</td>
-                        <td>Description</td> 
-                        <td>01.11.2018</td>
-                  </tr>
-                  <tr>
-                        <td>Basketball</td>
-                        <td>Description</td> 
-                        <td>01.11.2018</td>
-                  </tr>
-                  <tr >
-                        <td>Football</td>
-                        <td>Description</td> 
-                        <td>01.11.2018</td>
-                  </tr>
-                  <tr>
-                        <td>Frisbee</td>
-                        <td>Description</td> 
-                        <td>01.11.2018</td>
-                  </tr>     
-                </table>
-
-</div> -->
-      <!-- Buttons for toggle user windows has been grouped below with CSS included-->
-
-      </section>
-</div>
-</body>
-=======
-                                          <ul id="createdEventsList">
-                                          <li><a href="#"><img src="icons/basketballIcon.png" alt="Award4" class="award">Pickup game</a></li>
-                                          <li><a href="#"><img src="icons/footballIcon.png" alt="Award4" class="award">Touch football</a></li>
-                                          
-                                          <li><a href="#"><img src="icons/basketballIcon.png" alt="Award4" class="award">Hoops</a></li>
-                                          <li><a href="#"><img src="icons/runIcon.png" alt="Award4" class="award">Jogging class</a></li>
-                                          
-                                          <li><a href="#"><img src="icons/swimIcon.png" alt="Award4" class="award">Swimming</a></li>
-                                          <li><a href="#"><img src="icons/swimIcon.png" alt="Award4" class="award">Morning Swim</a></li>
-                                          
-                                          </ul>
-                                          
-                                          <a href = "eventCatalogue.html"><div id="eventCatalogueLink">View More Events</div></a>
-                                    </div> -->
-                                          <!-- ////////////////////////////////////////////////////// divs containting events under profile -->
-                                          <div id = "containerBtnGroup">          
-                                                      <div class="btn-group">  
-                                                            <!-- all buttons are refrenecing toggle script with names of ID's in single quotes segmenting the DIV's -->
-                                                            <button id="allEventsBtn">All upcoming Events</button>
-                                                            <button id="ownEventsBtn">Self-created Events</button>
-                                                      </div>
-                                                      <div class="userTabs">
-                                                            <div class="eventsDiv" style='display: none' id="allEvents">
-                                                                  <ul id='allEventItems'>
-                                                                  </ul>    
-                                                            </div>
-                                                            <div class="eventsDiv" style='display: none' id="ownEvents">
-                                                                  <ul id='ownEventItems'>
-                                                                  </ul> 
-                                                            </div>
-                                                      </div>
-                                          </div>
-            </section>
-      </div>
+                                    <div class="eventsDiv" style='display: none' id="ownEvents">
+                                          <ul id='ownEventItems'>
+                                          </ul> 
+                                    </div>
+                              </div>
+                        </div>
+                  </section>
+            </div>
       </body>
->>>>>>> 467c38ec515664a285ea6adfa70dac466bea3908
-
       <script type="text/javascript" src="assets/js/insertNavbar.js"></script>
       <script type="text/javascript" src="assets/js/navbarScroll.js"></script>
-      <script src="assets/js/userProfile.js"></script>
-      
+      <script src="assets/js/userProfile.js"></script>  
 </html>
