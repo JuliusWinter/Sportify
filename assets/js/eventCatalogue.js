@@ -4,10 +4,12 @@
 var events = JSON.parse(localStorage.getItem("events"));
 
 //sort events from newest to oldest
-events = events.sort(function(a, b) {
-  var dateA = new Date(a.date.datePickerDate), dateB = new Date(b.date.datePickerDate);
-  return dateB - dateA;
-});
+if (events.length > 0) {
+  events = events.sort(function(a, b) {
+    var dateA = new Date(a.date.datePickerDate), dateB = new Date(b.date.datePickerDate);
+    return dateB - dateA;
+  });
+}
 
 //get current user from local storage
 var currentUser = JSON.parse(localStorage.getItem("currentUser"));
