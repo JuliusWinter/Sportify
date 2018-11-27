@@ -5,30 +5,28 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
             <title>Event Catalogue | SPORTIFY</title>
-            <!--link to own stylesheet-->
+            <!--insert link to Google API-->
             <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+            <!--insert link to stylesheet-->
             <link rel="stylesheet" href="assets/css/login.css">
-            <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-                  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-                  crossorigin="anonymous">
-            </script>
       </head>
       <body>
+            <!--insert div that contains navigation bar-->
             <div class="wrapper">
                   <section class="navMargin"></section>
                   <section class="sec1">    
-                  <!--create a div that contains all page elements except from Navbar-->
+                        <!--create a div that contains all page elements except from Navbar-->
                         <div class='container1'>
-                        <!--create a div that includes the entire Search/Filtering functions and form elements / should be displayed on the left side of page and take 30% of page width-->
+                              <!--create a div that includes the entire Search/Filtering functions and form elements / should be displayed on the left side of page and take 30% of page width-->
                               <div id="floatLeftEC">
-                                    <!-- <nav id='navbar'><div id='sportifyLogo'>SPORTIFY</div><ul><li><a id='userProfile' href='userProfile.html'>USER PROFILE</a></li><li><a id='createEvent' href='createCourse.html'>CREATE EVENT</a></li><li><a id='eventCatalogue' href='eventCatalogue.html'>EVENT CATALOGUE</a></li><li><a id='logoutBtn' href='index.html'>LOG OUT</a></li></ul></nav> -->
                                     <h1 id='eventCatalogueh1'>Event Catalogue</h1>
-                                    <!--create a div that includes two search fields to search for city and sport category; only one search item at a time per search field-->
+                                    <!--create a div that includes input field for search of location-->
                                     <div id='searching'>
-                                          <input type='text' id="searchbarEC" onkeyup="locSearch()" placeholder='Search for your city here'> 
+                                          <input type='text' id="searchbarEC" onkeyup="locSearch()" placeholder='Search for a location here'> 
                                     </div>
-                                    <!--create a div that includes all filter parameters except from two top search fields-->
+                                    <!--create a div that includes all other filters-->
                                     <div id='filtering'>
+                                          <!--fieldset automatically sets a dynamic frame around what its included in it-->
                                           <fieldset>
                                                 <div>
                                                       <legend>Choose Event Type</legend>
@@ -71,13 +69,14 @@
                                           <button id='filterButton' onclick='filterFunction()'>Apply Filter</button>
                                     </div>
                               </div>
-                              <!--create a div that includes all events (right side)-->
+                              <!--create a div that includes all events (right side of page)-->
                               <div id='catalogue'>
                               <ul id='catalogueItems'>
                               </ul>
                               </div>
                   </section>
             </div>
+            <!--load JS scripts for navigation bar and JS script for event catalogue -->
             <script type="text/javascript" src="assets/js/insertNavbar.js"></script>
             <script type="text/javascript" src="assets/js/navbarScroll.js"></script>
             <script src="assets/js/eventCatalogue.js"></script>                 

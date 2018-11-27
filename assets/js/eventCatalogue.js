@@ -1,17 +1,20 @@
+// CHAPTER 0: Get data from local storage
+
 //get the event array, that contains all event objects, from local storage and parse it
 var events = JSON.parse(localStorage.getItem("events"));
 
-// sort events from newest to oldest
+//sort events from newest to oldest
 events = events.sort(function(a, b) {
   var dateA = new Date(a.date.datePickerDate), dateB = new Date(b.date.datePickerDate);
   return dateB - dateA;
 });
 
-// get current user from local storage
+//get current user from local storage
 var currentUser = JSON.parse(localStorage.getItem("currentUser"));
-// get users from local storage
+//get users from local storage
 var users = JSON.parse(localStorage.getItem("users"));
 
+//if currentEvent array is not existent in local storage, than create an empty array, else remove item from local storage and set array back
 if(!JSON.parse(localStorage.getItem("currentEvent"))){
   var currentEvent=[];
 }
@@ -20,7 +23,10 @@ else{
   var currentEvent=[];
 }
 
-// select anchor tags that should be manipulated
+
+// CHAPTER 1: Initialize navigation bar
+
+//select anchor tags that should be manipulated
 var userProfile = document.querySelector("#userProfile");
 var createEvent = document.querySelector("#createEvent");
 var eventCatalogue = document.querySelector("#eventCatalogue");
@@ -29,7 +35,7 @@ var about = document.querySelector("#about");
 var registerBtn = document.querySelector("#registerBtn");
 var loginBtn = document.querySelector("#loginBtn");
 var logoutBtn = document.querySelector("#logoutBtn");
-// check if a user is logged in
+// check if a user is logged in, if not redirect to index page to register or login
 if(currentUser){
   userProfile.style.display = "inline";
   createEvent.style.display = "inline";
@@ -44,7 +50,10 @@ else{
   document.location.href = "index.html";
 }
 
-//events exists, event date in future, event public
+
+// CHAPTER 2: Create HTML elements for events
+
+//function that creates the structure of the HTML for displaying events in the event catalogue; approach: create a list item for each event and attach it to an unordered list, that exists in the HTML
 function createHTML (event) {
   return "<li class='eventItem "+event.sportType+"' id='"+event.eventID+"'name='"+event.location.formatted_address+"'>" +
           "<div class='eventContainer'>" +
@@ -52,15 +61,12 @@ function createHTML (event) {
                         "<div class='flexDate'>"+
                                 "<div class='box date'>"+event.date.month.short + " " + event.date.date+"</div>"+
                                 "<div class='box day'>"+event.date.day.short+"</div>"+
-                                // "<div class='box date'>NOV 30</div>"+
-                                // "<div class='box day'>THU</div>"+
                         "</div>"+
                         "<div class='middleEventInfo'>"+
                                 "<div class='box eventName'><a class='linkEventPage' name='"+event.eventID+"'>"+event.name+"</a></div>"+
                                 "<div class='timeLocation'>"+
                                         "<div class='time box'>"+event.time+"</div>"+
                                         "<div class='dot box'>·</div>"+
-                                        // Adjust location --> display name
                                         "<div class='location box loc'>"+event.location.formatted_address+"</div>"+
                                         "<div class='sportEventType'>"+
                                                 "<div class='sportType box'>"+event.sportType+"</div>"+
@@ -103,16 +109,15 @@ function createHTML (event) {
       "</li>"
 }
 
-//only create event catalogue if events.length > 0
+//only create event catalogue if events array length > 0
 if (events) {
+  //introduce a variable being an empty string
   var content = "";
-  //display events of certain condition that are stored in local storage in event catalogue
   //loop over array that contains all events that are stored in local storage// 
   for(var i=0; i<events.length; i++){
     //introduce variable for each individual event //
     var catItem = events[i];
     //create the current date and set it in the format that matches the format of event dates (yyyy-mm-dd)// 
-    
     function todayDate() {
       var today = new Date();
       var dd = today.getDate();
@@ -126,14 +131,19 @@ if (events) {
   
   //only display public events, do not display any private events
   //if the event date is in the past, do not create elements in the event catalogue; hence, do not display event in catalogue//
+  //add the created HTML to the empty variable 
   if (catItem.date.datePickerDate >= todayDate() && catItem.privacy == 'public') {
     content += createHTML(events[i]);
     }
   }
+  //attach the variable to the unordered list, which is existent in the HTML and contains all events meant to be displayed
   document.getElementById('catalogueItems').innerHTML = content;
 }
 
-// get all type of buttons by ClassNames
+
+// CHAPTER 3: Attend, unattend, interested, not interested button visbility and logic
+
+// get all types of buttons and the capacity display div of each event by ClassNames
 var att = document.getElementsByClassName('attend');
 var unAtt = document. getElementsByClassName('unattend');
 var int = document.getElementsByClassName('interested');
@@ -141,7 +151,7 @@ var notInt = document.getElementsByClassName('notinterested');
 var cap = document.getElementsByClassName('capacity');
 
 // set visibility of attend buttons when entering page and user attends or is interested
-// loop over events array
+// loop over events array, events attendees and event interested array and only display attend button and interested button if current user not included in those arrays
 for(var i=0; i < events.length; i++){
   for(var j=0; j < events[i].attendees.length; j++){
     for(var k=0; k < events[i].interested.lenght; k++){
@@ -155,6 +165,7 @@ for(var i=0; i < events.length; i++){
   }
 }
 
+// loop over events array, events attendees array and only display unattend button if current user included in attendees array 
 for (var i=0; i<events.length; i++) {
   // find events with attendees
   if (events[i].attendees.length) {
@@ -170,13 +181,14 @@ for (var i=0; i<events.length; i++) {
     }
   }
 }
-// loop over the events array
+
+// loop over events array, events interested array and only display unattend button if current user included in interested array 
 for (var i=0; i<events.length; i++) {
   // check if there are interested people
   if (events[i].interested) {
     // if yes, loop over interested array
     for (var j=0; j<events[i].interested.length; j++) {
-      // check if our current user is one of the interested people
+      // check if our current user is one of the interested user
       if (currentUser[0] === events[i].interested[j]){
         att[i].classList.remove("hideElement");
         unAtt[i].classList.add("hideElement");
@@ -188,13 +200,12 @@ for (var i=0; i<events.length; i++) {
 }
   
 //attend button: add event listener functionality (push userID to attendees array of event and push eventID to attendedEvents array of user + change the visibility of the buttons)  
-//Alternative: load data-set into button as an atrribute (hence, insert the event object which applies to specific button into button and access needed properties that way) - Problem: could not parse the data-set
 for (var i=0; i < att.length; i++) {
   // console.log(att.length)
   att[i].addEventListener('click', function(e) {
     let event = e.target.name;
     for (var i=0; i<events.length; i++) {
-      // check if the button ID equals the event ID AND the event is not fully booked
+      // check if the button ID equals the event ID AND if event is not fully booked
       if (event === events[i].eventID && events[i].attendees.length >= events[i].maxPart) {
         alert('Sorry, the event is booked out')
       }
@@ -220,7 +231,7 @@ for (var i=0; i < att.length; i++) {
             localStorage.setItem('events', JSON.stringify(events));
           }
         }
-            // loop over users array
+        // loop over users array
         for (i=0; i<users.length; i++) {
           // find current user in users array
           if (currentUser[0] === users[i].ID) {
@@ -268,9 +279,7 @@ for (var i=0; i < att.length; i++) {
   })
 }
 
-// loop over all unattend buttons and add event listener that on click removes
-// event id from atteEvents array in user object
-// and removes user id from attendees array in event object
+// loop over all unattend buttons and add event listener that on click removes event id from attendEvents array in user object and removes user id from attendees array in event object
 for (var i=0; i < unAtt.length; i++) {
   unAtt[i].addEventListener('click', function(e) {
     let event = e.target.name;
@@ -320,10 +329,7 @@ for (var i=0; i < unAtt.length; i++) {
   })
 }
 
-// add an event listener to all interested buttons that on click
-// pushes the event ID to the intEvents array of our user object
-// AND pushes our user ID to the interested array of the events object
-// loop over all int buttons
+// add an event listener to all interested buttons that on click pushes the event ID to the intEvents array of our user object AND pushes our user ID to the interested array of the events object loop over all int buttons
 for (var i=0; i < int.length; i++) {
   // add an event listener to all of them
   int[i].addEventListener('click', function(e) {
@@ -356,10 +362,7 @@ for (var i=0; i < int.length; i++) {
   })
 }
 
-// loop over all notInterested buttons and add event listener that on click removes
-// event id from intEvents array in user object
-// and removes user id from interested array in event object
-// loop over unInterested buttons
+// loop over all notInterested buttons and add event listener that on click removes event id from intEvents array in user object and removes user id from interested array in event object loop over unInterested buttons
 for (var i=0; i < notInt.length; i++) {
   // add event click listener to each of them
   notInt[i].addEventListener('click', function(e) {
@@ -398,7 +401,10 @@ for (var i=0; i < notInt.length; i++) {
   })
 }
 
-// when the link (=click on name of event) to an event is clicked, the event id is pushed to the array currentEvent, stored in the local Storage and the user is redirected to the event Profile -> on the event Profile the Data gets filled out automatically based on the entry of the id in the currentEvent array
+
+// CHAPTER 4: Redirect to individual event page
+
+// when the link (=click on name of event) to an event is clicked, the event id is pushed to the array currentEvent, stored in the local storage and the user is redirected to the event Profile -> on the event Profile the Data gets filled out automatically based on the entry of the id in the currentEvent array
 // Give the a tag a class
 // select that a with document.getElementByClassName
 // add an event listener to the a
@@ -415,9 +421,15 @@ for (i = 0; i < redirectEventProfile.length; i++) {
   })
 }
 
-//create a function that creates a div, including a checkbox and an individual label for each array value
+
+//CHAPTER 5: Setup filter in HTML
+
+//create an array that contains all pre-defined sport types available on Sportify
 var sports = ['American Football', 'Athletics','Badminton','Basketball','Boxing','Canoeing','Cricket','Cross-Fit','Cycling','Dancing','Darts','Disability Sports','Diving','Fitness-Training','Football','Golf','Handball','Hiking','Hockey','Ice Hockey','Longboarding','Mixed Martial Arts','Modern Pentathlon','Motor Sports','Netball','Parkour','Rowing','Rugby','Running','Sailing','Shooting','Skateboarding','Skiing','Snooker','Snowboarding','Squash','Surfing','Swimming','Table Tennis','Tai Chi','Tennis','Triathlon','Tricking','Ultimate Frisbee','Volleyball','Weightlifting','Winter Sports','Wrestling','Yoga'];
 
+//create a function that creates a div, including a checkbox and an individual label for each array value
+//set attributes for div, input and label
+//attach created div to existing div (collContent) in HTML
 for(var i=0; i < sports.length; i++) {
     var opt = sports[i];
     var div = document.createElement('DIV');
@@ -438,13 +450,16 @@ for(var i=0; i < sports.length; i++) {
 }
 
 //dropdown sport category selection
+//hide or display div under button onclick 
 function collapse() {
   var coll = document.getElementById("collapsible");
   var cont = document.getElementById('collContent')
+  //toggle triggers adding or removing of class to HTML element
   coll.classList.toggle("active");
   cont.classList.toggle("hideElement");
 }
 
+//uncheck all checkbox in sport type selection div
 function uncheckSpCat() {
   var sportCatCB = document.getElementsByClassName('spTypeCheckbox');
   for(var i=0;i<sportCatCB.length;i++){
@@ -452,6 +467,10 @@ function uncheckSpCat() {
   }
 }
 
+
+// CHAPTER 6: Filter functions
+
+//display all events before applying filters to not exclude relevant events
 function display () {
   var item = document.getElementsByClassName('eventItem');
   for (var i=0; i<item.length; i++) {
@@ -459,17 +478,19 @@ function display () {
   }
 }
 
-// define a function that searches for locations and displays only applicable events//
+//define a function that searches for locations and displays only applicable events
 function locSearch (){
-  //declare variables - getting values from search box//
+  //declare variables - getting values from input field
   var inputLoc = document.getElementById('searchbarEC').value.toUpperCase();
   //Declare variables - getting values from the div elements
   var item = document.getElementsByClassName('eventItem');
+  //if input field empty, display all events
   if (inputLoc.length == 0) {
     for (var i=0; i<item.length; i++) {
       item[i].style.display ="";
     }
   }
+  //if input field not empty, display all events whose location match text in input field, otherwise do not display event
   else if (inputLoc.length > 0) {
     for (var i=0; i<item.length; i++) {
       if(item[i].getAttribute('name').toUpperCase().includes(inputLoc)){
@@ -480,35 +501,48 @@ function locSearch (){
     }
   }
 }
-    
+
+//define a function that only displays events matching selected event types
+//select all relevant elements in HTML
 function evTypeFilter () {
   var item = document.getElementsByClassName('eventItem');
   var type = document.getElementsByClassName('eventType');
   var evTypeCB = document.getElementsByClassName('eventTypeCB');
   var trainingCB = document.getElementById('trainingEvent');
   var courseCB = document.getElementById('courseEvent');
-       
+  //loop of items (=events[i])
   for (i=0; i<item.length; i++) {
+    //select all events that are not displayed 
     if (item[i].style.display != 'none') {  
+      //check which checkboxes are checked
       if (trainingCB.checked == true && courseCB.checked != true) {
+        //loop over events again
         for (var i=0; i<item.length; i++) {
+          //loop over event type element of each event
           for (var j=0; j<type.length; j++) {
+            //if event type is unequal to training, do not display
             if (type[j].innerHTML != trainingCB.value) {
               item[j].style.display = 'none'
             }
           }
         }
       }
+      //check which checkboxes are checked
       else if (trainingCB.checked != true && courseCB.checked == true) {
+        //loop over events again
         for (var i=0; i<item.length; i++) {
+          //loop over event type element of each event
           for (var j=0; j<type.length; j++) {
+             //if event type is unequal to course, do not display
             if (type[j].innerHTML != courseCB.value) {
               item[j].style.display = 'none'
             }
           }
         } 
       }
+      //check which checkboxes are checked
       else if (evTypeCB.checked == true || evTypeCB.checked != true) {
+        //display all events if no checkbox checked
         for (var i=0; i<item.length; i++) {
           item[i].style.display = ''
         }
@@ -516,51 +550,66 @@ function evTypeFilter () {
     }
   }
 }
-  
+
+//define a function that only displays events matching selected sport types
+//select all relevant elements in HTML and initialize variables
 function spTypeFilter () {
   var sportCatCB = document.getElementsByClassName('spTypeCheckbox');
   var container = [];
   var contItemsID  = [];
   var item = document.getElementsByClassName('eventItem');
   var cont = document.getElementById('collContent');
+  //loop over all sport type checkboxes
   for (var i=0; i<sportCatCB.length; i++) {
+    //if checkbox is checked, push value to an empty array
     if (sportCatCB[i].checked == true) {
       container.push(sportCatCB[i].value)
     } 
   }
   
-  //get all ids
+  //loop over all events that are displayed in HTML and check if class of event contains one of the sporttypes that is included in array
+  //if sporttype matches, push event id into another empty array
   for (var i=0; i<item.length; i++) {
     if (container.length > 0 && item[i].style.display != 'none' && container.includes(item[i].classList[1])) {
       contItemsID.push(item[i].getAttribute('id'));
     }
   }
+  //loop over all events in HTML
+  //if event ID is not included in array with events that match checkbox value, than do not display those events
   for(var i=0; i<item.length; i++){
     if(container.length > 0 && contItemsID.includes(item[i].getAttribute('id')) == false){
       item[i].style.display = 'none';
     }
   }
+  //if div with checkboxes is still visible when applying the filter, close the div
   if (cont.classList.contains('hideElement') == false) {
     cont.classList.add("hideElement");
   }
 }
 
+//define a function that only displays events matching a chosen price range
+//select all relevant elements in HTML and initialize variables
 function priceFilter () {
   var item = document.getElementsByClassName('eventItem');
   var evPrice = document.getElementsByClassName('priceSpan');
   var minPrice = document.getElementById('minPriceFilter');
   var maxPrice = document.getElementById('maxPriceFilter');
   var eventMaxPrice = []
+  //loop over prices of events, push all values into an array and detect which is highest number (maximum price)
   for (var i=0; i<evPrice.length; i++) {
     eventMaxPrice.push(evPrice[i].innerHTML)
     var maxRange = Math.max(...eventMaxPrice)
   }  
+  //if no max price is manually inserted into input field, automatically set the max price as the max price of all events
   if (maxPrice.value.length == 0) {
     maxPrice.value = maxRange
   }
+  //loop over all events and event prices
   for (var i=0; i<item.length; i++) {
     for (var j=0; j<evPrice.length; j++) {
+      //select only events that are displayed
       if (item[i].style.display != 'none') {
+        //if event price is smaller than min price or higher than max price, do not display events
         if (evPrice[j].innerHTML < minPrice.value || evPrice[j].innerHTML > maxPrice.value) {
           item[j].style.display = 'none'
         }
@@ -569,6 +618,7 @@ function priceFilter () {
   }
 }
 
+//apply all above described filters when clicking on button (function attached to button with id='filterButton' in HTML)
 function filterFunction() {
   display();
   locSearch();
