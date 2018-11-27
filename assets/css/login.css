@@ -780,7 +780,7 @@ git push origin master */
 
 /* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ USER PROFILE STYLING STARTS //////////////////////////////////////// */
 #containerUser{
-width: 50%;
+width: 650px;
 margin: auto;
 background: white;
 border-top-left-radius: 16px;
@@ -884,18 +884,25 @@ display: block;
 }
 /* ////////////////////////////  USER PRFILE CARD ENDS, PROFILE PAGE CONT. \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
 #containerBtnGroup{
-    width: 55.5%;
+    width: 650px;
     margin: 0 auto;
     background: #24C6DC;  /* fallback for old browsers */
     border-bottom-left-radius:16px ;
     border-bottom-right-radius: 16px;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
     text-align: center;
-    display: block;
     border: none;
     height: 40px;
 
 }
+
+.btn-group{
+    width: 650px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 .btn-group button{
     background: #012e70; /* Green background */
    
@@ -909,12 +916,16 @@ display: block;
     border: none;
     margin:auto;
     
+<<<<<<< HEAD
+
 }
-#upcomingEventsBtn{
+#createdEventsBtn{
     border-bottom-left-radius: 14px;
 }
-#interestsBtn{
+#interestedEventsBtn{
     border-bottom-right-radius: 14px;
+=======
+>>>>>>> 467c38ec515664a285ea6adfa70dac466bea3908
 }
 
 #userDisplayArea{
@@ -939,29 +950,48 @@ display: block;
     margin-top: 5%;
 }
 /* Display area for the current, past, and potential events for the user */
+<<<<<<< HEAD
+#userCreated {
+    width: 100%;
+    text-align: center;
+    background-color: rgba(12, 12, 12, 0.445);
+    margin-top: -24px;
+    display:none;
+}
+#userAttending {
+    width: 100%;
+    text-align: center;
+    background-color: rgba(85, 85, 85, 0.445);
+    margin-top: -24px;
+    display:none;
+}
+#userInterest {
+    width: 100%;
+    text-align: center;
+    background-color: rgba(12, 12, 12, 0.445);
+    margin-top: -24px;
+    display:none;
+=======
 #allevents {
     width: 100%;
     text-align: center;
-    margin-top: 0px;
-    display:none;
+    margin-top: 5px;
 }
 #upcomingEvents {
     width: 100%;
     text-align: center;
    	margin-top: 5px;
-    display:none;
 }
 #ownEvents {
     width: 100%;
     text-align: center;
    	margin-top: 5px;
-    display:none;
+>>>>>>> 467c38ec515664a285ea6adfa70dac466bea3908
 } 
 #previousEvents{
     width: 100%;
     text-align: center;
    	margin-top: 5px;
-    display:none;
 }
 
 .userEvents{
@@ -1168,6 +1198,34 @@ div.dropdownProfileMngr{
     display: block;
     margin: 0 auto;
     margin-bottom: 10px;
+}
+
+#counterLabel{
+    margin-top: 1px;
+    float: left;
+    margin-left: 10%;
+}
+#countPlaceholder{ 
+    border-style:none; 
+    color:rgb(141, 141, 141); 
+    font-size: 70%;
+    align-items: center;
+    width: 33px;
+}
+#charCounterPrfMng{ 
+    border-style:none; 
+    color:rgb(141, 141, 141);
+    font-size: 70%;
+    align-items: center;
+    width: 18px;
+} 
+#countPlaceholderPrfMng{ 
+    border-style:none; 
+    color:rgb(141, 141, 141); 
+    font-size: 70%;
+    align-items: center;
+    width: 25px;
+    margin-left: -5px;
 }
 /* //////////////////////////////////////// USER PROFILE MNGR STYLING ENDS //////////////////////////////////////// */
 
