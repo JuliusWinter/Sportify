@@ -109,30 +109,30 @@ function createHTML (event) {
       "</li>"
 }
 
+//create the current date and set it in the format that matches the format of event dates (yyyy-mm-dd) 
+function todayDate() {
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; 
+  var yyyy = today.getFullYear();
+  if(dd<10) {dd = '0'+dd} 
+  if(mm<10) {mm = '0'+mm} 
+  today = yyyy + '-' + mm + '-' + dd;
+  return today
+}
+
 //only create event catalogue if events array length > 0
 if (events) {
   //introduce a variable being an empty string
   var content = "";
-  //loop over array that contains all events that are stored in local storage// 
+  //loop over array that contains all events that are stored in local storage 
   for(var i=0; i<events.length; i++){
-    //introduce variable for each individual event //
+    //introduce variable for each individual event
     var catItem = events[i];
-    //create the current date and set it in the format that matches the format of event dates (yyyy-mm-dd)// 
-    function todayDate() {
-      var today = new Date();
-      var dd = today.getDate();
-      var mm = today.getMonth()+1; 
-      var yyyy = today.getFullYear();
-      if(dd<10) {dd = '0'+dd} 
-      if(mm<10) {mm = '0'+mm} 
-      today = yyyy + '-' + mm + '-' + dd;
-      return today
-    }
-  
-  //only display public events, do not display any private events
-  //if the event date is in the past, do not create elements in the event catalogue; hence, do not display event in catalogue//
-  //add the created HTML to the empty variable 
-  if (catItem.date.datePickerDate >= todayDate() && catItem.privacy == 'public') {
+    //only display public events, do not display any private events
+    //if the event date is in the past, do not create elements in the event catalogue; hence, do not display event in catalogue//
+    //add the created HTML to the empty variable 
+    if (catItem.date.datePickerDate >= todayDate() && catItem.privacy == 'public') {
     content += createHTML(events[i]);
     }
   }

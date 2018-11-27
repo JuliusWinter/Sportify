@@ -1,19 +1,24 @@
-//User first and last name entered into header via userName
+// CHAPTER 0: Get data from local storage
+
+//get users from local storage
 var users = JSON.parse(localStorage.getItem("users"));
 // get current user from local storage
 var currentUser = JSON.parse(localStorage.getItem("currentUser"));
 // get current user from local storage
 var events = JSON.parse(localStorage.getItem("events"));
 
+//if currentEvent array is not existent in local storage, than create an empty array, else remove item from local storage and set array back
 if(!JSON.parse(localStorage.getItem("currentEvent"))){
     var currentEvent=[];
-  }
-  else{
+} else{
     localStorage.removeItem("currentEvent");
     var currentEvent=[];
-  }
+}
 
-// select anchor tags that should be manipulated
+
+// CHAPTER 1: Initialize navigation bar
+
+//select anchor tags that should be manipulated
 var userProfile = document.querySelector("#userProfile");
 var createEvent = document.querySelector("#createEvent");
 var eventCatalogue = document.querySelector("#eventCatalogue");
@@ -22,7 +27,8 @@ var about = document.querySelector("#about");
 var registerBtn = document.querySelector("#registerBtn");
 var loginBtn = document.querySelector("#loginBtn");
 var logoutBtn = document.querySelector("#logoutBtn");
-// check if a user is logged in
+
+//check if a user is logged in
 if(currentUser){
     userProfile.style.display = "inline";
     createEvent.style.display = "inline";
@@ -37,28 +43,35 @@ else{
     document.location.href = "login.html";
 }
 
+
+// CHAPTER 2: Setup basic layout of profile page with individual data 
+
+//select elements in HTML that should be manipulated
 var userName = document.getElementById("localUserName");
 var userGender = document.getElementById("currentUserGender");
 var userSlogan = document.getElementById("currentUserSlogan");
+//loop over user, get relevant data and display it in HTML
+for(var i = 0; i < users.length; i++){
+  if(currentUser[0] === users[i].ID){
+    // get name of user and display in HTML
+    userName.innerHTML = users[i].userName + " is in the game";
+    // get gender of user and display in HTML
+    userGender.innerHTML = "Gender: " + users[i].gender;
+    // set slogan for each user (empty by default)
+    var slogan = users[i].slogan;
+    if ( slogan == "") {
+      txt = "Create a slogan in the profile edit page!";
+    } else {
+      txt = slogan;
+    }
+    userSlogan.innerHTML = txt;
+  }
+}
 
-    for(var i = 0; i < users.length; i++){
-      if(currentUser[0] === users[i].ID){
-// CHANGE: FOR LOOP OVER USERS ARRAY --> MATCH WITH CURRENTUSER[0] === USERS[i].ID
-// Access first name of first User and last name of first User
-userName.innerHTML = users[i].userName + " is in the game";
-// this element will come from the user's gender
-userGender.innerHTML = "Gender: " + users[i].gender;
-// this element will come from user typing in slogan
-var slogan = users[i].slogan;
-if ( slogan == "") {
-    txt = "Create a slogan in the profile edit page!";
-} else {
-    txt = slogan;
-}
-userSlogan.innerHTML = txt;
-}
-}
 
+// CHAPTER 2: Create HTML elements for events
+
+//function that creates the structure of the HTML for displaying events in the event catalogue; approach: create a list item for each event and attach it to an unordered list, that exists in the HTML
 function createHTML (event) {
     return "<li class='eventItem "+event.sportType+"' id='"+event.eventID+"'name='"+event.location.formatted_address+"'>" +
             "<div class='eventContainer'>" +
@@ -66,15 +79,12 @@ function createHTML (event) {
                           "<div class='flexDate'>"+
                                   "<div class='box date'>"+event.date.month.short + "" + event.date.date+"</div>"+
                                   "<div class='box day'>"+event.date.day.short+"</div>"+
-                                  // "<div class='box date'>NOV 30</div>"+
-                                  // "<div class='box day'>THU</div>"+
                           "</div>"+
                           "<div class='middleEventInfo'>"+
                                   "<div class='box eventName'><a class='linkEventPage' name='"+event.eventID+"'>"+event.name+"</a></div>"+
                                   "<div class='timeLocation'>"+
                                           "<div class='time box'>"+event.time+"</div>"+
                                           "<div class='dot box'>·</div>"+
-                                          // Adjust location --> display name
                                           "<div class='location box loc'>"+event.location.formatted_address+"</div>"+
                                           "<div class='sportEventType'>"+
                                                   "<div class='sportType box'>"+event.sportType+"</div>"+
@@ -117,6 +127,7 @@ function createHTML (event) {
         "</li>"
 }
 
+//create the current date and set it in the format that matches the format of event dates (yyyy-mm-dd)
 function todayDate() {
     var today = new Date();
     var dd = today.getDate();
@@ -128,46 +139,58 @@ function todayDate() {
     return today
 }
 
-// all events
 function createAllEvents() {
+  //only create event catalogue if events array length > 0
   if (events) {
+    //introduce a variable being an empty string
     var content = "";
+    //loop over array that contains all events that are stored in local storage
     for(var i=0; i<events.length; i++){
+        //introduce a variable that is by default false
         var eligble = false;
+        //if current user is creator of an event, set the variable eligblie to true
         if(currentUser[0] == events[i].userID) { 
             eligble = true; 
         }
+        //if current user is an attendee of event, set the variable eligblie to true
         for(var j=0; j<events[i].attendees.length; j++){
             if(currentUser[0] == events[i].attendees[j]) { 
                 eligble = true;    
             }
         }
+        //if current user is interested in event, set the variable eligblie to true
         for(var k=0; k<events[i].interested.length; k++){
             if(currentUser[0] == events[i].interested[k]) { 
                 eligble = true;    
             }
         }
+        //if event triggered and eligble = true and event date is in future, create the HTML for the event 
         if (eligble && events[i].date.datePickerDate >= todayDate()) {
             content += createHTML(events[i]);
         }
     }
+    //if an HTML was created, attach the variable to the unordered list, which is existent in the HTML and contains all events meant to be displayed
     if (content != "") {
       document.getElementById('allEventItems').innerHTML = content;
+    //if no event matchin and thus no HTML was created, display a message
     } else {
       document.getElementById('allEventItems').innerHTML = 'No events matching';
     } 
   }
 }
 
+
+// CHAPTER 3: Attend, unattend, interested, not interested button visbility and logic
+
 function buttonLogic() {
-  // get all type of buttons by ClassNames
+// get all types of buttons and the capacity display div of each event by ClassNames
   var att = document.getElementsByClassName('attend');
   var unAtt = document. getElementsByClassName('unattend');
   var int = document.getElementsByClassName('interested');
   var notInt = document.getElementsByClassName('notinterested');
 
   // set visibility of attend buttons when entering page and user attends or is interested
-  // loop over events array
+  // loop over events array, events attendees and event interested array and only display attend button and interested button if current user not included in those arrays
   for(var i=0; i < events.length; i++){
     for(var j=0; j < events[i].attendees.length; j++){
       for(var k=0; k < events[i].interested.length; k++){
@@ -180,6 +203,8 @@ function buttonLogic() {
       }
     }
   }
+
+  // loop over events array, events attendees array and only display unattend button if current user included in attendees array 
   for (var i=0; i<events.length; i++) {
     // find events with attendees
     if (events[i].attendees.length) {
@@ -195,7 +220,8 @@ function buttonLogic() {
       }
     }
   }
-  // loop over the events array
+
+  // loop over events array, events interested array and only display unattend button if current user included in interested array 
   for (var i=0; i<events.length; i++) {
     // check if there are interested people
     if (events[i].interested) {
@@ -212,8 +238,7 @@ function buttonLogic() {
     }
   }
     
-  //attend button: add event listener functionality (push userID to attendees array of event and push eventID to attendedEvents array of user + change the visibility of the buttons)  
-  //Alternative: load data-set into button as an atrribute (hence, insert the event object which applies to specific button into button and access needed properties that way) - Problem: could not parse the data-set
+  //attend button: add event listener functionality (push userID to attendees array of event and push eventID to attendedEvents array of user + change the visibility of the buttons)
   for (var i=0; i<att.length; i++) {
     // console.log(att.length)
     att[i].addEventListener('click', function(e) {
@@ -424,12 +449,15 @@ function buttonLogic() {
   }
 }
 
-//set variables for button ID's
-var btnAll = document.getElementById('allEventsBtn')
-                                                        
-//set variable for DIV ID's
+
+// CHAPTER 4: Display of div containing events and function activation
+
+//set variables for button ID
+var btnAll = document.getElementById('allEventsBtn')                                  
+//set variable for div ID
 var allEventsDIV = document.getElementById('allEvents');
 
+//update data that is used in function 
 function getLocalStorageData() {
   //User first and last name entered into header via userName
   var users = JSON.parse(localStorage.getItem("users"));
@@ -437,16 +465,23 @@ function getLocalStorageData() {
   var events = JSON.parse(localStorage.getItem("events"));
 }
 
+//attach all functions to all events button
 btnAll.addEventListener("click", function(){
   getLocalStorageData();
-    if (allEventsDIV.style.display == "none") {
-        allEventsDIV.style.display = "inline";
-    } else if (allEventsDIV.style.display == "inline") {
-        allEventsDIV.style.display = "none";
-    }
+  //on click of button: display div if not displayed; hide div if display
+  if (allEventsDIV.style.display == "none") {
+    allEventsDIV.style.display = "inline";
+  } else if (allEventsDIV.style.display == "inline") {
+    allEventsDIV.style.display = "none";
+  }
+  //attach HTML creation function on click of button
   createAllEvents();
+  //attach the button logic
   buttonLogic();
 })
+
+
+// CHAPTER 5: Redirect to individual event page
 
 // when the link (=click on name of event) to an event is clicked, the event id is pushed to the array currentEvent, stored in the local Storage and the user is redirected to the event Profile -> on the event Profile the Data gets filled out automatically based on the entry of the id in the currentEvent array
 // Give the a tag a class

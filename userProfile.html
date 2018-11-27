@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
       <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>User Profile</title>
-      <link rel="stylesheet" href="assets/css/style.css">
-      <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
-      <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <title>User Profile</title>
+            <!--insert font-->
+            <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+            <!--insert link to stylesheet-->
+            <link rel="stylesheet" href="assets/css/style.css">
+            <!--load jQuery library for navigation bar scroll-->
+            <script src="https://code.jquery.com/jquery-3.3.1.min.js"
                   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
                   crossorigin="anonymous">
-      </script>
+            </script>
       </head>
       <body>
+            <!--insert div that contains navigation bar-->
             <div class = "wrapper" id = "userProfileWindow">
                   <section class="navMargin"></section>
                   <section class = "sec1">
+                        <!--create a div that contains personal user data and link to profile management page-->
                         <div id = "containerUser">
                               <div id="settingsContainer"></a>
                                     <img src="icons/settings-icon.png" alt="Avatar" id="settingsImage">
@@ -28,7 +33,8 @@
                               <h4><a id="currentUserGender"></a></h4>
                               <p id ="userLocation"></p>
                               <h3><a id="currentUserSlogan"></a></h3>      
-                        </div> 
+                        </div>
+                        <!--create a div that contains button and div that contains all applicable events (events that user attends, is interested in or created-->
                         <div id = "containerBtnGroup">          
                               <div class="btn-group">  
                                     <button id="allEventsBtn">All upcoming Events</button>
@@ -43,6 +49,7 @@
                   </section>
             </div>
       </body>
+       <!--load JS scripts for navigation bar and JS script for user profile-->
       <script type="text/javascript" src="assets/js/insertNavbar.js"></script>
       <script type="text/javascript" src="assets/js/navbarScroll.js"></script>
       <script src="assets/js/userProfile.js"></script>  
