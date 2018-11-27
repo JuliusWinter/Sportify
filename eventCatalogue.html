@@ -16,13 +16,15 @@
       <body>
             <div class="wrapper">
                   <section class="navMargin"></section>
-                  <section class="sec1">    
+                  <section class="sec1">
+                        <h1 id='eventCatalogueh1'>Event Catalogue</h1>  
                   <!--create a div that contains all page elements except from Navbar-->
                         <div class='container1'>
+                              
                         <!--create a div that includes the entire Search/Filtering functions and form elements / should be displayed on the left side of page and take 30% of page width-->
                               <div id="floatLeftEC">
                                     <!-- <nav id='navbar'><div id='sportifyLogo'>SPORTIFY</div><ul><li><a id='userProfile' href='userProfile.html'>USER PROFILE</a></li><li><a id='createEvent' href='createCourse.html'>CREATE EVENT</a></li><li><a id='eventCatalogue' href='eventCatalogue.html'>EVENT CATALOGUE</a></li><li><a id='logoutBtn' href='index.html'>LOG OUT</a></li></ul></nav> -->
-                                    <h1 id='eventCatalogueh1'>Event Catalogue</h1>
+                                    
                                     <!--create a div that includes two search fields to search for city and sport category; only one search item at a time per search field-->
                                     <div id='searching'>
                                           <input type='text' id="searchbarEC" onkeyup="locSearch()" placeholder='Search for your city here'> 
@@ -76,7 +78,9 @@
                               <ul id='catalogueItems'>
                               </ul>
                               </div>
+                        </div>
                   </section>
+                  <section class="secBottom"></section>
             </div>
             <script type="text/javascript" src="assets/js/insertNavbar.js"></script>
             <script type="text/javascript" src="assets/js/navbarScroll.js"></script>
