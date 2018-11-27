@@ -8,7 +8,7 @@
             <!--insert link to Google API-->
             <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
             <!--insert link to stylesheet-->
-            <link rel="stylesheet" href="assets/css/login.css">
+            <link rel="stylesheet" href="assets/css/style.css">
             <!--load jQuery library for navigation bar scroll-->
             <script src="https://code.jquery.com/jquery-3.3.1.min.js"
                   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -19,13 +19,16 @@
             <!--insert div that contains navigation bar-->
             <div class="wrapper">
                   <section class="navMargin"></section>
-                  <section class="sec1">    
-                        <!--create a div that contains all page elements except from Navbar-->
+                  <section class="sec1">
+                        <h1 id='eventCatalogueh1'>Event Catalogue</h1>  
+                  <!--create a div that contains all page elements except from Navbar-->
                         <div class='container1'>
-                              <!--create a div that includes the entire Search/Filtering functions and form elements / should be displayed on the left side of page and take 30% of page width-->
+                              
+                        <!--create a div that includes the entire Search/Filtering functions and form elements / should be displayed on the left side of page and take 30% of page width-->
                               <div id="floatLeftEC">
-                                    <h1 id='eventCatalogueh1'>Event Catalogue</h1>
-                                    <!--create a div that includes input field for search of location-->
+                                    <!-- <nav id='navbar'><div id='sportifyLogo'>SPORTIFY</div><ul><li><a id='userProfile' href='userProfile.html'>USER PROFILE</a></li><li><a id='createEvent' href='createCourse.html'>CREATE EVENT</a></li><li><a id='eventCatalogue' href='eventCatalogue.html'>EVENT CATALOGUE</a></li><li><a id='logoutBtn' href='index.html'>LOG OUT</a></li></ul></nav> -->
+                                    
+                                    <!--create a div that includes two search fields to search for city and sport category; only one search item at a time per search field-->
                                     <div id='searching'>
                                           <input type='text' id="searchbarEC" onkeyup="locSearch()" placeholder='Search for a location here'> 
                                     </div>
@@ -79,7 +82,9 @@
                               <ul id='catalogueItems'>
                               </ul>
                               </div>
+                        </div>
                   </section>
+                  <section class="secBottom"></section>
             </div>
             <!--load JS scripts for navigation bar and JS script for event catalogue -->
             <script type="text/javascript" src="assets/js/insertNavbar.js"></script>
