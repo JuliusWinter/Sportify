@@ -128,23 +128,6 @@ function todayDate() {
     return today
 }
 
-// own events
-function createOwnEvents() {
-  if (events) {
-      var content = "";
-      for(var i=0; i<events.length; i++){
-          if(currentUser[0] == events[i].userID) { 
-              content += createHTML(events[i]);
-          }
-      }
-      if (content != "") {
-        document.getElementById('ownEventItems').innerHTML = content;
-      } else {
-        document.getElementById('ownEventItems').innerHTML = 'No events matching';
-      } 
-  }
-}
-
 // all events
 function createAllEvents() {
   if (events) {
@@ -442,11 +425,9 @@ function buttonLogic() {
 }
 
 //set variables for button ID's
-var btnOwn = document.getElementById("ownEventsBtn");
 var btnAll = document.getElementById('allEventsBtn')
                                                         
 //set variable for DIV ID's
-var ownEventsDIV = document.getElementById("ownEvents");
 var allEventsDIV = document.getElementById('allEvents');
 
 function getLocalStorageData() {
@@ -456,26 +437,11 @@ function getLocalStorageData() {
   var events = JSON.parse(localStorage.getItem("events"));
 }
 
-btnOwn.addEventListener("click", function(){
-  getLocalStorageData();
-    if (ownEventsDIV.style.display == "none") {
-        ownEventsDIV.style.display = "inline";
-        allEventsDIV.style.display = "none";
-    } else if (ownEventsDIV.style.display == "inline") {
-        ownEventsDIV.style.display = "none";
-        allEventsDIV.style.display = "none";
-    }
-  createOwnEvents();
-  buttonLogic();
-})
-
 btnAll.addEventListener("click", function(){
   getLocalStorageData();
     if (allEventsDIV.style.display == "none") {
-        ownEventsDIV.style.display = "none";
         allEventsDIV.style.display = "inline";
     } else if (allEventsDIV.style.display == "inline") {
-        ownEventsDIV.style.display = "none";
         allEventsDIV.style.display = "none";
     }
   createAllEvents();

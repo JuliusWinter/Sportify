@@ -439,11 +439,8 @@ div#container{
 
 
 #searchbarEC {
-background-image: url('/css/searchicon.png'); /* Add a search icon to input */
-background-position: 10px 12px; /* Position the search icon */
-background-repeat: no-repeat; /* Do not repeat the icon image */
 width: auto; /* Full-width */
-font-size: 14px; /* Increase font-size */
+font-size: 12px; /* Increase font-size */
 padding: 12px; /* Add some padding */
 border: 1px solid #ddd; /* Add a grey border */
 margin-bottom: 12px; /* Add some space below the input */
@@ -902,7 +899,6 @@ display: block;
 
 .btn-group button{
     background: #012e70; /* Green background */
-   
     color: snow; /* White text */
     padding: 20px; /* Some padding */
     width: 33.3%;/* stretch accross section */
@@ -913,16 +909,6 @@ display: block;
     border: none;
     margin:auto;
     
-<<<<<<< HEAD
-
-}
-#createdEventsBtn{
-    border-bottom-left-radius: 14px;
-}
-#interestedEventsBtn{
-    border-bottom-right-radius: 14px;
-=======
->>>>>>> 467c38ec515664a285ea6adfa70dac466bea3908
 }
 
 #userDisplayArea{
@@ -947,49 +933,17 @@ display: block;
     margin-top: 5%;
 }
 /* Display area for the current, past, and potential events for the user */
-<<<<<<< HEAD
-#userCreated {
-    width: 100%;
-    text-align: center;
-    background-color: rgba(12, 12, 12, 0.445);
-    margin-top: -24px;
-    display:none;
-}
-#userAttending {
-    width: 100%;
-    text-align: center;
-    background-color: rgba(85, 85, 85, 0.445);
-    margin-top: -24px;
-    display:none;
-}
-#userInterest {
-    width: 100%;
-    text-align: center;
-    background-color: rgba(12, 12, 12, 0.445);
-    margin-top: -24px;
-    display:none;
-=======
 #allevents {
     width: 100%;
     text-align: center;
     margin-top: 5px;
 }
-#upcomingEvents {
-    width: 100%;
-    text-align: center;
-   	margin-top: 5px;
-}
+
 #ownEvents {
     width: 100%;
     text-align: center;
    	margin-top: 5px;
->>>>>>> 467c38ec515664a285ea6adfa70dac466bea3908
 } 
-#previousEvents{
-    width: 100%;
-    text-align: center;
-   	margin-top: 5px;
-}
 
 .userEvents{
     float:right;
