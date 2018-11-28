@@ -111,7 +111,7 @@ section.navMargin{
 section.sec1{
     width: 100%;
     min-height: 100vh;
-    height: min-content;
+    overflow:auto;
     background: #24C6DC;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #514A9D, #24C6DC);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #514A9D, #24C6DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
@@ -881,23 +881,15 @@ display: block;
 }
 /* ////////////////////////////  USER PRFILE CARD ENDS, PROFILE PAGE CONT. \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
 #containerBtnGroup{
-    width: 650px;
+    width: 714px;
     margin: 0 auto;
     background: #24C6DC;  /* fallback for old browsers */
     border-bottom-left-radius:16px ;
     border-bottom-right-radius: 16px;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
-    text-align: center;
     border: none;
     height: 40px;
 
-}
-
-.btn-group{
-    width: 650px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
 }
 
 .btn-group button{
@@ -906,12 +898,10 @@ display: block;
     padding: 20px; /* Some padding */
     width: 33.3%;/* stretch accross section */
     cursor: pointer; /* Pointer/hand icon */
-    float: left; /* Float the buttons side by side */
     display:inline-block;
     height: 10px;
     border: none;
-    margin:auto;
-    
+    margin: 0 auto;
 }
 
 #userDisplayArea{
@@ -934,6 +924,7 @@ display: block;
 }
 .userTabs{
     margin-top: 5%;
+    margin-left: -6%;
 }
 /* Display area for the current, past, and potential events for the user */
 #allevents {

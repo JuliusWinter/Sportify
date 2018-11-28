@@ -79,6 +79,10 @@ for(var i = 0; i < events.length; i++){
     }
 }
 
+// setting the minimum choosable date to today
+let today = new Date().toISOString().substr(0, 10);
+document.querySelector("#eventDate").min = today;
+
 class myDate {
     constructor (fullDate){
         this.datePickerDate = fullDate;
