@@ -91,6 +91,11 @@ function guid() {
 document.getElementById("registrationForm").addEventListener("submit", function(event){
     // Prevent the page to automatically push the input into the URL and prevent the page to reload
     event.preventDefault();
+    // reset error signs
+    document.getElementById("userNameTaken").innerHTML = "";
+    document.getElementById("regUserName").style.border = "none";
+    document.getElementById("emailTaken").innerHTML = "";
+    document.getElementById("regEmail").style.border = "none";
     // check if user name is already taken
     if(JSON.parse(localStorage.getItem("users"))){
         for(var i = 0; i < users.length; i++){
@@ -105,6 +110,7 @@ document.getElementById("registrationForm").addEventListener("submit", function(
             else if(users[i].email === event.target.regEmail.value){
                 document.getElementById("emailTaken").innerHTML = "There already exists an account with this email address";
                 document.getElementById("regEmail").style.border = "2px solid red";
+                break;
             }
             else{
                 // generate User ID
@@ -123,6 +129,22 @@ document.getElementById("registrationForm").addEventListener("submit", function(
                 document.location.href = "loginSuccessful.html";
             }
         }
+    }
+    else{
+        // generate User ID
+        var ID = guid();
+        // hash password
+        password = window.btoa(event.target.regPassword.value);
+        // push new user to users array
+        users.push(new user (ID, event.target.regUserName.value, event.target.regFirstName.value, event.target.regLastName.value, event.target.gender.value, new myDate(event.target.regBirthday.value), event.target.regEmail.value, password));
+        // store stringified version of users array in localStorage
+        localStorage.setItem("users", JSON.stringify(users));
+        // push the same user to current User array
+        currentUser.push(ID);
+        // safe stringified version of current user array to local storage
+        localStorage.setItem("currentUser", JSON.stringify(currentUser));
+        // redirect to loginSuccessful.html
+        document.location.href = "loginSuccessful.html";
     }
 });
 

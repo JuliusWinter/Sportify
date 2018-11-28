@@ -67,8 +67,8 @@
                         <input type="password" placeholder="Enter your old password here..." name="oldPass" id="oldPassword" class="formelement">
                         <!-- form element for new password  -->
                         <label for="newPassword"></label>
-                        <input type="password" name="newPass" id="newPassword" class="formelement" placeholder="Enter your new password..." 
-                            required/>
+                        <input type="password" name="newPass" id="newPassword" class="formelement" placeholder="Enter your new password..." title="The password must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" 
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required/>
                         <!-- form element for new password repeat -->
                         <label for="newConPassword"></label>
                         <input type="password" name="newConPass" id="newConPassword" class="formelement" placeholder="Confirm your new password..." required/>
