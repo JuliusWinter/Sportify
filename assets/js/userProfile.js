@@ -140,43 +140,43 @@ function todayDate() {
 }
 
 function createAllEvents() {
-  //only create event catalogue if events array length > 0
-  if (events) {
     //introduce a variable being an empty string
     var content = "";
-    //loop over array that contains all events that are stored in local storage
-    for(var i=0; i<events.length; i++){
-        //introduce a variable that is by default false
-        var eligble = false;
-        //if current user is creator of an event, set the variable eligblie to true
-        if(currentUser[0] == events[i].userID) { 
-            eligble = true; 
-        }
-        //if current user is an attendee of event, set the variable eligblie to true
-        for(var j=0; j<events[i].attendees.length; j++){
+    //only create event catalogue if events array length > 0
+    if (events) {
+      //loop over array that contains all events that are stored in local storage
+      for(var i=0; i<events.length; i++){
+          //introduce a variable that is by default false
+          var eligble = false;
+          //if current user is creator of an event, set the variable eligblie to true
+          if(currentUser[0] == events[i].userID) { 
+              eligble = true; 
+          }
+          //if current user is an attendee of event, set the variable eligblie to true
+          for(var j=0; j<events[i].attendees.length; j++){
             if(currentUser[0] == events[i].attendees[j]) { 
-                eligble = true;    
+              eligble = true;    
             }
-        }
-        //if current user is interested in event, set the variable eligblie to true
-        for(var k=0; k<events[i].interested.length; k++){
+          }
+          //if current user is interested in event, set the variable eligblie to true
+          for(var k=0; k<events[i].interested.length; k++){
             if(currentUser[0] == events[i].interested[k]) { 
-                eligble = true;    
+              eligble = true;    
             }
-        }
-        //if event triggered and eligble = true and event date is in future, create the HTML for the event 
-        if (eligble && events[i].date.datePickerDate >= todayDate()) {
-            content += createHTML(events[i]);
-        }
+          } 
+      //if event triggered and eligble = true and event date is in future, create the HTML for the event 
+      if (eligble && events[i].date.datePickerDate >= todayDate()) {
+        content += createHTML(events[i]);
+      }
     }
-    //if an HTML was created, attach the variable to the unordered list, which is existent in the HTML and contains all events meant to be displayed
-    if (content != "") {
-      document.getElementById('allEventItems').innerHTML = content;
-    //if no event matchin and thus no HTML was created, display a message
-    } else {
-      document.getElementById('allEventItems').innerHTML = 'No events matching';
-    } 
   }
+  //if an HTML was created, attach the variable to the unordered list, which is existent in the HTML and contains all events meant to be displayed
+  if (content != "") {
+    document.getElementById('allEventItems').innerHTML = content;
+  //if no event matchin and thus no HTML was created, display a message
+  } else if (content != "" || typeof events != "undefined") {
+    document.getElementById('allEventItems').innerHTML = 'No events matching';
+  } 
 }
 
 
@@ -191,53 +191,54 @@ function buttonLogic() {
 
   // set visibility of attend buttons when entering page and user attends or is interested
   // loop over events array, events attendees and event interested array and only display attend button and interested button if current user not included in those arrays
-  for(var i=0; i < events.length; i++){
-    for(var j=0; j < events[i].attendees.length; j++){
-      for(var k=0; k < events[i].interested.length; k++){
-        if(currentUser[0] !== events[i].attendees[j] && currentUser[0] !== events[i].interested[k]){
-          att[i].classList.remove("hideElement");
-          unAtt[i].classList.add("hideElement");
-          int[i].classList.remove("hideElement");
-          notInt[i].classList.add("hideElement");
+  if (events) {
+    for(var i=0; i < events.length; i++){
+      for(var j=0; j < events[i].attendees.length; j++){
+        for(var k=0; k < events[i].interested.length; k++){
+          if(currentUser[0] !== events[i].attendees[j] && currentUser[0] !== events[i].interested[k]){
+            att[i].classList.remove("hideElement");
+            unAtt[i].classList.add("hideElement");
+            int[i].classList.remove("hideElement");
+            notInt[i].classList.add("hideElement");
+          }
         }
       }
     }
-  }
 
-  // loop over events array, events attendees array and only display unattend button if current user included in attendees array 
-  for (var i=0; i<events.length; i++) {
-    // find events with attendees
-    if (events[i].attendees.length) {
-      // loop over attendees array
-      for (var j=0; j<events[i].attendees.length; j++) {
-        // check if currentUser is one of the attendees
-        if (currentUser[0] === events[i].attendees[j]){
-          att[i].classList.add("hideElement");
-          unAtt[i].classList.remove("hideElement");
-          int[i].classList.add("hideElement");
-          notInt[i].classList.add("hideElement");
+    // loop over events array, events attendees array and only display unattend button if current user included in attendees array 
+    for (var i=0; i<events.length; i++) {
+      // find events with attendees
+      if (events[i].attendees.length) {
+        // loop over attendees array
+        for (var j=0; j<events[i].attendees.length; j++) {
+          // check if currentUser is one of the attendees
+          if (currentUser[0] === events[i].attendees[j]){
+            att[i].classList.add("hideElement");
+            unAtt[i].classList.remove("hideElement");
+            int[i].classList.add("hideElement");
+            notInt[i].classList.add("hideElement");
+          }
         }
       }
     }
-  }
 
-  // loop over events array, events interested array and only display unattend button if current user included in interested array 
-  for (var i=0; i<events.length; i++) {
-    // check if there are interested people
-    if (events[i].interested) {
-      // if yes, loop over interested array
-      for (var j=0; j<events[i].interested.length; j++) {
-        // check if our current user is one of the interested people
-        if (currentUser[0] === events[i].interested[j]){
-          att[i].classList.remove("hideElement");
-          unAtt[i].classList.add("hideElement");
-          int[i].classList.add("hideElement");
-          notInt[i].classList.remove("hideElement");
+    // loop over events array, events interested array and only display unattend button if current user included in interested array 
+    for (var i=0; i<events.length; i++) {
+      // check if there are interested people
+      if (events[i].interested) {
+        // if yes, loop over interested array
+        for (var j=0; j<events[i].interested.length; j++) {
+          // check if our current user is one of the interested people
+          if (currentUser[0] === events[i].interested[j]){
+            att[i].classList.remove("hideElement");
+            unAtt[i].classList.add("hideElement");
+            int[i].classList.add("hideElement");
+            notInt[i].classList.remove("hideElement");
+          }
         }
       }
     }
-  }
-    
+  } 
   //attend button: add event listener functionality (push userID to attendees array of event and push eventID to attendedEvents array of user + change the visibility of the buttons)
   for (var i=0; i<att.length; i++) {
     // console.log(att.length)

@@ -57,11 +57,10 @@ var charCount = document.getElementById("charCounterPrfMng");
 var userSave = document.getElementById("userFormEdit1");
 
 // select all the HTML input/form elements in the first form DIV userFormEdit2: pertaining to password and email
-var userOldPassword = document.getElementById("oldPassword");//check currentUser password match
-var userNewPassword = document.getElementById("newPassword");//Entry must match with newConPassword
-var userNewConPassword = document.getElementById("newConPassword");//newConPassword
-var userNewEmail = document.getElementById("newEmail");//place old email
-var userNewConEmail = document.getElementById("newConEmail");//match this email with email above
+var userOldPassword = document.getElementById("oldPassword");
+var userNewPassword = document.getElementById("newPassword");
+//Entry must match with newConPassword
+var userNewConPassword = document.getElementById("newConPassword");
 var userSave2 = document.getElementById("userFormEdit2");
 
 //Loop through users and get currentUser
@@ -76,7 +75,7 @@ for(var i = 0; i < users.length; i++){
     userSloganEdit.value = users[i].slogan;
   }
 }
-// applies function in user slogan input box, and character counter HTML elements
+//applies function in user slogan input box, and character counter HTML elements
 function countText(userSloganEdit, charCount, max) {
   //gets the full substring from start to end
   userSloganEdit.value = userSloganEdit.value.substring(0, max);
@@ -137,8 +136,6 @@ userSave2.addEventListener("submit", function(event){
   for(var i = 0; i < users.length; i++){
     var pass1 = userNewPassword.value;
     var pass2 = userNewConPassword.value;
-    var eml1 = userNewEmail.value;
-    var eml2 = userNewConEmail.value;
     //Hash password entered by user, and set variable
     var oldPassEntry = window.btoa(event.target.oldPassword.value);
     //if current user equals user ID
@@ -146,12 +143,12 @@ userSave2.addEventListener("submit", function(event){
         //set variable of user password
       var oldPass = users[i].password;
     };
-    if(pass1 == pass2 && eml1 == eml2 && oldPass == oldPassEntry ){
+    if(pass1 == pass2 && oldPass == oldPassEntry ){
       // new passwords are equal and users stored password equals hash password and emails are equal
       //new password is hashed and set
       users[i].password =  window.btoa(event.target.newPassword.value);
       //email in input field is set
-      users[i].email = event.target.newEmail.value;
+      // users[i].email = event.target.newEmail.value;
       document.getElementById("result").innerHTML = "Thank you "+ userFirstNameEdit.value +", your information has been changed!";
 
       // save updated user info in local storage
