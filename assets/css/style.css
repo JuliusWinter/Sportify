@@ -454,7 +454,7 @@ margin-bottom: 12px; /* Add some space below the input */
     left: 0%;
     right: 0%;
     padding-top: 0%;
-    width: 30%;
+    margin-left: 8%
 }
 
 #catalogue {
@@ -462,7 +462,7 @@ margin-bottom: 12px; /* Add some space below the input */
     left: 0%;
     right: 0%;
     padding-top: 0%;
-    width: 70%;
+    width: 65%;
 }
 
 .event {
@@ -884,11 +884,11 @@ display: block;
     width: 714px;
     margin: 0 auto;
     background: #24C6DC;  /* fallback for old browsers */
-    border-bottom-left-radius:16px ;
-    border-bottom-right-radius: 16px;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
     border: none;
     height: 40px;
+    border-bottom-left-radius:16px ;
+    border-bottom-right-radius: 16px;
 
 }
 
@@ -896,12 +896,14 @@ display: block;
     background: #012e70; /* Green background */
     color: snow; /* White text */
     padding: 20px; /* Some padding */
-    width: 33.3%;/* stretch accross section */
+    width: 100%;/* stretch accross section */
     cursor: pointer; /* Pointer/hand icon */
     display:inline-block;
     height: 10px;
     border: none;
     margin: 0 auto;
+    border-bottom-left-radius:16px ;
+    border-bottom-right-radius: 16px;
 }
 
 #userDisplayArea{
@@ -924,7 +926,7 @@ display: block;
 }
 .userTabs{
     margin-top: 5%;
-    margin-left: -6%;
+    margin-left: -1%;
 }
 /* Display area for the current, past, and potential events for the user */
 #allevents {

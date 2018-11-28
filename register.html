@@ -24,7 +24,7 @@
                         <!-- letters and digits, with hyphens, underscores and spaces as internal separators; first and last character are not separators, and that there's never more than one separator in a row -->
                             <p id="userNameTaken" class="errorMsg"></p>
                             <input type="text" name="regUserName" id="regUserName" class="formelement" placeholder="User name" 
-                            title="User Name can only contain letters and digits. Hyphens, underscores and spaces are allowed as internal separators" required/>
+                            title="User Name can only contain letters and digits. Hyphens, underscores and spaces are allowed as internal separators" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" required/>
                         <label for="regFirstName"></label>
                             <input type="text" name="regFirstName" id="regFirstName" class="formelement" placeholder="First name" required/>
                         <label for="regLastName"></label>
@@ -38,12 +38,12 @@
                             </select>
                         <label for="regEmail"></label>
                             <p id="emailTaken" class="errorMsg"></p>
-                            <input type="email" name="regEmail" id="regEmail" class="formelement" placeholder="Email" required/>
+                            <input type="email" name="regEmail" id="regEmail" class="formelement" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required/>
                         <label for="regConEmail"></label>
                             <input type="text" name="regConEmail" id="regConEmail" class="formelement" placeholder="Confirm Email" required/>
                         <label for="regPassword"></label>
-                            <input type="password" name="regPassword" id="regPassword" class="formelement" placeholder="Password" 
-                             required/>
+                            <input type="password" name="regPassword" id="regPassword" class="formelement" placeholder="Password" title="The password must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" 
+                             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required/>
                         <label for="regConPassword"></label>
                             <input type="password" name="regConPassword" id="regConPassword" class="formelement" placeholder="Confirm password" required/>
                         <br>

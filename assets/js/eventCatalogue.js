@@ -42,8 +42,6 @@ if(currentUser){
   userProfile.style.display = "inline";
   createEvent.style.display = "inline";
   eventCatalogue.style.display = "inline";
-  learnMore.style.display = "none";
-  about.style.display = "none";
   registerBtn.style.display = "none";
   loginBtn.style.display = "none";
   logoutBtn.style.display = "inline";
@@ -152,21 +150,35 @@ var int = document.getElementsByClassName('interested');
 var notInt = document.getElementsByClassName('notinterested');
 var cap = document.getElementsByClassName('capacity');
 
-// set visibility of attend buttons when entering page and user attends or is interested
+// set visibility of attend and interested buttons when entering page and user attends or is interested
 // loop over events array, events attendees and event interested array and only display attend button and interested button if current user not included in those arrays
-if (events) {
-  for(var i=0; i < events.length; i++){
-    for(var j=0; j < events[i].attendees.length; j++){
-      for(var k=0; k < events[i].interested.lenght; k++){
-        if(currentUser[0] !== events[i].attendees[j] && currentUser[0] !== events[i].interested[k]){
-          att[i].classList.remove("hideElement");
-          unAtt[i].classList.add("hideElement");
-          int[i].classList.remove("hideElement");
-          notInt[i].classList.add("hideElement");
+for (var i=0; i<events.length; i++){
+  if(events[i].userID === currentUser[0]){
+    att[i].classList.add("hideElement");
+    unAtt[i].classList.add("hideElement");
+    int[i].classList.add("hideElement");
+    notInt[i].classList.add("hideElement");
+  }
+  else{
+    if (events) {
+      for(var i=0; i < events.length; i++){
+        for(var j=0; j < events[i].attendees.length; j++){
+          for(var k=0; k < events[i].interested.lenght; k++){
+            if(currentUser[0] !== events[i].attendees[j] && currentUser[0] !== events[i].interested[k]){
+              att[i].classList.remove("hideElement");
+              unAtt[i].classList.add("hideElement");
+              int[i].classList.remove("hideElement");
+              notInt[i].classList.add("hideElement");
+            }
+          }
         }
       }
     }
   }
+}
+
+
+
 
   // loop over events array, events attendees array and only display unattend button if current user included in attendees array 
   for (var i=0; i<events.length; i++) {
@@ -201,7 +213,7 @@ if (events) {
       }
     }
   }
-}
+
 //attend button: add event listener functionality (push userID to attendees array of event and push eventID to attendedEvents array of user + change the visibility of the buttons)  
 for (var i=0; i < att.length; i++) {
   // console.log(att.length)

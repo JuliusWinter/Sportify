@@ -26,8 +26,6 @@ if(currentUser){
   userProfile.style.display = "inline";
   createEvent.style.display = "inline";
   eventCatalogue.style.display = "inline";
-  learnMore.style.display = "none";
-  about.style.display = "none";
   registerBtn.style.display = "none";
   loginBtn.style.display = "none";
   logoutBtn.style.display = "inline";
@@ -36,8 +34,6 @@ else{
   userProfile.style.display = "none";
   createEvent.style.display = "none";
   eventCatalogue.style.display = "none";
-  learnMore.style.display = "inline";
-  about.style.display = "inline";
   registerBtn.style.display = "inline";
   loginBtn.style.display = "inline";
   logoutBtn.style.display = "none";

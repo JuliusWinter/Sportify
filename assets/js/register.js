@@ -66,8 +66,6 @@ var logoutBtn = document.querySelector("#logoutBtn");
 userProfile.style.display = "none";
 createEvent.style.display = "none";
 eventCatalogue.style.display = "none";
-learnMore.style.display = "inline";
-about.style.display = "inline";
 registerBtn.style.display = "none";
 loginBtn.style.display = "inline";
 logoutBtn.style.display = "none";
@@ -125,22 +123,6 @@ document.getElementById("registrationForm").addEventListener("submit", function(
                 document.location.href = "loginSuccessful.html";
             }
         }
-    }
-    else{
-        // generate User ID
-        var ID = guid();
-        // hash password
-        password = window.btoa(event.target.regPassword.value);
-        // push new user to users array
-        users.push(new user (ID, event.target.regUserName.value, event.target.regFirstName.value, event.target.regLastName.value, event.target.gender.value, event.target.regBirthday.value, event.target.regEmail.value, password));
-        // store stringified version of users array in localStorage
-        localStorage.setItem("users", JSON.stringify(users));
-        // push the same user to current User array
-        currentUser.push(ID);
-        // safe stringified version of current user array to local storage
-        localStorage.setItem("currentUser", JSON.stringify(currentUser));
-        // redirect to loginSuccessful.html
-        document.location.href = "loginSuccessful.html";
     }
 });
 

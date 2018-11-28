@@ -21,19 +21,19 @@
                 <h1>Create Event</h1>
                 <form id="eventForm">
                     <label for="eventType"></label>
-                    <select id="eventType" class="dropdown">
+                    <select id="eventType" class="dropdown" required>
                         <option value="course">Course</option>
                         <option value="training">Training</option>
                     </select>
                     <label for="privacyDropdown"></label>
-                    <select id="privacyDropdown" class="dropdown">
+                    <select id="privacyDropdown" class="dropdown" required>
                         <option value="public">Public Event</option>
                         <option value="private">Private Event</option>   
                     </select>
                     <!-- dropdown for all the sport types -->
                     <label for="eventSportType"></label>
-                    <select class="dropdown" id="eventSportType">
-                        <option value="chooseSport">Choose Sport</option>
+                    <select class="dropdown" id="eventSportType" required>
+                        <option value="">Choose Sport</option>
                         <option value="American Football">American Football</option>
                         <option value="Athletics">Athletics</option>
                         <option value="Badminton">Badminton</option>
@@ -85,36 +85,36 @@
                 <!-- FIND OUT HOW TO SAVE A PICTURE TO A LOCAL FOLDER AND SAFE THE PATH TO IT IN THE OBJECT!!! -->
                 <!-- <input type="file" placeholder="Event Picture" id="eventPic" class="formelement"> -->
                 <label for="eventName"></label>
-                <input type="text" placeholder="Event Name" id="eventName" class="formelement">
+                <input type="text" placeholder="Event Name" id="eventName" class="formelement" required>
                 <!-- date input -->
                 <label for="eventDate"></label>
-                <input type="date" placeholder="Event Date" id="eventDate"  class="formelement">
+                <input type="date" placeholder="Event Date" id="eventDate"  class="formelement" required>
                 <!-- time input -->
                 <label for="eventTime"></label>
-                <input type="time" placeholder="Event Time" id="eventTime" class="formelement">
+                <input type="time" placeholder="Event Time" id="eventTime" class="formelement" required>
                 <!-- expandable text area for suitable for long -->
                 <label for="eventDescription"></label>
-                <input type="text" placeholder="Description" id="eventDescription" class="formelement">
+                <input type="text" placeholder="Description" id="eventDescription" class="formelement" required>
                 <!-- Difficultiy level input -->
                 <label for="eventDifficulty"></label>
-                <input type="number" placeholder="Difficulty Level" id="eventDifficulty" class="formelement" min="1" max="5">
+                <input type="number" placeholder="Difficulty Level" id="eventDifficulty" class="formelement" min="1" max="5" required>
                 <!-- number input for max nr participants -->
                 <label for="eventMaxPart"></label>
-                <input type="number" placeholder="Maximum Number of Participants" id="eventMaxPart" class="formelement">
+                <input type="number" placeholder="Maximum Number of Participants" id="eventMaxPart" class="formelement" required>
                 <!-- dropdown for frequency; on the last point (other), a modal calendar should appear, where it is possible to choose multiple dates -->
                 <label for="eventFrequency"></label>
-                <select class="dropdown" id="eventFrequency">
-                    <option value="Choose Frequency">Choose Frequency</option>
+                <select class="dropdown" id="eventFrequency" required>
+                    <option value="">Choose Frequency</option>
                     <option value="single">single event</option>
                     <option value="daily">daily</option>
                     <option value="weekly">weekly</option>
                 </select>
                 <!-- text input for location might be extended with an api that can links to real locations -->
                 <label for="eventLocation"></label>
-                <input type="text" placeholder="Location" id="eventLocation" class="formelement">
+                <input type="text" placeholder="Location" id="eventLocation" class="formelement" required>
                 <!-- price -> an additional currency can be added to the input -->
                 <label for="eventPrice"></label>
-                <input type="number" placeholder="Price in DKK" id="eventPrice" class="formelement">
+                <input type="number" placeholder="Price in DKK" id="eventPrice" class="formelement" required>
                 <input type="submit" value="Create Event" name="submit" id="submit" class="formelement submit">
             </form>
         </div>

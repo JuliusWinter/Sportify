@@ -22,8 +22,6 @@ if(currentUser){
     userProfile.style.display = "inline";
     createEvent.style.display = "inline";
     eventCatalogue.style.display = "inline";
-    learnMore.style.display = "none";
-    about.style.display = "none";
     registerBtn.style.display = "none";
     loginBtn.style.display = "none";
     logoutBtn.style.display = "inline";
@@ -32,8 +30,6 @@ else{
     userProfile.style.display = "none";
     createEvent.style.display = "none";
     eventCatalogue.style.display = "none";
-    learnMore.style.display = "inline";
-    about.style.display = "inline";
     registerBtn.style.display = "inline";
     loginBtn.style.display = "inline";
     logoutBtn.style.display = "none";
@@ -116,13 +112,21 @@ var cap = document.getElementsByClassName('capacity');
 // set visibility of attend buttons when entering page and user attends or is interested
 // loop over events array
 for(var i = 0; i < events.length; i++){
-    for(var j = 0; j < events[i].attendees.length; j++){
-        for(var k = 0; k < events[i].interested.lenght; k++){
-            if(currentUser[0] !== events[i].attendees[j] && currentUser[0] !== events[i].interested[k]){
-                att[0].classList.remove("hideElement");
-                unAtt[0].classList.add("hideElement");
-                int[0].classList.remove("hideElement");
-                notInt[0].classList.add("hideElement");
+    if(events[i].eventID === currentEvent[0] && events[i].userID === currentUser[0]){
+        att[0].classList.add("hideElement");
+        unAtt[0].classList.add("hideElement");
+        int[0].classList.add("hideElement");
+        notInt[0].classList.add("hideElement");
+    }
+    else{
+        for(var j = 0; j < events[i].attendees.length; j++){
+            for(var k = 0; k < events[i].interested.lenght; k++){
+                if(currentUser[0] !== events[i].attendees[j] && currentUser[0] !== events[i].interested[k]){
+                    att[0].classList.remove("hideElement");
+                    unAtt[0].classList.add("hideElement");
+                    int[0].classList.remove("hideElement");
+                    notInt[0].classList.add("hideElement");
+                }
             }
         }
     }
